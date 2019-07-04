@@ -8,9 +8,12 @@ use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
+    // TODO: Tag Primary Key to Name (So we can Tag-type store, update and destroy methods)
+
     /**
      * TagController constructor.
      */
@@ -60,11 +63,14 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Tag $tag
+     * @param string $name
      * @return Response
      */
-    public function show(Tag $tag)
+    public function show(string $name)
     {
+        /** @var Tag $tag */
+        $tag = Tag::whereName($name)->first();
+
         logger()->info('Showing posts on tag \'' . $tag->name . '\'');
 
         return response()->json($tag->load('posts'));
@@ -74,13 +80,16 @@ class TagController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Tag $tag
+     * @param string $name
      * @return Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, string $name)
     {
         /** @var User $user */
         $user = Auth::user();
+
+        /** @var Tag $tag */
+        $tag = Tag::whereName($name)->first();
 
         logger()->info($user->name . ' is updating a tag...');
 
@@ -104,13 +113,16 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Tag $tag
+     * @param string $name
      * @return Response
      */
-    public function destroy(Tag $tag)
+    public function destroy(string $name)
     {
         /** @var User $user */
         $user = Auth::user();
+
+        /** @var Tag $tag */
+        $tag = Tag::whereName($name)->first();
 
         try {
             logger()->info($user->name . ' is archiving tag \'' . $tag->name . '\'');
