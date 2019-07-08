@@ -33,6 +33,7 @@
                     .then(response => {
                         this.postData = response.data
                         // TODO: Markdown stuff
+                        // TODO: If post not yet published, show 'draft' warning
                     })
                     .catch(error => {
                         console.log(error.response)
