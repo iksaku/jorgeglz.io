@@ -3,9 +3,7 @@
 @section('title', 'Jorge González')
 
 @section('content')
-    <div id="app">
-        <router-view></router-view>
-    </div>
+    <div id="app"></div>
 @endsection
 
 @push('scripts')

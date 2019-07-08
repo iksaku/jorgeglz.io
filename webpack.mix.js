@@ -2,11 +2,12 @@ const mix = require('laravel-mix')
 const tailwind = require('tailwindcss')
 require('laravel-mix-purgecss')
 
-mix.disableSuccessNotifications()
+mix.disableNotifications()
 
-mix.js('resources/js/app.js', 'public/js')
-   .postCss('resources/styles/app.pcss', 'public/css', [
-       tailwind()
+mix.js('resources/js/App/app.js', 'public/js')
+    .js('resources/js/Dashboard/dashboard.js', 'public/js')
+    .postCss('resources/styles/app.pcss', 'public/css', [
+       tailwind('tailwind.config.js')
    ])
     .purgeCss()
 

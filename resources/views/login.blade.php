@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'Login')
+@section('title', 'Login | ' . config('app.name'))
 
 @section('content')
     <div class="min-h-screen h-full w-full bg-gray-200 text-gray-700 px-4">

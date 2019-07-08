@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import PageNotFound from '../PageNotFound'
+import About from "./views/About";
 import Home from './views/Home'
-import PageNotFound from './views/PageNotFound'
+import Post from "./views/Post";
 
 Vue.use(VueRouter)
 
 export default new VueRouter({
     mode: 'history',
-
     routes: [
         {
             path: '/',
@@ -17,7 +18,20 @@ export default new VueRouter({
         },
 
         {
+            path: 'about',
+            name: 'about',
+            component: About
+        },
+
+        {
+            path: 'post/:slug',
+            name: 'post',
+            component: Post
+        },
+
+        {
             path: '*',
+            name: '404',
             component: PageNotFound
         }
     ]
