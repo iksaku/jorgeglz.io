@@ -63,7 +63,7 @@ class Post extends Model
 
     /** @var array */
     protected $hidden = [
-        'created_at', 'deleted_at', 'pivot'
+        'created_at', 'deleted_at', 'author_id', 'pivot'
     ];
 
     /** @var array */

@@ -1,5 +1,5 @@
 <template>
-    <header class="z-50 sticky top-0 inset-x-0 w-full bg-gray-200 border-b border-gray-500 shadow">
+    <header class="z-40 top-0 inset-x-0 w-full bg-gray-200 border-b border-gray-500 shadow">
         <nav class="text-black container mx-auto px-8 flex items-center justify-between">
             <h1 class="text-2xl font-bold py-2">
                 <router-link :to="{ name: 'home' }"
