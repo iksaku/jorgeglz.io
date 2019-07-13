@@ -18,15 +18,16 @@ export default new VueRouter({
         },
 
         {
-            path: 'about',
+            path: '/about',
             name: 'about',
             component: About
         },
 
         {
-            path: 'post/:slug',
+            path: '/post/:slug',
             name: 'post',
-            component: Post
+            component: Post,
+            props: true
         },
 
         {

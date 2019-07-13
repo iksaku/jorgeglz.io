@@ -34,7 +34,9 @@ class PostController extends Controller
     {
         logger()->info('Showing post list on page ' . $request->get('page', 1) . '...');
 
-        return response()->json(Post::whereNotNull('published_at')->paginate());
+        return response()->json(
+            Post::where('published_at', '<=', now())->orderByDesc('published_at')->paginate()
+        );
     }
 
     /**

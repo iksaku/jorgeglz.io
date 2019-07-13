@@ -4,9 +4,13 @@
 
         <div class="w-full">
             <div class="container mx-auto p-4">
-                <router-view />
+                <keep-alive :max="5">
+                    <router-view :key="$route.fullPath" />
+                </keep-alive>
             </div>
         </div>
+
+        <vue-progress-bar />
     </div>
 </template>
 

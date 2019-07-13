@@ -1,59 +1,34 @@
 <template>
-    <div>Full post goes here...</div>
+    <div class="bg-gray-100 border border-gray-300 rounded shadow md:max-w-4xl p-4 h-full mx-auto">
+        <div class="border-b border-gray-300 pb-2">
+            <h1 class="font-bold text-2xl sm:text-3xl md:text-4xl">
+                {{ post_title }}
+            </h1>
+            <publish-date :timestamp="post_published_at" />
+        </div>
+        <article class="md_content" v-html="renderedContent"></article>
+    </div>
 </template>
 
 <script>
-    import axios from 'axios'
+    // TODO: nuxt/vue-meta?
+
+    import PublishDate from '../components/PublishDate'
+    import { post } from '../mixins/post'
 
     export default {
+        mixins: [post],
         name: "Post",
 
-        props: {
-            slug: {
-                type: String,
-                required: true
-            },
-            postData: {
-                type: Object,
-                default: null,
-                required: false
-            }
+        components: {
+            'publish-date': PublishDate
         },
 
-        data() {
-            return {
-                loading: false
-            }
-        },
+        computed: {
+            renderedContent() {
+                if (this.post_content === null) return ''
 
-        methods: {
-            getPostData() {
-                this.loading = true
-                axios.get(`/api/v1/posts/${this.slug}`)
-                    .then(response => {
-                        this.postData = response.data
-                        // TODO: Markdown stuff
-                        // TODO: If post not yet published, show 'draft' warning
-                    })
-                    .catch(error => {
-                        console.log(error.response)
-                    })
-                    .finally(() => {
-                        this.loading = false
-                    })
-            }
-        },
-
-        created() {
-            if (this.postData === null) {
-                this.getPostData()
-            }
-        },
-
-        watch: {
-            $route: () => {
-                // TODO: Check for route change between posts
-                this.getPostData()
+                return this.md().render(this.post_content)
             }
         }
     }

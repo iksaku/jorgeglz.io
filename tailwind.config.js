@@ -2,7 +2,9 @@ module.exports = {
   theme: {
     extend: {}
   },
-  variants: {},
+  variants: {
+    textColor: ['group-hover']
+  },
   plugins: [
       require('@tailwindcss/custom-forms')
   ]

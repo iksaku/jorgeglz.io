@@ -1,4 +1,5 @@
 require('../bootstrap')
+require('../plugins/progressbar')
 
 import Vue from 'vue'
 import App from './App'
