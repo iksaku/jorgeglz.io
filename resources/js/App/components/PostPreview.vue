@@ -3,9 +3,11 @@
          @click="goToPost"
     >
         <section>
-            <h1 class="text-xl font-bold group-hover:text-blue-700">
-                {{ post_title }}
-            </h1>
+            <router-link :to="routerData">
+                <h1 class="text-xl font-bold group-hover:text-blue-700">
+                    {{ post_title }}
+                </h1>
+            </router-link>
             <publish-date :timestamp="this.post_published_at" />
         </section>
         <p class="md_content mt-2">
