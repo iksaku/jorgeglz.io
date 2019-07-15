@@ -12,6 +12,12 @@ if (token) {
     console.error('CSRF token not found')
 }
 
+import Vue from 'vue'
+
+import Loading from './components/Loading'
+
+Vue.component('loading', Loading)
+
 // import Echo from 'laravel-echo'
 
 // window.Pusher = require('pusher-js')

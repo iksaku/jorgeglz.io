@@ -10,7 +10,7 @@ export const post = {
         title: {
             type: String,
             required: false,
-            default: null
+            default: undefined
         },
         content: {
             type: String,

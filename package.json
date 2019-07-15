@@ -26,6 +26,7 @@
         "sass-loader": "^7.1.0",
         "tailwindcss": "^1.0.4",
         "vue": "^2.5.17",
+        "vue-meta": "^2.0.5",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.0.6",
         "vue-template-compiler": "^2.6.10"

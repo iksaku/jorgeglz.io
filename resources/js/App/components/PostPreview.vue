@@ -1,19 +1,17 @@
 <template>
-    <div class="post-preview bg-gray-100 border border-gray-300 rounded shadow max-w-4xl w-full mx-auto p-4 group cursor-pointer"
-         @click="goToPost"
-    >
-        <section>
+    <div class="post-preview bg-gray-100 border border-gray-300 rounded shadow max-w-6xl w-full mx-auto p-4">
+        <div class="border-b border-gray-300 pb-2">
             <router-link :to="routerData">
-                <h1 class="text-xl font-bold group-hover:text-blue-700">
+                <h1 class="text-2xl font-bold hover:text-blue-700">
                     {{ post_title }}
                 </h1>
             </router-link>
             <publish-date :timestamp="this.post_published_at" />
-        </section>
-        <p class="md_content mt-2">
+        </div>
+        <p class="md_content mt-4">
             <span v-html="renderedContent"></span>
             <router-link :to="routerData"
-                         class="font-bold group-hover:text-blue-700"
+                         class="font-bold text-blue-700 hover:text-blue-900"
             >
                 More
             </router-link>

@@ -1,5 +1,10 @@
 <template>
-    <section class="max-w-6xl w-full mx-auto">
+    <div v-if="posts.length < 1">
+        <loading></loading>
+    </div>
+    <section class="md:max-w-6xl w-full mx-auto"
+             v-else
+    >
         <post-preview v-for="(post, index) in posts"
                       :key="index"
                       v-bind="post"
@@ -13,6 +18,10 @@
 
     export default {
         name: "Home",
+
+        metaInfo: {
+            title: 'Home'
+        },
 
         components: {
             'post-preview': PostPreview

@@ -11,7 +11,7 @@ md
     })
 
 md.renderer.rules.emoji = (token, idx) => {
-    return `<span class="font-sans">${token[idx].content}</span>`
+    return `<span class="emoji">${token[idx].content}</span>`
 }
 
 export default md

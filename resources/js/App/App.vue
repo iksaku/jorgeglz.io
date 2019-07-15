@@ -1,11 +1,11 @@
 <template>
-    <div class="min-h-screen h-full w-full bg-gray-200">
+    <div class="min-h-screen h-full w-full">
         <Navbar />
 
-        <div class="w-full">
+        <div class="h-full w-full">
             <div class="container mx-auto p-4">
                 <keep-alive :max="5">
-                    <router-view :key="$route.fullPath" />
+                    <router-view :key="$route.path" />
                 </keep-alive>
             </div>
         </div>
@@ -19,6 +19,13 @@
 
     export default {
         name: "App",
+
+        metaInfo: {
+            title: 'Jorge González',
+            titleTemplate: '%s | Jorge González',
+
+            refreshOnceOnNavigation: true
+        },
 
         components: {
             Navbar
