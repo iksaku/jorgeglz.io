@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+    'cloud' => env('FILESYSTEM_CLOUD', 'ovh'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,15 +55,18 @@ return [
             'visibility' => 'public',
         ],
 
-        's3' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-        ],
-
+        'ovh' => [
+            'driver' => 'ovh',
+            'server' => env('OVH_URL'),
+            'user' => env('OVH_USERNAME'),
+            'pass' => env('OVH_PASSWORD'),
+            'region' => env('OVH_REGION'),
+            'tenantName' => env('OVH_TENANT_NAME'),
+            'container' => env('OVH_CONTAINER'),
+            'projectId' => env('OVH_PROJECT_ID'),
+            'urlKey' => env('OVH_URL_KEY'),
+            'endpoint' => env('OVH_ENDPOINT')
+        ]
     ],
 
 ];

@@ -16,8 +16,6 @@
 </template>
 
 <script>
-    // TODO: nuxt/vue-meta?
-
     import PublishDate from '../components/PublishDate'
     import { post } from '../mixins/post'
 

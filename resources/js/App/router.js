@@ -3,9 +3,12 @@ import Router from 'vue-router'
 import Meta from 'vue-meta'
 
 import PageNotFound from '../PageNotFound'
-import About from "./views/About";
-import Home from './views/Home'
-import Post from "./views/Post";
+
+import About from "./pages/About"
+import Home from './pages/Home'
+import Uses from './pages/Uses'
+
+import Post from "./views/Post"
 
 Vue.use(Router)
 Vue.use(Meta)
@@ -26,17 +29,17 @@ export default new Router({
         },
 
         {
+            path: '/uses',
+            name: 'uses',
+            component: Uses
+        },
+
+        {
             path: '/posts/:slug',
             name: 'post',
             component: Post,
             props: true
         },
-
-        /*{
-            path: '/uses',
-            name: 'uses',
-            component: Uses
-        },*/
 
         {
             path: '*',

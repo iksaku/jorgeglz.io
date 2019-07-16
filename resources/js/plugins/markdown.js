@@ -7,7 +7,13 @@ md
     .use(anchor, {
         permalink: true,
         permalinkBefore: true,
-        permalinkSymbol: '#'
+        permalinkSymbol: '#',
+        slugify: s => encodeURIComponent(
+            String(s)
+                .trim()
+                .toLowerCase()
+                .replace(/[^a-z0-9\-]+/g, '-')
+        )
     })
 
 md.renderer.rules.emoji = (token, idx) => {

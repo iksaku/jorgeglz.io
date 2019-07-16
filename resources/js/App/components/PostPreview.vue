@@ -31,12 +31,6 @@
             'publish-date': PublishDate
         },
 
-        methods: {
-            goToPost() {
-                this.$router.push(this.routerData)
-            }
-        },
-
         computed: {
             routerData() {
                 return {
