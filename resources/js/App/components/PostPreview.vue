@@ -22,7 +22,7 @@
 <script>
     import PublishDate from './PublishDate'
     import mq from '../../plugins/mediaqueries'
-    import post from '../../mixins/post'
+    import post from '../mixins/post'
 
     export default {
         mixins: [post],
