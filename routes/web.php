@@ -7,7 +7,7 @@ Auth::routes([
 ]);
 
 Route::prefix('dashboard')->group(function () {
-    Route::get('/', 'WebController@dashboard');
+    Route::get('/', 'WebController@dashboard')->name('dashboard');
     Route::get('/{any}', 'WebController@dashboard')->where('any', '.*');
 });
 
