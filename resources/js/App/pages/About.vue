@@ -13,7 +13,14 @@
         name: "About",
 
         metaInfo: {
-            title: 'About'
+            title: 'About',
+            meta: [
+                {
+                    vmid: 'description',
+                    name: 'description',
+                    content: 'Want to know more about me? Actually, this is the right place...'
+                }
+            ]
         },
 
         data() {
@@ -27,7 +34,7 @@
                     'What? Who am I you ask?',
                     'Peeking at my blog without knowing me?',
                     '¿Sabías que también hablo Español? ' + emoji_list['mexico']
-
+                ]
             }
         },
 

@@ -203,3 +203,4 @@ docs/_book
 test/
 /public/css/
 /public/js/
+/public/mix-manifest.json

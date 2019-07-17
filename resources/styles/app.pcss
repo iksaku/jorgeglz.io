@@ -26,6 +26,12 @@ html {
     }
 }
 
+.post-preview {
+    & + & {
+        @apply mt-4;
+    }
+}
+
 .md_content {
     @apply leading-relaxed text-lg;
 
@@ -63,12 +69,6 @@ html {
 
     h6 {
         @apply heading text-sm;
-    }
-}
-
-.post-preview {
-    & + & {
-        @apply mt-4
     }
 }
 

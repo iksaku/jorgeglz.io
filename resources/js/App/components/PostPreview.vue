@@ -9,11 +9,11 @@
             <publish-date :timestamp="this.post_published_at" />
         </div>
         <p class="md_content mt-4">
-            <span v-html="renderedContent"></span>
+            <span v-html="renderedContent.substring(0, content_length) + '...'"></span>
             <router-link :to="routerData"
-                         class="font-bold text-blue-700 hover:text-blue-900"
+                         class="font-bold text-blue-700 hover:text-blue-900 whitespace-no-wrap"
             >
-                More
+                Continue Reading
             </router-link>
         </p>
     </div>
@@ -21,17 +21,41 @@
 
 <script>
     import PublishDate from './PublishDate'
-    import { post } from '../mixins/post'
+    import mq from '../../plugins/mediaqueries'
+    import post from '../mixins/post'
 
     export default {
         mixins: [post],
         name: "PostPreview",
 
+        data() {
+            return {
+                content_length: 256
+            }
+        },
+
         components: {
             'publish-date': PublishDate
         },
 
+        methods: {
+            updateContentLength() {
+                console.log(window.innerWidth)
+
+                if (mq.isMd() || mq.isLg() || mq.isXl())
+                    this.content_length = 512
+                else
+                    this.content_length = 256
+            }
+        },
+
         computed: {
+            renderedContent() {
+                if (this.post_content === null) return ''
+
+                return this.md().renderInline(this.post_content)
+            },
+
             routerData() {
                 return {
                     name: 'post',
@@ -45,13 +69,17 @@
                         tags: this.post_tags
                     }
                 }
-            },
-
-            renderedContent() {
-                if (this.post_content === null) return ''
-
-                return this.md().renderInline(this.post_content).substring(0, 256) + '...'
             }
+        },
+
+        created() {
+            this.updateContentLength()
+
+            window.addEventListener('resize', this.updateContentLength)
+        },
+
+        destroyed() {
+            window.removeEventListener('resize', this.updateContentLength)
         }
     }
 </script>

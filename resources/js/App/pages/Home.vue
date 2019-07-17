@@ -20,7 +20,14 @@
         name: "Home",
 
         metaInfo: {
-            title: 'Home'
+            title: 'Home',
+            meta: [
+                {
+                    vmid: 'description',
+                    name: 'description',
+                    content: 'Hello! I have a blog! And here you can find... Well... Blog posts...'
+                }
+            ]
         },
 
         components: {

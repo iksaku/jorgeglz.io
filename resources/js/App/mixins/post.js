@@ -89,3 +89,5 @@ export const post = {
         this.getData()
     }
 }
+
+export default post

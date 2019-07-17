@@ -23,6 +23,13 @@
         metaInfo: {
             title: 'Jorge González',
             titleTemplate: '%s | Jorge González',
+            meta: [
+                {
+                    vmid: 'description',
+                    name: 'description',
+                    content: 'Welcome to my website, I hope its interesting enough :)'
+                }
+            ],
 
             refreshOnceOnNavigation: true
         },
