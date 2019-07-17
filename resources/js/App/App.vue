@@ -4,7 +4,7 @@
 
         <div class="h-full w-full">
             <div class="container mx-auto p-4">
-                <keep-alive :max="5">
+                <keep-alive :max="5" exclude="ExternalRouteRedirect">
                     <router-view :key="$route.path" />
                 </keep-alive>
             </div>

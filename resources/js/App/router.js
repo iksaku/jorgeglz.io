@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Meta from 'vue-meta'
 
 import PageNotFound from '../PageNotFound'
+import ExternalRouteRedirect from '../components/ExternalRouteRedirect'
 
 import About from "./pages/About"
 import Home from './pages/Home'
@@ -39,6 +40,24 @@ export default new Router({
             name: 'post',
             component: Post,
             props: true
+        },
+
+        {
+            path: '/dashboard',
+            name: 'dashboard',
+            component: ExternalRouteRedirect,
+            meta: {
+                url: process.env.MIX_APP_URL + '/dashboard'
+            }
+        },
+
+        {
+            path: '/login',
+            name: 'login',
+            component: ExternalRouteRedirect,
+            meta: {
+                url: process.env.MIX_APP_URL + '/login'
+            }
         },
 
         {

@@ -71,7 +71,10 @@ export const post = {
                         this.$Progress.fail()
                         console.log(error.response)
                     })
-                    .finally(() => this.loading = false)
+                    .finally(() => {
+                        this.loading = false
+                        this.onDataLoad()
+                    })
             }
         },
 
@@ -82,7 +85,9 @@ export const post = {
             this.post_published_at = data['published_at']
             this.post_author = data['author']
             this.post_tags = data['tags']
-        }
+        },
+
+        onDataLoad() {}
     },
 
     created() {

@@ -17,7 +17,7 @@
 
 <script>
     import PublishDate from '../components/PublishDate'
-    import { post } from '../mixins/post'
+    import { post } from '../../mixins/post'
 
     export default {
         mixins: [post],
@@ -31,6 +31,23 @@
 
         components: {
             'publish-date': PublishDate
+        },
+
+        methods: {
+            onDataLoad() {
+                if (this.$route.hash) {
+                    this.$nextTick(() => {
+                        let anchor = document.querySelector(this.$route.hash)
+
+                        // If anchor does not exist...
+                        if (!anchor) {
+                            return
+                        }
+
+                        window.scrollTo(0, anchor.offsetTop)
+                    })
+                }
+            }
         },
 
         computed: {

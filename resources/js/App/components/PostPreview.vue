@@ -22,7 +22,7 @@
 <script>
     import PublishDate from './PublishDate'
     import mq from '../../plugins/mediaqueries'
-    import post from '../mixins/post'
+    import post from '../../mixins/post'
 
     export default {
         mixins: [post],
@@ -40,8 +40,6 @@
 
         methods: {
             updateContentLength() {
-                console.log(window.innerWidth)
-
                 if (mq.isMd() || mq.isLg() || mq.isXl())
                     this.content_length = 512
                 else
