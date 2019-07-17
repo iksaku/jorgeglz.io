@@ -1,5 +1,5 @@
 import axios from 'axios'
-import markdownIt from '../../plugins/markdown'
+import markdownIt from '../plugins/markdown'
 
 export const post = {
     props: {
