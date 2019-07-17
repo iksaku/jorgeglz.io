@@ -117,6 +117,12 @@
       <path value="$PROJECT_DIR$/vendor/nimbusoft/flysystem-openstack-swift" />
       <path value="$PROJECT_DIR$/vendor/php-opencloud/openstack" />
       <path value="$PROJECT_DIR$/vendor/sausin/laravel-ovh" />
+      <path value="$PROJECT_DIR$/vendor/php-cs-fixer/diff" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/friendsofphp/php-cs-fixer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
+      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
