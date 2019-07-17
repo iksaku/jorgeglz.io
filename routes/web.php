@@ -6,16 +6,9 @@ Auth::routes([
     'verify' => false
 ]);
 
-Route::prefix('dashboard')->middleware('auth')->group(function() {
-    Route::get('/', function() {
-        return view('dashboard');
-    });
-
-    Route::get('/{any}', function() {
-        return view('dashboard');
-    })->where('any', '.*');
+Route::prefix('dashboard')->group(function() {
+    Route::get('/', 'WebController@dashboard');
+    Route::get('/{any}', 'WebController@dashboard')->where('any', '.*');
 });
 
-Route::get('/{any}', function() {
-    return view('index');
-})->where('any', '.*');
+Route::get('/{any}', 'WebController@app')->where('any', '.*');
