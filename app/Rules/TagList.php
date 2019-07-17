@@ -15,7 +15,7 @@ class TagList implements Rule
      */
     public function passes($attribute, $value)
     {
-        return empty($value) || !empty(explode(',', $value));
+        return empty($value) || ! empty(explode(',', $value));
     }
 
     /**

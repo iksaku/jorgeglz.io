@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * App\Tag
+ * App\Tag.
  *
  * @property int $id
  * @property string $name
@@ -26,18 +26,19 @@ class Tag extends Model
 {
     /** @var array */
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     /** @var array */
     protected $hidden = [
-        'id', 'created_at', 'updated_at', 'pivot'
+        'id', 'created_at', 'updated_at', 'pivot',
     ];
 
     /**
      * @return BelongsToMany
      */
-    public function posts() {
+    public function posts()
+    {
         return $this->belongsToMany(Post::class);
     }
 }

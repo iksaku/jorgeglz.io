@@ -3,10 +3,10 @@
 Auth::routes([
     'register' => false,
     'reset' => false,
-    'verify' => false
+    'verify' => false,
 ]);
 
-Route::prefix('dashboard')->group(function() {
+Route::prefix('dashboard')->group(function () {
     Route::get('/', 'WebController@dashboard');
     Route::get('/{any}', 'WebController@dashboard')->where('any', '.*');
 });

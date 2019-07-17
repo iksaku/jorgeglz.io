@@ -204,3 +204,6 @@ test/
 /public/css/
 /public/js/
 /public/mix-manifest.json
+/_ide_helper.php
+/.phpstorm.meta.php
+cghooks.lock

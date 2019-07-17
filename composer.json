@@ -1,10 +1,12 @@
 {
-    "name": "laravel/laravel",
+    "name": "iksaku/jorgeglz.io",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "My personal website.",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "blog",
+        "website"
     ],
     "license": "MIT",
     "require": {
@@ -20,6 +22,7 @@
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
         "beyondcode/laravel-dump-server": "^1.0",
+        "brainmaestro/composer-git-hooks": "^2.7",
         "doctrine/dbal": "^2.9",
         "filp/whoops": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.15",
@@ -37,6 +40,11 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "hooks": {
+            "pre-commit": "vendor/bin/php-cs-fixer fix",
+            "pre-push": "vendor/bin/php-cs-fixer fix --dry-run",
+            "post-merge": "composer update"
         }
     },
     "autoload": {
@@ -68,8 +76,10 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "vendor/bin/cghooks update",
             "php artisan ide-helper:generate",
             "php artisan ide-helper:meta"
-        ]
+        ],
+        "post-install-cmd": "vendor/bin/cghooks add --ignore-lock"
     }
 }

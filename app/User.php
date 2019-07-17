@@ -3,12 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
 /**
- * App\User
+ * App\User.
  *
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
@@ -44,13 +44,14 @@ class User extends Authenticatable
 
     /** @var array */
     protected $hidden = [
-        'id', 'password', 'remember_token', 'created_at', 'updated_at'
+        'id', 'password', 'remember_token', 'created_at', 'updated_at',
     ];
 
     /**
      * @return HasMany
      */
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany(Post::class, 'author_id');
     }
 }

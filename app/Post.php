@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Post
+ * App\Post.
  *
  * @property string $slug
  * @property int $author_id
@@ -53,35 +53,37 @@ class Post extends Model
 
     /** @var array */
     protected $fillable = [
-        'slug', 'title', 'content', 'published_at'
+        'slug', 'title', 'content', 'published_at',
     ];
 
     /** @var array */
     protected $dates = [
-        'published_at'
+        'published_at',
     ];
 
     /** @var array */
     protected $hidden = [
-        'created_at', 'deleted_at', 'author_id', 'pivot'
+        'created_at', 'deleted_at', 'author_id', 'pivot',
     ];
 
     /** @var array */
     protected $with = [
-        'author', 'tags'
+        'author', 'tags',
     ];
 
     /**
      * @return BelongsTo
      */
-    public function author() {
+    public function author()
+    {
         return $this->belongsTo(User::class, 'author_id');
     }
 
     /**
      * @return BelongsToMany
      */
-    public function tags() {
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class);
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\v1;
 
+use App\Http\Controllers\Controller;
 use App\Post;
 use App\Tag;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -20,7 +20,7 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api', [
-            'only' => ['store', 'update', 'destroy']
+            'only' => ['store', 'update', 'destroy'],
         ]);
     }
 
@@ -32,7 +32,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        logger()->info('Showing post list on page ' . $request->get('page', 1) . '...');
+        logger()->info('Showing post list on page '.$request->get('page', 1).'...');
 
         return response()->json(
             Post::where('published_at', '<=', now())->orderByDesc('published_at')->paginate()
@@ -50,13 +50,13 @@ class PostController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        logger()->info($user->name . ' is creating a new post...');
+        logger()->info($user->name.' is creating a new post...');
 
         $validatedData = $request->validate([
             'title' => 'required|string|unique:posts,title',
             'content' => 'required|string',
             'publish' => 'required|boolean',
-            'tags' => 'sometimes|required|tag_list'
+            'tags' => 'sometimes|required|tag_list',
         ]);
 
         $post = new Post($validatedData);
@@ -67,26 +67,26 @@ class PostController extends Controller
 
             if ($publish && empty($post->published_at)) {
                 $post->published_at = now();
-            } else if (!$publish) {
+            } elseif (! $publish) {
                 $post->published_at = null;
             }
         }
 
-        if (!$user->posts()->save($post)) {
+        if (! $user->posts()->save($post)) {
             logger()->error('Unable to create post.');
 
             return response()->json([
-                'message' => 'Unable to create post.'
+                'message' => 'Unable to create post.',
             ], 500);
         }
 
         if (array_key_exists('tags', $validatedData)) {
-            logger()->info('Tags: ' . $validatedData['tags']);
+            logger()->info('Tags: '.$validatedData['tags']);
 
             $tagList = empty($validatedData['tags']) ? [] : explode(',', $validatedData['tags']);
             $tagIds = [];
 
-            if (!empty($tagList)) {
+            if (! empty($tagList)) {
                 foreach ($tagList as $tagName) {
                     $tag = Tag::firstOrCreate(['name' => $tagName]);
                     $tagIds[] = $tag->id;
@@ -97,7 +97,7 @@ class PostController extends Controller
             $post = $post->fresh();
         }
 
-        logger()->info('Successfully created post \'' . $post->slug . '\'');
+        logger()->info('Successfully created post \''.$post->slug.'\'');
 
         return response()->json($post);
     }
@@ -110,7 +110,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        logger()->info('Showing post \'' . $post->slug . '\'');
+        logger()->info('Showing post \''.$post->slug.'\'');
 
         return response()->json($post);
     }
@@ -127,13 +127,13 @@ class PostController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        logger()->info($user->name . ' is updating a post...');
+        logger()->info($user->name.' is updating a post...');
 
         $validatedData = $request->validate([
             'title' => 'sometimes|required|string|unique:posts,title',
             'content' => 'sometimes|required|string',
             'publish' => 'sometimes|required|boolean',
-            'tags' => 'sometimes|tag_list'
+            'tags' => 'sometimes|tag_list',
         ]);
 
         $post->slug = Str::slug($post->title);
@@ -143,26 +143,26 @@ class PostController extends Controller
 
             if ($publish && empty($post->published_at)) {
                 $post->published_at = now();
-            } else if (!$publish) {
+            } elseif (! $publish) {
                 $post->published_at = null;
             }
         }
 
-        if (!$post->update($validatedData)) {
+        if (! $post->update($validatedData)) {
             logger()->error('Unable to update post.');
 
             return response()->json([
-                'message' => 'Unable to update post.'
+                'message' => 'Unable to update post.',
             ], 500);
         }
 
         if (array_key_exists('tags', $validatedData)) {
-            logger()->info('Tags: ' . $validatedData['tags']);
+            logger()->info('Tags: '.$validatedData['tags']);
 
             $tagList = empty($validatedData['tags']) ? [] : explode(',', $validatedData['tags']);
             $tagIds = [];
 
-            if (!empty($tagList)) {
+            if (! empty($tagList)) {
                 foreach ($tagList as $tagName) {
                     $tag = Tag::firstOrCreate(['name' => $tagName]);
                     $tagIds[] = $tag->id;
@@ -173,7 +173,7 @@ class PostController extends Controller
             $post = $post->fresh();
         }
 
-        logger()->info('Successfully updated post \'' . $post->slug . '\'');
+        logger()->info('Successfully updated post \''.$post->slug.'\'');
 
         return response()->json($post);
     }
@@ -190,20 +190,20 @@ class PostController extends Controller
         $user = Auth::user();
 
         try {
-            logger()->info($user->name . ' is archiving post \'' . $post->slug . '\'');
+            logger()->info($user->name.' is archiving post \''.$post->slug.'\'');
             $post->delete();
         } catch (Exception $e) {
-            logger()->error('Unable to archive post: ' . $e->getMessage());
+            logger()->error('Unable to archive post: '.$e->getMessage());
 
             return response()->json([
-                'message' => 'An error occurred while archiving post.'
+                'message' => 'An error occurred while archiving post.',
             ], 500);
         }
 
-        logger()->info('Successfully archived post \'' . $post->slug . '\'');
+        logger()->info('Successfully archived post \''.$post->slug.'\'');
 
         return response()->json([
-            'message' => 'Post archived successfully'
+            'message' => 'Post archived successfully',
         ]);
     }
 }

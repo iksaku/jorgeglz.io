@@ -10,21 +10,23 @@ class WebController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [
-            'only' => 'dashboard'
+            'only' => 'dashboard',
         ]);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function app() {
+    public function app()
+    {
         return view('app');
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function dashboard() {
+    public function dashboard()
+    {
         return view('dashboard');
     }
 }

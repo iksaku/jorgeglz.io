@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\v1;
 
-use App\Tag;
 use App\Http\Controllers\Controller;
+use App\Tag;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class TagController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api', [
-            'only' => ['store', 'update', 'destroy']
+            'only' => ['store', 'update', 'destroy'],
         ]);
     }
 
@@ -45,15 +45,15 @@ class TagController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        logger()->info($user->name . ' is creating a new tag...');
+        logger()->info($user->name.' is creating a new tag...');
 
         $validatedData = $request->validate([
-            'name' => 'required|string|unique:tags,name'
+            'name' => 'required|string|unique:tags,name',
         ]);
 
         $tag = Tag::create($validatedData);
 
-        logger()->info('Successfully created tag \'' . $tag->name . '\'');
+        logger()->info('Successfully created tag \''.$tag->name.'\'');
 
         return response()->json($tag);
     }
@@ -70,14 +70,14 @@ class TagController extends Controller
         $tag = Tag::whereName($name)->first();
 
         if (empty($tag)) {
-            logger()->info('Unable to find tag \'' . $name . '\'');
+            logger()->info('Unable to find tag \''.$name.'\'');
 
             return response()->json([
-                'message' => 'Unable to find specified tag.'
+                'message' => 'Unable to find specified tag.',
             ], 404);
         }
 
-        logger()->info('Showing posts on tag \'' . $tag->name . '\'');
+        logger()->info('Showing posts on tag \''.$tag->name.'\'');
 
         return response()->json($tag->load('posts'));
     }
@@ -94,21 +94,21 @@ class TagController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        logger()->info($user->name . ' is updating a tag...');
+        logger()->info($user->name.' is updating a tag...');
 
         $validatedData = $request->validate([
-            'name' => 'required|string|unique:tags,name'
+            'name' => 'required|string|unique:tags,name',
         ]);
 
-        if (!$tag->update($validatedData)) {
+        if (! $tag->update($validatedData)) {
             logger()->error('Unable to update tag.');
 
             return response()->json([
-                'message' => 'Unable to update tag.'
+                'message' => 'Unable to update tag.',
             ], 500);
         }
 
-        logger()->info('Successfully updated tag \'' . $tag->name . '\'');
+        logger()->info('Successfully updated tag \''.$tag->name.'\'');
 
         return response()->json($tag);
     }
@@ -125,20 +125,20 @@ class TagController extends Controller
         $user = Auth::user();
 
         try {
-            logger()->info($user->name . ' is archiving tag \'' . $tag->name . '\'');
+            logger()->info($user->name.' is archiving tag \''.$tag->name.'\'');
             $tag->delete();
         } catch (Exception $e) {
-            logger()->error('Unable to archive tag: ' . $e->getMessage());
+            logger()->error('Unable to archive tag: '.$e->getMessage());
 
             return response()->json([
-                'message' => 'An error occurred while archiving tag.'
+                'message' => 'An error occurred while archiving tag.',
             ], 500);
         }
 
-        logger()->info('Successfully archived tag \'' . $tag->name . '\'');
+        logger()->info('Successfully archived tag \''.$tag->name.'\'');
 
         return response()->json([
-            'message' => 'Tag archived successfully'
+            'message' => 'Tag archived successfully',
         ]);
     }
 }
