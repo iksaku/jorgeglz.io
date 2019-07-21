@@ -1,8 +1,17 @@
-const axios = require('axios')
+import axios from 'axios'
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers.common['Accept'] = 'application/json'
 axios.defaults.baseURL = process.env.MIX_APP_URL
+
+axios.interceptors.response.use(response => {
+    return response
+}, error => {
+    if (error.response.status === 401 || error.response.status === 419) {
+        window.location.href = `${process.env.MIX_APP_URL}/dashboard/login`
+    }
+    return Promise.reject(error)
+})
 
 let token = document.head.querySelector('meta[name="csrf-token"]')
 

@@ -1,17 +1,19 @@
 <template>
-    <div class="post-preview bg-gray-100 border border-gray-300 rounded shadow max-w-6xl w-full mx-auto p-4">
-        <div class="border-b border-gray-300 pb-2">
-            <router-link :to="routerData">
-                <h1 class="text-2xl font-bold hover:text-blue-700">
+    <div class="post-preview bg-gray-100 border border-gray-300 rounded shadow max-w-6xl w-full mx-auto">
+        <div class="border-b-2 border-gray-300 rounded p-4 pb-2">
+            <h1 class="text-2xl font-bold">
+                <router-link :to="routerData"
+                             class="text-black hover:text-blue-700 focus:text-blue-700"
+                >
                     {{ post_title }}
-                </h1>
-            </router-link>
-            <publish-date :timestamp="this.post_published_at" />
+                </router-link>
+            </h1>
+            <post-info :author="post_author" :published="post_published_at" />
         </div>
-        <p class="md_content mt-4">
+        <p class="md_content p-4">
             <span v-html="renderedContent.substring(0, content_length) + '...'"></span>
             <router-link :to="routerData"
-                         class="font-bold text-blue-700 hover:text-blue-900 whitespace-no-wrap"
+                         class="font-bold whitespace-no-wrap"
             >
                 Continue Reading
             </router-link>
@@ -20,7 +22,7 @@
 </template>
 
 <script>
-    import PublishDate from './PublishDate'
+    import PostInfo from './PostInfo'
     import mq from '../../plugins/mediaqueries'
     import post from '../mixins/post'
 
@@ -35,7 +37,7 @@
         },
 
         components: {
-            'publish-date': PublishDate
+            'post-info': PostInfo
         },
 
         methods: {

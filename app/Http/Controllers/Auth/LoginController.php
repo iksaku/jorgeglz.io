@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Response;
 
@@ -46,5 +47,16 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('login');
+    }
+
+    /**
+     * Redirects user to login page.
+     *
+     * @return void
+     * @throws AuthenticationException
+     */
+    protected function loggedOut()
+    {
+        throw new AuthenticationException();
     }
 }

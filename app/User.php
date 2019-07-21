@@ -47,11 +47,24 @@ class User extends Authenticatable
         'id', 'password', 'remember_token', 'created_at', 'updated_at',
     ];
 
+    /** @var array */
+    protected $appends = [
+        'avatar',
+    ];
+
     /**
      * @return HasMany
      */
     public function posts()
     {
         return $this->hasMany(Post::class, 'author_id');
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatarAttribute()
+    {
+        return md5(strtolower(trim($this->email)));
     }
 }

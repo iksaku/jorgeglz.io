@@ -1,7 +1,7 @@
 const mix = require('laravel-mix')
 require('laravel-mix-purgecss')
 
-mix.disableNotifications()
+mix.disableSuccessNotifications()
 
 mix.js('resources/js/App/app.js', 'public/js')
     .js('resources/js/Dashboard/dashboard.js', 'public/js')

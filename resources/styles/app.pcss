@@ -1,7 +1,21 @@
 @tailwind base;
 
 html {
-    @apply bg-gray-200;
+    scroll-behavior: smooth;
+    @apply bg-gray-200 ;
+}
+
+a {
+    @apply cursor-pointer text-blue-700;
+
+    &:hover,
+    &:focus {
+        @apply text-blue-900;
+    }
+
+    &:focus {
+        @apply outline-none shadow-outline;
+    }
 }
 
 .emoji {
@@ -14,7 +28,8 @@ html {
     .header-anchor {
         @apply text-transparent;
 
-        &:hover {
+        &:hover,
+        &:focus {
             @apply text-blue-700;
         }
     }
@@ -37,13 +52,13 @@ html {
 
     p {
         @apply my-4 font-sans text-justify;
-    }
 
-    a {
-        @apply text-blue-700;
+        &:first-child {
+            @apply mt-0;
+        }
 
-        &:hover {
-            @apply text-blue-900;
+        &:last-child {
+            @apply mb-0;
         }
     }
 

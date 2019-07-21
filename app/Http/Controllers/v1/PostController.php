@@ -7,6 +7,7 @@ use App\Post;
 use App\Tag;
 use App\User;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,7 @@ class PostController extends Controller
      *
      * @param Request $request
      * @return Response
+     * @throws AuthorizationException
      */
     public function index(Request $request)
     {
@@ -37,69 +39,6 @@ class PostController extends Controller
         return response()->json(
             Post::where('published_at', '<=', now())->orderByDesc('published_at')->paginate()
         );
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        /** @var User $user */
-        $user = Auth::user();
-
-        logger()->info($user->name.' is creating a new post...');
-
-        $validatedData = $request->validate([
-            'title' => 'required|string|unique:posts,title',
-            'content' => 'required|string',
-            'publish' => 'required|boolean',
-            'tags' => 'sometimes|required|tag_list',
-        ]);
-
-        $post = new Post($validatedData);
-        $post->slug = Str::slug($post->title);
-
-        if (isset($validatedData['publish'])) {
-            $publish = (bool) $validatedData['publish'];
-
-            if ($publish && empty($post->published_at)) {
-                $post->published_at = now();
-            } elseif (! $publish) {
-                $post->published_at = null;
-            }
-        }
-
-        if (! $user->posts()->save($post)) {
-            logger()->error('Unable to create post.');
-
-            return response()->json([
-                'message' => 'Unable to create post.',
-            ], 500);
-        }
-
-        if (array_key_exists('tags', $validatedData)) {
-            logger()->info('Tags: '.$validatedData['tags']);
-
-            $tagList = empty($validatedData['tags']) ? [] : explode(',', $validatedData['tags']);
-            $tagIds = [];
-
-            if (! empty($tagList)) {
-                foreach ($tagList as $tagName) {
-                    $tag = Tag::firstOrCreate(['name' => $tagName]);
-                    $tagIds[] = $tag->id;
-                }
-            }
-
-            $post->tags()->sync($tagIds);
-            $post = $post->fresh();
-        }
-
-        logger()->info('Successfully created post \''.$post->slug.'\'');
-
-        return response()->json($post);
     }
 
     /**
@@ -116,39 +55,122 @@ class PostController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     * @throws AuthorizationException
+     */
+    public function store(Request $request)
+    {
+        $this->authorize('create', Post::class);
+
+        /** @var User $user */
+        $user = Auth::user();
+
+        logger()->info($user->name.' is creating a new post...');
+
+        $data = $request->validate([
+            'title' => 'required|string|unique:posts,title',
+            'content' => 'required|string',
+            'publish' => 'required|boolean',
+            'tags' => 'sometimes|required|tag_list',
+            'author_id' => 'sometimes|required|exists:users,id',
+        ]);
+
+        $post = new Post($data);
+        $post->slug = Str::slug($post->title);
+
+        /** @var User $author */
+        $author = isset($data['author_id'])
+            ? $author = User::find($data['author_id'])
+            : $user;
+
+        if (isset($data['publish'])) {
+            $publish = (bool) $data['publish'];
+
+            if ($publish && empty($post->published_at)) {
+                $post->published_at = now();
+            } elseif (!$publish) {
+                $post->published_at = null;
+            }
+        }
+
+        if (!$author->posts()->save($post)) {
+            logger()->error('Unable to create post.');
+
+            return response()->json([
+                'message' => 'Unable to create post.',
+            ], 500);
+        }
+
+        if (array_key_exists('tags', $data)) {
+            logger()->info('Tags: '.$data['tags']);
+
+            $tagList = empty($data['tags']) ? [] : explode(',', $data['tags']);
+            $tagIds = [];
+
+            if (!empty($tagList)) {
+                foreach ($tagList as $tagName) {
+                    $tag = Tag::firstOrCreate(['name' => $tagName]);
+                    $tagIds[] = $tag->id;
+                }
+            }
+
+            $post->tags()->sync($tagIds);
+            $post = $post->fresh();
+        }
+
+        logger()->info('Successfully created post \''.$post->slug.'\'');
+
+        return response()->json($post);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param Request $request
      * @param Post $post
      * @return Response
+     * @throws AuthorizationException
      */
     public function update(Request $request, Post $post)
     {
+        $this->authorize('update', $post);
+
         /** @var User $user */
         $user = Auth::user();
 
         logger()->info($user->name.' is updating a post...');
 
-        $validatedData = $request->validate([
+        $data = $request->validate([
             'title' => 'sometimes|required|string|unique:posts,title',
             'content' => 'sometimes|required|string',
             'publish' => 'sometimes|required|boolean',
-            'tags' => 'sometimes|tag_list',
+            'tags' => 'sometimes|required|tag_list',
+            'author_id' => 'sometimes|required|exists:users,id',
         ]);
 
         $post->slug = Str::slug($post->title);
 
-        if (isset($validatedData['publish'])) {
-            $publish = (bool) $validatedData['publish'];
+        /** @var User $author */
+        $author = isset($data['author_id'])
+            ? User::find($data['author_id'])
+            : $user;
+
+        if (isset($data['publish'])) {
+            $publish = (bool) $data['publish'];
 
             if ($publish && empty($post->published_at)) {
                 $post->published_at = now();
-            } elseif (! $publish) {
+            } elseif (!$publish) {
                 $post->published_at = null;
             }
         }
 
-        if (! $post->update($validatedData)) {
+        $post->author()->associate($author);
+
+        if (!$post->update($data)) {
             logger()->error('Unable to update post.');
 
             return response()->json([
@@ -156,13 +178,13 @@ class PostController extends Controller
             ], 500);
         }
 
-        if (array_key_exists('tags', $validatedData)) {
-            logger()->info('Tags: '.$validatedData['tags']);
+        if (array_key_exists('tags', $data)) {
+            logger()->info('Tags: '.$data['tags']);
 
-            $tagList = empty($validatedData['tags']) ? [] : explode(',', $validatedData['tags']);
+            $tagList = empty($data['tags']) ? [] : explode(',', $data['tags']);
             $tagIds = [];
 
-            if (! empty($tagList)) {
+            if (!empty($tagList)) {
                 foreach ($tagList as $tagName) {
                     $tag = Tag::firstOrCreate(['name' => $tagName]);
                     $tagIds[] = $tag->id;
@@ -183,9 +205,12 @@ class PostController extends Controller
      *
      * @param Post $post
      * @return Response
+     * @throws AuthorizationException
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
+
         /** @var User $user */
         $user = Auth::user();
 

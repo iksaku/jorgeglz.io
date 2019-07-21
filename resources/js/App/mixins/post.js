@@ -32,7 +32,8 @@ export const post = {
             required: false,
             default: () => ({
                 name: null,
-                email: null
+                email: null,
+                avatar: null
             })
         },
         tags: {

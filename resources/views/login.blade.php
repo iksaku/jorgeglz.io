@@ -12,7 +12,7 @@
 
                 <label class="block mb-6">
                     <span class="text-gray-700">Email</span>
-                    <input type="email" name="email" placeholder="john@example.com" autofocuse
+                    <input type="email" name="email" placeholder="john@example.com" autofocus
                            class="form-input mt-2 block w-full @error('email') border-red-500 @enderror">
 
                     @error('email')

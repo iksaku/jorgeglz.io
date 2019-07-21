@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Tag;
 use App\User;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -35,30 +36,6 @@ class TagController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        /** @var User $user */
-        $user = Auth::user();
-
-        logger()->info($user->name.' is creating a new tag...');
-
-        $validatedData = $request->validate([
-            'name' => 'required|string|unique:tags,name',
-        ]);
-
-        $tag = Tag::create($validatedData);
-
-        logger()->info('Successfully created tag \''.$tag->name.'\'');
-
-        return response()->json($tag);
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param string $name
@@ -83,24 +60,54 @@ class TagController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     * @throws AuthorizationException
+     */
+    public function store(Request $request)
+    {
+        $this->authorize('create', Tag::class);
+
+        /** @var User $user */
+        $user = Auth::user();
+
+        logger()->info($user->name.' is creating a new tag...');
+
+        $data = $request->validate([
+            'name' => 'required|string|unique:tags,name',
+        ]);
+
+        $tag = Tag::create($data);
+
+        logger()->info('Successfully created tag \''.$tag->name.'\'');
+
+        return response()->json($tag);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param Request $request
      * @param Tag $tag
      * @return Response
+     * @throws AuthorizationException
      */
     public function update(Request $request, Tag $tag)
     {
+        $this->authorize('update', $tag);
+
         /** @var User $user */
         $user = Auth::user();
 
         logger()->info($user->name.' is updating a tag...');
 
-        $validatedData = $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|unique:tags,name',
         ]);
 
-        if (! $tag->update($validatedData)) {
+        if (!$tag->update($data)) {
             logger()->error('Unable to update tag.');
 
             return response()->json([
@@ -118,9 +125,12 @@ class TagController extends Controller
      *
      * @param Tag $tag
      * @return Response
+     * @throws AuthorizationException
      */
     public function destroy(Tag $tag)
     {
+        $this->authorize('delete', $tag);
+
         /** @var User $user */
         $user = Auth::user();
 

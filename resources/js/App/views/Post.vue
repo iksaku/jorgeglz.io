@@ -2,21 +2,21 @@
     <div v-if="!post_content">
         <loading></loading>
     </div>
-    <div class="bg-gray-100 border border-gray-300 rounded shadow md:max-w-6xl p-4 h-full mx-auto"
+    <div class="bg-gray-100 border border-gray-300 rounded shadow md:max-w-6xl h-full mx-auto"
          v-else
     >
-        <div class="border-b border-gray-300 pb-2">
-            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">
+        <div class="border-b-2 border-gray-300 rounded p-4 pb-2">
+            <h1 class="text-black text-2xl sm:text-3xl md:text-4xl font-bold">
                 {{ post_title }}
             </h1>
-            <publish-date :timestamp="post_published_at" />
+            <post-info :author="post_author" :published="post_published_at" />
         </div>
-        <article class="md_content" v-html="renderedContent"></article>
+        <article class="md_content p-4" v-html="renderedContent"></article>
     </div>
 </template>
 
 <script>
-    import PublishDate from '../components/PublishDate'
+    import PostInfo from '../components/PostInfo'
     import { post } from '../mixins/post'
 
     export default {
@@ -30,7 +30,7 @@
         },
 
         components: {
-            'publish-date': PublishDate
+            'post-info': PostInfo
         },
 
         methods: {

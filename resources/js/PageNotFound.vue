@@ -6,7 +6,11 @@
             </h1>
             <p class="text-center text-gray-900 text-2xl">
                 Oops... You reached <span class="italic">nowhere</span>... Please
-                <a class="font-bold cursor-pointer hover:underline" @click="jumpBack()">jump back</a>
+                <button class="font-bold text-black hover:text-blue-700 hover:underline focus:text-blue-700 focus:underline focus:outline-none focus:shadow-outline"
+                        @click="jumpBack()"
+                >
+                    jump back
+                </button>
             </p>
         </div>
     </div>

@@ -10,7 +10,7 @@ class WebController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [
-            'only' => 'dashboard',
+            'only' => ['dashboard'],
         ]);
     }
 
@@ -19,7 +19,7 @@ class WebController extends Controller
      */
     public function app()
     {
-        return view('app');
+        return view('index');
     }
 
     /**

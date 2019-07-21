@@ -1,9 +1,9 @@
 <template>
-    <header class="z-40 top-0 inset-x-0 w-full bg-gray-200 border-b border-gray-500 shadow">
-        <nav class="text-black container mx-auto px-8 flex items-center justify-between">
+    <header class="z-40 top-0 inset-x-0 w-full bg-gray-200 shadow">
+        <nav class="container mx-auto px-8 flex items-center justify-between">
             <h1 class="text-xl sm:text-2xl font-bold py-2">
                 <router-link :to="{ name: 'home' }"
-                             class="cursor-pointer focus:outline-none focus:shadow-outline"
+                             class="text-black"
                 >
                     Jorge's Blog
                 </router-link>
@@ -16,7 +16,7 @@
                 >
                     <router-link
                             :to="{ name: routeName }"
-                            class="cursor-pointer border-b-2 border-transparent hover:border-blue-500 focus:border-blue-500 focus:outline-none focus:shadow-outline"
+                            class="text-black border-b-2 border-transparent hover:border-blue-500 focus:border-blue-500 focus:outline-none focus:shadow-outline"
                             :class="$route.name === routeName ? 'font-bold border-blue-500' : ''"
                     >
                         {{ page }}

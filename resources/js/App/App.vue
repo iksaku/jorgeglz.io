@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen h-full w-full">
-        <Navbar />
+        <navbar />
 
         <div class="h-full w-full">
             <div class="container mx-auto p-4">
@@ -20,6 +20,10 @@
     export default {
         name: "App",
 
+        components: {
+            'navbar': Navbar
+        },
+
         metaInfo: {
             title: 'Jorge González',
             titleTemplate: '%s | Jorge González',
@@ -32,10 +36,6 @@
             ],
 
             refreshOnceOnNavigation: true
-        },
-
-        components: {
-            Navbar
         }
     }
 </script>
