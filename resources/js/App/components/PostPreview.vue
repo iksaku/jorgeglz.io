@@ -10,14 +10,14 @@
             </h1>
             <post-info :author="post_author" :published="post_published_at" />
         </div>
-        <p class="md_content p-4">
-            <span v-html="renderedContent.substring(0, content_length) + '...'"></span>
+        <section class="md_content p-4">
+            <span class="inline" v-html="renderedContent.substring(0, content_length) + '...'"></span>
             <router-link :to="routerData"
-                         class="font-bold whitespace-no-wrap"
+                         class="font-bold inline whitespace-no-wrap"
             >
                 Continue Reading
             </router-link>
-        </p>
+        </section>
     </div>
 </template>
 

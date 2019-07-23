@@ -25,6 +25,8 @@ import Vue from 'vue'
 
 import Loading from './components/Loading'
 
+Vue.config.productionTip = false
+
 Vue.component('loading', Loading)
 
 // import Echo from 'laravel-echo'

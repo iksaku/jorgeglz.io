@@ -1,11 +1,11 @@
 <template>
     <div class="text-gray-800 text-sm px-1">
-        <span class="block sm:inline-block">
+        <section class="block sm:inline-block">
             <router-link :to="{ name: 'about' }"
                          class="inline-block align-middle hover:opacity-75 focus:opacity-75"
             >
                 <img class="h-6 w-6 rounded-full"
-                     :src="avatarUrl" :alt="`Avatar of ${author.name}`"
+                     :src="author.avatar" :alt="`Avatar of ${author.name}`"
                 >
             </router-link>
             <router-link :to="{ name: 'about' }"
@@ -13,11 +13,11 @@
             >
                 {{ author.name }}
             </router-link>
-        </span>
+        </section>
 
         <span class="hidden mx-2 sm:inline-block">|</span>
 
-        <span class="block sm:inline-block">
+        <section class="block sm:inline-block">
             <span class="w-6 text-center font-sans inline-block align-middle mr-2 sm:mr-0">
                 {{ emoji('date') }}
             </span>
@@ -29,7 +29,7 @@
                     Draft
                 </span>
             </span>
-        </span>
+        </section>
     </div>
 </template>
 
@@ -58,10 +58,6 @@
         },
 
         computed: {
-            avatarUrl() {
-                return `https://www.gravatar.com/avatar/${this.author.avatar}`
-            },
-
             date() {
                 return dayjs(this.published)
             },

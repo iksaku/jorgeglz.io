@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
 
-import PageNotFound from '../PageNotFound'
+import PageNotFound from '../components/PageNotFound'
 
 import About from "./pages/About"
 import Home from './pages/Home'

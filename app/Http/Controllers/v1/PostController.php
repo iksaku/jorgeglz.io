@@ -74,7 +74,7 @@ class PostController extends Controller
             'title' => 'required|string|unique:posts,title',
             'content' => 'required|string',
             'publish' => 'required|boolean',
-            'tags' => 'sometimes|required|tag_list',
+            'tags' => 'sometimes|required|array',
             'author_id' => 'sometimes|required|exists:users,id',
         ]);
 
@@ -147,7 +147,7 @@ class PostController extends Controller
             'title' => 'sometimes|required|string|unique:posts,title',
             'content' => 'sometimes|required|string',
             'publish' => 'sometimes|required|boolean',
-            'tags' => 'sometimes|required|tag_list',
+            'tags' => 'sometimes|required|array',
             'author_id' => 'sometimes|required|exists:users,id',
         ]);
 
