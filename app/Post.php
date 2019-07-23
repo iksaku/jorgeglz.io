@@ -42,33 +42,23 @@ class Post extends Model
 {
     use SoftDeletes;
 
-    /** @var string */
-    protected $primaryKey = 'slug';
-
-    /** @var bool */
-    public $incrementing = false;
-
-    /** @var string */
-    protected $keyType = 'string';
-
     /** @var array */
     protected $fillable = [
         'slug', 'title', 'content', 'published_at',
     ];
 
     /** @var array */
-    protected $dates = [
-        'published_at',
-    ];
-
-    /** @var array */
     protected $hidden = [
-        'created_at', 'deleted_at', 'author_id', 'pivot',
+        'id', 'created_at', 'deleted_at', 'author_id', 'pivot',
     ];
 
     /** @var array */
     protected $with = [
         'author', 'tags',
+    ];
+
+    protected $casts = [
+        'published_at' => 'date',
     ];
 
     /**

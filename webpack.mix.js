@@ -3,8 +3,7 @@ require('laravel-mix-purgecss')
 
 mix.disableSuccessNotifications()
 
-mix.js('resources/js/App/app.js', 'public/js')
-    .js('resources/js/Dashboard/dashboard.js', 'public/js')
+mix.js('resources/js/app.js', 'public/js')
     .extract()
     .postCss('resources/styles/app.pcss', 'public/css', [
         require('tailwindcss')('tailwind.config.js'),

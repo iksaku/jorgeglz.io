@@ -22,6 +22,29 @@ class PostPolicy
     }
 
     /**
+     * Determine whether the user can view any posts.
+     *
+     * @param User|null $user
+     * @return bool
+     */
+    public function viewAny(?User $user)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can view the post.
+     *
+     * @param User|null $user
+     * @param Post $post
+     * @return bool
+     */
+    public function view(?User $user, Post $post)
+    {
+        return true;
+    }
+
+    /**
      * Determine whether the user can create posts.
      *
      * @return mixed

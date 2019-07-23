@@ -22,6 +22,29 @@ class TagPolicy
     }
 
     /**
+     * Determine whether the user can view any tags.
+     *
+     * @param User|null $user
+     * @return bool
+     */
+    public function viewAny(?User $user)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can view the tag.
+     *
+     * @param User|null $user
+     * @param Tag $tag
+     * @return bool
+     */
+    public function view(?User $user, Tag $tag)
+    {
+        return true;
+    }
+
+    /**
      * Determine whether the user can create tags.
      *
      * @return mixed
