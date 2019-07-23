@@ -9,7 +9,3 @@
         name: "Loading"
     }
 </script>
-
-<style scoped>
-
-</style>

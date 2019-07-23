@@ -1,0 +1,28 @@
+
+      export default {
+        functional: true,
+        render(_h, _vm) {
+          const { _c, _v, data, children = [] } = _vm;
+
+          const {
+            class: classNames,
+            staticClass,
+            style,
+            staticStyle,
+            attrs = {},
+            ...rest
+          } = data;
+
+          return _c(
+            'svg',
+            {
+              class: [classNames,staticClass],
+              style: [style,staticStyle],
+              attrs: Object.assign({"xmlns":"http://www.w3.org/2000/svg","width":"120","height":"30"}, attrs),
+              ...rest,
+            },
+            children.concat([_c('circle',{attrs:{"cx":"15","cy":"15","r":"15"}},[_c('animate',{attrs:{"attributeName":"r","begin":"0s","calcMode":"linear","dur":"0.8s","from":"15","repeatCount":"indefinite","to":"15","values":"15;9;15"}}),_c('animate',{attrs:{"attributeName":"fill-opacity","begin":"0s","calcMode":"linear","dur":"0.8s","from":"1","repeatCount":"indefinite","to":"1","values":"1;.5;1"}})]),_c('circle',{attrs:{"cx":"60","cy":"15","r":"9","fill-opacity":".3"}},[_c('animate',{attrs:{"attributeName":"r","begin":"0s","calcMode":"linear","dur":"0.8s","from":"9","repeatCount":"indefinite","to":"9","values":"9;15;9"}}),_c('animate',{attrs:{"attributeName":"fill-opacity","begin":"0s","calcMode":"linear","dur":"0.8s","from":".5","repeatCount":"indefinite","to":".5","values":".5;1;.5"}})]),_c('circle',{attrs:{"cx":"105","cy":"15","r":"15"}},[_c('animate',{attrs:{"attributeName":"r","begin":"0s","calcMode":"linear","dur":"0.8s","from":"15","repeatCount":"indefinite","to":"15","values":"15;9;15"}}),_c('animate',{attrs:{"attributeName":"fill-opacity","begin":"0s","calcMode":"linear","dur":"0.8s","from":"1","repeatCount":"indefinite","to":"1","values":"1;.5;1"}})])])
+          )
+        }
+      }
+    

@@ -16,6 +16,8 @@ md
         )
     })
 
+// TODO: Custom link ruler, so it uses router-link if internal link.
+
 md.renderer.rules.emoji = (token, idx) => {
     return `<span class="emoji">${token[idx].content}</span>`
 }
