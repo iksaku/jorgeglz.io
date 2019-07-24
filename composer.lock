@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "faa90624c74d2a524d0a8eab8e4c887c",
+    "content-hash": "25c12f4211250aa6b239570ea46fb10e",
     "packages": [
         {
             "name": "benjaminhirsch/nova-slug-field",
@@ -1060,6 +1060,39 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "iksaku/nova-extended-markdown",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/NovaExtendedMarkdown",
+                "reference": "784021a7e3e0cdcdada07be441853b5884a0e483"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Iksaku\\NovaExtendedMarkdown\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Iksaku\\NovaExtendedMarkdown\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
         },
         {
             "name": "jakub-onderka/php-console-color",

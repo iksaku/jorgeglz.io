@@ -6,12 +6,13 @@ use App\Nova\Actions\PublishPost;
 use App\Nova\Filters\PublishedPosts;
 use Benjaminhirsch\NovaSlugField\Slug;
 use Benjaminhirsch\NovaSlugField\TextWithSlug;
+use Iksaku\NovaExtendedMarkdown\NovaExtendedMarkdown;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Markdown;
 
 class Post extends Resource
 {
@@ -51,10 +52,7 @@ class Post extends Resource
                 ->sortable(),
 
             Slug::make('Slug')
-                ->sortable()/*
-                ->resolveUsing(function() {
-
-                })*/,
+                ->sortable(),
 
             TextWithSlug::make('Title')
                 ->slug('slug')
@@ -65,11 +63,17 @@ class Post extends Resource
                 ->sortable()
                 ->rules('required'),
 
-            Date::make('Published', 'published_at')
+            Boolean::make('Published', 'published_at')
+                ->onlyOnIndex()
                 ->sortable()
+                ->resolveUsing(function ($timestamp) {
+                    return !empty($timestamp);
+                }),
+            Date::make('Published At')
+                ->hideFromIndex()
                 ->nullable(),
 
-            Markdown::make('Content')
+            NovaExtendedMarkdown::make('Content')
                 ->alwaysShow()
                 ->rules('required'),
 

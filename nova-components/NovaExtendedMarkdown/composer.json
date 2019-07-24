@@ -1,0 +1,30 @@
+{
+    "name": "iksaku/nova-extended-markdown",
+    "description": "A Laravel Nova custom markdown field.",
+    "keywords": [
+        "laravel",
+        "nova",
+        "markdown-it"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Iksaku\\NovaExtendedMarkdown\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Iksaku\\NovaExtendedMarkdown\\FieldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

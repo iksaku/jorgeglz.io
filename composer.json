@@ -20,7 +20,8 @@
         "laravel/passport": "^7.3",
         "laravel/tinker": "^1.0",
         "predis/predis": "^1.1",
-        "sausin/laravel-ovh": "^2.0"
+        "sausin/laravel-ovh": "^2.0",
+        "iksaku/nova-extended-markdown": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
@@ -54,6 +55,10 @@
         {
             "type": "github",
             "url": "git@github.com:iksaku/nova.git"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaExtendedMarkdown"
         }
     ],
     "autoload": {
