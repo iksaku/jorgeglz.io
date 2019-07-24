@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Actions\PublishPost;
+use App\Nova\Filters\PublishedPosts;
 use Benjaminhirsch\NovaSlugField\Slug;
 use Benjaminhirsch\NovaSlugField\TextWithSlug;
 use Illuminate\Http\Request;
@@ -96,7 +97,9 @@ class Post extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new PublishedPosts(),
+        ];
     }
 
     /**
