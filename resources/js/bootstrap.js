@@ -21,12 +21,17 @@ if (token) {
 }
 
 import Vue from 'vue'
-
 import Loading from './components/Loading'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faGithub, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 Vue.config.productionTip = false
 
+library.add(faGithub, faLinkedinIn, faTwitter)
+
 Vue.component('loading', Loading)
+Vue.component('icon', FontAwesomeIcon)
 
 // import Echo from 'laravel-echo'
 

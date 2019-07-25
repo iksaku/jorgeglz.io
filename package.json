@@ -13,6 +13,9 @@
         "build-nova-extended-markdown-prod": "cd nova-components/NovaExtendedMarkdown && yarn run prod"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.19",
+        "@fortawesome/free-brands-svg-icons": "^5.9.0",
+        "@fortawesome/vue-fontawesome": "^0.1.6",
         "@tailwindcss/custom-forms": "^0.2.0",
         "axios": "^0.19",
         "cross-env": "^5.1",

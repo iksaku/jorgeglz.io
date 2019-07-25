@@ -1,8 +1,8 @@
 <template>
-    <div class="min-h-screen h-full w-full">
+    <div class="min-h-screen h-full w-full flex flex-col">
         <navbar />
 
-        <div class="h-full w-full">
+        <div class="h-full w-full flex-1">
             <div class="container mx-auto p-4">
                 <keep-alive :max="5" exclude="ExternalRouteRedirect">
                     <router-view :key="$route.path" />
@@ -10,17 +10,21 @@
             </div>
         </div>
 
+        <Footer />
+
         <vue-progress-bar />
     </div>
 </template>
 
 <script>
+    import Footer from './components/Footer'
     import Navbar from './components/Navbar'
 
     export default {
         name: "App",
 
         components: {
+            Footer,
             'navbar': Navbar
         },
 
