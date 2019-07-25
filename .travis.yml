@@ -13,16 +13,17 @@ jobs:
       node_js: '10.16'
       script: yarn install && yarn production
       after_success: cp $TRAVIS_BUILD_DIR/public $HOME/public
-    - stage: build
-      php: '7.2'
-      script: composer install
 #    - stage: test
 #      node_js: '10.16'
 #      script: yarn test
 #    - stage: test
 #      php: '7.2'
-#      script: composer test
+#      script:
+#        - composer install --no-dev
+#        - composer test
     - stage: deploy
       php: '7.2'
 #      script: php artisan deploy -s upload
-      script: php artisan inspire
+      script:
+        - composer install --no-dev
+        - php artisan inspire
