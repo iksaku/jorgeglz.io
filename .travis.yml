@@ -11,8 +11,10 @@ jobs:
     - stage: build
       skip: true
       node_js: '10.16'
-      script: yarn install && yarn production
-      after_success: cp $TRAVIS_BUILD_DIR/public $HOME/public
+      script:
+        - yarn install
+        - yarn production
+        - cp $TRAVIS_BUILD_DIR/public $HOME/public
 #    - stage: test
 #      node_js: '10.16'
 #      script: yarn test
