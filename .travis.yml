@@ -14,7 +14,7 @@ jobs:
       script:
         - yarn install
         - yarn production
-        - cp $TRAVIS_BUILD_DIR/public $HOME/public
+        - cp -r $TRAVIS_BUILD_DIR/public $HOME/public
 #    - stage: test
 #      node_js: '10.16'
 #      script: yarn test

@@ -52,7 +52,7 @@
     },
     "repositories": [
         {
-            "type": "github",
+            "type": "vcs",
             "url": "git@github.com:iksaku/nova.git"
         },
         {
