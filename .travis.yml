@@ -6,7 +6,7 @@ cache:
     - $HOME/.composer/cache
     - $HOME/public
 
-addon:
+addons:
   ssh_known_hosts: $DEPLOY_HOST
 
 jobs:
