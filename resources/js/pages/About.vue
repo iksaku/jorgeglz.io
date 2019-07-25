@@ -3,6 +3,8 @@
         <h1 class="text-3xl text-center font-bold">
             {{ randomIntroductoryPhrase() }}
         </h1>
+
+        <!-- TODO -->
     </div>
 </template>
 
@@ -18,7 +20,7 @@
                 {
                     vmid: 'description',
                     name: 'description',
-                    content: 'Want to know more about me? Actually, this is the right place...'
+               Mis     content: 'Want to know more about me? Actually, this is the right place...'
                 }
             ]
         },
