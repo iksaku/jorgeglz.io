@@ -15,13 +15,12 @@
         "benjaminhirsch/nova-slug-field": "^1.2",
         "fideloper/proxy": "^4.0",
         "gregoriohc/laravel-nova-theme-responsive": "^0.6.2",
+        "iksaku/nova-extended-markdown": "*",
         "laravel/framework": "5.8.*",
         "laravel/nova": "^2.0",
-        "laravel/passport": "^7.3",
         "laravel/tinker": "^1.0",
         "predis/predis": "^1.1",
-        "sausin/laravel-ovh": "^2.0",
-        "iksaku/nova-extended-markdown": "*"
+        "sausin/laravel-ovh": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
@@ -90,10 +89,10 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "vendor/bin/cghooks update",
-            "php artisan ide-helper:generate",
-            "php artisan ide-helper:meta"
+            "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/cghooks update",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
         ],
-        "post-install-cmd": "vendor/bin/cghooks add --ignore-lock"
+        "post-install-cmd": "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/cghooks add --ignore-lock"
     }
 }
