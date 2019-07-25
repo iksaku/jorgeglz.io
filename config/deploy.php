@@ -53,10 +53,6 @@ return [
         'build' => [
             'yarn:install',
             'yarn:production',
-
-//            Still not sure if need to add them... Increases deploy time
-//            'nova:install',
-//            'nova:build',
         ],
 
         // Deployment is done but not live yet (before symlink)

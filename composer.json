@@ -91,7 +91,8 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/cghooks update",
             "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:meta"
+            "@php artisan ide-helper:meta",
+            "@php artisan nova:publish"
         ],
         "post-install-cmd": "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/cghooks add --ignore-lock"
     }
