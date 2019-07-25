@@ -30,4 +30,9 @@ jobs:
         - composer install
         - cp -r $HOME/public $TRAVIS_BUILD_DIR
         - php artisan nova:publish
-        - php artisan deploy -s upload
+      deploy:
+        skip_cleanup: true
+        provider: script
+        script: php artisan deploy -s upload
+        on:
+          branch: master
