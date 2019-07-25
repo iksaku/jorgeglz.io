@@ -26,7 +26,7 @@ jobs:
     - stage: deploy
       php: '7.2'
       script:
-        - composer install --no-dev
+        - composer install
         - cp -r $HOME/public $TRAVIS_BUILD_DIR
         - php artisan nova:publish
         - php artisan deploy -s upload
