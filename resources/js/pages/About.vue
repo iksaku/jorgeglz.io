@@ -20,7 +20,7 @@
                 {
                     vmid: 'description',
                     name: 'description',
-               Mis     content: 'Want to know more about me? Actually, this is the right place...'
+                    content: 'Want to know more about me? Actually, this is the right place...'
                 }
             ]
         },
