@@ -24,6 +24,7 @@ jobs:
 #        - composer install --no-dev
 #        - composer test
     - stage: deploy
+      if: branch = master
       php: '7.2'
       before_script: echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
       script:
