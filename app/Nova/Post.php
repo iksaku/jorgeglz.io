@@ -6,6 +6,7 @@ use App\Nova\Actions\PublishPost;
 use App\Nova\Filters\PublishedPosts;
 use Benjaminhirsch\NovaSlugField\Slug;
 use Benjaminhirsch\NovaSlugField\TextWithSlug;
+use Carbon\Carbon;
 use Iksaku\NovaExtendedMarkdown\NovaExtendedMarkdown;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -66,12 +67,17 @@ class Post extends Resource
             Boolean::make('Published', 'published_at')
                 ->onlyOnIndex()
                 ->sortable()
-                ->resolveUsing(function ($timestamp) {
+                ->displayUsing(function ($timestamp) {
                     return !empty($timestamp);
                 }),
-            Date::make('Published At')
+            Date::make('Published', 'published_at')
                 ->hideFromIndex()
-                ->nullable(),
+                ->nullable()
+                ->displayUsing(function ($published_at) {
+                    return empty($published_at)
+                        ? 'Not yet published'
+                        : Carbon::parse($published_at)->format('F d, Y');
+                }),
 
             NovaExtendedMarkdown::make('Content')
                 ->alwaysShow()
