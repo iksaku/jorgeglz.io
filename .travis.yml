@@ -2,15 +2,17 @@ language: generic
 
 cache:
   directories:
-    - $HOME/node_modules
-    - $HOME/vendor
+    - $HOME/.cache/yarn
+    - $HOME/.composer/cache
     - $HOME/public
 
 jobs:
   include:
     - stage: build
+      skip: true
       node_js: '10.16'
       script: yarn install && yarn production
+      after_success: cp $TRAVIS_BUILD_DIR/public $HOME/public
     - stage: build
       php: '7.2'
       script: composer install
@@ -23,4 +25,4 @@ jobs:
     - stage: deploy
       php: '7.2'
 #      script: php artisan deploy -s upload
-      script: php artisan inspire
+      script: ls -1a
