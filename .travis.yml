@@ -25,4 +25,4 @@ jobs:
     - stage: deploy
       php: '7.2'
 #      script: php artisan deploy -s upload
-      script: ls -1a
+      script: php artisan inspire
