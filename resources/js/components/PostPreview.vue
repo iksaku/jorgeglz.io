@@ -10,7 +10,7 @@
             </h1>
             <post-info :author="post_author" :published="post_published_at" />
         </div>
-        <section class="md_content p-4">
+        <section class="md_content text-justify p-4">
             <span class="inline" v-html="renderedContent.substring(0, content_length) + '...'"></span>
             <router-link :to="routerData"
                          class="font-bold inline whitespace-no-wrap"
