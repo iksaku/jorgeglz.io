@@ -6,9 +6,6 @@ cache:
     - $HOME/.composer/cache
     - $HOME/public
 
-addons:
-  ssh_known_hosts: $DEPLOY_HOST
-
 jobs:
   include:
     - stage: build
@@ -28,6 +25,7 @@ jobs:
 #        - composer test
     - stage: deploy
       php: '7.2'
+      before_script: echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
       script:
         - composer install
         - cp -r $HOME/public $TRAVIS_BUILD_DIR
