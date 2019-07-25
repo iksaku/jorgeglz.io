@@ -1,0 +1,26 @@
+language: generic
+
+cache:
+  directories:
+    - $HOME/node_modules
+    - $HOME/vendor
+    - $HOME/public
+
+jobs:
+  include:
+    - stage: build
+      node_js: '10.16'
+      script: yarn install && yarn production
+    - stage: build
+      php: '7.2'
+      script: composer install
+#    - stage: test
+#      node_js: '10.16'
+#      script: yarn test
+#    - stage: test
+#      php: '7.2'
+#      script: composer test
+    - stage: deploy
+      php: '7.2'
+#      script: php artisan deploy -s upload
+      script: php artisan inspire
