@@ -6,6 +6,9 @@ cache:
     - $HOME/.composer/cache
     - $HOME/public
 
+addon:
+  ssh_known_hosts: $DEPLOY_HOST
+
 jobs:
   include:
     - stage: build
