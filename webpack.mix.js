@@ -9,7 +9,11 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss')('tailwind.config.js'),
         require('postcss-nested')
    ])
-    .purgeCss()
+    .purgeCss({
+        whitelistPatternsChildren: [
+            /md_content$/
+        ]
+    })
 
 if (mix.inProduction()) {
     mix.version()

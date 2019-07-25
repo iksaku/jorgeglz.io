@@ -53,7 +53,10 @@ return [
         'build' => [
             'yarn:install',
             'yarn:production',
-            'nova:build',
+
+//            Still not sure if need to add them... Increases deploy time
+//            'nova:install',
+//            'nova:build',
         ],
 
         // Deployment is done but not live yet (before symlink)
@@ -95,6 +98,7 @@ return [
     'options' => [
         'application' => env('APP_NAME', 'Laravel'),
         'repository' => 'git@github.com:iksaku/jorgeglz.io.git',
+        'local_deploy_path' => __DIR__.'/../.deploy',
     ],
 
     /*

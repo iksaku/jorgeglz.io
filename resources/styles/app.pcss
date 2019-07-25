@@ -22,25 +22,6 @@ a {
     @apply font-sans;
 }
 
-.heading {
-    @apply font-bold border-b border-gray-300 mt-5 mb-1;
-
-    .header-anchor {
-        @apply text-transparent;
-
-        &:hover,
-        &:focus {
-            @apply text-blue-700;
-        }
-    }
-
-    &:hover {
-        .header-anchor {
-            @apply text-blue-700;
-        }
-    }
-}
-
 .post-preview {
     & + & {
         @apply mt-4;
@@ -62,28 +43,47 @@ a {
         }
     }
 
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-bold border-b border-gray-300 mt-5 mb-1;
+
+        .header-anchor {
+            @apply text-transparent;
+
+            &:hover,
+            &:focus {
+                @apply text-blue-700;
+            }
+        }
+
+        &:hover {
+            .header-anchor {
+                @apply text-blue-700;
+            }
+        }
+    }
+
     h1 {
-        @apply heading text-3xl;
+        @apply text-3xl;
     }
 
     h2 {
-        @apply heading text-2xl;
+        @apply text-2xl;
     }
 
     h3 {
-        @apply heading text-xl;
+        @apply text-xl;
     }
 
     h4 {
-        @apply heading text-lg;
+        @apply text-lg;
     }
 
     h5 {
-        @apply heading text-base;
+        @apply text-base;
     }
 
     h6 {
-        @apply heading text-sm;
+        @apply text-sm;
     }
 }
 

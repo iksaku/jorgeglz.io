@@ -2,7 +2,6 @@ import axios from 'axios'
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers.common['Accept'] = 'application/json'
-axios.defaults.baseURL = process.env.MIX_APP_URL
 
 axios.interceptors.response.use(response => {
     return response
