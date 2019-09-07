@@ -7,34 +7,23 @@
         "watch-poll": "yarn run watch --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "yarn run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch-nova-extended-markdown": "cd nova-components/NovaExtendedMarkdown && yarn run watch",
-        "build-nova-extended-markdown": "cd nova-components/NovaExtendedMarkdown && yarn run dev",
-        "build-nova-extended-markdown-prod": "cd nova-components/NovaExtendedMarkdown && yarn run prod"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.19",
         "@fortawesome/free-brands-svg-icons": "^5.9.0",
         "@fortawesome/vue-fontawesome": "^0.1.6",
-        "@tailwindcss/custom-forms": "^0.2.0",
-        "axios": "^0.19",
+        "@inertiajs/inertia": "^0.1.3",
+        "@inertiajs/inertia-vue": "^0.1.1",
         "cross-env": "^5.1",
         "dayjs": "^1.8.15",
         "laravel-mix": "^4.0.7",
         "laravel-mix-purgecss": "^4.1.0",
-        "lodash": "^4.17.5",
-        "markdown-it": "^8.4.2",
-        "markdown-it-anchor": "^5.2.4",
-        "markdown-it-emoji": "^1.4.0",
-        "postcss-nested": "^4.1.2",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.15.2",
-        "sass-loader": "^7.1.0",
-        "tailwindcss": "^1.0.4",
-        "vue": "^2.5.17",
-        "vue-meta": "^2.0.5",
-        "vue-progressbar": "^0.7.5",
-        "vue-router": "^3.0.6",
-        "vue-template-compiler": "^2.6.10"
+        "markdown-it": "^8.4",
+        "markdown-it-anchor": "^5.2",
+        "markdown-it-emoji": "^1.4",
+        "postcss-nested": "^4.1",
+        "resolve-url-loader": "^2.3",
+        "tailwindcss": "^1.1"
     }
 }

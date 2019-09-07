@@ -12,12 +12,9 @@
     "require": {
         "php": "^7.2",
         "ext-json": "^1.6",
-        "benjaminhirsch/nova-slug-field": "^1.2",
         "fideloper/proxy": "^4.0",
-        "gregoriohc/laravel-nova-theme-responsive": "^0.6.2",
-        "iksaku/nova-extended-markdown": "*",
+        "inertiajs/inertia-laravel": "^0.1.2",
         "laravel/framework": "5.8.*",
-        "laravel/nova": "^2.0",
         "laravel/tinker": "^1.0",
         "predis/predis": "^1.1",
         "sausin/laravel-ovh": "^2.0"
@@ -25,12 +22,10 @@
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
         "beyondcode/laravel-dump-server": "^1.0",
-        "brainmaestro/composer-git-hooks": "^2.7",
         "doctrine/dbal": "^2.9",
-        "filp/whoops": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.15",
         "fzaninotto/faker": "^1.4",
-        "lorisleiva/laravel-deployer": "^0.2.11",
+        "lorisleiva/laravel-deployer": "^0.2",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^7.5"
@@ -43,23 +38,8 @@
     "extra": {
         "laravel": {
             "dont-discover": []
-        },
-        "hooks": {
-            "pre-commit": "vendor/bin/php-cs-fixer fix",
-            "pre-push": "vendor/bin/php-cs-fixer fix --dry-run",
-            "post-merge": "composer update"
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:iksaku/nova.git"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/NovaExtendedMarkdown"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "App\\": "app/"
@@ -89,11 +69,8 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/cghooks update",
             "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:meta",
-            "@php artisan nova:publish"
-        ],
-        "post-install-cmd": "[ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/cghooks add --ignore-lock"
+            "@php artisan ide-helper:meta"
+        ]
     }
 }
