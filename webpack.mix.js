@@ -1,20 +1,34 @@
 const mix = require('laravel-mix')
 require('laravel-mix-purgecss')
 
-mix.disableSuccessNotifications()
-
-mix.js('resources/js/app.js', 'public/js')
-    .extract()
+mix
+    .js('resources/js/app.js', 'public/js')
     .postCss('resources/styles/app.pcss', 'public/css', [
-        require('tailwindcss')('tailwind.config.js'),
+        require('tailwindcss'),
         require('postcss-nested')
-   ])
-    .purgeCss({
-        whitelistPatternsChildren: [
-            /md_content$/
+    ])
+    .sourceMaps()
+    .babelConfig({
+        plugins: [
+            '@babel/plugin-syntax-dynamic-import'
         ]
+    })
+    .webpackConfig({
+        output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
+        resolve: {
+            alias: {
+                vue$: 'vue/dist/vue.runtime.esm.js',
+                '@': path.resolve('resources/js')
+            }
+        }
     })
 
 if (mix.inProduction()) {
-    mix.version()
+    mix
+        .purgeCss({
+            whitelistPatternsChildren: [
+                /md_content$/
+            ]
+        })
+        .version()
 }

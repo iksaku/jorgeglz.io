@@ -1,19 +1,17 @@
 <template>
     <div class="text-gray-800 text-sm px-1">
-        <section class="block sm:inline-block">
-            <router-link :to="{ name: 'about' }"
-                         class="inline-block align-middle hover:opacity-75 focus:opacity-75"
-            >
-                <img class="h-6 w-6 rounded-full"
-                     :src="author.avatar" :alt="`Avatar of ${author.name}`"
-                >
-            </router-link>
-            <router-link :to="{ name: 'about' }"
-                         class="text-gray-800 hover:text-blue-700 focus:text-blue-700 inline-block align-middle ml-2"
-            >
-                {{ author.name }}
-            </router-link>
-        </section>
+        <div class="block sm:inline-block">
+            <inertia-link href="/about" class="py-1 hover:opacity-75">
+                <span class="inline-block align-middle">
+                    <img class="h-6 w-6 rounded-full "
+                         :src="author.avatar" :alt="`Avatar of ${author.name}`"
+                    >
+                </span>
+                <span class="text-gray-800 inline-block align-middle ml-1">
+                    {{ author.name }}
+                </span>
+            </inertia-link>
+        </div>
 
         <span class="hidden mx-2 sm:inline-block">|</span>
 
@@ -38,14 +36,10 @@
     import emoji_list from 'markdown-it-emoji/lib/data/full'
 
     export default {
-        name: "PublishDate",
+        name: "PostInfo",
 
         props: {
-            author: {
-                type: Object,
-                required: true
-            },
-
+            author: Object,
             published: {
                 required: false,
                 default: null,
@@ -54,7 +48,7 @@
         },
 
         methods: {
-            emoji: (name) => emoji_list[name]
+            emoji: name => emoji_list[name]
         },
 
         computed: {
@@ -72,7 +66,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>
