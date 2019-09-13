@@ -1,5 +1,5 @@
 <template>
-    <footer class="z-40 bottom-0 inset-x-0 w-full bg-gray-200 border-t border-gray-400">
+    <footer class="z-40 bottom-0 inset-x-0 w-full bg-gray-200 border-t border-gray-400 shadow">
         <div class="container mx-auto px-4 flex items-center justify-between">
             <section class="font-bold text-sm sm:text-base sm:text-center py-4">
                 &copy; 2019 Jorge González

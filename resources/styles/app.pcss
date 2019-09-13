@@ -92,19 +92,15 @@ a {
     h1, h2, h3, h4, h5, h6 {
         @apply font-bold border-b border-gray-300 mt-5 mb-1;
 
-        .header-anchor {
-            @apply text-gray-700;
-
-            &:hover,
-            &:focus {
+        &:hover,
+        &:focus {
+            .header-anchor {
                 @apply text-blue-700;
             }
         }
 
-        &:hover {
-            .header-anchor {
-                @apply text-blue-700;
-            }
+        .header-anchor {
+            @apply text-gray-700;
         }
     }
 
