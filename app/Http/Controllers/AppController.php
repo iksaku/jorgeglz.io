@@ -17,7 +17,7 @@ class AppController extends Controller
         logger()->info('Showing Post list on page '.$request->get('page', 1).'...');
 
         $posts = Post::query()
-            ->wherePublished()
+            ->isPublished()
             ->orderByDesc('published_at')
             ->paginate();
 
@@ -39,8 +39,8 @@ class AppController extends Controller
     public function post(string $slug): Response
     {
         $post = Post::query()
-            ->wherePublished()
             ->whereSlug($slug)
+            ->isPublished()
             ->first();
 
         if (empty($post)) {
@@ -54,6 +54,6 @@ class AppController extends Controller
 
         logger()->info('Showing Post \''.$post->slug.'\'...');
 
-        return inertia('App/Post', compact('post'));
+        return inertia('App/Post', $post);
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="text-gray-800 text-sm px-1">
         <div class="block sm:inline-block">
-            <inertia-link href="/about" class="py-1 hover:opacity-75">
+            <div class="py-1">
                 <span class="inline-block align-middle">
                     <img class="h-6 w-6 rounded-full "
                          :src="author.avatar" :alt="`Avatar of ${author.name}`"
@@ -10,12 +10,12 @@
                 <span class="text-gray-800 inline-block align-middle ml-1">
                     {{ author.name }}
                 </span>
-            </inertia-link>
+            </div>
         </div>
 
         <span class="hidden mx-2 sm:inline-block">|</span>
 
-        <section class="block sm:inline-block">
+        <div class="block sm:inline-block">
             <span class="w-6 text-center font-sans inline-block align-middle mr-2 sm:mr-0">
                 {{ emoji('date') }}
             </span>
@@ -27,7 +27,7 @@
                     Draft
                 </span>
             </span>
-        </section>
+        </div>
     </div>
 </template>
 

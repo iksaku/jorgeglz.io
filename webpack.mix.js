@@ -14,6 +14,14 @@ mix
         ]
     })
     .webpackConfig({
+        module: {
+            rules: [
+                {
+                    test: /\.md$/i,
+                    use: 'raw-loader'
+                }
+            ]
+        },
         output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
         resolve: {
             alias: {
@@ -27,7 +35,7 @@ if (mix.inProduction()) {
     mix
         .purgeCss({
             whitelistPatternsChildren: [
-                /md_content$/
+                /markdown$/
             ]
         })
         .version()

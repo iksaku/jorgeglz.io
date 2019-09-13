@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
  * @property-read int|null $tags_count
  * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post isPublished()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Post onlyTrashed()
@@ -34,7 +35,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePublished()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePublishedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereTitle($value)
@@ -86,7 +86,7 @@ class Post extends Model
      * @param Builder $query
      * @return Builder
      */
-    public function scopeWherePublished(Builder $query): Builder
+    public function scopeIsPublished(Builder $query): Builder
     {
         return $query
             ->whereNotNull('published_at')

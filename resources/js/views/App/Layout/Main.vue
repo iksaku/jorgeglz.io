@@ -22,6 +22,10 @@
         components: {
             AppHeader,
             AppFooter
+        },
+
+        metaInfo: {
+            titleTemplate: '%s | JorgeGlz'
         }
     }
 </script>

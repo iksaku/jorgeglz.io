@@ -19,7 +19,7 @@
 
         metaInfo() {
             return {
-                title: `${this.code} | JorgeGlz`,
+                title: `${this.code}`,
                 meta: [
                     {
                         vmid: 'description',

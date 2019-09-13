@@ -1,3 +1,5 @@
+@import "~highlight.js/styles/a11y-dark.css";
+
 @tailwind base;
 
 html {
@@ -28,11 +30,11 @@ a {
     }
 }
 
-.md-content {
-    @apply leading-relaxed text-lg;
+.markdown {
+    @apply leading-normal text-lg;
 
     p {
-        @apply my-4 font-sans text-justify;
+        @apply my-2 font-sans text-justify;
 
         &:first-child {
             @apply mt-0;
@@ -41,13 +43,57 @@ a {
         &:last-child {
             @apply mb-0;
         }
+
+        > code {
+            @apply inline align-middle font-mono text-base bg-gray-300 rounded py-1 px-2;
+        }
+    }
+
+    pre {
+        @apply rounded scrolling-touch;
+    }
+
+    ol {
+        @apply list-decimal;
+    }
+
+    ul {
+        @apply list-disc;
+    }
+
+    ol, ul {
+        @apply list-inside ml-4 my-2;
+
+        > li {
+            > ol {
+                list-style-type: lower-roman;
+            }
+
+            > ul {
+                list-style-type: circle;
+            }
+
+            > ol, ul {
+                @apply my-0;
+
+                > li {
+                    > ol {
+                        list-style-type: lower-latin;
+                    }
+
+                    > ul {
+                        list-style-type: square;
+                    }
+                }
+            }
+        }
     }
 
     h1, h2, h3, h4, h5, h6 {
         @apply font-bold border-b border-gray-300 mt-5 mb-1;
 
         .header-anchor {
-            @apply text-transparent;
+            @apply text-gray-700;
 
             &:hover,
             &:focus {

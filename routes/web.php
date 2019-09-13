@@ -13,12 +13,12 @@ Route::prefix('posts')->group(function () {
     });
 
     Route::get('who-am-i.html', function () {
-        return redirect()->route('posts', [
+        return redirect()->route('post', [
             'slug' => 'who-am-i',
-        ], 302);
+        ], 301);
     });
 
-    Route::get('{slug}', 'AppController@post');
+    Route::get('{slug}', 'AppController@post')->name('post');
 });
 
 Route::get('{any}', function () {

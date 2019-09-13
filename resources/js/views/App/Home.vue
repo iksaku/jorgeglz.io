@@ -21,13 +21,13 @@
 
 <script>
     import Layout from './Layout/Main'
-    import PostPreview from '../../components/PostPreview'
+    import PostPreview from './components/PostPreview'
 
     export default {
         name: 'Home',
 
         metaInfo: {
-            title: 'Home | JorgeGlz',
+            title: 'Home',
             meta: [
                 {
                     vmid: 'description',

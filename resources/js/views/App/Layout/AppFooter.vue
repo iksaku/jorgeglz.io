@@ -11,8 +11,9 @@
                 >
                     <a class="text-black"
                        :href="data.url"
-                       :align="`${data.name} Profile`"
+                       :aria-label="`${data.name} Profile`"
                        target="_blank"
+                       rel="noopener"
                     >
                         <icon :icon="['fab', icon]" />
                     </a>

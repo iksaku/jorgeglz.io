@@ -1,4 +1,4 @@
-import markdownIt from '../../plugins/markdown-it'
+import markdownIt from '../../../../plugins/markdown-it'
 
 export default {
     props: {
