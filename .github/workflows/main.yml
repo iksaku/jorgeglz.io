@@ -22,6 +22,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Yarn Install
-        run: yarn install -s --ignore-scripts --non-interactive --no-progress --frozen-lockfile
+        run: yarn install --silent --ignore-scripts --non-interactive --no-progress
       - name: ESLint Test
         run: yarn lint
