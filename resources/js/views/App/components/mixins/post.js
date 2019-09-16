@@ -1,4 +1,4 @@
-import markdownIt from '../../../../plugins/markdown-it'
+import markdownIt from "../../../../plugins/markdown-it";
 
 export default {
     props: {
@@ -10,17 +10,17 @@ export default {
         published_at: {
             required: false,
             default: null,
-            validator: prop => typeof prop === 'string' || prop === null
+            validator: prop => typeof prop === "string" || prop === null
         },
         updated_at: String
     },
 
     methods: {
         render(src, env) {
-            return markdownIt.render(src, env)
+            return markdownIt.render(src, env);
         },
         renderInline(src, env) {
-            return markdownIt.renderInline(src, env)
+            return markdownIt.renderInline(src, env);
         }
     }
-}
+};

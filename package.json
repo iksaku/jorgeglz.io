@@ -1,37 +1,43 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "yarn run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "yarn run development --watch",
-        "watch-poll": "yarn run watch --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "yarn run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-    },
-    "devDependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.19",
-        "@fortawesome/free-brands-svg-icons": "^5.9.0",
-        "@fortawesome/vue-fontawesome": "^0.1.6",
-        "@inertiajs/inertia": "^0.1.3",
-        "@inertiajs/inertia-vue": "^0.1.1",
-        "@tailwindcss/custom-forms": "^0.2.1",
-        "cross-env": "^5.1",
-        "dayjs": "^1.8.15",
-        "highlight.js": "^9.15.10",
-        "laravel-mix": "^4.0.7",
-        "laravel-mix-purgecss": "^4.1.0",
-        "markdown-it": "^8.4",
-        "markdown-it-anchor": "^5.2",
-        "markdown-it-emoji": "^1.4",
-        "postcss-nested": "^4.1",
-        "raw-loader": "^3.1.0",
-        "resolve-url-loader": "^2.3",
-        "tailwindcss": "^1.1",
-        "vue": "^2.6.10",
-        "vue-template-compiler": "^2.6.10"
-    },
-    "dependencies": {
-        "vue-meta": "^2.2.2"
-    }
+  "private": true,
+  "scripts": {
+    "dev": "yarn run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "lint": "cross-env NODE_ENV=production node_modules/eslint/bin/eslint.js --ext .js,.vue resources/js/",
+    "prod": "yarn run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "yarn run development --watch",
+    "watch-poll": "yarn run watch --watch-poll"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2",
+    "@fortawesome/free-brands-svg-icons": "^5.9",
+    "@fortawesome/vue-fontawesome": "^0.1",
+    "@inertiajs/inertia": "^0.1",
+    "@inertiajs/inertia-vue": "^0.1",
+    "@tailwindcss/custom-forms": "^0.2",
+    "@vue/cli-plugin-eslint": "^3.11",
+    "@vue/eslint-config-prettier": "^5.0",
+    "babel-eslint": "^10.0.1",
+    "cross-env": "^5.1",
+    "dayjs": "^1.8",
+    "eslint": "^6.4",
+    "eslint-plugin-prettier": "^3.1",
+    "eslint-plugin-vue": "^5.2",
+    "highlight.js": "^9.15",
+    "laravel-mix": "^4.1",
+    "laravel-mix-purgecss": "^4.1",
+    "markdown-it": "^8.4",
+    "markdown-it-anchor": "^5.2",
+    "markdown-it-emoji": "^1.4",
+    "postcss-nested": "^4.1",
+    "prettier": "^1.18",
+    "raw-loader": "^3.1",
+    "resolve-url-loader": "^2.3",
+    "tailwindcss": "^1.1",
+    "vue": "^2.6",
+    "vue-meta": "^2.2",
+    "vue-template-compiler": "^2.6"
+  }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Inertia\Response;
 
@@ -29,7 +30,9 @@ class AppController extends Controller
      */
     public function about(): Response
     {
-        return inertia('App/About');
+        return inertia('App/About', [
+            'user' => User::whereEmail('iksaku@me.com')->first(),
+        ]);
     }
 
     /**

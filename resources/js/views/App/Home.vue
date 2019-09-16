@@ -1,17 +1,13 @@
 <template>
     <layout>
-        <div class="w-full md:max-w-6xl mx-auto"
-             v-if="posts.data.length >= 1"
-        >
+        <div class="w-full md:max-w-6xl mx-auto" v-if="posts.data.length >= 1">
             <post-preview
                 v-for="post in posts.data"
                 :key="post.slug"
                 v-bind="post"
             />
         </div>
-        <div class="h-full w-full flex items-center justify-center"
-             v-else
-        >
+        <div class="h-full w-full flex items-center justify-center" v-else>
             <p class="text-center text-gray-800 text-2xl italic font-light">
                 Posts are not available right now.
             </p>
@@ -20,30 +16,31 @@
 </template>
 
 <script>
-    import Layout from './Layout/Main'
-    import PostPreview from './components/PostPreview'
+import Layout from "./Layout/Main";
+import PostPreview from "./components/PostPreview";
 
-    export default {
-        name: 'Home',
+export default {
+    name: "Home",
 
-        metaInfo: {
-            title: 'Home',
-            meta: [
-                {
-                    vmid: 'description',
-                    name: 'description',
-                    content: 'Hello! I have a blog! And here you can find... Well... Blog posts...'
-                }
-            ]
-        },
+    metaInfo: {
+        title: "Home",
+        meta: [
+            {
+                vmid: "description",
+                name: "description",
+                content:
+                    "Hello! I have a blog! And here you can find... Well... Blog posts..."
+            }
+        ]
+    },
 
-        components: {
-            Layout,
-            PostPreview
-        },
+    components: {
+        Layout,
+        PostPreview
+    },
 
-        props: {
-            posts: Object
-        }
+    props: {
+        posts: Object
     }
+};
 </script>

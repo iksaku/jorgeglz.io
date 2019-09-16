@@ -1,5 +1,7 @@
 <template>
-    <header class="z-40 top-0 inset-x-0 w-full bg-gray-200 border-b border-gray-400 shadow">
+    <header
+        class="z-40 top-0 inset-x-0 w-full bg-gray-200 border-b border-gray-400 shadow"
+    >
         <nav class="container mx-auto px-4 flex items-center justify-between">
             <inertia-link href="/">
                 <span class="block text-black text-2xl font-bold py-2">
@@ -22,11 +24,9 @@
 </template>
 
 <script>
-    export default {
-        name: "AppHeader"
-    }
+export default {
+    name: "AppHeader"
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

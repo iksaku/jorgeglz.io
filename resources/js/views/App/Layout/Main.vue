@@ -13,19 +13,19 @@
 </template>
 
 <script>
-    import AppHeader from './AppHeader'
-    import AppFooter from './AppFooter'
+import AppHeader from "./AppHeader";
+import AppFooter from "./AppFooter";
 
-    export default {
-        name: "Main",
+export default {
+    name: "Main",
 
-        components: {
-            AppHeader,
-            AppFooter
-        },
+    components: {
+        AppHeader,
+        AppFooter
+    },
 
-        metaInfo: {
-            titleTemplate: '%s | JorgeGlz'
-        }
+    metaInfo: {
+        titleTemplate: "%s | JorgeGlz"
     }
+};
 </script>
