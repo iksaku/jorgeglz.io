@@ -9,7 +9,7 @@
 
             <img
                 class="h-64 w-64 block mx-auto rounded-full"
-                :src="user.avatar"
+                :src="`${user.avatar}?size=512`"
                 :alt="`Avatar of ${user.name}`"
             />
 
