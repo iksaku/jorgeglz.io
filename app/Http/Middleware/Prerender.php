@@ -85,6 +85,7 @@ class Prerender
     {
         $client = new Client([
             RequestOptions::ALLOW_REDIRECTS => false,
+            RequestOptions::HTTP_ERRORS => false,
         ]);
 
         return $client->request('GET', 'https://service.prerender.cloud/'.$url);
