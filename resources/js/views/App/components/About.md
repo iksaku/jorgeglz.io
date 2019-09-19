@@ -17,7 +17,7 @@ some time already, but I'm trully getting better for Math and Physics stuff.
 ## My Main Programming Languages
 * The forever loyal [PHP](https://www.php.net/).
 * Our third wheel [.NET](https://dotnet.microsoft.com/)
-* The simple, yet powerful.
+* The simple, yet powerful
 [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
 * An intelligent [Python](https://www.python.org/).
 

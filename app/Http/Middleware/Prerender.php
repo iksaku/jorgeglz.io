@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Cache;
 use Closure;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Psr\Http\Message\ResponseInterface;
@@ -24,11 +26,21 @@ class Prerender
             $urlKey = base64_encode($request->fullUrl());
 
             if (!Cache::tags(['prerender'])->has($urlKey)) {
-                $response = $this->requestRenderedPage($request->fullUrl());
+                try {
+                    $response = $this->requestRenderedPage($request->fullUrl());
+                } catch (GuzzleException $exception) {
+                    logger()->error('Unable to handle Prerender request: '.$exception->getMessage());
+
+                    return $next($request);
+                }
+
+                logger()->info('Caching '.$request->fullUrl().'...');
 
                 Cache::tags(['prerender'])->forever($urlKey, $response->getBody()->getContents());
                 Cache::tags(['prerender'])->forever($urlKey.':code', $response->getStatusCode());
             }
+
+            logger()->info('Returning cached content from '.$request->fullUrl());
 
             return response(
                 Cache::tags(['prerender'])->get($urlKey),
@@ -67,13 +79,14 @@ class Prerender
     /**
      * @param string $url
      * @return ResponseInterface
+     * @throws GuzzleException
      */
     private function requestRenderedPage(string $url): ResponseInterface
     {
         $client = new Client([
-            'allow_redirects' => false,
+            RequestOptions::ALLOW_REDIRECTS => false,
         ]);
 
-        return $client->get('https://service.prerender.cloud/'.$url);
+        return $client->request('GET', 'https://service.prerender.cloud/'.$url);
     }
 }
