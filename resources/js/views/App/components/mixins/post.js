@@ -5,14 +5,15 @@ export default {
         author: Object,
         slug: String,
         title: String,
-        tags: Array,
+        description: String,
         content: String,
         published_at: {
             required: false,
             default: null,
             validator: prop => typeof prop === "string" || prop === null
         },
-        updated_at: String
+        updated_at: String,
+        tags: Array
     },
 
     methods: {

@@ -6,8 +6,8 @@ use Cache;
 use Closure;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Psr\Http\Message\ResponseInterface;
-use Str;
 
 class Prerender
 {

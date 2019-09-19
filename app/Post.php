@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $slug
  * @property int $author_id
  * @property string $title
+ * @property string $description
  * @property string $content
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -34,6 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePublishedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereSlug($value)
@@ -49,7 +51,7 @@ class Post extends Model
 
     /** @var array */
     protected $fillable = [
-        'slug', 'title', 'content', 'published_at',
+        'slug', 'title', 'description', 'content', 'published_at',
     ];
 
     /** @var array */

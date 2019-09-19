@@ -33,7 +33,14 @@ export default {
 
     metaInfo() {
         return {
-            title: this.title
+            title: this.title,
+            meta: [
+                {
+                    vmid: "description",
+                    name: "description",
+                    content: this.description
+                }
+            ]
         };
     },
 
