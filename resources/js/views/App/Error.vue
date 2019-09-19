@@ -28,6 +28,11 @@ export default {
                     name: "description",
                     content:
                         "It looks like you reached a dark place. Please get back immediately."
+                },
+                {
+                    vmid: "prerender-status-code",
+                    name: "prerender-status-code",
+                    content: `${this.code}`
                 }
             ]
         };

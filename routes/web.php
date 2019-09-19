@@ -1,8 +1,8 @@
 <?php
 
-/*Route::get('{any}', function () {
-    return view('index');
-})->where('any', '^(?!nova).*');*/
+//Route::prefix('/admin')->prefix(function () {
+//  TODO
+//});
 
 Route::get('/', 'AppController@home')->name('home');
 Route::get('about', 'AppController@about')->name('about');
