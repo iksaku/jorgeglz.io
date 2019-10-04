@@ -1,11 +1,13 @@
 module.exports = {
-  theme: {
-    extend: {}
-  },
-  variants: {
-    opacity: ['hover', 'focus']
-  },
-  plugins: [
-      require('@tailwindcss/custom-forms')
-  ]
+    theme: {
+        extend: {}
+    },
+    variants: {
+        backgroundColor: ['hover', 'focus', 'disabled'],
+        borderColor: ['hover', 'focus', 'disabled'],
+        cursor: ['hover', 'focus', 'disabled'],
+        opacity: ['hover', 'focus', 'disabled'],
+        textColor: ['hover', 'focus', 'disabled']
+    },
+    plugins: []
 }

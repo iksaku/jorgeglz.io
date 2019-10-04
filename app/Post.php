@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $published_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\User $author
+ * @property-read bool $published
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
  * @property-read int|null $tags_count
  * @method static bool|null forceDelete()
@@ -64,6 +65,7 @@ class Post extends Model
         'author', 'tags',
     ];
 
+    /** @var array */
     protected $casts = [
         'published_at' => 'date',
     ];
@@ -85,6 +87,14 @@ class Post extends Model
     }
 
     /**
+     * @return bool
+     */
+    public function getPublishedAttribute(): bool
+    {
+        return !empty($this->published_at) && $this->published_at <= now();
+    }
+
+    /**
      * @param Builder $query
      * @return Builder
      */
@@ -93,5 +103,13 @@ class Post extends Model
         return $query
             ->whereNotNull('published_at')
             ->where('published_at', '<=', now());
+    }
+
+    /**
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }

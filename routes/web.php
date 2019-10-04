@@ -4,10 +4,14 @@
 //  TODO
 //});
 
-Route::get('/', 'AppController@home')->name('home');
-Route::get('about', 'AppController@about')->name('about');
-
+Route::get('/', 'Blog\IndexController@index')->name('blog.index');
+Route::get('about', 'Blog\AboutController@index')->name('blog.about');
 Route::prefix('posts')->group(function () {
+    Route::get('/', 'Blog\PostController@index');
+    Route::get('{post}', 'Blog\PostController@show')->name('blog.post');
+});
+
+/*Route::prefix('posts')->group(function () {
     Route::get('/', function () {
         return redirect()->route('home');
     });
@@ -18,8 +22,8 @@ Route::prefix('posts')->group(function () {
         ], 301);
     });
 
-    Route::get('{slug}', 'AppController@post')->name('post');
-});
+    Route::get('{slug}', 'AppController@post')->name('blog.post');
+});*/
 
 Route::get('{any}', function () {
     return inertia('App/Error', [

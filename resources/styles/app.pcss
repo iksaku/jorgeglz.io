@@ -20,8 +20,40 @@ a {
     }
 }
 
+button.pagination {
+    @apply w-full text-black text-center bg-gray-100 py-2 border border-gray-300 rounded shadow;
+
+    &:hover,
+    &:focus {
+        @apply text-white font-bold bg-blue-500 border-transparent;
+    }
+
+    &:focus {
+        @apply outline-none shadow-outline;
+    }
+
+    &:disabled {
+        @apply border-transparent cursor-not-allowed;
+    }
+
+    &.control {
+        &:disabled {
+            @apply text-black bg-gray-100 opacity-50;
+        }
+    }
+
+    &.page {
+        &:disabled {
+            @apply text-white font-bold bg-blue-500;
+        }
+    }
+}
+
 .emoji {
-    @apply font-sans;
+    @apply inline-block align-top;
+    max-width: none;
+    width: 1.5em;
+    height: 1.5em;
 }
 
 .post-preview {
