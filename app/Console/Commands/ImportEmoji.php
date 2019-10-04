@@ -50,7 +50,8 @@ class ImportEmoji extends Command
             $response = $client->request('GET', self::EMOJI_DATA_ENDPOINT);
         } catch (GuzzleException $e) {
             $this->error('Unable to update emoji data. For more information please refer to the logs.');
-            logger()->error("Unable to update emoji data:\n" . $e->getMessage());
+            logger()->error("Unable to update emoji data:\n".$e->getMessage());
+
             return false;
         }
 

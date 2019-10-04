@@ -20,6 +20,12 @@ if (!function_exists('markdown')) {
             if ($count < 1) {
                 $content = substr($content, 0, 256);
             }
+        } else {
+            $content = preg_replace(
+                '/[.\s]?<!--[ ]*excerpt[ ]*-->/i',
+                '',
+                $content
+            );
         }
 
         return preg_replace_callback(
@@ -48,7 +54,5 @@ if (!function_exists('github_emoji')) {
         if ($url = $emoji[$shortcut]) {
             return "<img class='emoji' alt='$shortcut' src='$url'>";
         }
-
-        return null;
     }
 }

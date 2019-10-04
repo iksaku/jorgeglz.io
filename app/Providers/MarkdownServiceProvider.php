@@ -32,7 +32,7 @@ class MarkdownServiceProvider extends ServiceProvider
             return '<?php ob_start(); ?>';
         });
 
-        Blade::directive('endmarkdown', function() {
+        Blade::directive('endmarkdown', function () {
             return '<?php echo markdown(ob_get_clean()); ?>';
         });
     }
