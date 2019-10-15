@@ -43,8 +43,10 @@ if (!function_exists('github_emoji')) {
      * @param string $shortcut
      * @return string|null
      */
-    function github_emoji(string $shortcut)
+    function github_emoji(string $shortcut): string
     {
+        // TODO: Cache emoji
+
         /** @var string[] $emoji */
         $emoji = json_decode(
             file_get_contents(base_path('resources/emoji.json')),
@@ -54,5 +56,7 @@ if (!function_exists('github_emoji')) {
         if ($url = $emoji[$shortcut]) {
             return "<img class='emoji' alt='$shortcut' src='$url'>";
         }
+
+        return null;
     }
 }

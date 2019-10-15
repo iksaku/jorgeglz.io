@@ -3,6 +3,7 @@ require('laravel-mix-purgecss')
 
 mix
     // .js('resources/js/app.js', 'public/js')
+    .js('resources/js/fontawesome.js', 'public/js')
     .postCss('resources/styles/app.pcss', 'public/css', [
         require('tailwindcss'),
         require('postcss-nested')

@@ -10,7 +10,7 @@ return [
         'url' => 'https://github.com/iksaku',
     ],
 
-    'linked-in' => [
+    'linkedin-in' => [
         'name' => 'LinkedIn',
         'url' => 'https://www.linkedin.com/in/jorge-glz',
     ],

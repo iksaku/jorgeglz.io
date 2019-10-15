@@ -14,13 +14,18 @@
         {{ config('app.name') }}
     </title>
 
-    @livewireAssets
+    {{-- Styles --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @stack('styles')
+
+    {{-- Scripts --}}
+    @stack('scripts')
+    <script src="{{ mix('js/fontawesome.js') }}" defer></script>
+
+    {{-- LiveWire --}}
+    @livewireAssets
 </head>
 <body>
     @yield('body')
-
-    @stack('scripts')
 </body>
 </html>

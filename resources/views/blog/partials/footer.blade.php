@@ -9,7 +9,7 @@
                 <li class="ml-4 sm:ml-8">
                     <a class="text-black"
                        href="{{ $data['url'] }}"
-                       aria-label="Open my {{ $data['name'] ?? ucwords($name) }} profile"
+                       aria-label="Open Jorge's {{ $data['name'] ?? ucwords($name) }} profile"
                        target="_blank"
                        rel="noreferrer"
                     >

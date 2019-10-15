@@ -4,7 +4,7 @@
     "dev": "yarn run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "lint": "cross-env NODE_ENV=development node_modules/eslint/bin/eslint.js --ext .js,.vue resources/js/",
+    "lint": "cross-env NODE_ENV=development node_modules/eslint/bin/eslint.js --ext .js resources/js/",
     "prod": "yarn run production",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "yarn run development --watch",
@@ -12,18 +12,17 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2",
-    "@fortawesome/free-brands-svg-icons": "^5.9",
-    "@vue/cli-plugin-eslint": "^3.11",
-    "@vue/eslint-config-prettier": "^5.0",
-    "babel-eslint": "^10.0.1",
+    "@fortawesome/free-brands-svg-icons": "^5.11",
+    "babel-eslint": "^10.0",
     "cross-env": "^5.1",
     "eslint": "^6.4",
+    "eslint-config-prettier": "^6.4",
     "eslint-plugin-prettier": "^3.1",
-    "eslint-plugin-vue": "^5.2",
     "highlight.js": "^9.15",
     "laravel-mix": "^4.1",
     "laravel-mix-purgecss": "^4.1",
     "prettier": "^1.18",
-    "tailwindcss": "^1.1"
+    "tailwindcss": "^1.1",
+    "vue-template-compiler": "^2.6"
   }
 }
