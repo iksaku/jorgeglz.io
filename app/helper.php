@@ -54,7 +54,7 @@ if (!function_exists('github_emoji')) {
         );
 
         if ($url = $emoji[$shortcut]) {
-            return "<img class='emoji' alt='$shortcut' src='$url'>";
+            return "<img class='emoji' alt='$shortcut' src='$url' draggable='false'>";
         }
 
         return null;
