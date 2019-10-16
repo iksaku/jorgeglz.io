@@ -27,7 +27,7 @@ class TagPolicy
      * @param User|null $user
      * @return bool
      */
-    public function viewAny(?User $user)
+    public function viewAny(?User $user): bool
     {
         return true;
     }
@@ -39,7 +39,7 @@ class TagPolicy
      * @param Tag $tag
      * @return bool
      */
-    public function view(?User $user, Tag $tag)
+    public function view(?User $user, Tag $tag): bool
     {
         return true;
     }

@@ -17,7 +17,7 @@ class PostController extends Controller
      * @return Response
      * @throws AuthorizationException
      */
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         logger()->info('Showing post list on page '.$request->get('page', 1).'...');
 
@@ -32,7 +32,7 @@ class PostController extends Controller
      * @param string $slug
      * @return Response
      */
-    public function show(string $slug)
+    public function show(string $slug): Response
     {
         /** @var Post $post */
         $post = Post::whereSlug($slug)->first();

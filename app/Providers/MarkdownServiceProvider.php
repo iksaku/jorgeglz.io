@@ -12,7 +12,7 @@ class MarkdownServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
@@ -22,7 +22,7 @@ class MarkdownServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Blade::directive('markdown', function (string $expresion) {
             if ($expresion) {

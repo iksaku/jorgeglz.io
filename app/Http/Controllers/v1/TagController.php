@@ -13,7 +13,7 @@ class TagController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         logger()->info('Showing tag list...');
 
@@ -26,7 +26,7 @@ class TagController extends Controller
      * @param string $name
      * @return Response
      */
-    public function show(string $name)
+    public function show(string $name): Response
     {
         /** @var Tag $tag */
         $tag = Tag::whereName($name)->first();

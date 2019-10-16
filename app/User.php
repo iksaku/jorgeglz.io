@@ -55,7 +55,7 @@ class User extends Authenticatable
     /**
      * @return HasMany
      */
-    public function posts()
+    public function posts(): HasMany
     {
         return $this->hasMany(Post::class, 'author_id');
     }
@@ -63,7 +63,7 @@ class User extends Authenticatable
     /**
      * @return string
      */
-    public function getAvatarAttribute()
+    public function getAvatarAttribute(): string
     {
         return 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($this->email)));
     }

@@ -1,40 +1,61 @@
 <?php
 
+use App\Post;
+
 if (!function_exists('markdown')) {
     /**
-     * @param string $content
+     * @param Post|string $content
      * @param bool $inline
+     * @param string|null $cacheKey
      * @return string
      */
-    function markdown(string $content, bool $inline = false)
+    function markdown($content, bool $inline = false, string $cacheKey = null): string
     {
-        if ($inline) {
-            $content = preg_replace(
-                '/[.\s]*<!--[ ]*excerpt[ ]*-->[\s\S]+/i',
-                '',
-                $content,
-                -1,
-                $count
-            );
+        if (empty($cacheKey)) {
+            if ($content instanceof Post) {
+                /** @var Post $post */
+                $post = $content;
 
-            if ($count < 1) {
-                $content = substr($content, 0, 256);
+                $content = $post->content;
+                $cacheKey = 'post:'.$post->slug;
+            } else {
+                $cacheKey = 'route:'.Route::currentRouteName().':'.strlen($content);
             }
-        } else {
-            $content = preg_replace(
-                '/[.\s]?<!--[ ]*excerpt[ ]*-->/i',
-                '',
-                $content
-            );
         }
 
-        return preg_replace_callback(
-            '/:([\w\d+-]+):/m',
-            function ($shortcuts) {
-                return github_emoji($shortcuts[1]) ?? $shortcuts[1];
-            },
-            parsedown($content, $inline)
-        );
+        if ($inline) {
+            $cacheKey .= ':inline';
+        }
+
+        return Cache::tags('markdown')->rememberForever($cacheKey, function () use ($content, $inline) {
+            if ($inline) {
+                $content = preg_replace(
+                    '/[.\s]*<!--[ ]*excerpt[ ]*-->[\s\S]+/i',
+                    '',
+                    $content,
+                    -1,
+                    $count
+                );
+
+                if ($count < 1) {
+                    $content = substr($content, 0, 256);
+                }
+            } else {
+                $content = preg_replace(
+                    '/[.\s]?<!--[ ]*excerpt[ ]*-->/i',
+                    '',
+                    $content
+                );
+            }
+
+            return preg_replace_callback(
+                '/:([\w\d+-]+):/m',
+                function ($shortcuts) {
+                    return github_emoji($shortcuts[1]) ?? $shortcuts[1];
+                },
+                parsedown($content, $inline)
+            );
+        });
     }
 }
 
@@ -45,18 +66,16 @@ if (!function_exists('github_emoji')) {
      */
     function github_emoji(string $shortcut): string
     {
-        // TODO: Cache emoji
+        return Cache::tags('emoji')->rememberForever($shortcut, function () use ($shortcut) {
+            /** @var string[] $emoji */
+            $emoji = json_decode(
+                file_get_contents(base_path('resources/emoji.json')),
+                true
+            );
 
-        /** @var string[] $emoji */
-        $emoji = json_decode(
-            file_get_contents(base_path('resources/emoji.json')),
-            true
-        );
-
-        if ($url = $emoji[$shortcut]) {
-            return "<img class='emoji' alt='$shortcut' src='$url' draggable='false'>";
-        }
-
-        return null;
+            if ($url = $emoji[$shortcut]) {
+                return "<img class='emoji' alt='$shortcut' src='$url' draggable='false'>";
+            }
+        });
     }
 }

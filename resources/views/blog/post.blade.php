@@ -15,7 +15,7 @@
         </h1>
 
         <article class="markdown p-4">
-            @markdown($post->content)
+            @markdown($post)
         </article>
     </div>
 @endsection

@@ -73,7 +73,7 @@ class Post extends Model
     /**
      * @return BelongsTo
      */
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
     }
@@ -81,7 +81,7 @@ class Post extends Model
     /**
      * @return BelongsToMany
      */
-    public function tags()
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }

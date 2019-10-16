@@ -8,7 +8,8 @@ use Illuminate\Contracts\View\View;
 
 class AboutController extends Controller
 {
-    const CONTENT = <<<'MD'
+    const CONTENT = /* @lang Markdown */
+        <<<'MD'
 ## About Me, Myself and I
 My name is Jorge González, also known in the online work as _iksaku_.
 I was born in Mexico :mexico: and I like tech-related stuff, food and also
@@ -33,7 +34,7 @@ some time already, but I'm truly getting better for Math and Physics stuff.
 * An intelligent [Python](https://www.python.org/).
 
 ## Personal Facts
-* :ring: I'm currently engaged.
+* :ring: I'm married.
 * :martial_arts_uniform: In Karate, I have got up to Black Belt 1° Dan.
 * :books: I started learning English by myself at the age of 6.
 * :microphone: I get to learn the lyrics of many songs, but fail to remember

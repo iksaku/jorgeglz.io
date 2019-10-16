@@ -16,7 +16,7 @@ class PostPolicy
      * @param User $user
      * @return bool
      */
-    public function before(User $user)
+    public function before(User $user): bool
     {
         return $user->email === 'iksaku@me.com' ?: null;
     }
@@ -27,7 +27,7 @@ class PostPolicy
      * @param User|null $user
      * @return bool
      */
-    public function viewAny(?User $user)
+    public function viewAny(?User $user): bool
     {
         return true;
     }
@@ -39,7 +39,7 @@ class PostPolicy
      * @param Post $post
      * @return bool
      */
-    public function view(?User $user, Post $post)
+    public function view(?User $user, Post $post): bool
     {
         return true;
     }

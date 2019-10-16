@@ -44,7 +44,7 @@ class LoginController extends Controller
      *
      * @return Response
      */
-    public function showLoginForm()
+    public function showLoginForm(): Response
     {
         return view('login');
     }
@@ -55,7 +55,7 @@ class LoginController extends Controller
      * @return void
      * @throws AuthenticationException
      */
-    protected function loggedOut()
+    protected function loggedOut(): void
     {
         throw new AuthenticationException();
     }

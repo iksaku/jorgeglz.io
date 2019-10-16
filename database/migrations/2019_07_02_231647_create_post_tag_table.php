@@ -11,7 +11,7 @@ class CreatePostTagTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('post_tag', function (Blueprint $table) {
             $table->unsignedBigInteger('post_id');
@@ -29,7 +29,7 @@ class CreatePostTagTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('posts_tags');
     }
