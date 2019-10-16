@@ -79,3 +79,19 @@ if (!function_exists('github_emoji')) {
         });
     }
 }
+
+if (!function_exists('app_title')) {
+    /**
+     * @return string
+     */
+    function app_title(): string
+    {
+        $prefix = '';
+
+        if (View::hasSection('title')) {
+            $prefix = View::getSection('title').' | ';
+        }
+
+        return $prefix.config('app.name');
+    }
+}

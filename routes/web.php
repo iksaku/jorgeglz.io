@@ -11,6 +11,13 @@ Route::prefix('posts')->group(function () {
     Route::get('{post}', 'Blog\PostController@show')->name('blog.post');
 });
 
+Route::get('{any}', function () {
+    return view('blog.error', [
+        'code' => 404,
+        'message' => 'Well, it looks like you reached nowhere...',
+    ]);
+})->where('any', '.*');
+
 /*Route::prefix('posts')->group(function () {
     Route::get('/', function () {
         return redirect()->route('home');
@@ -25,9 +32,9 @@ Route::prefix('posts')->group(function () {
     Route::get('{slug}', 'AppController@post')->name('blog.post');
 });*/
 
-Route::get('{any}', function () {
+/*Route::get('{any}', function () {
     return inertia('App/Error', [
         'code' => 404,
         'message' => 'Well, it looks like you reached nowhere...',
     ]);
-})->where('any', '.*');
+})->where('any', '.*');*/
