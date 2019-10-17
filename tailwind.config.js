@@ -9,5 +9,7 @@ module.exports = {
         opacity: ['hover', 'focus', 'disabled'],
         textColor: ['hover', 'focus', 'disabled']
     },
-    plugins: []
+    plugins: [
+        require('@tailwindcss/custom-forms')
+    ]
 }

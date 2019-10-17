@@ -46,7 +46,7 @@ class LoginController extends Controller
      */
     public function showLoginForm(): Response
     {
-        return view('login');
+        return response()->view('auth.login');
     }
 
     /**

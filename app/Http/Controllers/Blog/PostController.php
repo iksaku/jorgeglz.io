@@ -41,10 +41,7 @@ class PostController extends Controller
         if (empty($post)) {
             logger()->error('Unable to find Post \''.$slug.'\'...');
 
-            return inertia()->render('App/Error', [
-                'code' => 404,
-                'message' => 'Post \''.$slug.'\' not found.',
-            ]);
+            abort(404, 'Post \''.$slug.'\' not found.');
         }
 
         logger()->info('Showing Post \''.$post->slug.'\'...');

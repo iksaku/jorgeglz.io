@@ -7,6 +7,15 @@
         </a>
 
         <ul class="flex">
+            @if(!empty(Auth::id()) || true)
+                <li class="ml-4">
+                    <a href="{{ route('dashboard.index') }}" aria-label="Go to Dashboard"
+                       class="text-black border-b-2 border-transparent hover:border-blue-500 focus:border-blue-500"
+                    >
+                        Dashboard
+                    </a>
+                </li>
+            @endif
             <li class="ml-4">
                 <a href="{{ route('blog.about') }}" aria-label="Go to my About page"
                    class="text-black border-b-2 border-transparent hover:border-blue-500 focus:border-blue-500"

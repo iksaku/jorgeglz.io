@@ -4,6 +4,10 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+use Illuminate\Support\ViewErrorBag;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 class Handler extends ExceptionHandler
 {
@@ -44,8 +48,22 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception): \Illuminate\Http\Response
+    public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    protected function renderHttpException(HttpExceptionInterface $e)
+    {
+        if (Str::contains(Route::getCurrentRoute()->getPrefix(), 'dashboard')) {
+            $view = 'dashboard.error';
+        } else {
+            $view = 'blog.error';
+        }
+
+        return response()->view($view, [
+            'errors' => new ViewErrorBag(),
+            'exception' => $e,
+        ], $e->getStatusCode(), $e->getHeaders());
     }
 }
