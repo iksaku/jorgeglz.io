@@ -1,9 +1,10 @@
 <?php
 
 Auth::routes([
+    'confirm' => true,
     'register' => false,
-    'reset' => false,
-    'verify' => false,
+    'reset' => true,
+    'verify' => true,
 ]);
 
 Route::get('/', 'Blog\IndexController@index')->name('blog.index');
@@ -15,10 +16,6 @@ Route::prefix('posts')->group(function () {
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/', 'Dashboard\IndexController@index')->name('dashboard.index');
-
-    Route::get('{any}', function () {
-        abort(404, 'Page not found.');
-    })->where('any', '.*');
 });
 
 Route::get('{any}', function () {

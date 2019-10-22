@@ -1,5 +1,5 @@
 @extends('main')
 
 @section('body')
-    {{-- TODO --}}
+    @yield('content')
 @endsection

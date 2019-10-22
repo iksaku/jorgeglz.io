@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -35,7 +36,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, CanResetPassword;
 
     /** @var array */
     protected $fillable = [
@@ -44,7 +45,7 @@ class User extends Authenticatable
 
     /** @var array */
     protected $visible = [
-        'name', 'avatar',
+        'name', 'email', 'avatar',
     ];
 
     /** @var array */
