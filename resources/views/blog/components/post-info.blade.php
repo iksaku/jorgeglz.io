@@ -19,18 +19,18 @@
     <span class="mx-1 inline-block">&vert;</span>
 
     <div class="inline-block">
-        <span
+        {{--<span
             class="text-center font-sans inline-block align-middle mr-1"
         >
             {!! github_emoji('date') !!}
-        </span>
+        </span>--}}
         <span class="inline-block align-middle">
             @if($post->published)
                 <time datetime="{{ $post->published_at->toISOString() }}">
                     {{ $post->published_at->format('F j, Y') }}
                 </time>
             @else
-                <span class="text-red-700 italic font-bold" v-else>
+                <span class="text-red-700 italic font-bold">
                     Draft
                 </span>
             @endif

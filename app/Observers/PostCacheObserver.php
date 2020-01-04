@@ -8,20 +8,19 @@ use Cache;
 class PostCacheObserver
 {
     /**
-     * Handle the post "created" event.
+     * Cache new Post.
      *
      * @param Post $post
      * @return void
      */
     public function created(Post $post)
     {
-        // Cache the new Post
         markdown($post);
         markdown($post, true);
     }
 
     /**
-     * Handle the post "updated" event.
+     * Re-cache updated post content.
      *
      * @param Post $post
      * @return void
@@ -36,19 +35,19 @@ class PostCacheObserver
     }
 
     /**
-     * Handle the post "deleted" event.
+     * Removes cached post content.
      *
      * @param Post $post
      * @return void
      */
     public function deleted(Post $post)
     {
-        Cache::tags('markdown')->forget($key = 'post:'.$post->slug);
-        Cache::tags('markdown')->forget($key.':inline');
+        Cache::tags('markdown')->forget(markdown_cache_key($post, false));
+        Cache::tags('markdown')->forget(markdown_cache_key($post, true));
     }
 
     /**
-     * Handle the post "restored" event.
+     * Cache post again.
      *
      * @param Post $post
      * @return void
@@ -59,7 +58,7 @@ class PostCacheObserver
     }
 
     /**
-     * Handle the post "force deleted" event.
+     * Ensures that cached post content is removed.
      *
      * @param Post $post
      * @return void

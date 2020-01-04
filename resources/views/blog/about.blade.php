@@ -17,7 +17,7 @@
             {!! $introductoryPhrase !!}
         </h1>
 
-        <img src="{{ $user->avatar }}?size=512" alt="" class="h-64 w-64 block mx-auto rounded-full">
+        <img src="{{ $user->avatar }}?size=512" alt="Jorge's avatar" class="h-64 w-64 block mx-auto rounded-full">
 
         <article class="markdown">
             @markdown($content)

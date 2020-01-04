@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 
 class AboutController extends Controller
 {
-    const CONTENT = /* @lang Markdown */
+    protected const CONTENT = /* @lang Markdown */
         <<<'MD'
 ## About Me, Myself and I
 My name is Jorge González, also known in the online work as _iksaku_.
@@ -50,7 +50,7 @@ MD;
         logger()->info('Showing About page...');
 
         return view('blog.about', [
-            'user' => User::whereEmail('iksaku@me.com')->first(),
+            'user' => User::whereEmail(['iksaku@me.com'])->first(),
             'content' => self::CONTENT,
             'introductoryPhrase' => $this->getIntroductoryPhrase(),
         ]);
@@ -65,10 +65,10 @@ MD;
             "Still don't know me?",
             "Haven't we already met?",
             'So, you want to know more about me...',
-            'This is me... '.github_emoji('notes'),
+            'This is me... ',
             'What? Who am I you ask?',
             'Peeking at my blog without knowing me?',
-            '¿Sabías que hablo Español? '.github_emoji('mexico'),
+            '¿Sabías que hablo Español?',
         ];
 
         return $phrases[array_rand($phrases, 1)];

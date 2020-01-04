@@ -16,7 +16,7 @@
 
     {{-- Scripts --}}
     @stack('scripts')
-    {{--<script src="{{ mix('js/fontawesome.js') }}" defer></script>--}}
+    <script src="{{ mix('js/fontawesome.js') }}" defer></script>
 
     {{-- LiveWire --}}
     @livewireAssets

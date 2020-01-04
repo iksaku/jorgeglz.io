@@ -11,7 +11,7 @@
         @include('blog.components.post-info')
     </div>
     <div class="markdown text-justify p-4">
-        @markdown($post->content, true)...
+        @markdown($post, true)...
         <a href="{{ route('blog.post', $post->slug) }}" class="font-bold whitespace-no-wrap">
             Continue Reading
         </a>

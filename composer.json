@@ -12,10 +12,13 @@
     "require": {
         "php": "^7.3",
         "ext-json": "*",
+        "cachethq/emoji": "^3.0",
         "facade/ignition": "^1.6",
         "fideloper/proxy": "^4.2",
+        "graham-campbell/markdown": "^11.1",
         "laravel/framework": "^6.2",
-        "laravel/tinker": "^1.0",
+        "laravel/tinker": "^2.0",
+        "league/commonmark-extras": "^1.1",
         "livewire/livewire": "^0.3",
         "parsedown/laravel": "^1.2",
         "predis/predis": "^1.1",
@@ -29,6 +32,7 @@
         "lorisleiva/laravel-deployer": "^0.2",
         "mockery/mockery": "^1.2",
         "nunomaduro/collision": "^3.0",
+        "nunomaduro/larastan": "^0.4.3",
         "phpunit/phpunit": "^7.5"
     },
     "config": {
@@ -46,7 +50,7 @@
             "App\\": "app/"
         },
         "files": [
-            "app/helper.php"
+            "bootstrap/helper.php"
         ],
         "classmap": [
             "database/seeds",
@@ -78,9 +82,13 @@
         ],
         "lint": [
             "@php artisan ide-helper:models -RW",
-            "php-cs-fixer fix"
+            "php-cs-fixer fix",
+            "@php artisan code:analyse"
         ],
-        "test:lint": "php-cs-fixer fix --dry-run",
+        "test:lint": [
+            "php-cs-fixer fix --dry-run",
+            "@php artisan code:analyse"
+        ],
         "test": [
             "@test:lint"
         ]

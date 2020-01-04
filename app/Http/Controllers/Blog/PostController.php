@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Post;
-use Illuminate\Http\Response;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class PostController extends Controller
@@ -12,9 +13,9 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return RedirectResponse
      */
-    public function index(): Response
+    public function index()
     {
         logger()->info('Requested \'posts/\' page, redirecting to index...');
 
@@ -25,7 +26,7 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param string $slug
-     * @return Response|View
+     * @return Factory|RedirectResponse|View
      */
     public function show(string $slug)
     {
@@ -34,7 +35,7 @@ class PostController extends Controller
         }
 
         $post = Post::query()
-            ->whereSlug($slug)
+            ->whereSlug([$slug])
             ->isPublished()
             ->first();
 
