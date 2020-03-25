@@ -25,6 +25,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
+        "brainmaestro/composer-git-hooks": "^2.8",
         "doctrine/dbal": "^2.9",
         "friendsofphp/php-cs-fixer": "^2.15",
         "fzaninotto/faker": "^1.8",
@@ -42,6 +43,18 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "hooks": {
+            "pre-commit": [
+                "composer lint",
+                "git update-index --again"
+            ],
+            "pre-push": [
+                "composer test"
+            ],
+            "post-merge": [
+                "composer install"
+            ]
         }
     },
     "autoload": {
@@ -74,11 +87,18 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
+        "post-install-cmd": [
+            "App\\Composer\\Scripts::devOnly",
+            "cghooks add --ignore-lock"
+        ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "App\\Composer\\Scripts::devOnly",
+            "cghooks update",
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta"
         ],
+
         "lint": [
             "@php artisan ide-helper:models -RW",
             "php-cs-fixer fix",
