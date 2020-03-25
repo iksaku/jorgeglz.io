@@ -12,16 +12,16 @@
     "require": {
         "php": "^7.4",
         "ext-json": "*",
-        "facade/ignition": "^1.6",
+        "facade/ignition": "^2.0",
         "fideloper/proxy": "^4.2",
-        "illuminate/support": "^6.0",
+        "illuminate/support": "^7.0",
         "knplabs/github-api": "^2.12",
-        "laravel/framework": "^6.11",
+        "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "livewire/livewire": "^0.6",
-        "php-http/guzzle6-adapter": "^2.0",
+        "laravel/ui": "^2.0",
+        "livewire/livewire": "^1.0",
         "predis/predis": "^1.1",
-        "sausin/laravel-ovh": "^3"
+        "sausin/laravel-ovh": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
@@ -29,11 +29,10 @@
         "doctrine/dbal": "^2.9",
         "friendsofphp/php-cs-fixer": "^2.15",
         "fzaninotto/faker": "^1.8",
-        "lorisleiva/laravel-deployer": "^0.2",
+        "lorisleiva/laravel-deployer": "^0.3",
         "mockery/mockery": "^1.2",
-        "nunomaduro/collision": "^3.0",
-        "nunomaduro/larastan": "^0.4.3",
-        "phpunit/phpunit": "^7.5"
+        "nunomaduro/collision": "^4.1",
+        "phpunit/phpunit": "^8.5"
     },
     "config": {
         "optimize-autoloader": true,
@@ -101,12 +100,10 @@
 
         "lint": [
             "@php artisan ide-helper:models -RW",
-            "php-cs-fixer fix",
-            "@php artisan code:analyse"
+            "php-cs-fixer fix"
         ],
         "test:lint": [
-            "php-cs-fixer fix --dry-run",
-            "@php artisan code:analyse"
+            "php-cs-fixer fix --dry-run"
         ],
         "test": [
             "@test:lint"
