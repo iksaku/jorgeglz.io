@@ -85,8 +85,8 @@ jobs:
           rm -rf mix-manifest
 
       - name: Detect Composer Cache Directory
-          id: composer-cache
-          run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
       - name: Setup Composer Cache
         uses: actions/cache@v1
         with:
