@@ -23,7 +23,8 @@
                 >
                     <span class="inline-block">&lt;</span>
                     <span class="inline-block whitespace-no-wrap font-normal md:hidden">
-                        Previous Page
+                        <span>Previous</span>
+                        <span class="hidden sm:inline">Page</span>
                     </span>
                 </button>
             </li>
@@ -65,7 +66,7 @@
 
             {{-- Next Page Link --}}
             <li
-                class="w-1/2 mr-2 md:w-1/12"
+                class="w-1/2 ml-2 md:w-1/12"
                 aria-label="@lang('pagination.previous')"
                 @if (!$paginator->hasMorePages())
                     aria-disabled="true"
@@ -82,7 +83,8 @@
                     @endif
                 >
                     <span class="inline-block whitespace-no-wrap font-normal md:hidden">
-                        Next Page
+                        <span>Next</span>
+                        <span class="hidden sm:inline">Page</span>
                     </span>
                     <span class="inline-block">&gt;</span>
                 </button>

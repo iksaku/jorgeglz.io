@@ -4,9 +4,6 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Illuminate\Support\ViewErrorBag;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 class Handler extends ExceptionHandler
@@ -32,15 +29,11 @@ class Handler extends ExceptionHandler
 
     protected function renderHttpException(HttpExceptionInterface $e)
     {
-        if (Str::contains(Route::getCurrentRoute()->getPrefix(), 'dashboard')) {
-            $view = 'dashboard.error';
-        } else {
-            $view = 'blog.error';
-        }
+        $view = (in_route('dashboard') ? 'dashboard' : 'blog').'.error';
 
         return response()->view($view, [
-            'errors' => new ViewErrorBag(),
-            'exception' => $e,
+            'code' => $e->getStatusCode(),
+            'message' => empty($e->getMessage()) ? 'Resource not found.' : $e->getMessage(),
         ], $e->getStatusCode(), $e->getHeaders());
     }
 }

@@ -8,6 +8,7 @@ return [
 
     'github' => [
         'url' => 'https://github.com/iksaku',
+        'token' => env('GITHUB_TOKEN'),
     ],
 
     'linkedin-in' => [

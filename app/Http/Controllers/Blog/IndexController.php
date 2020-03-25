@@ -15,8 +15,6 @@ class IndexController extends Controller
      */
     public function index(Request $request): View
     {
-        logger()->info('Showing Post list on page '.$request->get('page', 1).'...');
-
         return view('blog.index', [
             'posts' => Post::query()
                 ->isPublished()

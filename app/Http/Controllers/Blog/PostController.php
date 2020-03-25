@@ -17,36 +17,17 @@ class PostController extends Controller
      */
     public function index()
     {
-        logger()->info('Requested \'posts/\' page, redirecting to index...');
-
         return redirect()->route('blog.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param string $slug
+     * @param Post $post
      * @return Factory|RedirectResponse|View
      */
-    public function show(string $slug)
+    public function show(Post $post)
     {
-        if ($slug === 'who-am-i.html') {
-            return redirect()->route('blog.post', 'who-am-i', 301);
-        }
-
-        $post = Post::query()
-            ->whereSlug([$slug])
-            ->isPublished()
-            ->first();
-
-        if (empty($post)) {
-            logger()->error('Unable to find Post \''.$slug.'\'...');
-
-            abort(404, 'Post \''.$slug.'\' not found.');
-        }
-
-        logger()->info('Showing Post \''.$post->slug.'\'...');
-
         return view('blog.post', compact('post'));
     }
 }

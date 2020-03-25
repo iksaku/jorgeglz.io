@@ -18,7 +18,7 @@
                     <a
                         href="{{ route('password.request') }}"
                         tabindex="-1"
-                        class="cursor-pointer text-xs font-bold text-blue-500 hover:text-blue-700"
+                        class="cursor-pointer text-sm font-bold text-blue-500 hover:text-blue-700"
                     >
                         Forgot password?
                     </a>

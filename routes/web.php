@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Auth::routes([
     'confirm' => true,
     'register' => false,
@@ -14,10 +17,18 @@ Route::prefix('posts')->group(function () {
     Route::get('{post}', 'Blog\PostController@show')->name('blog.post');
 });
 
-Route::prefix('dashboard')->group(function () {
-    Route::get('/', 'Dashboard\IndexController@index')->name('dashboard.index');
+Route::prefix('dashboard')->name('dashboard.')->middleware(['auth'])->group(function () {
+    Route::get('/', 'Dashboard\IndexController@index')->name('index');
+
+    Route::resource('posts', 'Dashboard\PostController');
+    Route::put('posts/{trashed_post}/restore', 'Dashboard\PostController@restore')
+        ->name('posts.restore');
+
+    Route::fallback(function () {
+        abort(404, 'Well, it looks like you reached nowhere...');
+    })->name('error')->where('any', '.*');
 });
 
-Route::get('{any}', function () {
+Route::fallback(function () {
     abort(404, 'Well, it looks like you reached nowhere...');
-})->where('any', '.*');
+})->name('blog.error')->where('any', '.*');

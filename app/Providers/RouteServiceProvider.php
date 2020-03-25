@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Post;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,15 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
+
+    public function boot()
+    {
+        parent::boot();
+
+        Route::bind('trashed_post', function ($value) {
+            return Post::onlyTrashed()->where('slug', $value)->first();
+        });
+    }
 
     /**
      * Define the routes for the application.

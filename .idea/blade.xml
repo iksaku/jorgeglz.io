@@ -44,7 +44,9 @@
       <data directive="@endmarkdown" />
       <data directive="@endphp" />
       <data directive="@endprepend" />
+      <data directive="@endpublished" />
       <data directive="@endpush" />
+      <data directive="@endroute" />
       <data directive="@endsection" />
       <data directive="@endslot" />
       <data directive="@endswitch" />
@@ -66,14 +68,17 @@
       <data directive="@json" injection="true" prefix="&lt;?php echo json_encode(" suffix=") ?&gt;" />
       <data directive="@lang" injection="true" prefix="&lt;?php echo app('translator')-&gt;get(" suffix="); ?&gt;" />
       <data directive="@livewire" />
-      <data directive="@livewireAssets" />
+      <data directive="@livewireScripts" />
+      <data directive="@livewireStyles" />
       <data directive="@markdown" />
       <data directive="@method" injection="true" prefix="&lt;?php echo method_field(" suffix="); ?&gt;" />
       <data directive="@overwrite" />
       <data directive="@parent" />
       <data directive="@php" injection="true" prefix="&lt;?php (" suffix="); ?&gt;" />
       <data directive="@prepend" injection="true" prefix="&lt;?php $__env-&gt;startPrepend(" suffix="); ?&gt;" />
+      <data directive="@published" />
       <data directive="@push" injection="true" prefix="&lt;?php $__env-&gt;startPush(" suffix="); ?&gt;" />
+      <data directive="@route" />
       <data directive="@section" injection="true" prefix="&lt;?php $__env-&gt;startSection(" suffix="); ?&gt;" />
       <data directive="@show" />
       <data directive="@slot" injection="true" prefix="&lt;?php $__env-&gt;slot(" suffix="); ?&gt;" />

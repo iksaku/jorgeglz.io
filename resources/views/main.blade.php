@@ -11,17 +11,20 @@
     </title>
 
     {{-- Styles --}}
+    <link rel="dns-prefetch" href="//rsms.me">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @stack('styles')
+</head>
+<body class="bg-gray-200 scrolling-touch font-sans">
+    @yield('modals')
+
+    @yield('body')
 
     {{-- Scripts --}}
-    @stack('scripts')
     <script src="{{ mix('js/fontawesome.js') }}" defer></script>
-
-    {{-- LiveWire --}}
-    @livewireAssets
-</head>
-<body>
-    @yield('body')
+    <script src="{{ mix('js/alpine.js') }}" defer></script>
+    @stack('scripts')
 </body>
 </html>

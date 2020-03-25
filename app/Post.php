@@ -52,7 +52,7 @@ class Post extends Model
 
     /** @var array */
     protected $fillable = [
-        'slug', 'title', 'description', 'content', 'published_at',
+        'slug', 'title', 'content', 'published_at',
     ];
 
     /** @var array */

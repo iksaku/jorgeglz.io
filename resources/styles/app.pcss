@@ -2,22 +2,8 @@
 
 @tailwind base;
 
-html {
-    scroll-behavior: smooth;
-    @apply bg-gray-200 ;
-}
-
-a {
-    @apply cursor-pointer text-blue-700;
-
-    &:hover,
-    &:focus {
-        @apply text-blue-900;
-    }
-
-    &:focus {
-        @apply outline-none shadow-outline;
-    }
+[x-cloak] {
+    display: none;
 }
 
 button.pagination {
@@ -62,8 +48,25 @@ button.pagination {
     }
 }
 
+.svg-inline--fa {
+    @apply inline-block align-middle;
+}
+
 .markdown {
     @apply leading-normal text-lg;
+
+    a {
+        @apply cursor-pointer text-blue-700;
+
+        &:hover,
+        &:focus {
+            @apply text-blue-900;
+        }
+
+        &:focus {
+            @apply outline-none shadow-outline;
+        }
+    }
 
     p {
         @apply my-2 font-sans text-justify;

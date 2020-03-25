@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('body')
-    <div class="min-h-screen w-full flex flex-col">
+    <div class="min-h-screen h-full w-full flex flex-col">
         @auth
             @include('auth.partials.header')
         @endauth

@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Observers\PostCacheObserver;
 use App\Post;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,7 +26,30 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-//        Validator::extend('tag_list', 'App\Rules\TagList@passes', 'The :attribute must be a comma-separated list');
+        $this->registerBladeDirectives();
+        $this->registerObservers();
+    }
+
+    private function registerObservers(): void
+    {
         Post::observe(PostCacheObserver::class);
+    }
+
+    private function registerBladeDirectives(): void
+    {
+        // Route
+        Blade::if('route', 'in_route');
+
+        // Markdown
+        Blade::directive('markdown', function ($expresion) {
+            if ($expresion) {
+                return "<?php echo markdown($expresion); ?>";
+            }
+
+            return '<?php ob_start(); ?>';
+        });
+        Blade::directive('endmarkdown', function () {
+            return '<?php echo markdown(ob_get_clean()); ?>';
+        });
     }
 }

@@ -23,6 +23,7 @@
                 value="{{ $email ?? old('email') }}"
                 autocomplete="email"
                 class="form-input border-gray-400 w-full block mt-2 @error('email') border-red-500 @enderror"
+                readonly
             >
             @error('email')
                 <span class="text-sm text-red-500 italic">

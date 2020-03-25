@@ -47,8 +47,6 @@ MD;
      */
     public function index(): View
     {
-        logger()->info('Showing About page...');
-
         return view('blog.about', [
             'user' => User::whereEmail(['iksaku@me.com'])->first(),
             'content' => self::CONTENT,

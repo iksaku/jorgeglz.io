@@ -4,10 +4,8 @@
     <div class="min-h-screen h-full w-full flex flex-col">
         @include('blog.partials.header')
 
-        <div class="h-full w-full flex-1">
-            <div class="h-full container mx-auto p-4">
-                @yield('content')
-            </div>
+        <div class="flex-grow w-full flex lg:container lg:mx-auto lg:p-4">
+            @yield('content')
         </div>
 
         @include('blog.partials.footer')

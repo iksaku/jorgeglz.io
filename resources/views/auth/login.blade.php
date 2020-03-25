@@ -17,9 +17,8 @@
                 required
                 type="text"
                 name="email"
-                class="w-full md:w-2/3 text-white font-bold px-4 py-2 rounded bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:shadow-outline"
                 value="{{ old('email') }}"
-                autocomplete="email"
+                placeholder="escanor@human.race"
                 class="form-input border-gray-400 w-full block mt-2 @error('email') border-red-500 @enderror"
             >
             @error('email')
@@ -39,7 +38,7 @@
                     <a
                         href="{{ route('password.request') }}"
                         tabindex="-1"
-                        class="w-full md:w-2/3 text-white font-bold px-4 py-2 rounded bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:shadow-outline"
+                        class="cursor-pointer text-sm font-bold text-blue-500 hover:text-blue-700"
                     >
                         Forgot password?
                     </a>
