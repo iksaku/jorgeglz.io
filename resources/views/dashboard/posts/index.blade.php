@@ -55,7 +55,7 @@
                                 </td>
 
                                 {{-- Title --}}
-                                <td class="max-w-sm xl:max-w-2xl px-4 md:px-6 py-2 truncate">
+                                <td class="max-w-xs md:max-w-sm xl:max-w-2xl px-4 md:px-6 py-2 truncate">
                                     {{ $post->title }}
                                 </td>
 
