@@ -14,7 +14,7 @@
                 @endif
             >
                 <button
-                    class="pagination control px-2 md:px-4"
+                    class="pagination control"
                     @if($paginator->onFirstPage())
                         disabled
                     @else
@@ -33,7 +33,7 @@
             @foreach ($elements as $element)
                  {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
-                    <li class="hidden mx-2 w-1/12 cursor-default md:block" aria-disabled="true">
+                    <li class="hidden md:block mx-2 w-1/12 cursor-default" aria-disabled="true">
                         <span class="w-full py-2 flex items-center justify-center">
                             {{ $element }}
                         </span>
@@ -75,7 +75,7 @@
                 @endif
             >
                 <button
-                    class="pagination control px-2 md:px-4"
+                    class="pagination control"
                     @if(!$paginator->hasMorePages())
                         disabled
                     @else

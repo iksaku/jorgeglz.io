@@ -53,17 +53,11 @@ class PostController extends Controller
             'slug' => 'required|unique:posts',
             'title' => 'required|unique:posts|max:255',
             'content' => 'required',
-            'publish' => 'sometimes|required|boolean',
+            'published_at' => 'required|date|nullable',
             //'tags' => '' TODO
         ]);
 
-        $post = Post::make($validated);
-
-        if ((bool) $validated['publish'] ?? false) {
-            $post->published_at = now();
-        }
-
-        $post->save();
+        $post = Post::create($validated);
 
         // TODO: Sync Tags
 
@@ -102,15 +96,11 @@ class PostController extends Controller
     public function update(Request $request, Post $post): View
     {
         $validated = $request->validate([
-            'title' => 'required|unique:posts|max:255',
-            'content' => 'required',
-            'publish' => 'sometimes|required|boolean',
+            'title' => 'sometimes|required|unique:posts|max:255',
+            'content' => 'sometimes|required|string',
+            'published_at' => 'sometimes|required|date|nullable',
             //'tags' => '' TODO
         ]);
-
-        if (!((bool) $validated['publish'] ?? false)) {
-            $post->published_at = null;
-        }
 
         $post->update($validated);
 

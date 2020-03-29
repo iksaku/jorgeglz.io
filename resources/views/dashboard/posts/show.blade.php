@@ -1,82 +1,100 @@
-<?php /** @var \App\Post $post */ ?>
+<?php /** @var App\Post $post */ ?>
 
 @extends('dashboard.partials.template')
 
-@section('title', 'View Post')
+@section('title', $post->title)
+@section('view-title', 'View Post')
 
 @section('content')
-    <div class="h-full w-full flex items-start justify-center">
-        <div class="w-full p-4 md:px-6">
-            <div class="w-full mb-8">
-                <div class="w-full mb-4 flex items-center justify-between">
-                    <h3 class="text-2xl text-gray-900 font-medium">Details</h3>
+    <div class="h-full min-w-0 w-full p-4 md:px-6">
+        <div class="w-full flex flex-col md:flex-row items-center justify-between mb-4">
+            <a class="hocus:shadow-outline focus:outline-none md:mr-4 mb-4 md:mb-0 transform duration-200" href="{{ route('blog.post', $post) }}">
+                <h2 class="max-w-full text-2xl text-center md:text-left font-medium">
+                    {{ $post->title }}
+                </h2>
+            </a>
 
-                    <div class="flex items-center justify-between -mx-2">
-                        <form action="{{ route('dashboard.posts.destroy', $post) }}" method="post">
-                            @method('delete')
-                            @csrf
-                            <button
-                                type="submit"
-                                onclick="return confirm('Are you sure you want to archive post {{ $post->title }}?')"
-                                class="text-gray-100 text-center bg-red-500 hocus:bg-red-700 focus:outline-none px-4 py-2 mx-2 rounded-lg shadow"
-                            >
-                                <span class="fas fa-archive"></span>
-                            </button>
-                        </form>
-                        <a
-                            role="button"
-                            href="{{ route('dashboard.posts.edit', $post) }}"
-                            class="text-gray-700 text-center bg-gray-100 hocus:text-gray-100 hocus:bg-blue-500 focus:outline-none px-4 py-2 mx-2 rounded-lg shadow"
+            <div class="flex-shrink-0 flex items-center justify-between">
+                @if(!$post->published)
+                    <form action="{{ route('dashboard.posts.update', $post) }}" method="post">
+                        @csrf
+                        @method('patch')
+
+                        <input type="hidden" name="published_at" value="{{ now() }}">
+                        <button
+                            class="w-full text-gray-100 bg-blue-500 hocus:bg-blue-700 px-4 py-2 rounded-lg transform duration-200"
+                            type="submit"
                         >
-                            <span class="fas fa-pencil mr-2"></span>
-                            <span class="font-medium">Edit</span>
-                        </a>
-                    </div>
-                </div>
+                            <span class="fas fa-paper-plane mr-2"></span>
+                            <span class="font-medium">Publish</span>
+                        </button>
+                    </form>
+                @endif
+                <a
+                    role="button"
+                    href="{{ route('dashboard.posts.edit', $post) }}"
+                    class="text-gray-700 text-center bg-gray-100 hocus:text-gray-100 hocus:bg-blue-500 focus:outline-none px-4 py-2 ml-2 rounded-lg shadow transform duration-200"
+                >
+                    <span class="fas fa-pencil mr-2"></span>
+                    <span class="font-medium">Edit</span>
+                </a>
+                <form class="ml-2" action="{{ route('dashboard.posts.destroy', $post) }}" method="post">
+                    @method('delete')
+                    @csrf
+                    <button
+                        type="submit"
+                        onclick="return confirm('Are you sure you want to archive post \'{{ $post->title }}\'?')"
+                        class="text-gray-100 text-center bg-red-500 hocus:bg-red-700 focus:outline-none px-4 py-2 rounded-lg shadow transform duration-200"
+                    >
+                        <span class="fas fa-archive"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
 
-                <div class="w-full bg-gray-100 rounded-lg shadow">
-                    <table class="w-full text-gray-900 text-left table table-fixed">
-                        <thead>
-                        <tr class="w-full">
-                            <th class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6"></th>
-                            <th class="w-auto"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="border-b-2">
-                            <td class="px-4 py-2 text-sm text-gray-700 font-semibold uppercase">ID</td>
-                            <td class="px-4 py-2">{{ $post->id }}</td>
-                        </tr>
-                        <tr class="border-b-2">
-                            <td class="px-4 py-2 text-sm text-gray-700 font-semibold uppercase">Title</td>
-                            <td class="px-4 py-2">{{ $post->title }}</td>
-                        </tr>
-                        <tr class="border-b-2">
-                            <td class="px-4 py-2 text-sm text-gray-700 font-semibold uppercase">Created At</td>
-                            <td class="px-4 py-2">{{ $post->created_at }}</td>
-                        </tr>
-                        <tr class="border-b-2">
-                            <td class="px-4 py-2 text-sm text-gray-700 font-semibold uppercase">Updated At</td>
-                            <td class="px-4 py-2">{{ $post->updated_at }}</td>
-                        </tr>
-                        <tr class="border-b-0">
-                            <td class="px-4 py-2 text-sm text-gray-700 font-semibold uppercase">Published At</td>
-                            <td class="px-4 py-2">{{ $post->published_at }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+        <div class="w-full flex items-start justify-evenly">
+            <div class="flex-grow pr-2">
+                <div>
+                    <span class="block text-xl font-medium">
+                        Content
+                    </span>
+                    <div class="bg-gray-100 border rounded-lg shadow overflow-hidden p-4">
+                        <article class="markdown">
+                            @markdown($post->content)
+                        </article>
+                    </div>
                 </div>
             </div>
 
-            <div class="w-full">
-                <div class="w-full mb-2">
-                    <h3 class="text-2xl text-gray-900 font-medium">Content</h3>
-                </div>
-
-                <div class="w-full bg-gray-100 rounded-lg shadow">
-                    <article class="markdown p-4">
-                        @markdown($post)
-                    </article>
+            <div class="flex-shrink-0 w-1/3 pl-2">
+                <div class="mb-4">
+                    <span class="block text-xl font-medium">
+                        Details
+                    </span>
+                    <div class="bg-gray-100 border rounded-lg shadow overflow-hidden p-4">
+                        <div class="mb-2 flex">
+                            <span class="w-1/3">
+                                Created
+                            </span>
+                            <span class="w-2/3">
+                                {{ $post->created_at->format('F j, Y') }}
+                            </span>
+                        </div>
+                        <div class="mb-0 flex">
+                            <span class="w-1/3">
+                                Published
+                            </span>
+                            <span class="w-2/3">
+                                @if(!$post->published)
+                                    <span class="italic text-gray-700">
+                                        Not published yet
+                                    </span>
+                                @else
+                                    {{ $post->published_at->format('F j, Y') }}
+                                @endif
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

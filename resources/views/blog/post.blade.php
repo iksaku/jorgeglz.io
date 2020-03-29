@@ -11,7 +11,7 @@
                 {{ $post->title }}
             </span>
 
-            @include('blog.components.post-info')
+            <x-blog.post.info :post="$post" />
         </h1>
 
         <article class="markdown p-4">

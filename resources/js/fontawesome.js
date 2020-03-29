@@ -3,7 +3,7 @@ import {
     faArchive,
     faBars,
     faCheck,
-    faEye, faFileAlt,
+    faEye, faFileAlt, faPaperPlane,
     faPencil,
     faPlus,
     faTimes, faTrashRestore,
@@ -13,7 +13,9 @@ import {faLinkedinIn, faGithub, faTwitter} from "@fortawesome/free-brands-svg-ic
 
 library.add(
     faLinkedinIn, faGithub, faTwitter,
-    faTimes, faBars, faPlus, faEye, faPencil, faCheck, faFileAlt, faArchive, faTrashRestore, faUser
+    faTimes, faBars, faPlus, faEye, faPencil,
+    faCheck, faFileAlt, faArchive, faTrashRestore,
+    faUser, faPaperPlane
 );
 
 dom.i2svg();

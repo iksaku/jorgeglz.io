@@ -8,7 +8,11 @@
         </button>
         <div class="flex-shrink-1">
             <h1 class="text-xl md:text-2xl font-semibold">
-                @yield('title')
+                @hasSection('view-title')
+                    @yield('view-title')
+                @else
+                    @yield('title')
+                @endif
             </h1>
         </div>
 
@@ -21,13 +25,13 @@
                 <form class="inline-block" action="{{ route('logout') }}" method="post">
                     @csrf
 
-                    <button class="hocus:bg-red-700 px-4 py-2 -my-2 rounded-lg transform duration-200" type="submit">
+                    <button class="hocus:bg-red-700 focus:shadow-outline focus:outline-none px-4 py-2 -my-2 rounded-lg transform duration-200" type="submit">
                         Logout
                     </button>
                 </form>
             </div>
             <div x-data="{ open: false }" class="md:hidden flex items-end justify-end">
-                <button @click="open = true" class="text-lg focus:outline-none">
+                <button @click="open = true" class="text-lg focus:shadow-outline focus:outline-none">
                     <span class="fas fa-user"></span>
                 </button>
 
@@ -51,7 +55,7 @@
                         <form class="inline-block w-full" action="{{ route('logout') }}" method="post">
                             @csrf
 
-                            <button class="w-full hocus:text-gray-100 hocus:bg-red-700 px-4 py-2 transform duration-200" type="submit">
+                            <button class="w-full hocus:text-gray-100 hocus:bg-red-700 focus:outline-none px-4 py-2 transform duration-200" type="submit">
                                 Logout
                             </button>
                         </form>

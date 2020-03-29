@@ -81,22 +81,6 @@ if (!function_exists('emoji')) {
     }
 }
 
-if (!function_exists('app_title')) {
-    /**
-     * @return string
-     */
-    function app_title(): string
-    {
-        $prefix = '';
-
-        if (View::hasSection('title')) {
-            $prefix = View::getSection('title').' | ';
-        }
-
-        return $prefix.config('app.name');
-    }
-}
-
 if (!function_exists('in_route')) {
     /**
      * @param string $route

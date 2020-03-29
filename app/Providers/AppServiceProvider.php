@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Observers\PostCacheObserver;
 use App\Post;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::defaultView('pagination::tailwind');
+
         $this->registerBladeDirectives();
         $this->registerObservers();
     }

@@ -1,4 +1,4 @@
-<?php /** @var Illuminate\Contracts\Pagination\LengthAwarePaginator $posts */ ?>
+<?php /** @var Illuminate\Pagination\LengthAwarePaginator $posts */ ?>
 
 @extends('blog.partials.template')
 
@@ -9,9 +9,9 @@
 @section('content')
     @if($posts->isNotEmpty())
         <div class="w-full md:max-w-6xl mx-auto">
-            @each('blog.components.post-preview', $posts, 'post')
+            @each('components.blog.post.preview', $posts, 'post')
 
-            {{ $posts->onEachSide(2)->links('components.pagination.tailwind') }}
+            {{ $posts->onEachSide(2)->links() }}
         </div>
     @else
         <div class="h-full w-full flex items-center justify-center">

@@ -7,11 +7,12 @@ module.exports = {
     variants: {
         backgroundColor: [...defaultConfig.variants.backgroundColor, 'hocus'],
         borderColor: [...defaultConfig.variants.borderColor, 'hocus'],
-        borderWidth: [...defaultConfig.variants.borderWidth, 'last'],
+        borderWidth: [...defaultConfig.variants.borderWidth, 'last', 'hocus'],
+        boxShadow: [...defaultConfig.variants.boxShadow, 'hocus'],
         cursor: [...defaultConfig.variants.cursor, 'hover', 'focus'],
         fontWeight: [...defaultConfig.variants.fontWeight, 'hocus'],
         textColor: [...defaultConfig.variants.textColor, 'hocus'],
-        scale: [...defaultConfig.variants.scale, 'hocus']
+        scale: [...defaultConfig.variants.scale, 'hocus'],
     },
     plugins: [
         require('@tailwindcss/custom-forms'),
