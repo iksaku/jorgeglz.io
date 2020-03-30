@@ -33,7 +33,7 @@
                 class="h-full w-full bg-transparent focus:shadow-outline resize-none"
                 rows="10"
             ></textarea>
-            <x-dashboard.input-error property="content" />
+            <x-input-error property="content" />
         </label>
     </div>
 

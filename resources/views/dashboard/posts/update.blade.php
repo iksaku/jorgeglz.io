@@ -126,8 +126,8 @@
                         autofocus
                     @endif
                 >
-                <x-dashboard.input-error property="slug" />
-                <x-dashboard.input-error property="title" />
+                <x-input-error property="slug" />
+                <x-input-error property="title" />
             </label>
             {{--<a class="hocus:shadow-outline focus:outline-none md:mr-4 mb-4 md:mb-0 transform duration-200" href="{{ route('blog.post', $post) }}">
                 <h2 class="max-w-full text-2xl text-center md:text-left font-medium">
