@@ -12,7 +12,7 @@ module.exports = {
         cursor: [...defaultConfig.variants.cursor, 'hover', 'focus'],
         fontWeight: [...defaultConfig.variants.fontWeight, 'hocus'],
         textColor: [...defaultConfig.variants.textColor, 'hocus'],
-        scale: [...defaultConfig.variants.scale, 'hocus'],
+        scale: [...defaultConfig.variants.scale, 'hocus']
     },
     plugins: [
         require('@tailwindcss/custom-forms'),

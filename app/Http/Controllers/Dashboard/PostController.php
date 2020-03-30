@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -41,9 +42,9 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return View
+     * @return RedirectResponse
      */
-    public function store(Request $request): View
+    public function store(Request $request): RedirectResponse
     {
         $request->merge([
             'slug' => Str::slug($request->get('title')),
@@ -52,16 +53,16 @@ class PostController extends Controller
         $validated = $request->validate([
             'slug' => 'required|unique:posts',
             'title' => 'required|unique:posts|max:255',
-            'content' => 'required',
-            'published_at' => 'required|date|nullable',
+            'content' => 'required|string',
+            'published_at' => 'sometimes|required|date|nullable',
             //'tags' => '' TODO
         ]);
 
-        $post = Post::create($validated);
+        $post = Auth::user()->posts()->create($validated);
 
         // TODO: Sync Tags
 
-        return view('dashboard.posts.show', compact('post'));
+        return redirect()->route('dashboard.posts.show', $post);
     }
 
     /**

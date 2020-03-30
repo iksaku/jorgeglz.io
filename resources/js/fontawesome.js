@@ -5,7 +5,7 @@ import {
     faCheck,
     faEye, faFileAlt, faPaperPlane,
     faPencil,
-    faPlus,
+    faPlus, faSave,
     faTimes, faTrashRestore,
     faUser
 } from "@fortawesome/pro-solid-svg-icons"
@@ -15,7 +15,7 @@ library.add(
     faLinkedinIn, faGithub, faTwitter,
     faTimes, faBars, faPlus, faEye, faPencil,
     faCheck, faFileAlt, faArchive, faTrashRestore,
-    faUser, faPaperPlane
+    faUser, faPaperPlane, faSave
 );
 
 dom.i2svg();
