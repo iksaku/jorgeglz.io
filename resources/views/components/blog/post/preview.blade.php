@@ -8,7 +8,7 @@
             </h1>
         </a>
 
-        @include('blog.components.post-info')
+        <x-blog.post.info :post="$post" />
     </div>
     <div class="markdown text-justify p-4">
         @markdown($post, true)...

@@ -8,21 +8,14 @@
 
         <ul class="flex">
             @auth
-                <li class="ml-4">
-                    <a href="{{ route('dashboard.index') }}" aria-label="Go to Dashboard"
-                       class="text-black border-b-2 border-transparent hover:border-blue-500 focus:border-blue-500"
-                    >
-                        Dashboard
-                    </a>
-                </li>
+                <x-blog.header.link route="dashboard.index" label="Go to Dashboard">
+                    Dashboard
+                </x-blog.header.link>
             @endauth
-            <li class="ml-4">
-                <a href="{{ route('blog.about') }}" aria-label="Go to my About page"
-                   class="text-black border-b-2 border-transparent hover:border-blue-500 focus:border-blue-500"
-                >
-                    About
-                </a>
-            </li>
+
+            <x-blog.header.link route="blog.about" label="Go to my About page">
+                About
+            </x-blog.header.link>
         </ul>
     </nav>
 </header>

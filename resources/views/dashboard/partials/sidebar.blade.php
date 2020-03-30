@@ -1,9 +1,10 @@
-<div
-    x-cloak
-    x-show="sidebarOpen"
-    @click="sidebarOpen = false"
-    class="lg:hidden fixed inset-0 bg-black opacity-25"
-></div>
+<template x-if="sidebarOpen">
+    <div
+        @click="sidebarOpen = false"
+        @keydown.window.escape="sidebarOpen = false"
+        class="lg:hidden fixed z-40 inset-0 bg-black opacity-25"
+    ></div>
+</template>
 
 <div
     x-ref="sidebar"
@@ -23,27 +24,24 @@
     </div>
 
     <nav class="font-medium px-8 py-4">
-        <div class="mb-8 -mx-3">
-            <a
-                class="px-3 py-2 flex items-center justify-between hocus:text-gray-100 hocus:font-semibold hocus:bg-gray-700 rounded-lg @route('dashboard.index') text-gray-100 font-semibold bg-gray-700 @endroute"
-                href="{{ route('dashboard.index') }}"
-            >
-                <span class="">@lang('Dashboard')</span>
-            </a>
+        <div class="mb-8">
+            <x-dashboard.sidebar.item route="blog.index">
+                @lang('Go to Blog')
+            </x-dashboard.sidebar.item>
+
+            <x-dashboard.sidebar.item route="dashboard.index">
+                @lang('Dashboard')
+            </x-dashboard.sidebar.item>
         </div>
 
         <div class="mb-8">
             <h3 class="text-xs text-gray-500 uppercase tracking-wide mb-2">
                 @lang('Resources')
             </h3>
-            <div class="-mx-3">
-                <a
-                    class="px-3 py-2 flex items-center justify-between hocus:text-gray-100 hocus:font-semibold hocus:bg-gray-700 rounded-lg @route('dashboard.posts') text-gray-100 font-semibold bg-gray-700 @endroute"
-                    href="{{ route('dashboard.posts.index') }}"
-                >
-                    <span class="">@lang('Posts')</span>
-                </a>
-            </div>
+
+            <x-dashboard.sidebar.item route="dashboard.posts.index">
+                @lang('Posts')
+            </x-dashboard.sidebar.item>
         </div>
     </nav>
 </div>

@@ -1,5 +1,7 @@
 <?php /** @var App\Post $post */ ?>
 
+@props(['post'])
+
 <div class="text-gray-800 text-sm px-1">
     <div class="inline-block">
         <div class="py-1">

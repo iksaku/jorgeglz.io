@@ -4,7 +4,7 @@
     <div class="min-h-screen h-full w-full flex flex-col">
         @include('blog.partials.header')
 
-        <div class="flex-grow w-full flex lg:container lg:mx-auto lg:p-4">
+        <div class="flex-grow w-full lg:container lg:mx-auto lg:p-4">
             @yield('content')
         </div>
 

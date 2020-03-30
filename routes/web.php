@@ -21,7 +21,7 @@ if (!app()->environment('production')) {
         Route::get('/', 'Dashboard\IndexController@index')->name('index');
 
         Route::resource('posts', 'Dashboard\PostController');
-        Route::put('posts/{trashed_post}/restore', 'Dashboard\PostController@restore')
+        Route::patch('posts/{trashed_post}/restore', 'Dashboard\PostController@restore')
             ->name('posts.restore');
 
         Route::fallback(function () {

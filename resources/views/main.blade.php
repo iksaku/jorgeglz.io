@@ -7,12 +7,15 @@
     @stack('meta')
 
     <title>
-        {{ app_title() }}
+        @hasSection('title')
+            @yield('title') |
+        @endif
+        {{ config('app.name') }}
     </title>
 
     {{-- Styles --}}
-    <link rel="dns-prefetch" href="//rsms.me">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @stack('styles')
@@ -22,7 +25,7 @@
 
     @yield('body')
 
-    {{-- Scripts --}}
+    <!-- Scripts -->
     <script src="{{ mix('js/fontawesome.js') }}" defer></script>
     <script src="{{ mix('js/alpine.js') }}" defer></script>
     @stack('scripts')

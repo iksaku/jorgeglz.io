@@ -3,11 +3,11 @@
 @tailwind base;
 
 [x-cloak] {
-    display: none;
+    display: none !important;
 }
 
 button.pagination {
-    @apply w-full text-black text-center bg-gray-100 py-2 border border-gray-300 rounded shadow;
+    @apply w-full text-gray-700 text-sm text-center font-bold bg-gray-100 p-2 border border-gray-300 rounded shadow transform duration-200;
 
     &:hover,
     &:focus {
@@ -24,7 +24,7 @@ button.pagination {
 
     &.control {
         &:disabled {
-            @apply text-black bg-gray-100 opacity-50;
+            @apply text-gray-700 bg-gray-100 opacity-75;
         }
     }
 
@@ -35,11 +35,14 @@ button.pagination {
     }
 }
 
+@screen md {
+    button.pagination.control {
+        @apply px-4;
+    }
+}
+
 .emoji {
-    @apply inline-block align-top;
-    max-width: none;
-    width: 1.5em;
-    height: 1.5em;
+    @apply inline-block align-top h-6 w-6;
 }
 
 .post-preview {
@@ -54,6 +57,10 @@ button.pagination {
 
 .markdown {
     @apply leading-normal text-lg;
+
+    *:first-child {
+        @apply mt-0;
+    }
 
     a {
         @apply cursor-pointer text-blue-700;

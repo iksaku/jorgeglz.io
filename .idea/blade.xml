@@ -46,7 +46,6 @@
       <data directive="@endprepend" />
       <data directive="@endpublished" />
       <data directive="@endpush" />
-      <data directive="@endroute" />
       <data directive="@endsection" />
       <data directive="@endslot" />
       <data directive="@endswitch" />
