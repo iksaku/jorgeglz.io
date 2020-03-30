@@ -21,11 +21,7 @@
                 placeholder="escanor@human.race"
                 class="form-input border-gray-400 w-full block mt-2 @error('email') border-red-500 @enderror"
             >
-            @error('email')
-                    <span class="text-sm text-red-500 italic">
-                        {{ $message }}
-                    </span>
-            @enderror
+            <x-input-error property="email" />
         </label>
 
         <label class="w-full mb-4 block">
@@ -52,11 +48,7 @@
                 autocomplete="password"
                 class="form-input border-gray-400 w-full block mt-2 @error('password') border-red-500 @enderror"
             >
-            @error('password')
-            <span class="text-sm text-red-500 italic">
-                    {{ $message }}
-                </span>
-            @enderror
+            <x-input-error property="password" />
         </label>
 
         <label class="w-full mb-4 block">
@@ -64,11 +56,12 @@
                 type="checkbox"
                 name="remember"
                 class="form-checkbox border-gray-400 text-blue-500"
-                {{ old('remember') ? 'checked' : '' }}
+                {{ old('remember', true) ? 'checked' : '' }}
             >
             <span class="text-sm font-bold text-gray-700 ml-1">
-                    Remember
-                </span>
+                Remember
+            </span>
+            <x-input-error property="remember" />
         </label>
 
         <div class="w-full block flex items-center justify-center">
