@@ -52,8 +52,8 @@
             </div>
         </div>
 
-        <div class="w-full flex items-start justify-evenly">
-            <div class="flex-grow pr-2">
+        <div class="w-full flex flex-col md:flex-row items-start justify-evenly">
+            <div class="flex-grow w-full md:pr-2">
                 <div>
                     <span class="block text-xl font-medium">
                         Content
@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="flex-shrink-0 w-1/3 pl-2">
+            <div class="flex-shrink-0 order-first md:order-none w-full md:w-1/3 md:pl-2">
                 <div class="mb-4">
                     <span class="block text-xl font-medium">
                         Details
