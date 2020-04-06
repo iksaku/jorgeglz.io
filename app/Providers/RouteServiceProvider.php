@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Post;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
@@ -20,6 +21,8 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Blade::if('route', 'in_route');
 
         Route::bind('trashed_post', function ($value) {
             return Post::onlyTrashed()->where('slug', $value)->first();

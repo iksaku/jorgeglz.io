@@ -13,41 +13,23 @@ if (!function_exists('markdown')) {
      */
     function markdown($content, bool $inline = false): string
     {
-        $cacheKey = markdown_cache_key($content);
-
         if ($content instanceof Post) {
             $content = $content->content;
         }
 
-        if (empty(Cache::tags(['markdown'])->get($cacheKey))) {
-            $rendered = app('github')->markdown()->render($content, 'markdown');
+        if ($inline) {
+            $converter = app('markdown.inline');
 
-            $inlineRendered = preg_replace(
-                '#</?p>#',
-                '',
-                app('github')->markdown()->render(
-                    preg_replace(
-                        ['/([\s\S]{256}\S+)[\s\S]+/i', '/[\r\n]+/', '/[\s,.]+$/m'],
-                        ['$1', ' ', ''],
-                        $content
-                    ),
-                    'markdown'
-                )
+            $content = preg_replace(
+                ['/([\s\S]{256}\S+)[\s\S]+/i', '/[\r\n]+/', '/[\s,.]+$/m'],
+                ['$1', ' ', ''],
+                $content
             );
-
-            try {
-                Cache::tags('markdown')->set($cacheKey, $rendered, now()->addWeek());
-                Cache::tags(['markdown', 'inline'])->set($cacheKey, $inlineRendered, now()->addWeek());
-            } catch (\Psr\SimpleCache\InvalidArgumentException $e) {
-                logger()->error('Illegal Markdown Cache key \''.$cacheKey.'\'...');
-                abort(500, 'Oops, we had an internal error.');
-            }
+        } else {
+            $converter = app('markdown');
         }
 
-        $tags = ['markdown'];
-        if ($inline) $tags[] = 'inline';
-
-        return Cache::tags($tags)->get($cacheKey);
+        return $converter->convertToHtml($content);
     }
 }
 
