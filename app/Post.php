@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Markdown\CacheableInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $published_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\User $author
- * @property-read bool $published
+ * @property-read mixed $published
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
  * @property-read int|null $tags_count
  * @method static bool|null forceDelete()
@@ -44,7 +45,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Post withoutTrashed()
  * @mixin \Eloquent
  */
-class Post extends Model
+class Post extends Model implements CacheableInterface
 {
     use SoftDeletes;
 
@@ -68,34 +69,21 @@ class Post extends Model
         'published_at' => 'date',
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
     }
 
-    /**
-     * @return BelongsToMany
-     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }
 
-    /**
-     * @return bool
-     */
     public function getPublishedAttribute(): bool
     {
         return !empty($this->published_at) && $this->published_at <= now();
     }
 
-    /**
-     * @param Builder $query
-     * @return Builder
-     */
     public function scopeIsPublished(Builder $query): Builder
     {
         return $query
@@ -103,11 +91,18 @@ class Post extends Model
             ->where('published_at', '<=', now());
     }
 
-    /**
-     * @return string
-     */
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    public function getCacheKey(): string
+    {
+        return 'post:'.$this->slug;
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
     }
 }

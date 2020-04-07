@@ -3,6 +3,7 @@
 namespace App\Markdown;
 
 use App\Markdown\Emoji\EmojiExtension;
+use App\Markdown\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Environment;
@@ -25,7 +26,9 @@ class MarkdownConverter
 
     private static function createConverter(ConfigurableEnvironmentInterface $environment): CommonMarkConverter
     {
-        $environment->addExtension(new EmojiExtension());
+        $environment
+            ->addExtension(new EmojiExtension())
+            ->addExtension(new HeadingPermalinkExtension());
 
         return new CommonMarkConverter(config('markdown'), $environment);
     }

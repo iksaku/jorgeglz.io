@@ -1,65 +1,57 @@
 <?php
 
-use App\Post;
+use App\Markdown\CacheableInterface;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 
 if (!function_exists('markdown')) {
     /**
-     * @param string|Post $content
+     * @param CacheableInterface $cacheable
      * @param bool $inline
+     * @param bool $cache
      * @return string
      */
-    function markdown($content, bool $inline = false): string
+    function markdown(CacheableInterface $cacheable, bool $inline = false, bool $cache = true): string
     {
-        if ($content instanceof Post) {
-            $content = $content->content;
-        }
+        $cacheTags = ['markdown'];
+        if ($inline) $cacheTags[] = 'inline';
 
-        if ($inline) {
-            $converter = app('markdown.inline');
+        return Cache::tags($cacheTags)->remember(
+            $cacheable->getCacheKey(),
+            $cache ? now()->addWeek() : 0,
+            function() use ($cacheable, $inline) {
+                $content = $cacheable->getContent();
 
-            $content = preg_replace(
-                ['/([\s\S]{256}\S+)[\s\S]+/i', '/[\r\n]+/', '/[\s,.]+$/m'],
-                ['$1', ' ', ''],
-                $content
-            );
-        } else {
-            $converter = app('markdown');
-        }
+                if ($inline) {
+                    $converter = app('markdown.inline');
 
-        return $converter->convertToHtml($content);
-    }
-}
+                    $content = preg_replace(
+                        ['/([\s\S]{256}\S+)[\s\S]+/i', '/[\r\n]+/', '/[\s,.]+$/m'],
+                        ['$1', ' ', ''],
+                        $content
+                    );
+                } else {
+                    $converter = app('markdown');
+                }
 
-if (!function_exists('markdown_cache_key')) {
-    /**
-     * @param string|Post $content
-     * @return string
-     */
-    function markdown_cache_key($content): string
-    {
-        if ($content instanceof Post) {
-            return $cacheKey = $content->slug;
-        }
-
-        return md5($content);
+                return $converter->convertToHtml($content);
+            }
+        );
     }
 }
 
 if (!function_exists('emoji')) {
     /**
      * @param string $emoji
-     * @return string
+     * @return string|null
      */
-    function emoji(string $emoji): string
+    function emoji(string $emoji): ?string
     {
-        if (empty(Cache::get('emoji'))) {
-            Cache::forever('emoji', app('github')->emojis()->all());
+        if (!Cache::tags('control')->get('emoji', false)) {
+            Artisan::call('emoji');
         }
 
-        return Cache::get('emoji')[$emoji] ?? null;
+        return Cache::tags('emoji')->get($emoji);
     }
 }
 

@@ -29,6 +29,14 @@
                             <span class="font-medium">Publish</span>
                         </button>
                     </form>
+                @else
+                    <a
+                        role="button"
+                        href="{{ route('blog.post', $post) }}"
+                        class="text-gray-700 hocus:text-gray-100 text-center bg-gray-100 hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 ml-2 rounded-lg shadow transform duration-200"
+                    >
+                        <span class="fas fa-eye"></span>
+                    </a>
                 @endif
                 <a
                     role="button"
@@ -60,7 +68,7 @@
                     </span>
                     <div class="bg-gray-100 border rounded-lg shadow overflow-hidden p-4">
                         <article class="markdown">
-                            @markdown($post->content)
+                            @markdown($post)
                         </article>
                     </div>
                 </div>

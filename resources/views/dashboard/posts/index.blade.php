@@ -46,11 +46,11 @@
                                 {{-- Status --}}
                                 <td class="px-4 md:px-6 py-2 text-center">
                                     @if($post->trashed())
-                                        <span class="fas fa-archive text-red-500"></span>
+                                        <span title="Trashed" class="fas fa-archive text-red-500"></span>
                                     @elseif(!$post->published)
-                                        <span class="fas fa-file-alt text-purple-500"></span>
+                                        <span title="Draft" class="fas fa-file-alt text-purple-500"></span>
                                     @else
-                                        <span class="fas fa-check text-green-500"></span>
+                                        <span title="Published" class="fas fa-check text-green-500"></span>
                                     @endif
                                 </td>
 

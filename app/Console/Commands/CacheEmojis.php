@@ -48,6 +48,8 @@ class CacheEmojis extends Command
             Cache::tags('emoji')->forever($code, $unicode);
         }
 
+        Cache::tags('control')->forever('emoji', true);
+
         $this->info('Cached all emojis!');
     }
 }

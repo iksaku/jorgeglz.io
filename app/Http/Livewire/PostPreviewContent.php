@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Markdown\CacheableInterface;
 use App\Post;
 use Livewire\Component;
 
-class PostPreviewContent extends Component
+class PostPreviewContent extends Component implements CacheableInterface
 {
     /** @var string */
     public $content;
@@ -15,7 +16,7 @@ class PostPreviewContent extends Component
         $this->content = $content ?? $post->content;
 
         if (!isset($content) && isset($post->content)) {
-            $this->computedPropertyCache['renderedContent'] = markdown($post);
+            $this->computedPropertyCache['renderedContent'] = markdown($post, false, false);
         }
     }
 
@@ -25,11 +26,21 @@ class PostPreviewContent extends Component
             return '';
         }
 
-        return app('github')->markdown()->render($this->content, 'markdown');
+        return markdown($this, false, false);
     }
 
     public function render()
     {
         return view('livewire.post-preview-content');
+    }
+
+    public function getCacheKey(): string
+    {
+        return 'post-preview';
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
     }
 }

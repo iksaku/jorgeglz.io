@@ -1,5 +1,6 @@
 <?php
 /** @var App\User $user */
+/** @var string $content */
 /** @var string $introductoryPhrase */
 ?>
 

@@ -42,8 +42,8 @@ class PostCacheObserver
      */
     public function deleted(Post $post)
     {
-        Cache::tags('markdown')->forget(markdown_cache_key($post));
-        Cache::tags(['markdown', 'inline'])->forget(markdown_cache_key($post));
+        Cache::tags('markdown')->forget($post->getCacheKey());
+        Cache::tags(['markdown', 'inline'])->forget($post->getCacheKey());
     }
 
     /**
