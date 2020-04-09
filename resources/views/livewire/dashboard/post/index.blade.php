@@ -2,12 +2,12 @@
     <div class="w-full p-4 md:px-6">
         <div class="w-full mb-4 flex items-center justify-between">
             {{-- Search box --}}
-            <label class="w-1/2 sm:w-1/3 text-gray-900 bg-white p-2 border rounded-lg focus-within:shadow-outline">
+            <label class="w-1/2 sm:w-1/3 text-gray-900 bg-white p-2 border border-gray-400 rounded-lg focus-within:shadow-outline">
                 <input
                     type="text"
                     placeholder="Search a Post..."
                     wire:model.debounce="search"
-                    class="w-full block truncate bg-transparent"
+                    class="w-full block truncate bg-transparent focus:outline-none"
                 >
             </label>
 
@@ -15,7 +15,7 @@
                 <a
                     role="button"
                     href="{{ route('dashboard.posts.create') }}"
-                    class="text-gray-700 hocus:text-gray-100 text-center bg-white hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 rounded-lg shadow transform duration-200"
+                    class="text-gray-700 hocus:text-gray-100 text-center bg-white hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 border border-gray-400 hocus:border-transparent rounded-lg transform duration-200"
                 >
                     <span class="fas fa-plus mr-2"></span>
                     <span class="font-medium">New Post</span>

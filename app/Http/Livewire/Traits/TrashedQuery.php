@@ -24,11 +24,6 @@ trait TrashedQuery
         $this->trashed = request()->query('trashed', $this->trashed);
     }
 
-    public function getTrashedOptionsProperty(): array
-    {
-        return ['withTrashed', 'withoutTrashed', 'onlyTrashed'];
-    }
-
     public function updatingTrashed(string $value): void
     {
         $this->page = 1;

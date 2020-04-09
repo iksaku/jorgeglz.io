@@ -43,6 +43,11 @@ class Index extends Component
             ->paginate();
     }
 
+    public function updatingSearch(string $value): void
+    {
+        $this->page = 1;
+    }
+
     public function render()
     {
         return view('livewire.dashboard.post.index');
