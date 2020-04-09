@@ -25,7 +25,7 @@
                     type="text"
                     placeholder="The One Above All"
                     value="{{ old('title', $post->title) }}"
-                    class="w-full bg-gray-100 px-4 py-2 focus:shadow-outline focus:outline-none rounded-lg shadow truncate transform duration-200"
+                    class="w-full bg-gray-100 px-4 py-2 focus:shadow-outline focus:outline-none rounded-lg shadow truncate transform duration-200 @error('title') border border-red-500 @enderror"
                     @if(!$post->exists)
                         autofocus
                     @endif
@@ -60,7 +60,7 @@
                         Content
                     </span>
 
-                    <livewire:post-preview-content :post="$post" :content="old('content')" />
+                    <livewire:dashboard.post.preview :post="$post" :content="old('content')" />
                 </div>
             </div>
 

@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Livewire;
+/** @noinspection PhpMissingFieldTypeInspection */
+
+namespace App\Http\Livewire\Dashboard\Post;
 
 use App\Markdown\CacheableInterface;
 use App\Post;
 use Livewire\Component;
 
-class PostPreviewContent extends Component implements CacheableInterface
+class Preview extends Component implements CacheableInterface
 {
     /** @var string */
     public $content;
@@ -31,7 +33,7 @@ class PostPreviewContent extends Component implements CacheableInterface
 
     public function render()
     {
-        return view('livewire.post-preview-content');
+        return view('livewire.dashboard.post.preview');
     }
 
     public function getCacheKey(): string

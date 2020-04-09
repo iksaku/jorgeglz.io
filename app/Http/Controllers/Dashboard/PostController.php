@@ -20,12 +20,7 @@ class PostController extends Controller
      */
     public function index(): View
     {
-        return view('dashboard.posts.index', [
-            'posts' => Post::query()
-                ->withTrashed()
-                ->orderByDesc('created_at')
-                ->paginate(),
-        ]);
+        return view('dashboard.posts.index');
     }
 
     /**

@@ -15,51 +15,49 @@
                 @endif
             </h1>
         </div>
+    </div>
 
-        <div class="ml-6 flex-grow text-lg font-medium flex items-center justify-end">
-            <div class="hidden md:block">
-                <span class="mr-4">
-                    {{ Auth::user()->name }}
-                </span>
+    <div
+        x-data="{ open: false }"
+        class="ml-6 flex-grow text-lg font-medium flex items-center justify-end"
+    >
+        <div>
+            <button @click="open = true" class="w-full text-lg flex items-center focus:shadow-outline focus:outline-none">
+                <img class="w-10 rounded-full" src="{{ Auth::user()->avatar }}" alt="Avatar of {{ Auth::user()->name }}">
+                <span class="hidden md:inline w-full ml-1">
+                        {{ Auth::user()->name }}
+                    </span>
+            </button>
 
-                <form class="inline-block" action="{{ route('logout') }}" method="post">
-                    @csrf
+            <div class="relative min-w-full">
+                <div
+                    x-cloak
+                    x-show="open"
+                    @click.away="open = false"
+                    class="absolute z-50 top-0 right-0 flex flex-col text-gray-900 bg-gray-100 rounded-lg shadow-lg mt-1 overflow-hidden transform origin-top-right duration-75"
 
-                    <button class="hocus:bg-red-700 focus:shadow-outline focus:outline-none px-4 py-2 -my-2 rounded-lg transform duration-200" type="submit">
-                        Logout
-                    </button>
-                </form>
-            </div>
-            <div x-data="{ open: false }" class="md:hidden flex items-end justify-end">
-                <button @click="open = true" class="text-lg focus:shadow-outline focus:outline-none">
-                    <span class="fas fa-user"></span>
-                </button>
+                    x-transition:enter="ease-in"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="ease-out"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-90 scale-90"
+                >
+                    <span class="w-full text-center p-4 border-b whitespace-no-wrap">
+                        {{ Auth::user()->name }}
+                        {{ Auth::user()->name }}
+                        {{ Auth::user()->name }}
+                        {{ Auth::user()->name }}
+                        {{ Auth::user()->name }}
+                        {{ Auth::user()->name }}
+                    </span>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
 
-                <div class="relative min-w-full">
-                    <div
-                        x-cloak
-                        x-show="open"
-                        @click.away="open = false"
-                        class="absolute z-50 top-0 right-0 flex flex-col text-gray-900 bg-gray-100 border border-gray-300 rounded-lg shadow-lg mt-1 overflow-hidden transform origin-top-right duration-75"
-
-                        x-transition:enter="ease-in"
-                        x-transition:enter-start="opacity-0 scale-90"
-                        x-transition:enter-end="opacity-100 scale-100"
-                        x-transition:leave="ease-out"
-                        x-transition:leave-start="opacity-100 scale-100"
-                        x-transition:leave-end="opacity-90 scale-90"
-                    >
-                        <span class="w-full text-center p-4 border-b whitespace-no-wrap">
-                            {{ Auth::user()->name }}
-                        </span>
-                        <form class="inline-block w-full" action="{{ route('logout') }}" method="post">
-                            @csrf
-
-                            <button class="w-full hocus:text-gray-100 hocus:bg-red-700 focus:outline-none px-4 py-2 transform duration-200" type="submit">
-                                Logout
-                            </button>
-                        </form>
-                    </div>
+                        <button class="w-full hocus:text-gray-100 hocus:bg-red-700 focus:outline-none px-4 py-2 transform duration-200" type="submit">
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

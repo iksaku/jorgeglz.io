@@ -14,7 +14,7 @@ module.exports = {
         backgroundColor: [...defaultConfig.variants.backgroundColor, 'hocus'],
         borderColor: [...defaultConfig.variants.borderColor, 'hocus'],
         borderWidth: [...defaultConfig.variants.borderWidth, 'last', 'hocus'],
-        boxShadow: [...defaultConfig.variants.boxShadow, 'hocus'],
+        boxShadow: [...defaultConfig.variants.boxShadow, 'focus-within', 'hocus'],
         cursor: [...defaultConfig.variants.cursor, 'hover', 'focus'],
         fontWeight: [...defaultConfig.variants.fontWeight, 'hocus'],
         textColor: [...defaultConfig.variants.textColor, 'hocus'],
