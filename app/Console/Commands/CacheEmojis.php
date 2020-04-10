@@ -4,10 +4,11 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
-use IntlChar;
 
 class CacheEmojis extends Command
 {
+    const ZERO_WIDTH_JOINER = "\u{200D}";
+
     /**
      * The name and signature of the console command.
      *
@@ -28,28 +29,28 @@ class CacheEmojis extends Command
     public function handle(): void
     {
         $this->comment('Fetching emoji codes from Github...');
-        $emojis = app('github')->emojis()->all();
+        $emoji = app('github')->emojis()->all();
 
-        $this->comment('Caching emojis...');
-        foreach ($emojis as $code => $url) {
+        $this->comment('Caching emoji codes...');
+        foreach ($emoji as $code => $url) {
             if (preg_match('/^((?!unicode).)*$/', $url)) {
                 // Custom Github emoji
                 continue;
             }
 
             preg_match('/(?<=\/)[a-zA-Z0-9\-]+(?=\.png)/', $url, $matches);
-            $parts = explode('-', $matches[0]);
+            $parts = array_map(
+                fn (string $part) => mb_chr(hexdec($part)),
+                explode('-', $matches[0])
+            );
 
-            $unicode = '';
-            foreach ($parts as $part) {
-                $unicode .= IntlChar::chr(hexdec($part));
-            }
+            $unicode = implode(self::ZERO_WIDTH_JOINER, $parts);
 
             Cache::tags('emoji')->forever($code, $unicode);
         }
 
         Cache::tags('control')->forever('emoji', true);
 
-        $this->info('Cached all emojis!');
+        $this->info('Cached all emoji codes from Github!');
     }
 }

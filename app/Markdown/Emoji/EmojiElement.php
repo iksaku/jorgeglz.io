@@ -9,13 +9,22 @@ class EmojiElement extends AbstractInline
 {
     protected string $emoji;
 
-    public function __construct(string $emoji)
+    protected ?string $alt;
+
+    public function __construct(string $emoji, ?string $alt = null)
     {
+        $this->emoji = $emoji;
+        $this->alt = $alt;
         $this->appendChild(new Text($emoji));
     }
 
     public function isContainer(): bool
     {
         return true;
+    }
+
+    public function getAlt(): ?string
+    {
+        return $this->alt;
     }
 }

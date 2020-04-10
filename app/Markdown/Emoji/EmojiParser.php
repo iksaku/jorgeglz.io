@@ -23,16 +23,16 @@ class EmojiParser implements InlineParserInterface
         $cursor = $inlineContext->getCursor();
         $previousState = $cursor->saveState();
 
-        $emojiCode = $cursor->match('/(?<=:)[a-z0-9\+\-_]+(?=:)/');
-        if (empty($emojiCode) || empty($emoji = emoji($emojiCode))) {
+        $shortCode = $cursor->match('/(?<=:)[a-z0-9\+\-_]+(?=:)/');
+        if (empty($shortCode) || empty($emoji = emoji($shortCode))) {
             $cursor->restoreState($previousState);
 
             return false;
         }
 
-        $cursor->advance();
+        $cursor->advance(); // Removes trailing ':'
 
-        $inlineContext->getContainer()->appendChild(new EmojiElement($emoji));
+        $inlineContext->getContainer()->appendChild(new EmojiElement($emoji, $shortCode));
 
         return true;
     }
