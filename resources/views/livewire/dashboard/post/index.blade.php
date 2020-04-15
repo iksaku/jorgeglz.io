@@ -2,13 +2,14 @@
     <div class="w-full p-4 md:px-6">
         <div class="w-full mb-4 flex items-center justify-between">
             {{-- Search box --}}
-            <label class="w-1/2 sm:w-1/3 text-gray-900 bg-white p-2 border border-gray-400 rounded-lg focus-within:shadow-outline">
+            <label class="w-1/2 sm:w-1/3 flex items-center text-gray-900 bg-white p-2 border border-gray-400 rounded-lg focus-within:shadow-outline">
                 <input
                     type="text"
                     placeholder="Search a Post..."
-                    wire:model.debounce="search"
-                    class="w-full block truncate bg-transparent focus:outline-none"
+                    wire:model.debounce.250ms="search"
+                    class="flex-grow truncate bg-transparent focus:outline-none"
                 >
+                <span class="flex-shrink-0 fas fa-search text-gray-500 mx-2"></span>
             </label>
 
             <div class="flex items-center justify-between">
@@ -24,7 +25,7 @@
         </div>
 
         <div class="-mx-4 md:mx-0 md:rounded-lg border border-t-0 shadow">
-            <div class="w-full flex items-center justify-end bg-gray-100 md:rounded-t-lg px-4 md:px-6 py-2">
+            <div class="w-full flex items-center justify-end bg-white md:rounded-t-lg px-4 md:px-6 py-2">
                 <x-dashboard.filters.menu>
                     <label class="w-full flex flex-col">
                         <span class="bg-gray-200 font-medium px-4 py-2 whitespace-no-wrap">
@@ -80,7 +81,7 @@
                             <td class="px-4 md:px-6 py-2 text-center">
                                 @if($post->trashed())
                                     <span title="Trashed" class="fas fa-archive text-red-500"></span>
-                                @elseif(!$post->published)
+                                @elseif(!$post->published())
                                     <span title="Draft" class="fas fa-file-alt text-purple-500"></span>
                                 @else
                                     <span title="Published" class="fas fa-check text-green-500"></span>

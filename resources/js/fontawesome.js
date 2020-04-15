@@ -7,7 +7,7 @@ import {
     faPencil,
     faPlus, faSave, faSyncAlt,
     faTimes, faTrashRestore,
-    faUser
+    faUser, faSearch
 } from "@fortawesome/pro-solid-svg-icons"
 import {faLinkedinIn, faGithub, faTwitter} from "@fortawesome/free-brands-svg-icons";
 
@@ -16,7 +16,7 @@ library.add(
     faTimes, faBars, faPlus, faEye, faPencil,
     faCheck, faFileAlt, faArchive, faTrashRestore,
     faUser, faPaperPlane, faSave, faSyncAlt,
-    faAngleDown, faFilter
+    faAngleDown, faFilter, faSearch
 );
 
 dom.watch();

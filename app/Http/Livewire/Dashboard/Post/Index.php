@@ -52,9 +52,4 @@ class Index extends Component
     {
         return view('livewire.dashboard.post.index');
     }
-
-    public function paginationView(): string
-    {
-        return 'pagination::tailwind-livewire';
-    }
 }

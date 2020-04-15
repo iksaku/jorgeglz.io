@@ -16,10 +16,6 @@ class Preview extends Component implements CacheableInterface
     public function mount(Post $post, ?string $content = null)
     {
         $this->content = $content ?? $post->content;
-
-        if (!isset($content) && isset($post->content)) {
-            $this->computedPropertyCache['renderedContent'] = markdown($post, false, false);
-        }
     }
 
     public function getRenderedContentProperty(): string

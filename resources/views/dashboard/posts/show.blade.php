@@ -15,7 +15,7 @@
             </a>
 
             <div class="flex-shrink-0 flex items-center justify-between">
-                @if(!$post->published)
+                @if(!$post->published())
                     <form action="{{ route('dashboard.posts.update', $post) }}" method="post">
                         @csrf
                         @method('patch')
@@ -93,7 +93,7 @@
                                 Published
                             </span>
                             <span class="w-2/3">
-                                @if(!$post->published)
+                                @if(!$post->published())
                                     <span class="italic text-gray-700">
                                         Not published yet
                                     </span>

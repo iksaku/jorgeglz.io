@@ -22,10 +22,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $published_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\User $author
- * @property-read mixed $published
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
  * @property-read int|null $tags_count
  * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post isDraft()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post isPublished()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newQuery()
@@ -55,11 +55,6 @@ class Post extends Model implements CacheableInterface
     ];
 
     /** @var array */
-    protected $hidden = [
-        'id', 'created_at', 'deleted_at', 'author_id', 'pivot',
-    ];
-
-    /** @var array */
     protected $with = [
         'author', 'tags',
     ];
@@ -79,7 +74,7 @@ class Post extends Model implements CacheableInterface
         return $this->belongsToMany(Tag::class);
     }
 
-    public function getPublishedAttribute(): bool
+    public function published(): bool
     {
         return !empty($this->published_at) && $this->published_at <= now();
     }
@@ -89,6 +84,12 @@ class Post extends Model implements CacheableInterface
         return $query
             ->whereNotNull('published_at')
             ->where('published_at', '<=', now());
+    }
+
+    public function scopeIsDraft(Builder $query): Builder
+    {
+        return $query
+            ->whereNull('published_at');
     }
 
     public function getRouteKeyName(): string

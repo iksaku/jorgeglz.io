@@ -30,10 +30,10 @@ class AboutController extends Controller implements CacheableInterface
             "Still don't know me?",
             "Haven't we already met?",
             'So, you want to know more about me...',
-            'This is me... ',
-            'What? Who am I you ask?',
+            'This is me... '.emoji('notes'),
+            'Who am I you ask?',
             'Peeking at my blog without knowing me?',
-            '¿Sabías que hablo Español?',
+            '¿Sabías que hablo Español? '.emoji('mexico'),
         ];
 
         return $phrases[array_rand($phrases, 1)];

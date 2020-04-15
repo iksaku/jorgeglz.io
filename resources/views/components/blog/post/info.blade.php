@@ -27,7 +27,7 @@
             {!! github_emoji('date') !!}
         </span>--}}
         <span class="inline-block align-middle">
-            @if($post->published)
+            @if($post->published())
                 <time datetime="{{ $post->published_at->toISOString() }}">
                     {{ $post->published_at->format('F j, Y') }}
                 </time>
