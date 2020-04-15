@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Observers\PostCacheObserver;
 use App\Post;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,30 +28,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::defaultView('pagination::tailwind');
 
-        $this->registerBladeDirectives();
-        $this->registerObservers();
-    }
-
-    private function registerObservers(): void
-    {
         Post::observe(PostCacheObserver::class);
-    }
-
-    private function registerBladeDirectives(): void
-    {
-        // Route
-        Blade::if('route', 'in_route');
-
-        // Markdown
-        Blade::directive('markdown', function ($expresion) {
-            if ($expresion) {
-                return "<?php echo markdown($expresion); ?>";
-            }
-
-            return '<?php ob_start(); ?>';
-        });
-        Blade::directive('endmarkdown', function () {
-            return '<?php echo markdown(ob_get_clean()); ?>';
-        });
     }
 }

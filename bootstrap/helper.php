@@ -1,83 +1,57 @@
 <?php
 
-use App\Post;
+use App\Markdown\CacheableInterface;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 
 if (!function_exists('markdown')) {
     /**
-     * @param string|Post $content
+     * @param CacheableInterface $cacheable
      * @param bool $inline
+     * @param bool $cache
      * @return string
      */
-    function markdown($content, bool $inline = false): string
+    function markdown(CacheableInterface $cacheable, bool $inline = false, bool $cache = true): string
     {
-        $cacheKey = markdown_cache_key($content);
+        $cacheTags = ['markdown'];
+        if ($inline) $cacheTags[] = 'inline';
 
-        if ($content instanceof Post) {
-            $content = $content->content;
-        }
+        return Cache::tags($cacheTags)->remember(
+            $cacheable->getCacheKey(),
+            $cache ? now()->addWeek() : 0,
+            function() use ($cacheable, $inline) {
+                $content = $cacheable->getContent();
 
-        if (empty(Cache::tags(['markdown'])->get($cacheKey))) {
-            $rendered = app('github')->markdown()->render($content, 'markdown');
+                if ($inline) {
+                    $converter = app('markdown.inline');
 
-            $inlineRendered = preg_replace(
-                '#</?p>#',
-                '',
-                app('github')->markdown()->render(
-                    preg_replace(
+                    $content = preg_replace(
                         ['/([\s\S]{256}\S+)[\s\S]+/i', '/[\r\n]+/', '/[\s,.]+$/m'],
                         ['$1', ' ', ''],
                         $content
-                    ),
-                    'markdown'
-                )
-            );
+                    );
+                } else {
+                    $converter = app('markdown');
+                }
 
-            try {
-                Cache::tags('markdown')->set($cacheKey, $rendered, now()->addWeek());
-                Cache::tags(['markdown', 'inline'])->set($cacheKey, $inlineRendered, now()->addWeek());
-            } catch (\Psr\SimpleCache\InvalidArgumentException $e) {
-                logger()->error('Illegal Markdown Cache key \''.$cacheKey.'\'...');
-                abort(500, 'Oops, we had an internal error.');
+                return $converter->convertToHtml($content);
             }
-        }
-
-        $tags = ['markdown'];
-        if ($inline) $tags[] = 'inline';
-
-        return Cache::tags($tags)->get($cacheKey);
-    }
-}
-
-if (!function_exists('markdown_cache_key')) {
-    /**
-     * @param string|Post $content
-     * @return string
-     */
-    function markdown_cache_key($content): string
-    {
-        if ($content instanceof Post) {
-            return $cacheKey = $content->slug;
-        }
-
-        return md5($content);
+        );
     }
 }
 
 if (!function_exists('emoji')) {
     /**
      * @param string $emoji
-     * @return string
+     * @return string|null
      */
-    function emoji(string $emoji): string
+    function emoji(string $emoji): ?string
     {
-        if (empty(Cache::get('emoji'))) {
-            Cache::forever('emoji', app('github')->emojis()->all());
+        if (!Cache::tags('control')->get('emoji', false)) {
+            Artisan::call('emoji');
         }
 
-        return Cache::get('emoji')[$emoji] ?? null;
+        return Cache::tags('emoji')->get($emoji);
     }
 }
 

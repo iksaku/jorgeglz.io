@@ -20,12 +20,7 @@ class PostController extends Controller
      */
     public function index(): View
     {
-        return view('dashboard.posts.index', [
-            'posts' => Post::query()
-                ->withTrashed()
-                ->orderByDesc('created_at')
-                ->paginate(),
-        ]);
+        return view('dashboard.posts.index');
     }
 
     /**
@@ -52,7 +47,7 @@ class PostController extends Controller
 
         $validated = $request->validate([
             'slug' => 'required|unique:posts',
-            'title' => 'required|unique:posts|max:255',
+            'title' => 'required|max:255|unique:posts',
             'content' => 'required|string',
             'published_at' => 'sometimes|required|date|nullable',
             //'tags' => '' TODO
@@ -97,8 +92,8 @@ class PostController extends Controller
     public function update(Request $request, Post $post): View
     {
         $validated = $request->validate([
-            'title' => 'sometimes|required|unique:posts|max:255',
-            'content' => 'sometimes|required|string',
+            'title' => 'required|max:255|unique:posts,title,'.$post->id,
+            'content' => 'required|string',
             'published_at' => 'sometimes|required|date|nullable',
             //'tags' => '' TODO
         ]);

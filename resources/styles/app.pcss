@@ -42,7 +42,7 @@ button.pagination {
 }
 
 .emoji {
-    @apply inline-block align-top h-6 w-6;
+    @apply inline-block align-middle font-emoji text-center h-6 w-6;
 }
 
 .post-preview {
@@ -51,15 +51,15 @@ button.pagination {
     }
 }
 
-.svg-inline--fa {
-    @apply inline-block align-middle;
-}
-
 .markdown {
-    @apply leading-normal text-lg;
+    @apply leading-snug text-lg;
 
-    *:first-child {
+    :first-child {
         @apply mt-0;
+    }
+
+    :last-child {
+        @apply mb-0;
     }
 
     a {
@@ -76,15 +76,7 @@ button.pagination {
     }
 
     p {
-        @apply my-2 font-sans text-justify;
-
-        &:first-child {
-            @apply mt-0;
-        }
-
-        &:last-child {
-            @apply mb-0;
-        }
+        @apply mb-4 font-sans text-justify;
 
         > code {
             @apply inline align-middle font-mono text-base bg-gray-300 rounded py-1 px-2;
@@ -136,13 +128,13 @@ button.pagination {
 
         &:hover,
         &:focus {
-            .anchor {
-                @apply text-gray-700;
+            .permalink {
+                @apply inline text-gray-700 ml-2;
             }
         }
 
-        .anchor {
-            @apply text-transparent;
+        .permalink {
+            @apply hidden;
         }
     }
 

@@ -26,11 +26,10 @@
     <div x-show="tab === 'edit'" class="p-4">
         <label>
             <textarea
-                required
                 name="content"
                 placeholder="Make those small things unforgettable!"
                 wire:model.lazy="content"
-                class="h-full w-full bg-transparent focus:shadow-outline resize-none"
+                class="h-full w-full bg-transparent rounded focus:shadow-outline resize-none @error('content') border border-red-500 @enderror"
                 rows="10"
             ></textarea>
             <x-input-error property="content" />

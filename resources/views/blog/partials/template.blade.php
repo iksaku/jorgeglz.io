@@ -1,5 +1,7 @@
 @extends('main')
 
+<x-use.fontawesome />
+
 @section('body')
     <div class="min-h-screen h-full w-full flex flex-col">
         @include('blog.partials.header')

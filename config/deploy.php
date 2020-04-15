@@ -62,6 +62,7 @@ return [
             'artisan:cache:clear',
             'artisan:config:cache',
             'artisan:migrate',
+            'artisan:emoji',
         ],
 
         // Deployment is done and live
@@ -143,7 +144,7 @@ return [
     */
 
     'include' => [
-        'recipe/nova.php',
+        'recipes/artisan.php',
     ],
 
     /*

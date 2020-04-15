@@ -7,6 +7,20 @@ use Cache;
 
 class PostCacheObserver
 {
+    protected function updatePostCache(Post $post): void
+    {
+        if ($post->published() && !$post->trashed()) {
+            markdown($post);
+            markdown($post, true);
+        }
+    }
+
+    protected function deletePostCache(Post $post): void
+    {
+        Cache::tags('markdown')->forget($post->getCacheKey());
+        Cache::tags(['markdown', 'inline'])->forget($post->getCacheKey());
+    }
+
     /**
      * Cache new Post.
      *
@@ -15,8 +29,7 @@ class PostCacheObserver
      */
     public function created(Post $post)
     {
-        markdown($post);
-        markdown($post, true);
+        $this->updatePostCache($post);
     }
 
     /**
@@ -27,11 +40,8 @@ class PostCacheObserver
      */
     public function updated(Post $post)
     {
-        $this->deleted($post);
-
-        if (!$post->trashed()) {
-            $this->created($post);
-        }
+        $this->deletePostCache($post);
+        $this->updatePostCache($post);
     }
 
     /**
@@ -42,19 +52,18 @@ class PostCacheObserver
      */
     public function deleted(Post $post)
     {
-        Cache::tags('markdown')->forget(markdown_cache_key($post));
-        Cache::tags(['markdown', 'inline'])->forget(markdown_cache_key($post));
+        $this->deletePostCache($post);
     }
 
     /**
-     * Cache post again.
+     * Cache restored post.
      *
      * @param Post $post
      * @return void
      */
     public function restored(Post $post)
     {
-        $this->created($post);
+        $this->updatePostCache($post);
     }
 
     /**
@@ -65,6 +74,6 @@ class PostCacheObserver
      */
     public function forceDeleted(Post $post)
     {
-        $this->deleted($post);
+        $this->deletePostCache($post);
     }
 }

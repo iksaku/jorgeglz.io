@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Markdown\CacheableInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,10 +22,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $published_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\User $author
- * @property-read bool $published
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
  * @property-read int|null $tags_count
  * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post isDraft()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post isPublished()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newQuery()
@@ -44,18 +45,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Post withoutTrashed()
  * @mixin \Eloquent
  */
-class Post extends Model
+class Post extends Model implements CacheableInterface
 {
     use SoftDeletes;
 
     /** @var array */
     protected $fillable = [
         'slug', 'title', 'content', 'published_at',
-    ];
-
-    /** @var array */
-    protected $hidden = [
-        'id', 'created_at', 'deleted_at', 'author_id', 'pivot',
     ];
 
     /** @var array */
@@ -68,34 +64,21 @@ class Post extends Model
         'published_at' => 'date',
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
     }
 
-    /**
-     * @return BelongsToMany
-     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }
 
-    /**
-     * @return bool
-     */
-    public function getPublishedAttribute(): bool
+    public function published(): bool
     {
         return !empty($this->published_at) && $this->published_at <= now();
     }
 
-    /**
-     * @param Builder $query
-     * @return Builder
-     */
     public function scopeIsPublished(Builder $query): Builder
     {
         return $query
@@ -103,11 +86,24 @@ class Post extends Model
             ->where('published_at', '<=', now());
     }
 
-    /**
-     * @return string
-     */
+    public function scopeIsDraft(Builder $query): Builder
+    {
+        return $query
+            ->whereNull('published_at');
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    public function getCacheKey(): string
+    {
+        return 'post:'.$this->slug;
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
     }
 }

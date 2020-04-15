@@ -3,13 +3,50 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Markdown\CacheableInterface;
 use App\User;
 use Illuminate\Contracts\View\View;
 
-class AboutController extends Controller
+class AboutController extends Controller implements CacheableInterface
 {
-    protected const CONTENT = /* @lang Markdown */
-        <<<'MD'
+    /**
+     * @return View
+     */
+    public function index(): View
+    {
+        return view('blog.about', [
+            'user' => User::whereEmail(['iksaku@me.com'])->first(),
+            'content' => $this,
+            'introductoryPhrase' => $this->getIntroductoryPhrase(),
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    private function getIntroductoryPhrase(): string
+    {
+        $phrases = [
+            "Still don't know me?",
+            "Haven't we already met?",
+            'So, you want to know more about me...',
+            'This is me... '.emoji('notes'),
+            'Who am I you ask?',
+            'Peeking at my blog without knowing me?',
+            '¿Sabías que hablo Español? '.emoji('mexico'),
+        ];
+
+        return $phrases[array_rand($phrases, 1)];
+    }
+
+    public function getCacheKey(): string
+    {
+        return 'about';
+    }
+
+    public function getContent(): string
+    {
+        return /* @lang Markdown */ <<<'MD'
 ## About Me, Myself and I
 My name is Jorge González, also known in the online work as _iksaku_.
 I was born in Mexico :mexico: and I like tech-related stuff, food and also
@@ -41,34 +78,5 @@ some time already, but I'm truly getting better for Math and Physics stuff.
 the name of the songs, the bands or the artists.
 * :nauseated_face: I don't like onion, garlic nor avocado.
 MD;
-
-    /**
-     * @return View
-     */
-    public function index(): View
-    {
-        return view('blog.about', [
-            'user' => User::whereEmail(['iksaku@me.com'])->first(),
-            'content' => self::CONTENT,
-            'introductoryPhrase' => $this->getIntroductoryPhrase(),
-        ]);
-    }
-
-    /**
-     * @return string
-     */
-    private function getIntroductoryPhrase(): string
-    {
-        $phrases = [
-            "Still don't know me?",
-            "Haven't we already met?",
-            'So, you want to know more about me...',
-            'This is me... ',
-            'What? Who am I you ask?',
-            'Peeking at my blog without knowing me?',
-            '¿Sabías que hablo Español?',
-        ];
-
-        return $phrases[array_rand($phrases, 1)];
     }
 }

@@ -39,7 +39,7 @@
                 @lang('Resources')
             </h3>
 
-            <x-dashboard.sidebar.item route="dashboard.posts.index">
+            <x-dashboard.sidebar.item route="dashboard.posts.index" highlight="dashboard.posts">
                 @lang('Posts')
             </x-dashboard.sidebar.item>
         </div>

@@ -1,5 +1,9 @@
 @extends('main')
 
+<x-use.alpine />
+<x-use.fontawesome />
+<x-use.livewire />
+
 @section('body')
     <div
         x-data="bodyData()"
@@ -20,13 +24,7 @@
     </div>
 @endsection
 
-@push('styles')
-    @livewireStyles
-@endpush
-
 @push('scripts')
-    @livewireScripts
-
     <script>
         function bodyData() {
             return {

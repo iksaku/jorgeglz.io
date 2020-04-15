@@ -15,7 +15,7 @@
             </a>
 
             <div class="flex-shrink-0 flex items-center justify-between">
-                @if(!$post->published)
+                @if(!$post->published())
                     <form action="{{ route('dashboard.posts.update', $post) }}" method="post">
                         @csrf
                         @method('patch')
@@ -29,11 +29,19 @@
                             <span class="font-medium">Publish</span>
                         </button>
                     </form>
+                @else
+                    <a
+                        role="button"
+                        href="{{ route('blog.post', $post) }}"
+                        class="text-gray-700 hocus:text-gray-100 text-center bg-gray-100 hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 ml-2 rounded-lg transform duration-200"
+                    >
+                        <span class="fas fa-eye"></span>
+                    </a>
                 @endif
                 <a
                     role="button"
                     href="{{ route('dashboard.posts.edit', $post) }}"
-                    class="text-gray-700 hocus:text-gray-100 text-center bg-gray-100 hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 ml-2 rounded-lg shadow transform duration-200"
+                    class="text-gray-700 hocus:text-gray-100 text-center bg-gray-100 hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 ml-2 border border-gray-400 hocus:border-transparent rounded-lg transform duration-200"
                 >
                     <span class="fas fa-pencil mr-2"></span>
                     <span class="font-medium">Edit</span>
@@ -44,7 +52,7 @@
                     <button
                         type="submit"
                         onclick="return confirm('Are you sure you want to archive post \'{{ $post->title }}\'?')"
-                        class="text-gray-100 text-center bg-red-500 hocus:bg-red-700 focus:shadow-outline focus:outline-none px-4 py-2 rounded-lg shadow transform duration-200"
+                        class="text-gray-100 text-center bg-red-500 hocus:bg-red-700 focus:shadow-outline focus:outline-none px-4 py-2 rounded-lg transform duration-200"
                     >
                         <span class="fas fa-archive"></span>
                     </button>
@@ -60,7 +68,7 @@
                     </span>
                     <div class="bg-gray-100 border rounded-lg shadow overflow-hidden p-4">
                         <article class="markdown">
-                            @markdown($post->content)
+                            @markdown($post)
                         </article>
                     </div>
                 </div>
@@ -85,7 +93,7 @@
                                 Published
                             </span>
                             <span class="w-2/3">
-                                @if(!$post->published)
+                                @if(!$post->published())
                                     <span class="italic text-gray-700">
                                         Not published yet
                                     </span>

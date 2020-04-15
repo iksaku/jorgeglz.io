@@ -25,7 +25,7 @@
                     type="text"
                     placeholder="The One Above All"
                     value="{{ old('title', $post->title) }}"
-                    class="w-full bg-gray-100 px-4 py-2 focus:shadow-outline focus:outline-none rounded-lg shadow truncate transform duration-200"
+                    class="w-full bg-gray-100 px-4 py-2 focus:shadow-outline focus:outline-none border border-gray-400 hocus:border-transparent rounded-lg truncate transform duration-200 @error('title') border-red-500 @enderror"
                     @if(!$post->exists)
                         autofocus
                     @endif
@@ -34,7 +34,7 @@
                 <x-input-error property="title" />
             </label>
 
-            <div class="flex-shrink-0 w-full md:w-1/3 md:pl-2 flex items-end justify-evenly md:justify-end">
+            <div class="flex-shrink-0 w-full md:w-1/3 md:pl-2 flex items-center justify-evenly md:justify-end">
                 <button
                     class="text-gray-100 bg-blue-500 hocus:bg-blue-700 focus:shadow-outline focus:outline-none px-4 py-2 rounded-lg transform duration-200"
                     type="submit"
@@ -45,7 +45,7 @@
                 <a
                     role="button"
                     href="{{ url()->previous(true) }}"
-                    class="text-gray-100 whitespace-no-wrap bg-red-500 hocus:bg-red-700 focus:shadow-outline focus:outline-none px-4 py-2 ml-2 rounded-lg shadow transform duration-200"
+                    class="text-gray-100 whitespace-no-wrap bg-red-500 hocus:bg-red-700 focus:shadow-outline focus:outline-none px-4 py-2 ml-2 rounded-lg transform duration-200"
                 >
                     <span class="fas fa-times mr-2"></span>
                     <span class="font-medium">Cancel</span>
@@ -60,7 +60,7 @@
                         Content
                     </span>
 
-                    <livewire:post-preview-content :post="$post" :content="old('content')" />
+                    <livewire:dashboard.post.preview :post="$post" :content="old('content')" />
                 </div>
             </div>
 
@@ -84,7 +84,7 @@
                                     Published
                                 </span>
                                 <span class="w-2/3">
-                                    @if(!$post->published)
+                                    @if(!$post->published())
                                         <span class="italic text-gray-700">
                                             Not published yet
                                         </span>

@@ -30,11 +30,6 @@ class Tag extends Model
         'name',
     ];
 
-    /** @var array */
-    protected $hidden = [
-        'id', 'created_at', 'updated_at', 'pivot',
-    ];
-
     /**
      * @return BelongsToMany
      */
