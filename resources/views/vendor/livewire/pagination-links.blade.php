@@ -12,14 +12,14 @@
                     rel="prev"
                 @endif
             >
-                <x-dashboard.pagination.button
+                <x-pagination.button
                     type="control"
                     :disabled="$paginator->onFirstPage()"
                     wireClick="previousPage"
                 >
                     &lt;
                     <span class="md:hidden ml-2">Previous Page</span>
-                </x-dashboard.pagination.button>
+                </x-pagination.button>
             </li>
 
             {{-- Pagination Elements --}}
@@ -38,13 +38,13 @@
                             class="hidden md:block"
                             @if ($page === $paginator->currentPage()) aria-current="page" @endif
                         >
-                            <x-dashboard.pagination.button
+                            <x-pagination.button
                                 type="page"
                                 :disabled="$page === $paginator->currentPage()"
                                 :wireClick="'gotoPage(' . $page . ')'"
                             >
                                 {{ $page }}
-                            </x-dashboard.pagination.button>
+                            </x-pagination.button>
                         </li>
                     @endforeach
                 @endif
@@ -59,7 +59,7 @@
                     rel="next"
                 @endif
             >
-                <x-dashboard.pagination.button
+                <x-pagination.button
                     class="border-none"
                     type="control"
                     :disabled="!$paginator->hasMorePages()"
@@ -67,7 +67,7 @@
                 >
                     <span class="md:hidden mr-2">Next Page</span>
                     &gt;
-                </x-dashboard.pagination.button>
+                </x-pagination.button>
             </li>
         </ul>
     </nav>
