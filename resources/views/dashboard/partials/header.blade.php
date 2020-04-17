@@ -1,5 +1,5 @@
 <header class="flex-shrink-0 text-gray-300 bg-gray-900 px-4 sm:px-6 shadow-md flex items-center justify-between">
-    <div class="flex-1 min-w-0 flex py-4">
+    <div class="flex-shrink-0 min-w-0 flex py-4">
         <button
             @click="sidebarOpen = true"
             class="lg:hidden text-gray-700 mr-4"

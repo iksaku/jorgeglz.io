@@ -6,8 +6,8 @@
 @section('view-title', 'View Post')
 
 @section('content')
-    <div class="h-full min-w-0 w-full p-4 md:px-6">
-        <div class="w-full flex flex-col md:flex-row items-center justify-between mb-4">
+    <div class="h-full min-w-0 w-full md:px-6 py-4">
+        <div class="w-full flex flex-col md:flex-row items-center justify-between px-4 md:px-0 mb-4">
             <a class="hocus:shadow-outline focus:outline-none md:mr-4 mb-4 md:mb-0 transform duration-200" href="{{ route('blog.post', $post) }}">
                 <h2 class="max-w-full text-2xl text-center md:text-left font-medium">
                     {{ $post->title }}
@@ -62,24 +62,22 @@
 
         <div class="w-full flex flex-col md:flex-row items-start justify-evenly">
             <div class="flex-grow w-full md:pr-2">
-                <div>
-                    <span class="block text-xl font-medium">
-                        Content
-                    </span>
-                    <div class="bg-gray-100 border rounded-lg shadow overflow-hidden p-4">
-                        <article class="markdown">
-                            @markdown($post)
-                        </article>
-                    </div>
+                <span class="block text-xl font-medium px-4 md:px-0">
+                    Content
+                </span>
+                <div class="bg-gray-100 border border-gray-400 md:rounded-lg overflow-hidden p-4">
+                    <article class="markdown">
+                        @markdown($post)
+                    </article>
                 </div>
             </div>
 
             <div class="flex-shrink-0 order-first md:order-none w-full md:w-1/3 md:pl-2">
                 <div class="mb-4">
-                    <span class="block text-xl font-medium">
+                    <span class="block text-xl font-medium px-4 md:px-0">
                         Details
                     </span>
-                    <div class="bg-gray-100 border rounded-lg shadow overflow-hidden p-4">
+                    <div class="bg-gray-100 border border-gray-400 md:rounded-lg overflow-hidden p-4">
                         <div class="mb-2 flex">
                             <span class="w-1/3">
                                 Created

@@ -6,7 +6,7 @@
     <div class="w-full md:px-4 py-4 md:px-6">
         <div class="w-full px-4 md:px-0 mb-4 flex items-center justify-between">
             {{-- Search box --}}
-            <label class="w-1/2 sm:w-1/3 flex items-center text-gray-900 bg-white p-2 border border-gray-400 rounded-lg focus-within:shadow-outline">
+            <label class="w-1/2 sm:w-1/3 flex items-center text-gray-900 bg-white border border-gray-400 p-2 rounded-lg focus-within:shadow-outline transform duration-100">
                 <input
                     type="text"
                     placeholder="Search a Post..."
@@ -28,8 +28,8 @@
             </div>
         </div>
 
-        <div class="w-full bg-white md:rounded-lg border shadow">
-            <div class="w-full flex items-center justify-end px-4 py-2">
+        <div class="w-full bg-white border border-gray-400 md:rounded-lg">
+            <div class="w-full flex items-center justify-end border-b border-gray-400 px-4 py-2">
                 <x-dashboard.filters.menu>
                     <label class="w-full flex flex-col">
                         <span class="bg-gray-200 font-medium px-4 py-2 whitespace-no-wrap">
@@ -37,7 +37,7 @@
                         </span>
                         <div class="p-2">
                             <select
-                                class="form-select flex-grow rounded-lg focus:outline-none"
+                                class="form-select flex-grow rounded-lg focus:outline-none transform duration-100"
                                 wire:model="trashed"
                             >
                                 @foreach($trashedOptions as $value => $description)
@@ -49,9 +49,13 @@
                 </x-dashboard.filters.menu>
             </div>
 
-            <div class="w-full overflow-x-auto border-t border-b">
+            <div wire:loading class="w-full text-center text-gray-700 p-4">
+                <span class="fas fa-sync-alt fa-4x fa-spin"></span>
+            </div>
+
+            <div wire:loading.remove class="w-full overflow-x-auto">
                 @if(count($posts) < 1)
-                    <div wire:loading.remove class="w-full text-center text-gray-700 font-medium p-4">
+                    <div class="w-full text-center text-gray-700 font-medium p-4">
                         Sin Resultados
                     </div>
                 @else
@@ -67,7 +71,7 @@
                     </thead>
 
                     {{-- Table Body --}}
-                    <tbody wire:loading.remove class="font-medium text-gray-800">
+                    <tbody class="font-medium text-gray-800">
                     @foreach($posts as $post)
                         <tr class="border-b-2 last:border-0 border-gray-200">
                             {{-- ID --}}
@@ -107,10 +111,10 @@
                                         </button>
                                     </form>
                                 @else
-                                    <a class="inline-block align-middle hocus:text-indigo-700 focus:shadow-outline focus:outline-none transform duration-200 hocus:scale-150 mx-2" href="{{ route('dashboard.posts.show', $post) }}">
+                                    <a class="inline-block align-middle hocus:text-blue-600 focus:shadow-outline focus:outline-none transform duration-200 hocus:scale-150 mx-2" href="{{ route('dashboard.posts.show', $post) }}">
                                         <span class="fas fa-eye"></span>
                                     </a>
-                                    <a class="inline-block align-middle hocus:text-indigo-700 focus:shadow-outline focus:outline-none transform duration-200 hocus:scale-150 mx-2" href="{{ route('dashboard.posts.edit', $post) }}">
+                                    <a class="inline-block align-middle hocus:text-purple-600 focus:shadow-outline focus:outline-none transform duration-200 hocus:scale-150 mx-2" href="{{ route('dashboard.posts.edit', $post) }}">
                                         <span class="fas fa-pencil"></span>
                                     </a>
                                     <form class="inline-block align-middle mx-2" action="{{ route('dashboard.posts.destroy', $post) }}" method="post">
@@ -131,14 +135,10 @@
                     </tbody>
                 </table>
                 @endif
-
-                <div wire:loading class="w-full text-center text-gray-700 p-4">
-                    <span class="fas fa-sync-alt fa-4x fa-spin"></span>
-                </div>
             </div>
 
             @if(count($posts) > 0)
-                <div class="w-full flex flex-col md:flex-row items-center justify-between px-4 py-2">
+                <div class="w-full flex flex-col md:flex-row items-center justify-between border-t border-gray-400 px-4 py-2">
                     <span class="text-sm text-gray-700 font-medium mb-2 md:mb-0">
                         {{ $posts->firstItem() }}-{{ $posts->lastItem() }} of {{ $posts->total() }} results
                     </span>

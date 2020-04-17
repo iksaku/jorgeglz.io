@@ -13,7 +13,7 @@
                 <x-blog.post.preview :post="$post" />
             @endforeach
 
-            <div class="w-full flex items-center justify-center mt-4">
+            <div class="w-full flex items-center justify-center">
                 {{ $posts->onEachSide(2)->links() }}
             </div>
         </div>
