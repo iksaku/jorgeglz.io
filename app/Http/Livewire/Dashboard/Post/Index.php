@@ -50,6 +50,8 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.post.index');
+        return view('livewire.dashboard.post.index', [
+            'posts' => $this->getPostsProperty(),
+        ]);
     }
 }

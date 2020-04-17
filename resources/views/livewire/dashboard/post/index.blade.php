@@ -1,6 +1,10 @@
+<?php
+/** @var Illuminate\Contracts\Pagination\LengthAwarePaginator|App\Post[] $posts */
+?>
+
 <div class="h-full min-w-0 w-full">
-    <div class="w-full p-4 md:px-6">
-        <div class="w-full mb-4 flex items-center justify-between">
+    <div class="w-full md:px-4 py-4 md:px-6">
+        <div class="w-full px-4 md:px-0 mb-4 flex items-center justify-between">
             {{-- Search box --}}
             <label class="w-1/2 sm:w-1/3 flex items-center text-gray-900 bg-white p-2 border border-gray-400 rounded-lg focus-within:shadow-outline">
                 <input
@@ -24,8 +28,8 @@
             </div>
         </div>
 
-        <div class="-mx-4 md:mx-0 md:rounded-lg border border-t-0 shadow">
-            <div class="w-full flex items-center justify-end bg-white md:rounded-t-lg px-4 md:px-6 py-2">
+        <div class="w-full bg-white md:rounded-lg border shadow">
+            <div class="w-full flex items-center justify-end px-4 py-2">
                 <x-dashboard.filters.menu>
                     <label class="w-full flex flex-col">
                         <span class="bg-gray-200 font-medium px-4 py-2 whitespace-no-wrap">
@@ -33,7 +37,7 @@
                         </span>
                         <div class="p-2">
                             <select
-                                class="form-select flex-grow rounded-lg"
+                                class="form-select flex-grow rounded-lg focus:outline-none"
                                 wire:model="trashed"
                             >
                                 @foreach($trashedOptions as $value => $description)
@@ -45,18 +49,13 @@
                 </x-dashboard.filters.menu>
             </div>
 
-            <div class="relative w-full md:rounded-b-lg overflow-x-auto">
-                <div wire:loading class="absolute inset-0">
-                    <div class="relative h-full w-full">
-                        <div class="absolute inset-0 bg-black opacity-25"></div>
-                        <div class="absolute inset-0 flex z-10 items-center justify-center">
-                            <span class="fas fa-sync-alt text-white fa-4x fa-spin">
-                            </span>
-                        </div>
+            <div class="w-full overflow-x-auto border-t border-b">
+                @if(count($posts) < 1)
+                    <div wire:loading.remove class="w-full text-center text-gray-700 font-medium p-4">
+                        Sin Resultados
                     </div>
-                </div>
-
-                <table class="min-w-full tracking-wide rounded-b-lg">
+                @else
+                    <table class="min-w-full tracking-wide">
                     {{-- Table Head --}}
                     <thead class="text-gray-700 text-sm bg-gray-200 font-semibold uppercase">
                     <tr class="border-b border-gray-200">
@@ -68,12 +67,12 @@
                     </thead>
 
                     {{-- Table Body --}}
-                    <tbody class="font-medium text-gray-800 bg-white">
-                    @foreach($this->posts as $post)
+                    <tbody wire:loading.remove class="font-medium text-gray-800">
+                    @foreach($posts as $post)
                         <tr class="border-b-2 last:border-0 border-gray-200">
                             {{-- ID --}}
                             <td class="px-4 md:px-6 py-2 text-center">
-                                {{-- Font Tabular Nums --}}
+                                {{-- TODO: Font Tabular Nums --}}
                                 {{ $post->id }}
                             </td>
 
@@ -131,9 +130,22 @@
                     @endforeach
                     </tbody>
                 </table>
-            </div>
-        </div>
+                @endif
 
-        {{ $this->posts->onEachSide(2)->links() }}
+                <div wire:loading class="w-full text-center text-gray-700 p-4">
+                    <span class="fas fa-sync-alt fa-4x fa-spin"></span>
+                </div>
+            </div>
+
+            @if(count($posts) > 0)
+                <div class="w-full flex flex-col md:flex-row items-center justify-between px-4 py-2">
+                    <span class="text-sm text-gray-700 font-medium mb-2 md:mb-0">
+                        {{ $posts->firstItem() }}-{{ $posts->lastItem() }} of {{ $posts->total() }} results
+                    </span>
+
+                    {{ $posts->onEachSide(1)->links() }}
+                </div>
+            @endif
+        </div>
     </div>
 </div>

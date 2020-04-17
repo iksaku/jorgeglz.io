@@ -1,11 +1,10 @@
 <?php /** @var Illuminate\Contracts\Pagination\LengthAwarePaginator $paginator */ ?>
 
 @if ($paginator->hasPages())
-    <nav class="my-4">
-        <ul class="flex items-center justify-between">
-            {{-- Previous Page Link --}}
+    <nav class="text-gray-700 bg-white border border-gray-400 rounded-lg overflow-hidden">
+        <ul class="flex">
+            {{-- Previous Page --}}
             <li
-                class="w-1/2 mr-2 md:w-1/12"
                 aria-label="@lang('pagination.previous')"
                 @if ($paginator->onFirstPage())
                     aria-disabled="true"
@@ -13,78 +12,62 @@
                     rel="prev"
                 @endif
             >
-                <button
-                    class="pagination control"
-                    @if($paginator->onFirstPage())
-                        disabled
-                    @endif
-                    wire:click.prevent="previousPage"
+                <x-dashboard.pagination.button
+                    type="control"
+                    :disabled="$paginator->onFirstPage()"
+                    wireClick="previousPage"
                 >
-                    <span class="inline-block">&lt;</span>
-                    <span class="inline-block whitespace-no-wrap font-normal md:hidden">
-                        <span>Previous</span>
-                        <span class="hidden sm:inline">Page</span>
-                    </span>
-                </button>
+                    &lt;
+                    <span class="md:hidden ml-2">Previous Page</span>
+                </x-dashboard.pagination.button>
             </li>
 
             {{-- Pagination Elements --}}
             @foreach ($elements as $element)
-                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
-                    <li class="hidden md:block mx-2 w-1/12 cursor-default" aria-disabled="true">
-                        <span class="w-full py-2 flex items-center justify-center">
+                    {{-- Separator (Three dots) --}}
+                    <li class="hidden md:block cursor-default" aria-disabled="true">
+                        <span class="h-full flex items-center justify-center font-medium border-r px-3 py-1">
                             {{ $element }}
                         </span>
                     </li>
-                @endif
-
-                 {{-- Array Of Links --}}
-                @if (is_array($element))
+                @elseif (is_array($element))
+                    {{-- Array of Links --}}
                     @foreach ($element as $page => $url)
                         <li
-                            class="hidden mx-2 w-1/12 md:block"
-                            @if($page === $paginator->currentPage())
-                                aria-current="page"
-                            @endif
+                            class="hidden md:block"
+                            @if ($page === $paginator->currentPage()) aria-current="page" @endif
                         >
-                            <button
-                                class="pagination page flex items-center justify-center"
-                                @if($page === $paginator->currentPage())
-                                    disabled
-                                @endif
-                                wire:click.prevent="gotoPage({{ $page }})"
+                            <x-dashboard.pagination.button
+                                type="page"
+                                :disabled="$page === $paginator->currentPage()"
+                                :wireClick="'gotoPage(' . $page . ')'"
                             >
                                 {{ $page }}
-                            </button>
+                            </x-dashboard.pagination.button>
                         </li>
                     @endforeach
                 @endif
             @endforeach
 
-            {{-- Next Page Link --}}
+            {{-- Next Page --}}
             <li
-                class="w-1/2 ml-2 md:w-1/12"
-                aria-label="@lang('pagination.previous')"
-                @if (!$paginator->hasMorePages())
+                aria-label="@lang('pagination.next')"
+                @if(!$paginator->hasMorePages())
                     aria-disabled="true"
                 @else
                     rel="next"
                 @endif
             >
-                <button
-                    class="pagination control"
-                    @if(!$paginator->hasMorePages())
-                        disabled
-                    @endif
-                    wire:click.prevent="nextPage"
+                <x-dashboard.pagination.button
+                    class="border-none"
+                    type="control"
+                    :disabled="!$paginator->hasMorePages()"
+                    wireClick="nextPage"
                 >
-                    <span class="inline-block whitespace-no-wrap font-normal md:hidden">
-                        <span>Next</span>
-                        <span class="hidden sm:inline">Page</span>
-                    </span>
-                    <span class="inline-block">&gt;</span>
-                </button>
+                    <span class="md:hidden mr-2">Next Page</span>
+                    &gt;
+                </x-dashboard.pagination.button>
             </li>
         </ul>
     </nav>

@@ -11,7 +11,9 @@
         <div class="w-full md:max-w-6xl mx-auto">
             @each('components.blog.post.preview', $posts, 'post')
 
-            {{ $posts->onEachSide(2)->links() }}
+            <div class="w-full flex items-center justify-center mt-4">
+                {{ $posts->onEachSide(2)->links() }}
+            </div>
         </div>
     @else
         <div class="h-full w-full flex items-center justify-center">
