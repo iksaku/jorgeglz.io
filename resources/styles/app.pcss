@@ -6,35 +6,6 @@
     display: none !important;
 }
 
-button.pagination {
-    @apply w-full text-gray-700 text-sm text-center font-bold bg-gray-100 p-2 border border-gray-300 rounded shadow transform duration-200;
-
-    &:hover,
-    &:focus {
-        @apply text-white font-bold bg-blue-500 border-transparent;
-    }
-
-    &:focus {
-        @apply outline-none shadow-outline;
-    }
-
-    &:disabled {
-        @apply border-transparent cursor-not-allowed;
-    }
-
-    &.control {
-        &:disabled {
-            @apply text-gray-700 bg-gray-100 opacity-75;
-        }
-    }
-
-    &.page {
-        &:disabled {
-            @apply text-white font-bold bg-blue-500;
-        }
-    }
-}
-
 @screen md {
     button.pagination.control {
         @apply px-4;

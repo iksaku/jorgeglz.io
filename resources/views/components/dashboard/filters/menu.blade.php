@@ -1,7 +1,7 @@
 <div x-data="{ open: false }" class="flex-shrink-0">
     <button
         @click="open = !open"
-        class="flex items-center text-gray-700 hocus:bg-gray-200 px-4 py-2 border rounded-lg focus:shadow-outline focus:outline-none"
+        class="flex items-center text-gray-700 hocus:text-gray-100 hocus:bg-blue-500 px-4 py-2 border hocus:border-transparent rounded-lg focus:shadow-outline focus:outline-none transition-colors duration-100"
     >
         <span class="fas fa-filter mr-2"></span>
         <span class="align-middle fas fa-angle-down"></span>
