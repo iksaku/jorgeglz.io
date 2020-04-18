@@ -5,14 +5,14 @@
 @section('title', $post->title)
 
 @section('content')
-    <div class="w-full md:max-w-6xl bg-white border border-gray-300 rounded shadow mx-auto">
-        <h1 class="border-b-2 border-gray-300 rounded p-4 pb-2">
-            <span class="text-black text-2xl font-bold">
+    <div class="max-w-6xl w-full bg-white border border-gray-400 md:rounded-lg mx-auto">
+        <div class="border-b border-gray-40 px-4 py-2">
+            <h1 class="text-black text-2xl font-bold">
                 {{ $post->title }}
-            </span>
+            </h1>
 
             <x-blog.post.info :post="$post" />
-        </h1>
+        </div>
 
         <article class="markdown p-4">
             @markdown($post)

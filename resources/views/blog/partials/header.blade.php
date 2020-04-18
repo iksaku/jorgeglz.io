@@ -1,7 +1,9 @@
 <header class="z-40 top-0 inset-x-0 w-full border-b border-gray-300 shadow">
     <nav class="container mx-auto px-4 py-2 flex items-center justify-between">
-        <a href="{{ route('blog.index') }}" aria-label="Go to Blog's index Page"
-           class="block text-black text-2xl font-bold"
+        <a
+            class="text-black text-2xl font-bold focus:shadow-outline focus:outline-none"
+            href="{{ route('blog.index') }}"
+            aria-label="Go to Blog's index Page"
         >
             {{ config('app.name') }}
         </a>

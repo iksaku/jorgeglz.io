@@ -2,23 +2,41 @@
 
 @tailwind base;
 
+html {
+    scroll-behavior: smooth;
+}
+
 [x-cloak] {
     display: none !important;
 }
 
-@screen md {
-    button.pagination.control {
-        @apply px-4;
-    }
-}
-
 .emoji {
-    @apply inline-block align-middle font-emoji text-center h-6 w-6;
+    @apply font-emoji;
 }
 
-.post-preview {
-    & + & {
-        @apply mt-4;
+.tab-row {
+    @apply relative;
+
+    &:before {
+        z-index: 1;
+    }
+
+    &:after {
+        @apply absolute bottom-0 left-0 w-full border-b;
+        content: "";
+        border-color: inherit;
+        z-index: 1;
+    }
+
+    * {
+        @apply border border-b-0 border-transparent;
+        position: relative;
+        z-index: 0;
+
+        &.selected {
+            border-color: inherit;
+            z-index: 2;
+        }
     }
 }
 
@@ -34,7 +52,7 @@
     }
 
     a {
-        @apply cursor-pointer text-blue-700;
+        @apply cursor-pointer text-blue-700 transform duration-100;
 
         &:hover,
         &:focus {
@@ -47,10 +65,12 @@
     }
 
     p {
-        @apply mb-4 font-sans text-justify;
+        @apply font-sans mb-4;
 
-        > code {
-            @apply inline align-middle font-mono text-base bg-gray-300 rounded py-1 px-2;
+        code {
+            @apply inline align-middle font-mono bg-gray-200 rounded;
+            font-size: .9rem;
+            padding: .15rem .3rem;
         }
     }
 
@@ -95,17 +115,17 @@
     }
 
     h1, h2, h3, h4, h5, h6 {
-        @apply font-bold border-b border-gray-300 mt-5 mb-1;
+        @apply font-bold border-b border-gray-300 pb-3 mt-6 mb-4;
+
+        .permalink {
+            @apply hidden transform duration-100;
+        }
 
         &:hover,
         &:focus {
             .permalink {
                 @apply inline text-gray-700 ml-2;
             }
-        }
-
-        .permalink {
-            @apply hidden;
         }
     }
 

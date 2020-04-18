@@ -2,40 +2,35 @@
 
 @props(['post'])
 
-<div class="text-gray-800 text-sm px-1">
-    <div class="inline-block">
-        <div class="py-1">
-            <span class="hidden sm:inline-block align-middle">
-                <img
-                    class="h-6 w-6 rounded-full overflow-hidden mr-1"
-                    src="{{ $post->author->avatar }}"
-                    alt="Avatar of {{ $post->author->name }}"
-                />
-            </span>
-            <span class="text-gray-800 inline-block align-middle">
-                {{ $post->author->name }}
-            </span>
+<div class="w-full flex items-center text-gray-800 text-sm font-medium px-1">
+    <a
+        class="flex items-center text-gray-800 hocus:text-blue-700 focus:shadow-outline focus:outline-none mr-4 transform duration-100"
+        href="{{ route('blog.about') }}"
+    >
+        <img
+            class="hidden sm:block h-6 w-6 rounded-full overflow-hidden mr-1"
+            src="{{ $post->author->avatar }}"
+            alt="Avatar of {{ $post->author->name }}"
+        />
+
+        <div>
+            {{ $post->author->name }}
         </div>
-    </div>
+    </a>
 
-    <span class="mx-1 inline-block">&vert;</span>
-
-    <div class="inline-block">
-        {{--<span
-            class="text-center font-sans inline-block align-middle mr-1"
-        >
-            {!! github_emoji('date') !!}
-        </span>--}}
-        <span class="inline-block align-middle">
-            @if($post->published())
-                <time datetime="{{ $post->published_at->toISOString() }}">
-                    {{ $post->published_at->format('F j, Y') }}
-                </time>
-            @else
-                <span class="text-red-700 italic font-bold">
-                    Draft
-                </span>
-            @endif
+    <div class="flex items-center">
+        <span class="emoji mr-1">
+            {{ emoji('date') }}
         </span>
+
+        @if($post->published())
+            <time datetime="{{ $post->published_at->toISOString() }}">
+                {{ $post->published_at->format('F j, Y') }}
+            </time>
+        @else
+            <span class="text-red-700 italic font-bold">
+                Draft
+            </span>
+        @endif
     </div>
 </div>

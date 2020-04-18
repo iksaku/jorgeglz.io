@@ -1,7 +1,7 @@
 @props(['type', 'disabled' => false, 'href' => null, 'wireClick' => null])
 
 @php
-$class = 'flex items-center justify-center font-medium px-4 py-2 focus:outline-none transition-colors duration-100';
+$class = 'flex items-center justify-center font-medium px-4 py-2 focus:outline-none transform duration-100';
 
 if (!$disabled) {
     $class .= ' hocus:text-gray-100 hocus:bg-blue-500 hocus:border-transparent border-r';

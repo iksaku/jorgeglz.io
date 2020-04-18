@@ -17,23 +17,17 @@ module.exports = {
         boxShadow: [...defaultConfig.variants.boxShadow, 'focus-within', 'hocus'],
         cursor: [...defaultConfig.variants.cursor, 'hover', 'focus'],
         fontWeight: [...defaultConfig.variants.fontWeight, 'hocus'],
+        margin: [...defaultConfig.variants.margin, 'last'],
         textColor: [...defaultConfig.variants.textColor, 'hocus'],
         scale: [...defaultConfig.variants.scale, 'hocus']
     },
     plugins: [
         require('@tailwindcss/custom-forms'),
         plugin(function ({ addVariant, e }) {
-            addVariant('hocus', ({ modifySelectors, separator}) => {
+            addVariant('hocus', ({ modifySelectors, separator }) => {
                 modifySelectors(({ className }) => {
                     return `.${e(`hocus${separator}${className}`)}:hover,.${e(`hocus${separator}${className}`)}:focus`
                 })
-            })
-        }),
-        plugin(function({ addUtilities }) {
-            addUtilities({
-                '.scrolling-smooth': {
-                    'scroll-behavior': 'smooth'
-                }
             })
         })
     ]
