@@ -1,5 +1,14 @@
 const mix = require('laravel-mix')
-require('laravel-mix-purgecss')
+
+const purgecss = require('@fullhuman/postcss-purgecss')({
+    content: [
+        'resources/views/**/*.php'
+    ],
+    defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+    whitelistPatternsChildren: [
+        /markdown$/
+    ]
+})
 
 mix
     .js('resources/js/alpine.js', 'public/js')
@@ -11,17 +20,11 @@ mix
 
     .postCss('resources/styles/app.pcss', 'public/css', [
         require('tailwindcss'),
+        require('postcss-nested'),
         require('autoprefixer'),
-        require('postcss-nested')
+        ...process.env.NODE_ENV === 'production' ? [purgecss] : []
     ])
 
 if (mix.inProduction()) {
-    mix
-        .purgeCss({
-            whitelistPatternsChildren: [
-                /markdown$/,
-                /hljs$/
-            ]
-        })
-        .version()
+    mix.version()
 }
