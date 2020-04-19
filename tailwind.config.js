@@ -7,6 +7,9 @@ module.exports = {
             fontFamily: {
                 sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],
                 emoji: ['Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji']
+            },
+            screens: {
+                'dark': { raw: '(prefers-color-scheme: dark)' }
             }
         }
     },

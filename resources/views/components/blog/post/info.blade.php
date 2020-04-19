@@ -2,9 +2,9 @@
 
 @props(['post'])
 
-<div class="w-full flex items-center text-gray-800 text-sm font-medium px-1">
+<div class="w-full flex items-center text-gray-800 dark:text-gray-200 text-sm font-medium px-1">
     <a
-        class="flex items-center text-gray-800 hocus:text-blue-700 focus:shadow-outline focus:outline-none mr-4 transform duration-100"
+        class="flex items-center hocus:text-blue-500 focus:shadow-outline focus:outline-none mr-4 transform duration-100"
         href="{{ route('blog.about') }}"
     >
         <img
@@ -28,7 +28,7 @@
                 {{ $post->published_at->format('F j, Y') }}
             </time>
         @else
-            <span class="text-red-700 italic font-bold">
+            <span class="text-red-500 italic font-bold">
                 Draft
             </span>
         @endif

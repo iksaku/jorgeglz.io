@@ -53,22 +53,42 @@ html {
         @apply font-sans mb-4;
 
         code {
-            @apply inline align-middle font-mono bg-gray-200 rounded;
+            @apply font-mono bg-gray-200 rounded;
             font-size: .9rem;
             padding: .15rem .3rem;
+
+            @screen dark {
+                & {
+                    @apply bg-gray-700;
+                }
+            }
         }
     }
 
     a {
-        @apply cursor-pointer text-blue-700 transform duration-100;
+        @apply cursor-pointer text-blue-500 transform duration-100;
 
         &:hover,
         &:focus {
-            @apply text-blue-900;
+            @apply text-blue-700;
         }
 
         &:focus {
             @apply outline-none shadow-outline;
+        }
+    }
+
+    pre {
+        @apply mb-4;
+
+        code {
+            @apply text-sm rounded-lg scrolling-touch;
+
+            @screen dark {
+                & {
+                    @apply border border-gray-400;
+                }
+            }
         }
     }
 
@@ -81,6 +101,12 @@ html {
             &:hover,
             &:focus {
                 @apply text-blue-700;
+            }
+
+            @screen dark {
+                & {
+                    @apply text-gray-500;
+                }
             }
 
             svg {
@@ -147,14 +173,6 @@ html {
 
     ul {
         @apply list-disc;
-    }
-
-    pre {
-        @apply mb-4;
-
-        code {
-            @apply text-sm rounded-lg scrolling-touch;
-        }
     }
 }
 
