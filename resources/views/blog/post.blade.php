@@ -4,6 +4,8 @@
 
 @section('title', $post->title)
 
+<x-use.highlight />
+
 @section('content')
     <div class="max-w-6xl w-full bg-white border border-gray-400 md:rounded-lg mx-auto">
         <div class="border-b border-gray-40 px-4 py-2">

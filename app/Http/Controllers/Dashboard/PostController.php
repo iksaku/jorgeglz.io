@@ -13,31 +13,24 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    /**
+    /*
      * Display a listing of the resource.
-     *
-     * @return View
      */
     public function index(): View
     {
         return view('dashboard.posts.index');
     }
 
-    /**
+    /*
      * Show the form for creating a new resource.
-     *
-     * @return View
      */
     public function create(): View
     {
         return view('dashboard.posts.update', ['post' => new Post()]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return RedirectResponse
+    /*
+     * Store a newly created resource in storage
      */
     public function store(Request $request): RedirectResponse
     {
@@ -60,40 +53,30 @@ class PostController extends Controller
         return redirect()->route('dashboard.posts.show', $post);
     }
 
-    /**
+    /*
      * Display the specified resource.
-     *
-     * @param Post $post
-     * @return View
      */
     public function show(Post $post): View
     {
         return view('dashboard.posts.show', compact('post'));
     }
 
-    /**
+    /*
      * Show the form for editing the specified resource.
-     *
-     * @param Post $post
-     * @return View
      */
     public function edit(Post $post): View
     {
         return view('dashboard.posts.update', compact('post'));
     }
 
-    /**
+    /*
      * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Post $post
-     * @return View
      */
-    public function update(Request $request, Post $post): View
+    public function update(Request $request, Post $post): RedirectResponse
     {
         $validated = $request->validate([
-            'title' => 'required|max:255|unique:posts,title,'.$post->id,
-            'content' => 'required|string',
+            'title' => 'sometimes|required|max:255|unique:posts,title,'.$post->id,
+            'content' => 'sometimes|required|string',
             'published_at' => 'sometimes|required|date|nullable',
             //'tags' => '' TODO
         ]);
@@ -102,9 +85,12 @@ class PostController extends Controller
 
         // TODO: Sync Tags
 
-        return view('dashboard.posts.show', compact('post'));
+        return redirect()->route('dashboard.posts.show', compact('post'));
     }
 
+    /*
+     * Restores Post from trash.
+     */
     public function restore(Post $post): RedirectResponse
     {
         if (!$post->restore()) {
@@ -116,11 +102,8 @@ class PostController extends Controller
         return redirect()->route('dashboard.posts.index');
     }
 
-    /**
+    /*
      * Remove the specified resource from storage.
-     *
-     * @param Post $post
-     * @return RedirectResponse
      */
     public function destroy(Post $post): RedirectResponse
     {

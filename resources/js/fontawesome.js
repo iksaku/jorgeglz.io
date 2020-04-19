@@ -3,11 +3,13 @@ import {
     faArchive, faAngleDown,
     faBars,
     faCheck,
-    faEye, faFileAlt, faFilter, faPaperPlane,
-    faPencil,
-    faPlus, faSave, faSyncAlt,
+    faEye,
+    faFileAlt, faFilter,
+    faLink,
+    faPaperPlane, faPencil, faPlus,
+    faSave, faSyncAlt, faSearch,
     faTimes, faTrashRestore,
-    faUser, faSearch
+    faUser
 } from "@fortawesome/pro-solid-svg-icons"
 import {faLinkedinIn, faGithub, faTwitter} from "@fortawesome/free-brands-svg-icons";
 
@@ -16,7 +18,7 @@ library.add(
     faTimes, faBars, faPlus, faEye, faPencil,
     faCheck, faFileAlt, faArchive, faTrashRestore,
     faUser, faPaperPlane, faSave, faSyncAlt,
-    faAngleDown, faFilter, faSearch
+    faAngleDown, faFilter, faSearch, faLink
 );
 
 dom.watch();
