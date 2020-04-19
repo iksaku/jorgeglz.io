@@ -3,10 +3,10 @@
 namespace App\Markdown;
 
 use App\Markdown\Emoji\EmojiExtension;
-use App\Markdown\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Environment;
+use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\InlinesOnly\InlinesOnlyExtension;
 
 class MarkdownConverter

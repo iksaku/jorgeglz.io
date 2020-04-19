@@ -4,6 +4,8 @@
 
 @section('title', __($post->exists ? 'Edit Post' : 'New Post'))
 
+<x-use.highlight />
+
 @section('content')
     {{-- TODO: Alert on unsaved changes --}}
     <form
@@ -17,8 +19,8 @@
         @endif
 
         <div class="w-full flex flex-col md:flex-row items-stretch justify-between px-4 md:px-0 mb-4">
-            <label class="flex-grow pr-2 flex flex-col mb-4 md:mb-0">
-                <span class="text-xl font-medium">Title</span>
+            <label class="flex-grow pr-2 mb-4 md:mb-0">
+                <div class="text-xl font-medium">Title</div>
                 <input
                     required
                     name="title"
@@ -53,20 +55,20 @@
             </div>
         </div>
 
-        <div class="w-full flex flex-col md:flex-row items-start justify-evenly">
-            <div class="flex-grow w-full md:pr-2">
-                <span class="block text-xl font-medium px-4 md:px-0">
+        <div class="flex flex-col md:flex-row items-start justify-evenly">
+            <div class="min-w-0 flex-grow w-full md:pr-2">
+                <div class="text-xl font-medium px-4 md:px-0">
                     Content
-                </span>
+                </div>
                 <livewire:dashboard.post.preview :post="$post" :content="old('content')" />
             </div>
 
             <div class="flex-shrink-0 order-first md:order-none w-full md:w-1/3 md:pl-2">
                 @if($post->exists)
                     <div class="mb-4">
-                        <span class="block text-xl font-medium">
+                        <div class="text-xl font-medium">
                             Details
-                        </span>
+                        </div>
                         <div class="bg-white border border-gray-400 md:rounded-lg overflow-hidden p-4">
                             <div class="mb-2 flex">
                                 <span class="w-1/3">

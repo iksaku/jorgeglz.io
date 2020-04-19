@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Markdown\MarkdownConverter;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use League\CommonMark\Converter;
+use League\CommonMark\CommonMarkConverter;
 
 class MarkdownServiceProvider extends ServiceProvider
 {
@@ -19,12 +19,12 @@ class MarkdownServiceProvider extends ServiceProvider
         $this->app->singleton('markdown', function () {
             return MarkdownConverter::makeConverter();
         });
-        $this->app->alias('markdown', Converter::class);
+        $this->app->alias('markdown', CommonMarkConverter::class);
 
         $this->app->singleton('markdown.inline', function () {
             return MarkdownConverter::makeInlineConverter();
         });
-        $this->app->alias('markdown.inline', Converter::class);
+        $this->app->alias('markdown.inline', CommonMarkConverter::class);
     }
 
     /**
