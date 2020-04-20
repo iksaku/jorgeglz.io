@@ -6,21 +6,21 @@
     <div class="w-full md:px-4 py-4 md:px-6">
         <div class="w-full px-4 md:px-0 mb-4 flex items-center justify-between">
             {{-- Search box --}}
-            <label class="w-1/2 sm:w-1/3 flex items-center text-gray-900 bg-white border border-gray-400 p-2 rounded-lg focus-within:shadow-outline transform duration-100">
+            <label class="w-1/2 sm:w-1/3 flex items-center bg-gray-100 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 p-2 rounded-lg focus-within:shadow-outline transform duration-100">
                 <input
                     type="text"
                     placeholder="Search a Post..."
                     wire:model.debounce.250ms="search"
                     class="flex-grow truncate bg-transparent focus:outline-none"
                 >
-                <span class="flex-shrink-0 fas fa-search text-gray-500 mx-2"></span>
+                <span class="flex-shrink-0 fas fa-search text-gray-500 dark:text-gray-400 mx-2"></span>
             </label>
 
             <div class="flex items-center justify-between">
                 <a
                     role="button"
                     href="{{ route('dashboard.posts.create') }}"
-                    class="text-gray-700 hocus:text-gray-100 text-center bg-white hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 border border-gray-400 hocus:border-transparent rounded-lg transform duration-200"
+                    class="hocus:text-gray-100 text-center bg-gray-100 dark:bg-gray-700 hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 border border-gray-400 dark:border-gray-600 hocus:border-transparent rounded-lg transform duration-200"
                 >
                     <span class="fas fa-plus mr-2"></span>
                     <span class="font-medium">New Post</span>
@@ -28,16 +28,16 @@
             </div>
         </div>
 
-        <div class="w-full bg-white border border-gray-400 md:rounded-lg">
-            <div class="w-full flex items-center justify-end border-b border-gray-400 px-4 py-2">
+        <div class="w-full bg-gray-100 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 md:rounded-lg">
+            <div class="w-full flex items-center justify-end border-b border-gray-400 dark:border-gray-600 px-4 py-2">
                 <x-dashboard.filters.menu>
                     <label class="w-full flex flex-col">
-                        <span class="bg-gray-200 font-medium px-4 py-2 whitespace-no-wrap">
+                        <span class="font-medium whitespace-no-wrap bg-gray-200 dark:bg-gray-800 px-4 py-2">
                             Trashed Posts
                         </span>
                         <div class="p-2">
                             <select
-                                class="form-select flex-grow rounded-lg focus:outline-none transform duration-100"
+                                class="form-select flex-grow dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg focus:outline-none transform duration-100"
                                 wire:model="trashed"
                             >
                                 @foreach($trashedOptions as $value => $description)
@@ -49,20 +49,20 @@
                 </x-dashboard.filters.menu>
             </div>
 
-            <div wire:loading class="w-full text-center text-gray-700 p-4">
+            <div wire:loading class="w-full text-center text-gray-700 dark:text-gray-400 p-4">
                 <span class="fas fa-sync-alt fa-4x fa-spin"></span>
             </div>
 
             <div wire:loading.remove class="w-full overflow-x-auto">
                 @if(count($posts) < 1)
-                    <div class="w-full text-center text-gray-700 font-medium p-4">
+                    <div class="w-full text-center font-medium p-4">
                         Sin Resultados
                     </div>
                 @else
                     <table class="min-w-full tracking-wide">
                     {{-- Table Head --}}
-                    <thead class="text-gray-700 text-sm bg-gray-200 font-semibold uppercase">
-                    <tr class="border-b border-gray-200">
+                    <thead class="text-gray-700 dark:text-gray-400 text-sm bg-gray-200 dark:bg-gray-900 font-semibold uppercase">
+                    <tr class="border-b border-gray-400 dark:border-gray-600">
                         <th class="px-4 md:px-6 py-2 text-center">ID</th>
                         <th class="px-4 md:px-6 py-2 text-center">Status</th>
                         <th class="px-4 md:px-6 py-2 text-left">Title</th>
@@ -71,9 +71,9 @@
                     </thead>
 
                     {{-- Table Body --}}
-                    <tbody class="font-medium text-gray-800">
+                    <tbody class="font-medium">
                     @foreach($posts as $post)
-                        <tr class="border-b-2 last:border-0 border-gray-200">
+                        <tr class="border-b-2 last:border-0 border-gray-200 dark:border-gray-700">
                             {{-- ID --}}
                             <td class="px-4 md:px-6 py-2 text-center">
                                 {{-- TODO: Font Tabular Nums --}}
@@ -97,7 +97,7 @@
                             </td>
 
                             {{-- Actions --}}
-                            <td class="px-4 md:px-6 py-2 text-center text-gray-600 whitespace-no-wrap">
+                            <td class="px-4 md:px-6 py-2 text-center text-gray-600 dark:text-gray-500 whitespace-no-wrap">
                                 @if($post->trashed())
                                     <form action="{{ route('dashboard.posts.restore', $post) }}" method="post">
                                         @csrf
@@ -139,7 +139,7 @@
 
             @if(count($posts) > 0)
                 <div class="w-full flex flex-col md:flex-row items-center justify-between border-t border-gray-400 px-4 py-2">
-                    <span class="text-sm text-gray-700 font-medium mb-2 md:mb-0">
+                    <span class="text-sm text-gray-700 dark:text-gray-400 font-medium mb-2 md:mb-0">
                         {{ $posts->firstItem() }}-{{ $posts->lastItem() }} of {{ $posts->total() }} results
                     </span>
 

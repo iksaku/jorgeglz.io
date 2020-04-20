@@ -1,17 +1,20 @@
 <?php
 
 Auth::routes([
-    'confirm' => true,
-    'register' => false,
-    'reset' => true,
-    'verify' => true,
+    'confirm' => true, // Password Confirmation
+    'register' => false, // Registration
+    'reset' => false, // Password Reset
+    'verify' => false, // Email Verification
 ]);
 
-Route::get('/', 'Blog\IndexController@index')->name('blog.index');
-Route::get('about', 'Blog\AboutController@index')->name('blog.about');
-Route::prefix('posts')->group(function () {
-    Route::get('/', 'Blog\PostController@index');
-    Route::get('{post}', 'Blog\PostController@show')->name('blog.post');
+Route::name('blog.')->group(function () {
+    Route::get('/', 'Blog\IndexController@index')->name('index');
+    Route::get('about', 'Blog\AboutController@index')->name('about');
+
+    Route::prefix('posts')->group(function () {
+        Route::get('/', 'Blog\PostController@index');
+        Route::get('{post}', 'Blog\PostController@show')->name('post');
+    });
 });
 
 Route::prefix('dashboard')->name('dashboard.')->middleware(['auth'])->group(function () {

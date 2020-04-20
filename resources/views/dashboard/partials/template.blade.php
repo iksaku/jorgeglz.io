@@ -8,7 +8,7 @@
     <div
         x-data="bodyData()"
         x-init="init()"
-        class="min-h-screen h-full w-full bg-gray-200 flex overflow-auto"
+        class="min-h-screen h-full w-full flex overflow-auto"
     >
         @include('dashboard.partials.sidebar')
 

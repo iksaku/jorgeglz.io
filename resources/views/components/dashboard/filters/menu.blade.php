@@ -1,7 +1,7 @@
 <div x-data="{ open: false }" class="flex-shrink-0">
     <button
         @click="open = !open"
-        class="flex items-center text-gray-700 hocus:text-gray-100 hocus:bg-blue-500 px-4 py-2 border hocus:border-transparent rounded-lg focus:shadow-outline focus:outline-none transition-colors duration-100"
+        class="flex items-center hocus:text-gray-100 dark:bg-gray-700 hocus:bg-blue-500 px-4 py-2 border border-gray-400 dark:border-gray-600 hocus:border-transparent rounded-lg focus:shadow-outline focus:outline-none transition-colors duration-100"
     >
         <span class="fas fa-filter mr-2"></span>
         <span class="align-middle fas fa-angle-down"></span>
@@ -12,7 +12,7 @@
             x-cloak
             x-show="open"
             @click.away="open = false"
-            class="absolute z-20 top-0 right-0 flex flex-col text-gray-900 bg-white border border-gray-400 rounded-lg shadow-xl mt-1 overflow-x-hidden transform origin-top-right duration-75"
+            class="absolute z-20 top-0 right-0 flex flex-col bg-gray-100 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg shadow-xl mt-1 overflow-x-hidden transform origin-top-right duration-75"
 
             x-transition:enter="ease-out"
             x-transition:enter-start="opacity-0 scale-90"

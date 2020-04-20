@@ -2,31 +2,31 @@
 
 @section('title', 'Login')
 
-@section('message', 'Welcome back!')
+@section('message', 'Welcome!')
 
 @section('contents')
     <form action="{{ route('login') }}" method="post">
         @csrf
 
         <label class="w-full mb-4 block">
-            <span class="text-sm text-gray-700 font-bold">
+            <span class="text-sm font-bold">
                 Email
             </span>
             <input
                 autofocus
                 required
-                type="text"
+                type="email"
                 name="email"
                 value="{{ old('email') }}"
                 placeholder="escanor@human.race"
-                class="form-input border-gray-400 w-full block mt-2 @error('email') border-red-500 @enderror"
+                class="form-input dark:bg-gray-700 border-gray-400 dark:border-transparent w-full block mt-2 @error('email') border-red-500 @enderror"
             >
             <x-input-error property="email" />
         </label>
 
         <label class="w-full mb-4 block">
             <div class="w-full flex items-center justify-between">
-                <span class="text-sm text-gray-700 font-bold">
+                <span class="text-sm font-bold">
                     Password
                 </span>
 
@@ -34,7 +34,7 @@
                     <a
                         href="{{ route('password.request') }}"
                         tabindex="-1"
-                        class="cursor-pointer text-sm font-bold text-blue-500 hover:text-blue-700"
+                        class="cursor-pointer text-sm font-bold text-blue-500 hocus:text-blue-700"
                     >
                         Forgot password?
                     </a>
@@ -46,7 +46,7 @@
                 name="password"
                 placeholder="********"
                 autocomplete="password"
-                class="form-input border-gray-400 w-full block mt-2 @error('password') border-red-500 @enderror"
+                class="form-input dark:bg-gray-700 border-gray-400 dark:border-transparent w-full block mt-2 @error('password') border-red-500 @enderror"
             >
             <x-input-error property="password" />
         </label>
@@ -55,10 +55,10 @@
             <input
                 type="checkbox"
                 name="remember"
-                class="form-checkbox border-gray-400 text-blue-500"
+                class="form-checkbox dark:bg-gray-700 border-gray-400 dark:border-transparent text-blue-500"
                 {{ old('remember', true) ? 'checked' : '' }}
             >
-            <span class="text-sm font-bold text-gray-700 ml-1">
+            <span class="text-sm font-bold ml-1">
                 Remember
             </span>
             <x-input-error property="remember" />

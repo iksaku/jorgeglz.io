@@ -1,5 +1,4 @@
 const defaultConfig = require('tailwindcss/defaultConfig')
-const plugin = require('tailwindcss/plugin')
 
 module.exports = {
     theme: {
@@ -26,12 +25,6 @@ module.exports = {
     },
     plugins: [
         require('@tailwindcss/custom-forms'),
-        plugin(function ({ addVariant, e }) {
-            addVariant('hocus', ({ modifySelectors, separator }) => {
-                modifySelectors(({ className }) => {
-                    return `.${e(`hocus${separator}${className}`)}:hover,.${e(`hocus${separator}${className}`)}:focus`
-                })
-            })
-        })
+        require('./resources/js/tailwind/variants')
     ]
 }

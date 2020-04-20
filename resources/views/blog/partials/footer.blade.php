@@ -1,4 +1,4 @@
-<footer class="z-40 bottom-0 inset-x-0 w-full bg-white dark:bg-gray-800 border-t border-gray-400 dark:border-gray-600">
+<footer class="z-40 bottom-0 inset-x-0 w-full bg-gray-100 dark:bg-gray-800 border-t border-gray-400 dark:border-gray-600">
     <div class="container mx-auto px-4 flex items-center justify-between">
         <section class="text-sm md:text-base font-bold py-4">
             &copy; {{ date('Y') }} Jorge González

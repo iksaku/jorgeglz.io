@@ -8,10 +8,10 @@
 
 <div
     x-ref="sidebar"
-    class="fixed lg:sticky z-50 inset-y-0 left-0 w-64 text-gray-300 bg-gray-800 overflow-y-auto transform -translate-x-full lg:translate-x-0"
+    class="fixed lg:sticky z-50 inset-y-0 left-0 w-64 bg-gray-100 dark:bg-gray-800 border-r border-gray-400 dark:border-gray-600 overflow-y-auto transform -translate-x-full lg:translate-x-0"
     :class="sidebarOpen ? 'translate-x-0 duration-200 ease-out' : '-translate-x-full duration-200 ease-in'"
 >
-    <div class="bg-gray-900 px-8 py-4 shadow-md flex items-center justify-between">
+    <div class="flex items-center justify-between border-b border-gray-400 dark:border-gray-600 px-8 py-4">
         <h2 class="flex-grow md:text-center text-xl md:text-2xl font-semibold">
             {{ config('app.name') }}
         </h2>
@@ -35,7 +35,7 @@
         </div>
 
         <div class="mb-8">
-            <h3 class="text-xs text-gray-500 uppercase tracking-wide mb-2">
+            <h3 class="text-xs text-gray-500 uppercase tracking-wide -mx-1 mb-2">
                 @lang('Resources')
             </h3>
 
