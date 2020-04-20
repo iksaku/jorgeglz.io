@@ -46,7 +46,7 @@
                 </button>
                 <a
                     role="button"
-                    href="{{ route('dashboard.posts.show', $post) }}"
+                    href="{{ route('dashboard.posts.' . ($post->exists ? 'show' : 'index'), $post) }}"
                     class="text-gray-100 whitespace-no-wrap bg-red-500 hocus:bg-red-700 focus:shadow-outline focus:outline-none px-4 py-2 ml-2 rounded-lg transform duration-200"
                 >
                     <span class="fas fa-times mr-2"></span>
