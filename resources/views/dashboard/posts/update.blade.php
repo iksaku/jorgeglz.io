@@ -27,7 +27,7 @@
                     type="text"
                     placeholder="The One Above All"
                     value="{{ old('title', $post->title) }}"
-                    class="w-full bg-white px-4 py-2 focus:shadow-outline focus:outline-none border border-gray-400 focus:border-transparent rounded-lg truncate transform duration-200 @error('title') border-red-500 @enderror"
+                    class="w-full bg-gray-100 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-lg truncate px-4 py-2 focus:shadow-outline focus:outline-none transform duration-200 @error('title') border-red-500 @enderror"
                     @if(!$post->exists)
                         autofocus
                     @endif
@@ -46,7 +46,7 @@
                 </button>
                 <a
                     role="button"
-                    href="{{ route('dashboard.posts.show', $post) }}"
+                    href="{{ route('dashboard.posts.' . ($post->exists ? 'show' : 'index'), $post) }}"
                     class="text-gray-100 whitespace-no-wrap bg-red-500 hocus:bg-red-700 focus:shadow-outline focus:outline-none px-4 py-2 ml-2 rounded-lg transform duration-200"
                 >
                     <span class="fas fa-times mr-2"></span>
@@ -69,7 +69,7 @@
                         <div class="text-xl font-medium">
                             Details
                         </div>
-                        <div class="bg-white border border-gray-400 md:rounded-lg overflow-hidden p-4">
+                        <div class="bg-gray-100 dark:bg-gray-800 font-medium border border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden p-4">
                             <div class="mb-2 flex">
                                 <span class="w-1/3">
                                     Created

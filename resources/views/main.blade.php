@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @stack('styles')
 </head>
-<body class="bg-gray-200 scrolling-touch font-sans">
+<body class="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-gray-100 scrolling-touch font-sans">
     @yield('modals')
 
     @yield('body')

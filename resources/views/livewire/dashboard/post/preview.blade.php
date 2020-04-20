@@ -1,21 +1,21 @@
 <div
     x-cloak
     x-data="{ tab: 'edit' }"
-    class="bg-white border border-gray-400 md:rounded-lg overflow-hidden"
+    class="bg-gray-100 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden"
 >
     {{-- Tabs --}}
-    <div class="tab-row bg-gray-300 flex items-center border-gray-400 p-2 pb-0">
+    <div class="tab-row bg-gray-300 dark:bg-gray-900 flex items-center border-gray-400 dark:border-gray-600 p-2 pb-0">
         <button
-            class="text-gray-700 focus:shadow-outline focus:outline-none text-sm font-medium px-3 py-2 rounded-t-lg transform duration-200"
-            :class="tab === 'edit' ? 'bg-white text-gray-800 selected' : ''"
+            class="focus:outline-none text-sm font-medium px-3 py-2 rounded-t-lg transform duration-200"
+            :class="tab === 'edit' ? 'bg-gray-100 dark:bg-gray-800 selected' : 'text-gray-700 dark:text-gray-400'"
             @click.prevent="tab = 'edit'"
         >
             Write
         </button>
 
         <button
-            class="text-gray-700 focus:shadow-outline focus:outline-none text-sm font-medium px-3 py-2 rounded-t-lg transform duration-200"
-            :class="tab === 'preview' ? 'bg-white text-gray-800 selected' : ''"
+            class="focus:outline-none text-sm font-medium px-3 py-2 rounded-t-lg transform duration-200"
+            :class="tab === 'preview' ? 'bg-gray-100 dark:bg-gray-800 selected' : 'text-gray-700 dark:text-gray-400'"
             @click.prevent="tab = 'preview'"
         >
             Preview

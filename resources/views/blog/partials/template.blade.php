@@ -6,7 +6,7 @@
     <div class="min-h-screen h-full w-full flex flex-col">
         @include('blog.partials.header')
 
-        <div class="flex-grow w-full md:container md:px-4 py-4 md:mx-auto">
+        <div class="flex-grow w-full flex md:container md:px-4 py-4 md:mx-auto">
             @yield('content')
         </div>
 

@@ -10,8 +10,12 @@
 @section('content')
     <div class="h-full min-w-0 w-full md:px-6 py-4">
         <div class="w-full flex flex-col md:flex-row items-center justify-between px-4 md:px-0 mb-4">
-            <a class="hocus:shadow-outline focus:outline-none md:mr-4 mb-4 md:mb-0 transform duration-200" href="{{ route('blog.post', $post) }}">
-                <h2 class="max-w-full text-2xl text-center md:text-left font-medium">
+            <a
+                class="hocus:shadow-outline focus:outline-none md:mr-4 mb-4 md:mb-0 transform duration-200"
+                href="{{ route('blog.post', $post) }}"
+                target="_blank"
+            >
+                <h2 class="max-w-full text-2xl text-center md:text-left font-semibold">
                     {{ $post->title }}
                 </h2>
             </a>
@@ -35,7 +39,7 @@
                     <a
                         role="button"
                         href="{{ route('blog.post', $post) }}"
-                        class="text-gray-700 hocus:text-gray-100 text-center bg-gray-100 hocus:bg-blue-600 focus:shadow-outline focus:outline-none px-4 py-2 border border-gray-400 hocus:border-transparent rounded-lg transform duration-200"
+                        class="hocus:text-gray-100 text-center bg-gray-100 dark:bg-gray-700 hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 border border-gray-400 dark:border-gray-600 hocus:border-transparent rounded-lg transform duration-200"
                     >
                         <span class="fas fa-eye"></span>
                     </a>
@@ -43,7 +47,7 @@
                 <a
                     role="button"
                     href="{{ route('dashboard.posts.edit', $post) }}"
-                    class="text-gray-700 hocus:text-gray-100 text-center bg-gray-100 hocus:bg-purple-600 focus:shadow-outline focus:outline-none px-4 py-2 ml-2 border border-gray-400 hocus:border-transparent rounded-lg transform duration-200"
+                    class="hocus:text-gray-100 text-center bg-gray-100 dark:bg-gray-700 hocus:bg-purple-600 focus:shadow-outline focus:outline-none px-4 py-2 ml-2 border border-gray-400 dark:border-gray-600 hocus:border-transparent rounded-lg transform duration-200"
                 >
                     <span class="fas fa-pencil mr-2"></span>
                     <span class="font-medium">Edit</span>
@@ -67,7 +71,7 @@
                 <div class="text-xl font-medium px-4 md:px-0">
                     Content
                 </div>
-                <div class="bg-gray-100 border border-gray-400 md:rounded-lg overflow-hidden">
+                <div class="bg-gray-100 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden">
                     <article class="markdown p-4">
                         @markdown($post)
                     </article>
@@ -79,7 +83,7 @@
                     <div class="text-xl font-medium px-4 md:px-0">
                         Details
                     </div>
-                    <div class="bg-gray-100 border border-gray-400 md:rounded-lg overflow-hidden p-4">
+                    <div class="bg-gray-100 dark:bg-gray-800 font-medium border border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden p-4">
                         <div class="mb-2 flex">
                             <span class="w-1/3">
                                 Created

@@ -53,18 +53,24 @@ html {
         @apply font-sans mb-4;
 
         code {
-            @apply inline align-middle font-mono bg-gray-200 rounded;
+            @apply font-mono bg-gray-200 rounded;
             font-size: .9rem;
             padding: .15rem .3rem;
+
+            @screen dark {
+                & {
+                    @apply bg-gray-700;
+                }
+            }
         }
     }
 
     a {
-        @apply cursor-pointer text-blue-700 transform duration-100;
+        @apply cursor-pointer text-blue-500 transform duration-100;
 
         &:hover,
         &:focus {
-            @apply text-blue-900;
+            @apply text-blue-700;
         }
 
         &:focus {
@@ -72,15 +78,41 @@ html {
         }
     }
 
+    pre {
+        @apply mb-4;
+
+        code {
+            @apply text-sm rounded-lg scrolling-touch;
+
+            @screen dark {
+                & {
+                    @apply border border-gray-600;
+                }
+            }
+        }
+    }
+
     h1, h2, h3, h4, h5, h6 {
-        @apply relative font-bold border-b border-gray-300 pb-3 mt-6 mb-4;
+        @apply relative font-bold border-b border-gray-400 pb-3 mt-6 mb-4;
+
+        @screen dark {
+            & {
+                @apply border-gray-600;
+            }
+        }
 
         .permalink {
             @apply text-gray-700 ml-2 transform duration-100;
 
             &:hover,
             &:focus {
-                @apply text-blue-700;
+                @apply text-blue-500;
+            }
+
+            @screen dark {
+                & {
+                    @apply text-gray-500;
+                }
             }
 
             svg {
@@ -147,14 +179,6 @@ html {
 
     ul {
         @apply list-disc;
-    }
-
-    pre {
-        @apply mb-4;
-
-        code {
-            @apply text-sm rounded-lg scrolling-touch;
-        }
     }
 }
 

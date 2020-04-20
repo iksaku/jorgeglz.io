@@ -1,5 +1,4 @@
 const defaultConfig = require('tailwindcss/defaultConfig')
-const plugin = require('tailwindcss/plugin')
 
 module.exports = {
     theme: {
@@ -7,6 +6,9 @@ module.exports = {
             fontFamily: {
                 sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],
                 emoji: ['Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji']
+            },
+            screens: {
+                'dark': { raw: '(prefers-color-scheme: dark)' }
             }
         }
     },
@@ -23,12 +25,6 @@ module.exports = {
     },
     plugins: [
         require('@tailwindcss/custom-forms'),
-        plugin(function ({ addVariant, e }) {
-            addVariant('hocus', ({ modifySelectors, separator }) => {
-                modifySelectors(({ className }) => {
-                    return `.${e(`hocus${separator}${className}`)}:hover,.${e(`hocus${separator}${className}`)}:focus`
-                })
-            })
-        })
+        require('./resources/js/tailwind/variants')
     ]
 }
