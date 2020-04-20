@@ -43,7 +43,7 @@
                     x-transition:leave-start="opacity-100 scale-100"
                     x-transition:leave-end="opacity-90 scale-90"
                 >
-                    <span class="md:hidden w-full text-center p-4 border-b whitespace-no-wrap">
+                    <span class="md:hidden w-full text-center p-4 border-b border-gray-400 dark:border-gray-600 whitespace-no-wrap">
                         {{ Auth::user()->name }}
                     </span>
                     <x-auth.logout />
