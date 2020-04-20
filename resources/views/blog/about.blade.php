@@ -13,7 +13,7 @@
 @endpush
 
 @section('content')
-    <div class="md:max-w-6xl bg-gray-100 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 rounded p-4 mx-auto">
+    <div class="md:max-w-6xl bg-gray-100 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 md:rounded-lg p-4 mx-auto">
         <h1 class="text-3xl text-center font-bold mb-4">
             {!! $introductoryPhrase !!}
         </h1>
