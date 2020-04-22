@@ -1,4 +1,4 @@
-<header class="flex-shrink-0 flex items-center justify-between bg-gray-100 dark:bg-gray-800 border-b border-gray-400 dark:border-gray-600 px-4 sm:px-6">
+<header class="flex-shrink-0 flex items-center justify-between bg-gray-100 dark:bg-gray-800 border-b border-gray-400 dark:border-gray-600 px-4 sm:px-6 space-x-6">
     <div class="flex-shrink-0 min-w-0 flex py-4">
         <button
             @click="sidebarOpen = true"
@@ -19,7 +19,7 @@
 
     <div
         x-data="{ open: false }"
-        class="ml-6 flex-grow flex items-center justify-end"
+        class="flex-grow flex items-center justify-end"
     >
         <div>
             <button @click="open = true" class="w-full text-lg font-medium flex items-center focus:shadow-outline focus:outline-none">
@@ -43,7 +43,7 @@
                     x-transition:leave-start="opacity-100 scale-100"
                     x-transition:leave-end="opacity-90 scale-90"
                 >
-                    <span class="md:hidden w-full text-center p-4 border-b whitespace-no-wrap">
+                    <span class="md:hidden w-full text-center p-4 border-b border-gray-400 dark:border-gray-600 whitespace-no-wrap">
                         {{ Auth::user()->name }}
                     </span>
                     <x-auth.logout />

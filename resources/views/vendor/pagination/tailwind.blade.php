@@ -13,12 +13,13 @@
                 @endif
             >
                 <x-pagination.button
+                    class="space-x-2"
                     type="control"
                     :disabled="$paginator->onFirstPage()"
                     :href="$paginator->previousPageUrl()"
                 >
                     &lt;
-                    <span class="md:hidden ml-2">Previous Page</span>
+                    <span class="md:hidden">Previous Page</span>
                 </x-pagination.button>
             </li>
 
@@ -60,11 +61,12 @@
                 @endif
             >
                 <x-pagination.button
+                    class="space-x-2"
                     type="control"
                     :disabled="!$paginator->hasMorePages()"
                     :href="$paginator->nextPageUrl()"
                 >
-                    <span class="md:hidden mr-2">Next Page</span>
+                    <span class="md:hidden">Next Page</span>
                     &gt;
                 </x-pagination.button>
             </li>

@@ -4,14 +4,14 @@
             &copy; {{ date('Y') }} Jorge González
         </section>
 
-        <ul class="flex text-xl md:text-2xl">
+        <ul class="flex text-xl md:text-2xl space-x-4 sm:space-x-8">
             @foreach(config('social') as $name => $data)
-                <li class="ml-4 sm:ml-8">
+                <li>
                     <a
                         href="{{ $data['url'] }}"
-                        aria-label="Open Jorge's {{ $data['name'] ?? ucwords($name) }} profile"
                         target="_blank"
                         rel="noreferrer"
+                        aria-label="Open Jorge's {{ $data['name'] ?? ucwords($name) }} profile"
                     >
                         <span class="fab fa-{{ $name }}"></span>
                     </a>

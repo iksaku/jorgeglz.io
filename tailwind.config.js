@@ -3,6 +3,9 @@ const defaultConfig = require('tailwindcss/defaultConfig')
 module.exports = {
     theme: {
         extend: {
+            borderWidth: {
+
+            },
             fontFamily: {
                 sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],
                 emoji: ['Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji']
@@ -25,6 +28,6 @@ module.exports = {
     },
     plugins: [
         require('@tailwindcss/custom-forms'),
-        require('./resources/js/tailwind/variants')
+        ...require('@iksaku/tailwindcss-plugins')
     ]
 }
