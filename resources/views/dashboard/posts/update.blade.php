@@ -56,7 +56,7 @@
         </div>
 
         <div class="flex flex-col md:flex-row items-start justify-evenly">
-            <div class="min-w-0 flex-grow w-full md:pr-2">
+            <div class="flex-grow min-w-0 w-full md:pr-2">
                 <div class="text-xl font-medium px-4 md:px-0">
                     Content
                 </div>
@@ -69,7 +69,7 @@
                         <div class="text-xl font-medium">
                             Details
                         </div>
-                        <div class="bg-gray-100 dark:bg-gray-800 font-medium border border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden p-4">
+                        <div class="bg-gray-100 dark:bg-gray-800 font-medium md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden p-4">
                             <div class="mb-2 flex">
                                 <span class="w-1/3">
                                     Created

@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="w-full bg-gray-100 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 md:rounded-lg">
+        <div class="w-full bg-gray-100 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg">
             <div class="w-full flex items-center justify-end border-b border-gray-400 dark:border-gray-600 px-4 py-2">
                 <x-dashboard.filters.menu>
                     <label class="w-full flex flex-col">
@@ -138,7 +138,7 @@
             </div>
 
             @if(count($posts) > 0)
-                <div class="w-full flex flex-col md:flex-row items-center justify-between border-t border-gray-400 px-4 py-2">
+                <div class="w-full flex flex-col md:flex-row items-center justify-between border-t border-gray-400 dark:border-gray-600 px-4 py-2">
                     <span class="text-sm text-gray-700 dark:text-gray-400 font-medium mb-2 md:mb-0">
                         {{ $posts->firstItem() }}-{{ $posts->lastItem() }} of {{ $posts->total() }} results
                     </span>

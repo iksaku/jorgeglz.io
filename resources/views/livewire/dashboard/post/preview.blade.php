@@ -1,7 +1,7 @@
 <div
     x-cloak
     x-data="{ tab: 'edit' }"
-    class="bg-gray-100 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden"
+    class="bg-gray-100 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden"
 >
     {{-- Tabs --}}
     <div class="tab-row bg-gray-300 dark:bg-gray-900 flex items-center border-gray-400 dark:border-gray-600 p-2 pb-0">

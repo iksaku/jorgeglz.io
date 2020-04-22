@@ -11,9 +11,9 @@
     <div class="h-full min-w-0 w-full md:px-6 py-4">
         <div class="w-full flex flex-col md:flex-row items-center justify-between px-4 md:px-0 mb-4">
             <a
-                class="hocus:shadow-outline focus:outline-none md:mr-4 mb-4 md:mb-0 transform duration-200"
                 href="{{ route('blog.post', $post) }}"
                 target="_blank"
+                class="hocus:shadow-outline focus:outline-none md:mr-4 mb-4 md:mb-0 transform duration-200"
             >
                 <h2 class="max-w-full text-2xl text-center md:text-left font-semibold">
                     {{ $post->title }}
@@ -39,6 +39,7 @@
                     <a
                         role="button"
                         href="{{ route('blog.post', $post) }}"
+                        target="_blank"
                         class="hocus:text-gray-100 text-center bg-gray-100 dark:bg-gray-700 hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 border border-gray-400 dark:border-gray-600 hocus:border-transparent rounded-lg transform duration-200"
                     >
                         <span class="fas fa-eye"></span>
@@ -67,11 +68,11 @@
         </div>
 
         <div class="flex flex-col md:flex-row items-start justify-evenly">
-            <div class="min-w-0 flex-grow md:pr-2">
+            <div class="flex-grow min-w-0 w-full md:pr-2">
                 <div class="text-xl font-medium px-4 md:px-0">
                     Content
                 </div>
-                <div class="bg-gray-100 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden">
+                <div class="bg-gray-100 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden">
                     <article class="markdown p-4">
                         @markdown($post)
                     </article>
@@ -83,12 +84,12 @@
                     <div class="text-xl font-medium px-4 md:px-0">
                         Details
                     </div>
-                    <div class="bg-gray-100 dark:bg-gray-800 font-medium border border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden p-4">
+                    <div class="bg-gray-100 dark:bg-gray-800 font-medium md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg overflow-hidden p-4">
                         <div class="mb-2 flex">
                             <span class="w-1/3">
                                 Created
                             </span>
-                            <span class="w-2/3">
+                            <span class="w-2/3 text-right xl:text-left">
                                 {{ $post->created_at->format('F j, Y') }}
                             </span>
                         </div>
@@ -96,7 +97,7 @@
                             <span class="w-1/3">
                                 Published
                             </span>
-                            <span class="w-2/3">
+                            <span class="w-2/3 text-right xl:text-left">
                                 @if(!$post->published())
                                     <span class="italic text-gray-700">
                                         Not published yet

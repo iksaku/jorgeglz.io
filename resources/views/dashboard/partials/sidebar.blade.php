@@ -2,7 +2,7 @@
     <div
         @click="sidebarOpen = false"
         @keydown.window.escape="sidebarOpen = false"
-        class="lg:hidden fixed z-40 inset-0 bg-black opacity-25"
+        class="lg:hidden fixed z-40 inset-0 bg-black opacity-50"
     ></div>
 </template>
 
@@ -23,8 +23,8 @@
         </button>
     </div>
 
-    <nav class="font-medium px-8 py-4">
-        <div class="mb-8">
+    <nav class="font-medium px-8 py-4 space-y-8">
+        <div class="space-y-2">
             <x-dashboard.sidebar.item route="blog.index">
                 @lang('Go to Blog')
             </x-dashboard.sidebar.item>
@@ -34,8 +34,8 @@
             </x-dashboard.sidebar.item>
         </div>
 
-        <div class="mb-8">
-            <h3 class="text-xs text-gray-500 uppercase tracking-wide -mx-1 mb-2">
+        <div class="space-y-2">
+            <h3 class="text-xs text-gray-500 uppercase tracking-wide -mx-1">
                 @lang('Resources')
             </h3>
 

@@ -8,7 +8,7 @@
 
 @section('content')
     @if($posts->isNotEmpty())
-        <div class="w-full md:max-w-6xl mx-auto">
+        <div class="w-full md:max-w-6xl mx-auto space-y-4">
             @foreach ($posts as $post)
                 <x-blog.post.preview :post="$post" />
             @endforeach

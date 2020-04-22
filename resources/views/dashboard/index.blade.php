@@ -3,8 +3,8 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <div class="h-full w-full flex items-start justify-start p-4">
-        <x-dashboard.analytic-card class="w-1/3 mr-4">
+    <div class="w-full flex items-start justify-start p-4 space-x-4">
+        <x-dashboard.analytic-card class="w-1/2 md:w-1/3">
             <div class="font-bold">
                 Published Posts
             </div>
@@ -13,7 +13,7 @@
             </div>
         </x-dashboard.analytic-card>
 
-        <x-dashboard.analytic-card class="w-1/3 mr-4">
+        <x-dashboard.analytic-card class="w-1/2 md:w-1/3">
             <div class="font-bold">
                 Draft Posts
             </div>

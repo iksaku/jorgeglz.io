@@ -93,11 +93,22 @@ html {
     }
 
     h1, h2, h3, h4, h5, h6 {
-        @apply relative font-bold border-b border-gray-400 pb-3 mt-6 mb-4;
+        @apply relative font-bold pb-3 mt-6 mb-4;
 
         @screen dark {
             & {
                 @apply border-gray-600;
+            }
+        }
+
+        code {
+            @apply font-mono bg-gray-200 rounded;
+            padding: .15rem .3rem;
+
+            @screen dark {
+                & {
+                    @apply bg-gray-700;
+                }
             }
         }
 
@@ -119,6 +130,10 @@ html {
                 @apply text-sm;
             }
         }
+    }
+
+    h1, h2 {
+        @apply border-b border-gray-400;
     }
 
     h1 {
