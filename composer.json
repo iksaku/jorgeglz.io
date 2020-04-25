@@ -11,10 +11,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
+        "ext-intl": "*",
         "ext-json": "*",
         "facade/ignition": "^2.0",
         "fideloper/proxy": "^4.2",
-        "illuminate/support": "^7.0",
         "knplabs/github-api": "^2.13",
         "laravel/framework": "^7.4",
         "laravel/tinker": "^2.0",
@@ -22,8 +22,7 @@
         "league/commonmark": "^1.4",
         "livewire/livewire": "^1.0",
         "predis/predis": "^1.1",
-        "sausin/laravel-ovh": "^3.0",
-        "ext-intl": "*"
+        "sausin/laravel-ovh": "^4.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

@@ -8,7 +8,7 @@
 <x-use.highlight />
 
 @section('content')
-    <div class="h-full min-w-0 w-full md:px-6 py-4">
+    <div x-data class="h-full min-w-0 w-full md:px-6 py-4">
         <div class="w-full flex flex-col md:flex-row items-center justify-between px-4 md:px-0 mb-4">
             <a
                 href="{{ route('blog.post', $post) }}"
@@ -22,7 +22,12 @@
 
             <div class="flex-shrink-0 flex items-center justify-between">
                 @if(!$post->published())
-                    <form action="{{ route('dashboard.posts.update', $post) }}" method="post">
+                    <form
+                        action="{{ route('dashboard.posts.update', $post) }}"
+                        method="post"
+                        x-ref="publish"
+                        @keydown.ctrl.p.prevent.window="$refs.publish.submit()"
+                    >
                         @csrf
                         @method('patch')
 
@@ -41,6 +46,8 @@
                         href="{{ route('blog.post', $post) }}"
                         target="_blank"
                         class="hocus:text-gray-100 text-center bg-gray-100 dark:bg-gray-700 hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 border border-gray-400 dark:border-gray-600 hocus:border-transparent rounded-lg transform duration-200"
+                        x-ref="view"
+                        @keydown.ctrl.v.prevent.window="$refs.view.click()"
                     >
                         <span class="fas fa-eye"></span>
                     </a>
@@ -49,6 +56,8 @@
                     role="button"
                     href="{{ route('dashboard.posts.edit', $post) }}"
                     class="hocus:text-gray-100 text-center bg-gray-100 dark:bg-gray-700 hocus:bg-purple-600 focus:shadow-outline focus:outline-none px-4 py-2 ml-2 border border-gray-400 dark:border-gray-600 hocus:border-transparent rounded-lg transform duration-200"
+                    x-ref="edit"
+                    @keydown.ctrl.e.prevent.window="$refs.edit.click()"
                 >
                     <span class="fas fa-pencil mr-2"></span>
                     <span class="font-medium">Edit</span>
@@ -58,8 +67,10 @@
                     @csrf
                     <button
                         type="submit"
-                        onclick="return confirm('Are you sure you want to archive post \'{{ $post->title }}\'?')"
                         class="text-gray-100 text-center bg-red-500 hocus:bg-red-700 focus:shadow-outline focus:outline-none px-4 py-2 rounded-lg transform duration-200"
+                        @click="return confirm('Are you sure you want to archive post \'{{ $post->title }}\'?')"
+                        x-ref="delete"
+                        @keydown.ctrl.d.prevent.window="$refs.delete.click()"
                     >
                         <span class="fas fa-archive"></span>
                     </button>

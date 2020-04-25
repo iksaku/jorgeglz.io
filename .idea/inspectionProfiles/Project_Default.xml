@@ -10,7 +10,7 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="33">
+          <list size="39">
             <item index="0" class="java.lang.String" itemvalue="wire:click" />
             <item index="1" class="java.lang.String" itemvalue="x-data" />
             <item index="2" class="java.lang.String" itemvalue="x-click" />
@@ -44,6 +44,12 @@
             <item index="30" class="java.lang.String" itemvalue="wire:click.prevent" />
             <item index="31" class="java.lang.String" itemvalue="@change" />
             <item index="32" class="java.lang.String" itemvalue="wire:model.debounce.250ms" />
+            <item index="33" class="java.lang.String" itemvalue="@keydown.ctrl.e.prevent.window" />
+            <item index="34" class="java.lang.String" itemvalue="@keydown.ctrl.p.prevent.window" />
+            <item index="35" class="java.lang.String" itemvalue="@keydown.ctrl.enter.prevent.window" />
+            <item index="36" class="java.lang.String" itemvalue="@keydown.ctrl.v.prevent.window" />
+            <item index="37" class="java.lang.String" itemvalue="@keydown.ctrl.d.prevent.window" />
+            <item index="38" class="java.lang.String" itemvalue="@keydown.ctrl.s.prevent.window" />
           </list>
         </value>
       </option>
@@ -72,9 +78,6 @@
     </inspection_tool>
     <inspection_tool class="PhpUnused" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <option name="SUPPRESS_GETTERS_AND_SETTERS" value="true" />
-    </inspection_tool>
-    <inspection_tool class="UnterminatedStatementJS" enabled="false" level="WARNING" enabled_by_default="false">
-      <option name="ignoreSemicolonAtEndOfBlock" value="true" />
     </inspection_tool>
     <inspection_tool class="XmlUnboundNsPrefix" enabled="false" level="WARNING" enabled_by_default="false" />
   </profile>

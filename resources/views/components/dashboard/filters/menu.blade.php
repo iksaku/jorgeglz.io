@@ -1,4 +1,8 @@
-<div x-data="{ open: false }" class="flex-shrink-0">
+<div
+    x-data="{ open: false }"
+    class="flex-shrink-0"
+    @keydown.ctrl.e.prevent.window="open = !open"
+>
     <button
         @click="open = !open"
         class="flex items-center hocus:text-gray-100 dark:bg-gray-700 hocus:bg-blue-500 px-4 py-2 border border-gray-400 dark:border-gray-600 hocus:border-transparent rounded-lg focus:shadow-outline focus:outline-none transition-colors duration-100"

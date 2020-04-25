@@ -31,13 +31,19 @@
                 wire:model.lazy="content"
                 class="h-full w-full bg-transparent rounded p-2 focus:shadow-outline @error('content') border border-red-500 @enderror"
                 rows="10"
+                x-ref="editor"
+                @keydown.ctrl.e.prevent.window="tab = 'edit'; $nextTick(() => $refs.editor.focus())"
             ></textarea>
             <x-input-error property="content" />
         </label>
     </div>
 
     {{-- Preview Tab --}}
-    <div x-show="tab === 'preview'" class="p-4">
+    <div
+        x-show="tab === 'preview'"
+        class="p-4"
+        @keydown.ctrl.p.prevent.window="tab = 'preview'"
+    >
         <div wire:loading>
             Loading...
         </div>

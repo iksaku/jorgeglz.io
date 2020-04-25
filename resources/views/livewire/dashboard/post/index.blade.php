@@ -2,7 +2,7 @@
 /** @var Illuminate\Contracts\Pagination\LengthAwarePaginator|App\Post[] $posts */
 ?>
 
-<div class="h-full min-w-0 w-full">
+<div x-data class="h-full min-w-0 w-full">
     <div class="w-full md:px-4 py-4 md:px-6">
         <div class="w-full px-4 md:px-0 mb-4 flex items-center justify-between">
             {{-- Search box --}}
@@ -12,6 +12,8 @@
                     placeholder="Search a Post..."
                     wire:model.debounce.250ms="search"
                     class="flex-grow truncate bg-transparent focus:outline-none"
+                    x-ref="search"
+                    @keydown.ctrl.s.prevent.window="$refs.search.focus()"
                 >
                 <span class="flex-shrink-0 fas fa-search text-gray-500 dark:text-gray-400 mx-2"></span>
             </label>
@@ -21,6 +23,8 @@
                     role="button"
                     href="{{ route('dashboard.posts.create') }}"
                     class="hocus:text-gray-100 text-center bg-gray-100 dark:bg-gray-700 hocus:bg-blue-500 focus:shadow-outline focus:outline-none px-4 py-2 border border-gray-400 dark:border-gray-600 hocus:border-transparent rounded-lg transform duration-200"
+                    x-ref="new"
+                    @keydown.ctrl.p.prevent.window="$refs.new.click()"
                 >
                     <span class="fas fa-plus mr-2"></span>
                     <span class="font-medium">New Post</span>
