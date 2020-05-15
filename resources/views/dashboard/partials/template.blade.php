@@ -6,8 +6,8 @@
 
 @section('body')
     <div
-        x-data="bodyData()"
-        x-init="init()"
+        x-data="{ sidebarOpen: false }"
+        x-init="$refs.sidebar.classList.remove('-translate-x-full')"
         class="min-h-screen h-full w-full flex overflow-auto"
     >
         @include('dashboard.partials.sidebar')
@@ -23,16 +23,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        function bodyData() {
-            return {
-                sidebarOpen: false,
-                init() {
-                    this.$refs.sidebar.classList.remove('-translate-x-full')
-                }
-            }
-        }
-    </script>
-@endpush
