@@ -9,9 +9,11 @@
 @section('content')
     {{-- TODO: Alert on unsaved changes --}}
     <form
+        x-data
         class="h-full min-w-0 w-full md:px-6 py-4"
         action="{{ route('dashboard.posts.' . ($post->exists ? 'update' : 'store'), $post) }}"
         method="post"
+        @keydown.ctrl.enter.prevent.window="$el.submit()"
     >
         @csrf
         @if($post->exists)

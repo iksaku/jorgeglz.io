@@ -1,13 +1,21 @@
 const defaultConfig = require('tailwindcss/defaultConfig')
 
 module.exports = {
+    purge: {
+        content: [
+            'resources/views/**/*.php'
+        ],
+        options: {
+            defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || [],
+            whitelistPatternsChildren: [
+                /markdown$/
+            ]
+        }
+    },
     theme: {
         extend: {
-            borderWidth: {
-
-            },
             fontFamily: {
-                sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],
+                sans: ['Inter var', ...defaultConfig.theme.fontFamily.sans],
                 emoji: ['Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji']
             },
             screens: {

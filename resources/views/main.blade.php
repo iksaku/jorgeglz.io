@@ -14,9 +14,8 @@
     </title>
 
     {{-- Styles --}}
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="dns-prefetch" href="//rsms.me">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
     <link rel="dns-prefetch" href="//secure.gravatar.com">
 
@@ -24,8 +23,6 @@
     @stack('styles')
 </head>
 <body class="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-gray-100 scrolling-touch font-sans">
-    @yield('modals')
-
     @yield('body')
 
     {{-- Scripts --}}

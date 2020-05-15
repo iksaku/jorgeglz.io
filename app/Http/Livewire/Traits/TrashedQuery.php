@@ -6,9 +6,7 @@ trait TrashedQuery
 {
     public string $trashed = 'withTrashed';
 
-    public array
-
- $trashedOptions = [
+    public array $trashedOptions = [
         'withTrashed' => 'Include Trashed Items',
         'withoutTrashed' => 'Exclude Trashed Items',
         'onlyTrashed' => 'Show Trashed Items Only',
@@ -21,7 +19,7 @@ trait TrashedQuery
             ['trashed' => ['except' => 'withTrashed']]
         );
 
-        $this->trashed = request()->query('trashed', $this->trashed);
+        $this->trashed = (string) request()->query('trashed', $this->trashed);
     }
 
     public function updatingTrashed(string $value): void

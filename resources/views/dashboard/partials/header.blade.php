@@ -21,6 +21,7 @@
         x-data="{ open: false }"
         class="flex-grow flex items-center justify-end"
     >
+        {{-- Keep an "empty div" for Full Relative Width --}}
         <div>
             <button @click="open = true" class="w-full text-lg font-medium flex items-center focus:shadow-outline focus:outline-none">
                 <img class="w-10 rounded-full" src="{{ Auth::user()->avatar }}" alt="Avatar of {{ Auth::user()->name }}">

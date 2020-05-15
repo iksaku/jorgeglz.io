@@ -24,14 +24,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\User $author
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
  * @property-read int|null $tags_count
- * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post isDraft()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post isPublished()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Post onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post query()
- * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCreatedAt($value)
