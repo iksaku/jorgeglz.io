@@ -788,9 +788,9 @@
     purgecss "^2.2.0"
 
 "@iksaku/tailwindcss-plugins@^1.0.0":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@iksaku/tailwindcss-plugins/-/tailwindcss-plugins-1.1.7.tgz#0808fdc773b038a31bc7ace6e2bfdcafd83c210f"
-  integrity sha512-YQ7U0OcSPJa8SlrvNzr2lMgiAEXHjgOqFxvZBr9iyrps9kni7qY7JPboG19dGtW4NO3tCQguUJLx642dr638fA==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@iksaku/tailwindcss-plugins/-/tailwindcss-plugins-1.2.1.tgz#345a6154df820421d59a94a12337da16fb42e82e"
+  integrity sha512-3r6dJ6ocvvbQGxYKFkLcdBdSAniq9BQcOX0f2wfCVZb76hAsh13FSR+diRFdNqhCRC0P4g9cnSTpcoanAAjUnQ==
   dependencies:
     lodash "^4.17.15"
 
