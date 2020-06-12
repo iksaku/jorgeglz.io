@@ -14,7 +14,7 @@
     </title>
 
     {{-- Styles --}}
-    <link rel="dns-prefetch" href="//rsms.me">
+    <link rel="dns-prefetch" href="https://rsms.me">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
     <link rel="dns-prefetch" href="//secure.gravatar.com">

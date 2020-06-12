@@ -6,7 +6,6 @@ module.exports = {
             'resources/views/**/*.php'
         ],
         options: {
-            defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || [],
             whitelistPatternsChildren: [
                 /markdown$/
             ]
