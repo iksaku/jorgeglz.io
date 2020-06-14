@@ -3,5 +3,5 @@
 @endpush
 
 @push('scripts')
-    <script src="{{ mix('js/highlight.js') }}" defer></script>
+    <script data-cfasync="false" src="{{ mix('js/highlight.js') }}" defer></script>
 @endpush
