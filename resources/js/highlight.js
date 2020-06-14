@@ -1,6 +1,8 @@
 import hljs from 'highlight.js'
 
-hljs.initHighlightingOnLoad()
+document.addEventListener('DOMContentLoaded', () => {
+    hljs.initHighlightingOnLoad()
+})
 
 document.addEventListener('livewire:load', () => {
     window.livewire.hook('afterDomUpdate', () => {
