@@ -834,9 +834,9 @@
     purgecss "^2.2.0"
 
 "@iksaku/tailwindcss-plugins@^1.0.0":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@iksaku/tailwindcss-plugins/-/tailwindcss-plugins-1.2.2.tgz#24d0f32afa483259fe0991473af5521de5b17315"
-  integrity sha512-peLxu6BhJahHXWXlrWljh8YR0sRfJjldmMarf0wq5EdTu2JPrTm92+aWqHU0+XYQB780UwLpzemYZpY54RQPZA==
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@iksaku/tailwindcss-plugins/-/tailwindcss-plugins-1.2.4.tgz#897d6258618774420e4a28e263f1594427e87dae"
+  integrity sha512-KvkTVSBolTiulUUv72/PKVkyTLtXRfjMvS9Ak9pmwAxDR8l8jwtzQRETxCTfN+J/8U6/1bspfA1/XPCb8AR0YQ==
   dependencies:
     lodash "^4.17.15"
 
@@ -3364,9 +3364,9 @@ hex-color-regex@^1.1.0:
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
 
 highlight.js@^10.0:
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.1.0.tgz#b194ec07ed2ad50a695d0605d5cbe726c9c39d2a"
-  integrity sha512-e8aO/LUHDoxW4ntyKQf0/T3OtIZPhsfTr8XRuOq+FW5VdWEg/UDAeArzKF/22BaNZp6hPi/Zu/XQlTLOGLix3Q==
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.1.1.tgz#691a2148a8d922bf12e52a294566a0d993b94c57"
+  integrity sha512-b4L09127uVa+9vkMgPpdUQP78ickGbHEQTWeBrQFTJZ4/n2aihWOGS0ZoUqAwjVmfjhq/C76HRzkqwZhK4sBbg==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
