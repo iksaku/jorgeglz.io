@@ -7,6 +7,9 @@ use League\CommonMark\Extension\ExtensionInterface;
 
 class EmojiExtension implements ExtensionInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function register(ConfigurableEnvironmentInterface $environment)
     {
         $environment

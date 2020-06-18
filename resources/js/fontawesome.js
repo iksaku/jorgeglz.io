@@ -3,7 +3,7 @@ import {
     faArchive, faAngleDown,
     faBars,
     faCheck,
-    faEye,
+    faEye, faExternalLinkAlt,
     faFileAlt, faFilter,
     faLink,
     faPaperPlane, faPencil, faPlus,
@@ -18,7 +18,7 @@ library.add(
     faTimes, faBars, faPlus, faEye, faPencil,
     faCheck, faFileAlt, faArchive, faTrashRestore,
     faUser, faPaperPlane, faSave, faSyncAlt,
-    faAngleDown, faFilter, faSearch, faLink
+    faAngleDown, faFilter, faSearch, faLink, faExternalLinkAlt
 );
 
 dom.watch();

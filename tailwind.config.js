@@ -17,6 +17,9 @@ module.exports = {
                 sans: ['Inter var', ...defaultConfig.theme.fontFamily.sans],
                 emoji: ['Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji']
             },
+            inset: theme => ({
+                4: theme('spacing.4')
+            }),
             screens: {
                 'dark': { raw: '(prefers-color-scheme: dark)' }
             }
