@@ -21,7 +21,7 @@ class Preview extends Component implements CacheableInterface
     public function getRenderedContentProperty(): string
     {
         if (empty($this->content)) {
-            return '';
+            return '<em class="text-gray-500">No content.</em>';
         }
 
         return markdown($this, false, false);

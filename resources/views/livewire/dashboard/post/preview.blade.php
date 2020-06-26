@@ -23,19 +23,21 @@
     </div>
 
     {{-- Edit Tab --}}
-    <div x-show="tab === 'edit'" class="p-2">
-        <label>
-            <textarea
-                name="content"
-                placeholder="Make those small things unforgettable!"
-                wire:model.lazy="content"
-                class="h-full w-full bg-transparent rounded p-2 focus:shadow-outline @error('content') border border-red-500 @enderror"
-                rows="10"
-                x-ref="editor"
-                @keydown.ctrl.e.prevent.window="tab = 'edit'; $nextTick(() => $refs.editor.focus())"
-            ></textarea>
-            <x-input-error property="content" />
-        </label>
+    <div
+        x-show="tab === 'edit'"
+        class="p-2"
+    >
+        <textarea
+            name="content"
+            aria-label="Post Content Editor"
+            placeholder="Make those small things unforgettable!"
+            wire:model.lazy="content"
+            class="h-full w-full bg-transparent rounded p-2 focus:shadow-outline @error('content') border border-red-500 @enderror"
+            rows="10"
+            x-ref="editor"
+            @keydown.ctrl.e.prevent.window="tab = 'edit'; $nextTick(() => $refs.editor.focus())"
+        ></textarea>
+        <x-input-error property="content" />
     </div>
 
     {{-- Preview Tab --}}
@@ -44,9 +46,10 @@
         class="p-4"
         @keydown.ctrl.p.prevent.window="tab = 'preview'"
     >
-        <div wire:loading>
+        <div class="text-gray-500 italic" wire:loading>
             Loading...
         </div>
+
         <article class="markdown" wire:loading.remove>
             {!! $this->renderedContent !!}
         </article>
