@@ -14,7 +14,6 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter var', ...defaultConfig.theme.fontFamily.sans],
                 emoji: ['Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji']
             },
             inset: theme => ({
@@ -38,6 +37,10 @@ module.exports = {
     },
     plugins: [
         require('@tailwindcss/custom-forms'),
-        ...require('@iksaku/tailwindcss-plugins')
+        require('@iksaku/tailwindcss-plugins/src/borderXY'),
+        require('@iksaku/tailwindcss-plugins/src/hocus'),
+        require('@iksaku/tailwindcss-plugins/src/interFontFamily'),
+        require('@iksaku/tailwindcss-plugins/src/markdown'),
+        require('@iksaku/tailwindcss-plugins/src/smoothScroll'),
     ]
 }

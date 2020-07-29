@@ -1,4 +1,4 @@
-@extends('auth.partials.template')
+@extends('layouts.auth')
 
 @section('title', 'Login')
 

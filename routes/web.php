@@ -12,7 +12,21 @@ Auth::routes([
 
 Route::name('blog.')->group(function () {
     Route::get('/', 'Blog\IndexController@index')->name('index');
-    Route::get('about', 'Blog\AboutController@index')->name('about');
+    Route::get('about', function () {
+        $phrases = [
+            "Still don't know me?",
+            "Haven't we already met?",
+            'So, you want to know more about me...',
+            'This is me... '.emoji('notes'),
+            'Who am I you ask?',
+            'Peeking at my blog without knowing me?',
+            '¿Sabías que hablo Español? '.emoji('mexico'),
+        ];
+
+        return view('blog.about', [
+            'introductoryPhrase' => $phrases[array_rand($phrases, 1)],
+        ]);
+    })->name('about');
 
     Route::prefix('posts')->group(function () {
         Route::get('/', 'Blog\PostController@index');

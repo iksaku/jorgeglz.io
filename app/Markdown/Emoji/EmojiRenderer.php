@@ -19,7 +19,7 @@ class EmojiRenderer implements InlineRendererInterface
         }
 
         return new HtmlElement('span', [
-            'class' => 'emoji',
+            'class' => 'font-emoji',
             'alt' => $inline->getAlt(),
         ], $htmlRenderer->renderInlines($inline->children()), false);
     }

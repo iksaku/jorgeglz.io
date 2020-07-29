@@ -1,9 +1,9 @@
-@extends('main')
+@extends('layouts.base')
 
 @section('body')
     <div class="min-h-screen h-full w-full flex flex-col">
         @auth
-            @include('auth.partials.header')
+            <x-auth.header />
         @endauth
 
         <div class="w-full flex flex-col flex-grow items-center justify-center p-4">
@@ -27,6 +27,6 @@
             </div>
         </div>
 
-        @include('auth.partials.footer')
+        <x-auth.footer />
     </div>
 @endsection

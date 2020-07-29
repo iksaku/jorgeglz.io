@@ -16,7 +16,7 @@ if (!function_exists('markdown')) {
         $cacheTags = ['markdown'];
         if ($inline) $cacheTags[] = 'inline';
 
-        return Cache::tags($cacheTags)->remember(
+        return trim(Cache::tags($cacheTags)->remember(
             $cacheable->getCacheKey(),
             $cache ? now()->addWeek() : 0,
             function() use ($cacheable, $inline) {
@@ -36,7 +36,7 @@ if (!function_exists('markdown')) {
 
                 return $converter->convertToHtml($content);
             }
-        );
+        ));
     }
 }
 
@@ -63,5 +63,16 @@ if (!function_exists('in_route')) {
     function in_route(string $route): bool
     {
         return Str::contains(Route::currentRouteName(), $route);
+    }
+}
+
+if (!function_exists('avatar')) {
+    /**
+     * @param string $email
+     * @return string
+     */
+    function avatar (string $email): string
+    {
+        return 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($email)));
     }
 }

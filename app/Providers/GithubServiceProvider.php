@@ -18,7 +18,7 @@ class GithubServiceProvider extends ServiceProvider
             $client = new Client();
 
             if (!empty(config('social.github.token'))) {
-                $client->authenticate(config('social.github.token'), Client::AUTH_HTTP_TOKEN);
+                $client->authenticate(config('social.github.token'), Client::AUTH_ACCESS_TOKEN);
             }
 
             return $client;

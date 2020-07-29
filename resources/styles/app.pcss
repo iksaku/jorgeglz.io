@@ -1,15 +1,15 @@
 @tailwind base;
 
-html {
-    scroll-behavior: smooth;
+input:invalid, textarea:invalid, select:invalid {
+    box-shadow: none;
 }
+
+@tailwind components;
+
+@tailwind utilities;
 
 [x-cloak] {
     display: none !important;
-}
-
-.emoji {
-    @apply font-emoji;
 }
 
 .tab-row {
@@ -37,7 +37,3 @@ html {
         }
     }
 }
-
-@tailwind components;
-
-@tailwind utilities;

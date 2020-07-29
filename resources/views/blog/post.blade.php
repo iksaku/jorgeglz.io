@@ -1,13 +1,16 @@
 <?php /** @var App\Post $post */ ?>
 
-@extends('blog.partials.template')
+@extends('layouts.blog')
 
 @section('title', $post->title)
+
+<x-meta og="title" :content="$post->title" />
+<x-meta og="description" :content="markdown($post, true)" />
 
 <x-use.highlight />
 
 @section('content')
-    <div class="w-full space-y-4">
+    <div class="max-w-6xl mx-auto space-y-4">
         @auth
             <div class="z-20 sticky top-4 inset-x-0 flex-shrink-0 flex items-center justify-center space-x-4">
                 <a
@@ -35,14 +38,9 @@
                 </form>
             </div>
         @endauth
-        <div class="max-w-6xl w-full bg-gray-100 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg mx-auto">
-            <div class="border-b border-gray-400 dark:border-gray-600 px-4 py-2">
-                <h1 class="text-2xl font-bold">
-                    {{ $post->title }}
-                </h1>
 
-                <x-blog.post.info :post="$post" />
-            </div>
+        <div class="bg-gray-100 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg">
+            <x-blog.post.info :post="$post" :link="false" />
 
             <article class="markdown p-4">
                 @markdown($post)

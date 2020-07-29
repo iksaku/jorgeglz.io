@@ -1,4 +1,4 @@
-@extends('main')
+@extends('layouts.base')
 
 <x-use.alpine />
 <x-use.fontawesome />

@@ -1,4 +1,4 @@
-<header class="z-40 top-0 inset-x-0 w-full bg-gray-100 dark:bg-gray-800 border-b border-gray-400 dark:border-gray-600">
+<header class="w-full bg-gray-100 dark:bg-gray-800 border-b border-gray-400 dark:border-gray-600">
     <nav class="container mx-auto px-4 py-2 flex items-center justify-between">
         <a
             class="text-2xl font-bold focus:shadow-outline focus:outline-none"

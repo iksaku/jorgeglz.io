@@ -2,7 +2,7 @@
 
 @if ($paginator->hasPages())
     <nav class="bg-gray-100 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 rounded-lg overflow-hidden">
-        <ul class="flex">
+        <ul class="flex divide-x divide-gray-400 dark:divide-gray-600">
             {{-- Previous Page --}}
             <li
                 aria-label="@lang('pagination.previous')"
@@ -28,7 +28,7 @@
                 @if (is_string($element))
                     {{-- Separator (Three dots) --}}
                     <li class="hidden md:block cursor-default" aria-disabled="true">
-                        <span class="h-full flex items-center justify-center font-medium border-r px-3 py-1">
+                        <span class="h-full flex items-center justify-center font-medium px-3 py-1">
                             {{ $element }}
                         </span>
                     </li>

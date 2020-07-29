@@ -1,36 +1,45 @@
 <?php /** @var App\Post $post */ ?>
 
-@props(['post'])
+@props(['post', 'link' => true])
 
-<div class="w-full flex items-center text-gray-800 dark:text-gray-300 text-sm font-medium">
-    <a
-        class="flex items-center hocus:text-blue-500 focus:shadow-outline focus:outline-none mr-4 transform duration-100"
-        href="{{ route('blog.about') }}"
-    >
-        <img
-            class="hidden sm:block h-6 w-6 rounded-full overflow-hidden mr-1"
-            src="{{ $post->author->avatar }}"
-            alt="Avatar of {{ $post->author->name }}"
-        />
+<div class="border-b border-gray-400 dark:border-gray-600 px-4 py-2 space-y-2">
+    <h1 class="text-2xl font-bold">
+        @if($link)
+            <a
+                class="hocus:text-blue-500 focus:shadow-outline focus:outline-none"
+                href="{{ route('blog.post', $post->slug) }}"
+            >
+                {{ $post->title }}
+            </a>
+        @else
+            {{ $post->title }}
+        @endif
+    </h1>
 
-        <div>
-            {{ $post->author->name }}
-        </div>
-    </a>
+    <div class="flex items-center text-gray-800 dark:text-gray-300 text-sm md:text-base font-medium space-x-8">
+        <a
+            class="flex items-center hocus:text-blue-500 focus:shadow-outline focus:outline-none space-x-1"
+            href="{{ route('blog.about') }}"
+        >
+            <img
+                class="h-8 w-8 rounded-full"
+                src="{{ $post->author->avatar }}"
+                alt="{{ $post->author->name }}'s Avatar"
+            />
 
-    <div class="flex items-center">
-        <span class="emoji mr-1">
+            <div>
+                {{ $post->author->name }}
+            </div>
+        </a>
+
+        <div class="flex items-center space-x-1">
+        <span class="font-emoji">
             {{ emoji('date') }}
         </span>
 
-        @if($post->published())
             <time datetime="{{ $post->published_at->toISOString() }}">
                 {{ $post->published_at->format('F j, Y') }}
             </time>
-        @else
-            <span class="text-red-500 italic font-bold">
-                Draft
-            </span>
-        @endif
+        </div>
     </div>
 </div>

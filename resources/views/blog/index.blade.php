@@ -1,14 +1,13 @@
 <?php /** @var Illuminate\Contracts\Pagination\LengthAwarePaginator|App\Post[] $posts */ ?>
 
-@extends('blog.partials.template')
+@extends('layouts.blog')
 
-@push('meta')
-    <meta name="description" content="Hello! I have a blog! And here you can find... Well... Blog posts...">
-@endpush
+<x-meta og="title" content="JorgeGlz Blog" />
+<x-meta og="description" content="Hello! I have a blog! And here you can find... Well... Blog posts..." />
 
 @section('content')
     @if($posts->isNotEmpty())
-        <div class="w-full md:max-w-6xl mx-auto space-y-4">
+        <div class="max-w-6xl mx-auto space-y-4">
             @foreach ($posts as $post)
                 <x-blog.post.preview :post="$post" />
             @endforeach
@@ -18,10 +17,8 @@
             </div>
         </div>
     @else
-        <div class="h-full w-full flex items-center justify-center">
-            <p class="text-center text-2xl italic font-light">
-                No posts available right now.
-            </p>
+        <div class="w-full self-center text-center text-2xl italic font-light">
+            No posts available right now.
         </div>
     @endif
 @endsection

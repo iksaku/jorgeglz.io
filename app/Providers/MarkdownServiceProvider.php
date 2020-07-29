@@ -36,7 +36,7 @@ class MarkdownServiceProvider extends ServiceProvider
     {
         Blade::directive('markdown', function ($expression) {
             if ($expression) {
-                return "<?php echo markdown($expression) ?>";
+                return "<?php echo markdown($expression); ?>";
             }
 
             return '<?php ob_start(); ?>';
@@ -45,5 +45,7 @@ class MarkdownServiceProvider extends ServiceProvider
         Blade::directive('endmarkdown', function () {
             return '<?php echo markdown(ob_get_clean()); ?>';
         });
+
+        Blade::directive('emoji', fn (string $expression) => "<?php echo emoji($expression); ?>");
     }
 }
