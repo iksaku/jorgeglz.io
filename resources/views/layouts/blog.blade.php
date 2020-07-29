@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-<x-meta og="image" content="{{ avatar('iksaku@me.com') }}" />
+<x-meta og="image" content="{{ avatar('iksaku@me.com', 512) }}" />
 <x-meta og="url" content="{{ request()->url() }}" />
 <x-meta name="twitter:site" content="@iksaku2" />
 <x-meta name="twitter:card" content="summary" />

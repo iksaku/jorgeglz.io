@@ -72,7 +72,7 @@ if (!function_exists('avatar')) {
      * @param int $size
      * @return string
      */
-    function avatar (string $email, int $size = 512): string
+    function avatar (string $email, int $size = 80): string
     {
         return 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($email)))."?size={$size}";
     }

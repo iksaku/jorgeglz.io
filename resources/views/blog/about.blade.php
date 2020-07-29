@@ -15,7 +15,7 @@
     <div class="flex-grow max-w-6xl flex flex-col mx-auto space-y-8">
         <div class="w-full flex flex-col-reverse md:flex-row md:reverse-order items-center justify-center md:space-x-8 space-y-4 space-y-reverse md:space-y-0">
             <img
-                src="{{ avatar('iksaku@me.com') }}?size=512"
+                src="{{ avatar('iksaku@me.com', 512) }}"
                 alt="Jorge's avatar"
                 class="h-32 w-32 rounded-full"
             >
