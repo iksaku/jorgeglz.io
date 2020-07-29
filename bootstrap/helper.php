@@ -69,10 +69,11 @@ if (!function_exists('in_route')) {
 if (!function_exists('avatar')) {
     /**
      * @param string $email
+     * @param int $size
      * @return string
      */
-    function avatar (string $email): string
+    function avatar (string $email, int $size = 512): string
     {
-        return 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($email)));
+        return 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($email)))."?size={$size}";
     }
 }
