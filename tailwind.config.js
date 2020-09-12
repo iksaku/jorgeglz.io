@@ -33,9 +33,11 @@ module.exports = {
         fontWeight: [...defaultConfig.variants.fontWeight, 'hocus'],
         margin: [...defaultConfig.variants.margin, 'last'],
         textColor: [...defaultConfig.variants.textColor, 'hocus'],
-        scale: [...defaultConfig.variants.scale, 'hocus']
+        scale: [...defaultConfig.variants.scale, 'hocus'],
+        zIndex: [...defaultConfig.variants.zIndex, 'hover']
     },
     plugins: [
+        require('@tailwindcss/ui'),
         require('@tailwindcss/custom-forms'),
         require('@iksaku/tailwindcss-plugins/src/borderXY'),
         require('@iksaku/tailwindcss-plugins/src/hocus'),

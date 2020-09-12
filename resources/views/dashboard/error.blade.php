@@ -1,4 +1,4 @@
-@extends('dashboard.partials.template')
+@extends('layout.dashboard')
 
 @section('title', $code)
 
@@ -7,5 +7,13 @@
 @endpush
 
 @section('content')
-    @include('components.error')
+    <div class="flex-grow flex flex-col items-center justify-center space-y-4">
+        <div class="text-6xl text-center">
+            {{ $code }}
+        </div>
+
+        <div class="text-3xl text-center">
+            {{ $message }}
+        </div>
+    </div>
 @endsection

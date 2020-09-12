@@ -47,6 +47,7 @@ if (!function_exists('emoji')) {
      */
     function emoji(string $emoji): ?string
     {
+        return '';
         if (!Cache::tags('control')->get('emoji', false)) {
             Artisan::call('emoji');
         }

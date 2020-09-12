@@ -2,14 +2,14 @@
 
 namespace App\Observers;
 
-use App\Post;
+use App\Models\Post;
 use Cache;
 
 class PostCacheObserver
 {
     protected function updatePostCache(Post $post): void
     {
-        if ($post->published() && !$post->trashed()) {
+        if ($post->published && !$post->trashed()) {
             markdown($post);
             markdown($post, true);
         }
@@ -24,7 +24,7 @@ class PostCacheObserver
     /**
      * Cache new Post.
      *
-     * @param Post $post
+     * @param \App\Models\Post $post
      * @return void
      */
     public function created(Post $post)
@@ -69,7 +69,7 @@ class PostCacheObserver
     /**
      * Ensures that cached post content is removed.
      *
-     * @param Post $post
+     * @param \App\Models\Post $post
      * @return void
      */
     public function forceDeleted(Post $post)

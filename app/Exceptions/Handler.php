@@ -30,9 +30,17 @@ class Handler extends ExceptionHandler
     {
         $view = (in_route('dashboard') ? 'dashboard' : 'blog').'.error';
 
-        return response()->view($view, [
-            'code' => $e->getStatusCode(),
-            'message' => empty($e->getMessage()) ? 'Resource not found.' : $e->getMessage(),
-        ], $e->getStatusCode(), $e->getHeaders());
+        if (($code = $e->getStatusCode()) === 404) {
+            $message = 'The page you where looking for was not found.';
+        } else {
+            $message = 'Oops, something went wrong.';
+        }
+
+        return response()->view(
+            $view,
+            compact('code', 'message'),
+            $e->getStatusCode(),
+            $e->getHeaders()
+        );
     }
 }

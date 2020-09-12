@@ -1,4 +1,4 @@
-<?php /** @var App\Post $post */ ?>
+<?php /** @var \App\Models\Post $post */ ?>
 
 @extends('dashboard.partials.template')
 
@@ -85,7 +85,7 @@
                                     Published
                                 </span>
                                 <span class="w-2/3">
-                                    @if(!$post->published())
+                                    @if(!$post->published)
                                         <span class="italic text-gray-700">
                                             Not published yet
                                         </span>

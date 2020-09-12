@@ -1,4 +1,4 @@
-<?php /** @var App\Post $post */ ?>
+<?php /** @var \App\Models\Post $post */ ?>
 
 @extends('dashboard.partials.template')
 
@@ -21,7 +21,7 @@
             </a>
 
             <div class="flex-shrink-0 flex items-center justify-between">
-                @if(!$post->published())
+                @if(!$post->published)
                     <form
                         action="{{ route('dashboard.posts.update', $post) }}"
                         method="post"
@@ -109,7 +109,7 @@
                                 Published
                             </span>
                             <span class="w-2/3 text-right xl:text-left">
-                                @if(!$post->published())
+                                @if(!$post->published)
                                     <span class="italic text-gray-700">
                                         Not published yet
                                     </span>
