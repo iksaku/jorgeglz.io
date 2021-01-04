@@ -1,30 +1,42 @@
 {
+  "name": "jorgeglz.io",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "yarn run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "lint": "cross-env NODE_ENV=development node_modules/eslint/bin/eslint.js --ext .js resources/js/",
-    "prod": "yarn run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "yarn run development --watch",
-    "watch-poll": "yarn run watch --watch-poll"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "yarn lint:js"
+  },
+  "lint-staged": {
+    "*.{js,vue}": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@nuxt/content": "^1.9.0",
+    "core-js": "^3.6.5",
+    "nuxt": "^2.14.6"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2",
-    "@fortawesome/free-brands-svg-icons": "^5.11",
-    "@fortawesome/pro-solid-svg-icons": "^5.12.0",
-    "@iksaku/tailwindcss-plugins": "^2.0.1",
-    "@tailwindcss/custom-forms": "^0.2.1",
-    "@tailwindcss/ui": "^0.6.0",
-    "alpinejs": "^2.0",
-    "autoprefixer": "^9.7.6",
-    "cross-env": "^7.0",
-    "highlight.js": "^10.0",
-    "laravel-mix": "^5.0",
-    "nord-highlightjs": "^0.1.0",
-    "postcss-nested": "^4.2.1",
-    "tailwindcss": "^1.4",
-    "vue-template-compiler": "^2.6"
+    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/tailwindcss": "^3.1.0",
+    "autoprefixer": "^9",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "postcss": "^7",
+    "prettier": "^2.1.2",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }
