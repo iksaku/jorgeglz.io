@@ -4,13 +4,14 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'jorgeglz.io',
+    titleTemplate: (title) => (title ? `${title} | JorgeGlz` : 'JorgeGlz'),
+    htmlAttrs: {
+      lang: 'en',
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -37,7 +38,15 @@ export default {
   ],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
-  content: {},
+  content: {
+    liveEdit: false,
+    markdown: {
+      remarkPlugins: ['remark-emoji', 'remark-gfm'],
+    },
+    prism: {
+      theme: 'dracula-prism/css/dracula-prism.css',
+    },
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
