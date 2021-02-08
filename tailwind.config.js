@@ -1,18 +1,33 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
-  purge: [],
-  darkMode: 'media',
+  purge: [
+    './src/pages/**/*.{js,ts,jsx,tsx,md,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,md,mdx}',
+  ],
+
+  presets: [require('@iksaku/tailwindcss-plugins/presets/typography')],
+
+  darkMode: false, // or 'media' or 'class'
+
   theme: {
-    extend: {},
+    colors: {
+      white: colors.white,
+      black: colors.black,
+      gray: colors.coolGray,
+      blue: colors.blue,
+    },
   },
+
   variants: {
     extend: {
-      borderColor: ['hocus'],
       textColor: ['hocus'],
     },
   },
+
   plugins: [
-    require('@iksaku/tailwindcss-plugins/src/hocus'),
-    require('@iksaku/tailwindcss-plugins/src/smoothScroll'),
-    require('@tailwindcss/typography'),
+    require('@iksaku/tailwindcss-plugins/plugins/borderXY'),
+    require('@iksaku/tailwindcss-plugins/plugins/hocus'),
+    require('@iksaku/tailwindcss-plugins/plugins/interFontFamily'),
   ],
 }
