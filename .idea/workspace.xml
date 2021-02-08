@@ -2,46 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2be27c3a-4b3a-4a39-a916-0b422f17e1b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jorgeglz.io.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/postcss.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Post.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/getPosts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/_document.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/posts/implementing-dark-color-scheme-with-tailwindcss/index.mdx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/posts/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/posts/setting-up-laravel-applications-with-caddy-2/index.mdx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/posts/who-am-i/index.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/dependabot.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/semantic.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/ci.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Card.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/FooterComponent.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HeaderComponent.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Icons/GithubIcon.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Icons/LinkedInIcon.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Icons/TwitterIcon.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/PostInfo.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/posts/implementing-dark-color-scheme-with-tailwindcss.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/posts/setting-up-laravel-applications-with-caddy-2.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/posts/who-am-i.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/jsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nuxt.config.js" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/presets/typography-darkmode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/posts/_slug.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/posts/implementing-dark-color-scheme-with-tailwindcss/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/posts/implementing-dark-color-scheme-with-tailwindcss/index.mdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -123,7 +90,7 @@
       <updated>1612561282910</updated>
       <workItem from="1612561291686" duration="141000" />
       <workItem from="1612561489259" duration="19554000" />
-      <workItem from="1612740475699" duration="20844000" />
+      <workItem from="1612740475699" duration="25413000" />
     </task>
     <servers />
   </component>

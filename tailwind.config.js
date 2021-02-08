@@ -6,9 +6,12 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,md,mdx}',
   ],
 
-  presets: [require('@iksaku/tailwindcss-plugins/presets/typography')],
+  presets: [
+    require('@iksaku/tailwindcss-plugins/presets/typography'),
+    require('./src/styles/presets/typography-darkmode'),
+  ],
 
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'media', // or 'media' or 'class'
 
   theme: {
     colors: {

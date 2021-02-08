@@ -29,7 +29,10 @@ module.exports = withBundleAnalyzer({
       {
         loader: '@mdx-js/loader',
         options: {
-          rehypePlugins: [require('rehype-autolink-headings')],
+          rehypePlugins: [
+            require('rehype-autolink-headings'),
+            require('@mapbox/rehype-prism'),
+          ],
           remarkPlugins: [require('remark-gemoji')],
         },
       },

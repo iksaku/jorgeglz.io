@@ -1,3 +1,4 @@
+import 'dracula-prism/css/dracula-prism.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import dayjs from 'dayjs'
@@ -29,13 +30,13 @@ export default function Post({ link, meta, children, isPreview }) {
         <NextSeo title={meta.title} description={meta.description} />
       )}
 
-      <div className="min-w-full w-full bg-gray-50 md:border-x border-y md:rounded-lg divide-y">
+      <div className="min-w-full w-full bg-gray-50 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg divide-y divide-gray-400 dark:divide-gray-600">
         {/* Metadata */}
         <div className="px-4 py-2 space-y-2">
           {/* Title */}
           <h1 className="text-2xl font-semibold">{title}</h1>
 
-          <div className="flex items-center text-gray-700 text-sm md:text-base font-medium space-x-8">
+          <div className="flex items-center text-gray-700 dark:text-gray-300 text-sm md:text-base font-medium space-x-8">
             {/* Author */}
             <Link href="/about">
               <a className="flex items-center space-x-1">
@@ -59,7 +60,9 @@ export default function Post({ link, meta, children, isPreview }) {
         </div>
 
         {/* Content */}
-        <div className="prose prose-lg max-w-none px-4 py-2">{children}</div>
+        <div className="prose dark:prose-light prose-lg max-w-none px-4 py-2">
+          {children}
+        </div>
       </div>
     </>
   )

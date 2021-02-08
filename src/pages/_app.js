@@ -20,10 +20,17 @@ export default function MyApp({ Component, pageProps }) {
         defaultTitle="JorgeGlz"
         titleTemplate="%s | JorgeGlz"
         description="Hello! I have a blog! And here you can find... Well... Blog posts..."
+        openGraph={{
+          type: 'website',
+        }}
+        twitter={{
+          site: '@iksaku2',
+          cardType: 'summary',
+        }}
       />
 
-      <div className="w-full min-h-screen h-full bg-gray-100 flex flex-col">
-        <header className="w-full bg-gray-50 border-b">
+      <div className="w-full min-h-screen h-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col">
+        <header className="w-full bg-gray-50 dark:bg-gray-800 border-b border-gray-400 dark:border-gray-600">
           <nav className="md:container flex items-center justify-between px-4 py-2 md:mx-auto">
             <Link href="/">
               <a className="text-2xl font-semibold">JorgeGlz</a>
