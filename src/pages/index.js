@@ -1,4 +1,4 @@
-import PostsList from './posts'
+import PostsList from './blog'
 
 export default function Home() {
   return <PostsList />

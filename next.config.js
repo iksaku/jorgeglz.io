@@ -9,6 +9,9 @@ module.exports = withBundleAnalyzer({
   images: {
     domains: ['secure.gravatar.com'],
   },
+  redirects: async () => [
+    { source: '/posts/:slug', destination: '/blog/:slug', permanent: true },
+  ],
   webpack: (config, options) => {
     // Import multimedia from post directory to Next's static path
     config.module.rules.push({

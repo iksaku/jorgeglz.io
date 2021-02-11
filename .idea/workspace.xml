@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2be27c3a-4b3a-4a39-a916-0b422f17e1b0" name="Default Changelist" comment="Fix headings on MDX&#10;- Moved Blog layout into its own component, Index will soon convert into an independent landing page.">
+    <list default="true" id="2be27c3a-4b3a-4a39-a916-0b422f17e1b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/blog/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/blog/Layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/blog/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/blog/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/posts/implementing-dark-color-scheme-with-tailwindcss/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/implementing-dark-color-scheme-with-tailwindcss/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/posts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/posts/setting-up-laravel-applications-with-caddy-2/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/setting-up-laravel-applications-with-caddy-2/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/posts/who-am-i/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/who-am-i/index.mdx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +91,8 @@
       <workItem from="1612561489259" duration="19554000" />
       <workItem from="1612740475699" duration="25484000" />
       <workItem from="1612816400481" duration="3279000" />
-      <workItem from="1613023333635" duration="5536000" />
+      <workItem from="1613023333635" duration="6321000" />
+      <workItem from="1613072853158" duration="182000" />
     </task>
     <task id="LOCAL-00001" summary="Fix headings on MDX&#10;- Moved Blog layout into its own component, Index will soon convert into an independent landing page.">
       <created>1613025439449</created>
@@ -112,6 +117,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
