@@ -10,7 +10,7 @@ export default function Post({ link, meta, children, isPreview }) {
   if (link) {
     title = (
       <Link href={link}>
-        <a className="hocus:text-blue-700 dark:hocus:text-blue-500 focus:ring ring-blue-500 focus:outline-none">
+        <a className="block hocus:text-blue-700 dark:hocus:text-blue-500 focus:ring ring-blue-500 focus:outline-none">
           {meta.title}
         </a>
       </Link>
@@ -30,7 +30,7 @@ export default function Post({ link, meta, children, isPreview }) {
         <NextSeo title={meta.title} description={meta.description} />
       )}
 
-      <div className="min-w-full w-full bg-gray-50 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg divide-y divide-gray-400 dark:divide-gray-600">
+      <article className="w-full bg-gray-50 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg divide-y divide-gray-400 dark:divide-gray-600">
         {/* Metadata */}
         <div className="px-4 py-2 space-y-2">
           {/* Title */}
@@ -71,7 +71,7 @@ export default function Post({ link, meta, children, isPreview }) {
             </Link>
           )}
         </div>
-      </div>
+      </article>
     </>
   )
 }
