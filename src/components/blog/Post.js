@@ -10,7 +10,7 @@ export default function Post({ link, meta, children, isPreview }) {
   if (link) {
     title = (
       <Link href={link}>
-        <a className="hocus:text-blue-700 focus:ring ring-blue-500 focus:outline-none">
+        <a className="hocus:text-blue-700 dark:hocus:text-blue-500 focus:ring ring-blue-500 focus:outline-none">
           {meta.title}
         </a>
       </Link>

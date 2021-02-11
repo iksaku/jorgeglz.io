@@ -1,4 +1,5 @@
 const { createLoader } = require('simple-functional-loader')
+const h = require('hastscript')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -30,8 +31,16 @@ module.exports = withBundleAnalyzer({
         loader: '@mdx-js/loader',
         options: {
           rehypePlugins: [
-            require('rehype-autolink-headings'),
             require('@mapbox/rehype-prism'),
+            require('rehype-slug'),
+            [
+              require('rehype-autolink-headings'),
+              {
+                behaviour: 'append',
+                content: () => [h('span', '#')],
+                properties: { className: 'pl-2' },
+              },
+            ],
           ],
           remarkPlugins: [require('remark-gemoji')],
         },
@@ -59,7 +68,7 @@ module.exports = withBundleAnalyzer({
             ...mdx,
             createLoader(function (src) {
               const content = [
-                'import Post from "@/components/Post"',
+                'import Post from "@/components/blog/Post"',
                 'export default Post',
                 src,
               ].join('\n')

@@ -1,5 +1,5 @@
 import { getAllPostPreviews } from '@/getPosts'
-import Post from '../../components/Post'
+import Post from '../../components/blog/Post'
 
 export default function PostsList() {
   return getAllPostPreviews().map(
