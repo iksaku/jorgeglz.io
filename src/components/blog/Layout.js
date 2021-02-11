@@ -15,9 +15,11 @@ export default function BlogLayout({ children }) {
         <div className="max-w-6xl mx-auto space-y-4">{children}</div>
       </div>
 
-      <footer className="w-full bg-gray-50 flex items-center justify-between p-4 sm:px-6 lg:px-8 border-t">
-        Footer
-      </footer>
+      <div className="w-full bg-gray-50 dark:bg-gray-800 border-t border-gray-500 dark:border-gray-600">
+        <footer className="md:container flex items-center justify-between p-4 md:mx-auto">
+          <div className="font-bold">&copy; 2019 - 2021</div>
+        </footer>
+      </div>
     </div>
   )
 }
