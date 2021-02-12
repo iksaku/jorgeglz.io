@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2be27c3a-4b3a-4a39-a916-0b422f17e1b0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/about.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about.mdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/posts/implementing-dark-color-scheme-with-tailwindcss/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/implementing-dark-color-scheme-with-tailwindcss/index.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/posts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/posts/setting-up-laravel-applications-with-caddy-2/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/setting-up-laravel-applications-with-caddy-2/index.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/posts/who-am-i/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/who-am-i/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/blog/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/blog/Layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/blog/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/blog/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/getPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/getPosts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/blog/implementing-dark-color-scheme-with-tailwindcss/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/implementing-dark-color-scheme-with-tailwindcss/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/presets/typography-darkmode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +97,7 @@
       <workItem from="1612740475699" duration="25484000" />
       <workItem from="1612816400481" duration="3279000" />
       <workItem from="1613023333635" duration="6321000" />
-      <workItem from="1613072853158" duration="182000" />
+      <workItem from="1613072853158" duration="21630000" />
     </task>
     <task id="LOCAL-00001" summary="Fix headings on MDX&#10;- Moved Blog layout into its own component, Index will soon convert into an independent landing page.">
       <created>1613025439449</created>

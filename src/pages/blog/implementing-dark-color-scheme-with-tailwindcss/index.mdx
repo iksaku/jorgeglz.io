@@ -58,14 +58,17 @@ All we need to do is extend the responsive configuration in our
 `tailwind.config.js` file like this:
 
 ```js
-theme: {
-  extend: {
-    screens: {
-      dark: {
-        raw: '(prefers-color-scheme: dark)'
-      }
-    }
-  }
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      screens: {
+        dark: {
+          raw: '(prefers-color-scheme: dark)',
+        },
+      },
+    },
+  },
 }
 ```
 

@@ -30,7 +30,7 @@ export default function Post({ link, meta, children, isPreview }) {
         <NextSeo title={meta.title} description={meta.description} />
       )}
 
-      <article className="w-full bg-gray-50 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg divide-y divide-gray-400 dark:divide-gray-600">
+      <div className="w-full bg-gray-50 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg divide-y divide-gray-400 dark:divide-gray-600">
         {/* Metadata */}
         <div className="px-4 py-2 space-y-2">
           {/* Title */}
@@ -60,18 +60,18 @@ export default function Post({ link, meta, children, isPreview }) {
         </div>
 
         {/* Content */}
-        <div className="prose dark:prose-light prose-lg max-w-none px-4 py-2">
+        <article className="prose dark:prose-light prose-lg max-w-none px-4 py-2">
           {children}
 
           {isPreview && (
-            <Link href={link}>
+            <Link href={link} prefetch={false}>
               <a className="focus:ring ring-blue-500 focus:outline-none">
                 Continue Reading →
               </a>
             </Link>
           )}
-        </div>
-      </article>
+        </article>
+      </div>
     </>
   )
 }

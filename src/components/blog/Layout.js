@@ -1,4 +1,22 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+function NavLink({ href, children }) {
+  const router = useRouter()
+  let classNames = 'border-b-2 focus:ring ring-blue-500 focus:outline-none '
+
+  if (router.pathname === href) {
+    classNames += 'border-blue-500'
+  } else {
+    classNames += 'border-transparent hover:border-blue-500'
+  }
+
+  return (
+    <Link href={href}>
+      <a className={classNames}>{children}</a>
+    </Link>
+  )
+}
 
 export default function BlogLayout({ children }) {
   return (
@@ -10,6 +28,17 @@ export default function BlogLayout({ children }) {
               JorgeGlz
             </a>
           </Link>
+
+          <ul className="flex items-center space-x-4">
+            <li>
+              {/*<Link href="/about">
+                <a className="border-b-2 border-transparent hover:border-blue-500 focus:ring ring-blue-500 focus:outline-none">
+                  About
+                </a>
+              </Link>*/}
+              <NavLink href="/about">About</NavLink>
+            </li>
+          </ul>
         </nav>
       </header>
 

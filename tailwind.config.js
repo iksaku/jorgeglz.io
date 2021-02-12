@@ -1,20 +1,25 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: [
-    './src/pages/**/*.{js,ts,jsx,tsx,md,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,md,mdx}',
-  ],
+  purge: {
+    content: [
+      './src/pages/**/*.{js,ts,jsx,tsx,md,mdx}',
+      './src/components/**/*.{js,ts,jsx,tsx,md,mdx}',
+    ],
+    options: {
+      safelist: {
+        deep: [/prose/],
+      },
+    },
+  },
 
-  presets: [
-    require('@iksaku/tailwindcss-plugins/presets/typography'),
-    require('./src/styles/presets/typography-darkmode'),
-  ],
+  presets: [require('@iksaku/tailwindcss-plugins/presets/typography')],
 
   darkMode: 'media', // or 'media' or 'class'
 
   theme: {
     colors: {
+      transparent: 'transparent',
       white: colors.white,
       black: colors.black,
       gray: colors.coolGray,

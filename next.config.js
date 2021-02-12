@@ -1,5 +1,6 @@
 const { createLoader } = require('simple-functional-loader')
 const h = require('hastscript')
+const path = require('path')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -41,18 +42,28 @@ module.exports = withBundleAnalyzer({
               {
                 behaviour: 'append',
                 content: () => [h('span', '#')],
-                properties: { className: 'pl-2' },
               },
             ],
           ],
-          remarkPlugins: [require('remark-gemoji')],
+          remarkPlugins: [
+            require('remark-gemoji'),
+            require('remark-external-links'),
+          ],
         },
       },
     ]
 
-    // Load posts with Preview and Metadata
+    // For non-blog mdx files, just keep it simple.
     config.module.rules.push({
       test: /\.mdx$/,
+      exclude: [path.resolve(__dirname, 'src/pages/blog')],
+      use: mdx,
+    })
+
+    // Load blog posts with Preview and Metadata
+    config.module.rules.push({
+      test: /\.mdx$/,
+      include: [path.resolve(__dirname, 'src/pages/blog')],
       oneOf: [
         // Render Post Previews
         {
