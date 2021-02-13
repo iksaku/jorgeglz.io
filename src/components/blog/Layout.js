@@ -52,21 +52,33 @@ export default function BlogLayout({ children }) {
           <ul className="flex items-center space-x-4 sm:space-x-8">
             <li>
               <Link href="https://github.com/iksaku">
-                <a target="_blank" rel="nofollow noopener noreferrer">
+                <a
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  title="Jorge's Github Profile"
+                >
                   <Github className="w-6 h-6" />
                 </a>
               </Link>
             </li>
             <li>
               <Link href="https://www.linkedin.com/in/jorge-glz">
-                <a target="_blank" rel="nofollow noopener noreferrer">
+                <a
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  title="Jorge's LinkedIn Profile"
+                >
                   <LinkedIn className="w-6 h-6" />
                 </a>
               </Link>
             </li>
             <li>
               <Link href="https://twitter.com/iksaku2">
-                <a target="_blank" rel="nofollow noopener noreferrer">
+                <a
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  title="Jorge's Twitter Profile"
+                >
                   <Twitter className="w-6 h-6" />
                 </a>
               </Link>

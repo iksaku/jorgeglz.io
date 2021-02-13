@@ -42,7 +42,7 @@ export default function Post({ link, meta, children, isPreview }) {
               <a className="flex items-center hocus:text-blue-700 dark:hocus:text-blue-500 focus:ring ring-blue-500 focus:outline-none space-x-1">
                 <div className="relative w-8 h-8 rounded-full overflow-hidden">
                   <Image
-                    src="https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=80"
+                    src="https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=96"
                     alt="Jorge González's Avatar"
                     layout="fill"
                   />
