@@ -22,6 +22,12 @@ export default function MyApp({ Component, pageProps }) {
         description="Hello! I have a blog! And here you can find... Well... Blog posts..."
         openGraph={{
           type: 'website',
+          images: [
+            {
+              url:
+                'https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=512',
+            },
+          ],
         }}
         twitter={{
           site: '@iksaku2',
