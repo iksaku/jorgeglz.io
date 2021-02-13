@@ -1,6 +1,10 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import Github from '@/components/icons/Github'
+import LinkedIn from '@/components/icons/LinkedIn'
+import Twitter from '@/components/icons/Twitter'
+
 function NavLink({ href, children }) {
   const router = useRouter()
   let classNames = 'border-b-2 focus:ring ring-blue-500 focus:outline-none '
@@ -31,11 +35,6 @@ export default function BlogLayout({ children }) {
 
           <ul className="flex items-center space-x-4">
             <li>
-              {/*<Link href="/about">
-                <a className="border-b-2 border-transparent hover:border-blue-500 focus:ring ring-blue-500 focus:outline-none">
-                  About
-                </a>
-              </Link>*/}
               <NavLink href="/about">About</NavLink>
             </li>
           </ul>
@@ -49,6 +48,30 @@ export default function BlogLayout({ children }) {
       <div className="w-full bg-gray-50 dark:bg-gray-800 border-t border-gray-500 dark:border-gray-600">
         <footer className="md:container flex items-center justify-between p-4 md:mx-auto">
           <div className="font-bold">&copy; 2019 - 2021</div>
+
+          <ul className="flex items-center space-x-4 sm:space-x-8">
+            <li>
+              <Link href="https://github.com/iksaku">
+                <a target="_blank" rel="nofollow noopener noreferrer">
+                  <Github className="w-6 h-6" />
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="https://www.linkedin.com/in/jorge-glz">
+                <a target="_blank" rel="nofollow noopener noreferrer">
+                  <LinkedIn className="w-6 h-6" />
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="https://twitter.com/iksaku2">
+                <a target="_blank" rel="nofollow noopener noreferrer">
+                  <Twitter className="w-6 h-6" />
+                </a>
+              </Link>
+            </li>
+          </ul>
         </footer>
       </div>
     </div>
