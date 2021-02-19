@@ -30,6 +30,7 @@ export default function MyApp({ Component, pageProps }) {
           ],
         }}
         twitter={{
+          handle: '@iksaku2',
           site: '@iksaku2',
           cardType: 'summary',
         }}

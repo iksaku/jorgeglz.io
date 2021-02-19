@@ -3,6 +3,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import dayjs from 'dayjs'
 import { NextSeo } from 'next-seo'
+import { MDXProvider } from '@mdx-js/react'
+
+export const mdxComponents = {
+  img: ({ className, style, ...props }) => (
+    <div className={`${className} relative`} style={style}>
+      <Image {...props} layout="fill" objectFit="contain" quality={100} />
+    </div>
+  ),
+}
 
 export default function Post({ link, meta, children, isPreview }) {
   let title = meta.title
@@ -24,11 +33,28 @@ export default function Post({ link, meta, children, isPreview }) {
     formattedDate = date.format('MMMM DD, YYYY')
   }
 
+  const seoOptions = {
+    title: meta.title,
+    description: meta.description,
+  }
+
+  if (meta.image) {
+    seoOptions.openGraph = {
+      images: [
+        {
+          url: meta.image,
+        },
+      ],
+    }
+
+    seoOptions.twitter = {
+      cardType: 'summary_large_image',
+    }
+  }
+
   return (
     <>
-      {!isPreview && (
-        <NextSeo title={meta.title} description={meta.description} />
-      )}
+      {!isPreview && <NextSeo {...seoOptions} />}
 
       <div className="w-full bg-gray-50 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg divide-y divide-gray-400 dark:divide-gray-600">
         {/* Metadata */}
@@ -61,7 +87,7 @@ export default function Post({ link, meta, children, isPreview }) {
 
         {/* Content */}
         <article className="prose dark:prose-light prose-lg max-w-none px-4 py-2">
-          {children}
+          <MDXProvider components={mdxComponents}>{children}</MDXProvider>
 
           {isPreview && (
             <Link href={link} prefetch={false}>
