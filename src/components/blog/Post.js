@@ -39,10 +39,14 @@ export default function Post({ link, meta, children, isPreview }) {
   }
 
   if (meta.image) {
+    if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+      meta.image = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${meta.image}`
+    }
+
     seoOptions.openGraph = {
       images: [
         {
-          url: process.env.VERCEL_URL + meta.image,
+          url: meta.image,
         },
       ],
     }
