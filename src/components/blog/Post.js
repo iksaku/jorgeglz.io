@@ -42,7 +42,7 @@ export default function Post({ link, meta, children, isPreview }) {
     seoOptions.openGraph = {
       images: [
         {
-          url: meta.image,
+          url: process.env.VERCEL_URL + meta.image,
         },
       ],
     }
