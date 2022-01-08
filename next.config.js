@@ -1,39 +1,30 @@
 const { createLoader } = require('simple-functional-loader')
 const h = require('hastscript')
 const path = require('path')
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
 
-module.exports = withBundleAnalyzer({
-  pageExtensions: ['js', 'jsx', 'mdx'],
+module.exports = {
+  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+
   images: {
     domains: ['secure.gravatar.com'],
   },
+
   redirects: async () => [
     { source: '/posts/:slug', destination: '/blog/:slug', permanent: true },
   ],
-  webpack: (config, options) => {
-    // Import multimedia from post directory to Next's static path
-    config.module.rules.push({
-      test: /\.(svg|png|jpe?g|gif|mp4)$/i,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            publicPath: '/_next',
-            name: 'static/media/[name].[hash].[ext]',
-          },
-        },
-      ],
-    })
 
+  webpack: (config, options) => {
     // MDX Configuration
-    const mdx = [
+    const mdxExtension = /\.mdx?$/
+    const mdxConfig = [
       options.defaultLoaders.babel,
       {
         loader: '@mdx-js/loader',
         options: {
+          remarkPlugins: [
+            require('remark-gemoji'),
+            require('remark-external-links'),
+          ],
           rehypePlugins: [
             require('@mapbox/rehype-prism'),
             require('rehype-slug'),
@@ -45,31 +36,29 @@ module.exports = withBundleAnalyzer({
               },
             ],
           ],
-          remarkPlugins: [
-            require('remark-gemoji'),
-            require('remark-external-links'),
-          ],
         },
       },
     ]
 
+    const blogPath = path.resolve(process.cwd(), 'src/pages/blog')
+
     // For non-blog mdx files, just keep it simple.
     config.module.rules.push({
-      test: /\.mdx$/,
-      exclude: [path.resolve(__dirname, 'src/pages/blog')],
-      use: mdx,
+      test: mdxExtension,
+      exclude: [blogPath],
+      use: mdxConfig,
     })
 
     // Load blog posts with Preview and Metadata
     config.module.rules.push({
-      test: /\.mdx$/,
-      include: [path.resolve(__dirname, 'src/pages/blog')],
+      test: mdxExtension,
+      include: [blogPath],
       oneOf: [
         // Render Post Previews
         {
           resourceQuery: /preview/,
           use: [
-            ...mdx,
+            ...mdxConfig,
             createLoader(function (src) {
               const [preview] = src.split('<!--more-->')
               return this.callback(null, preview)
@@ -79,7 +68,7 @@ module.exports = withBundleAnalyzer({
         // Full Post Rendering
         {
           use: [
-            ...mdx,
+            ...mdxConfig,
             createLoader(function (src) {
               const content = [
                 'import Post from "@/components/blog/Post"',
@@ -96,4 +85,4 @@ module.exports = withBundleAnalyzer({
 
     return config
   },
-})
+}

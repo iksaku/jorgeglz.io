@@ -84,13 +84,15 @@ export default function Post({ link, meta, children, isPreview }) {
             {/* Publish Date */}
             <div className="flex items-center space-x-1">
               <span>📅</span>
-              <time dateTime={date.toISOString()}>{formattedDate}</time>
+              <time dateTime={date.toISOString()} suppressHydrationWarning>
+                {formattedDate}
+              </time>
             </div>
           </div>
         </div>
 
         {/* Content */}
-        <article className="prose dark:prose-light prose-lg max-w-none px-4 py-2">
+        <article className="prose dark:prose-invert prose-lg max-w-none px-4 py-2">
           <MDXProvider components={mdxComponents}>{children}</MDXProvider>
 
           {isPreview && (
