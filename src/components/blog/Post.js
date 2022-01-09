@@ -6,9 +6,9 @@ import { NextSeo } from 'next-seo'
 import { MDXProvider } from '@mdx-js/react'
 
 export const mdxComponents = {
-  img: ({ className, style, ...props }) => (
-    <div className={`${className} relative`} style={style}>
-      <Image {...props} layout="fill" objectFit="contain" quality={100} />
+  img: ({ className, ...props }) => (
+    <div className={`${className} relative`}>
+      <Image {...props} placeholder="blur" layout="fill" objectFit="contain" />
     </div>
   ),
 }
@@ -40,13 +40,13 @@ export default function Post({ link, meta, children, isPreview }) {
 
   if (meta.image) {
     if (process.env.NEXT_PUBLIC_VERCEL_URL) {
-      meta.image = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${meta.image}`
+      meta.image.src = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${meta.image.src}`
     }
 
     seoOptions.openGraph = {
       images: [
         {
-          url: meta.image,
+          url: meta.image.src,
         },
       ],
     }
