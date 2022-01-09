@@ -6,10 +6,8 @@ import { NextSeo } from 'next-seo'
 import { MDXProvider } from '@mdx-js/react'
 
 export const mdxComponents = {
-  img: ({ className, ...props }) => (
-    <div className={`${className} relative`}>
-      <Image {...props} placeholder="blur" layout="fill" objectFit="contain" />
-    </div>
+  img: ({ ...props }) => (
+    <Image {...props} layout="responsive" placeholder="blur" />
   ),
 }
 

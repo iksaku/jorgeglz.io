@@ -39,11 +39,9 @@ module.exports = {
   },
 
   plugins: [
-    require('@iksaku/tailwindcss-plugins/plugins/borderXY'),
     require('@iksaku/tailwindcss-plugins/plugins/hocus'),
     require('@iksaku/tailwindcss-plugins/plugins/interFontFamily'),
     require('@iksaku/tailwindcss-plugins/plugins/smoothScroll'),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
   ],
 }
