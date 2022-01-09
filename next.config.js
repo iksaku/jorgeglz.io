@@ -31,8 +31,8 @@ module.exports = {
             [
               require('rehype-autolink-headings'),
               {
-                behaviour: 'append',
-                content: () => [h('span', '#')],
+                behavior: 'wrap',
+                //content: h('span', '#'),
               },
             ],
           ],
