@@ -1,5 +1,4 @@
 const { createLoader } = require('simple-functional-loader')
-const h = require('hastscript')
 const path = require('path')
 
 module.exports = {
@@ -32,7 +31,6 @@ module.exports = {
               require('rehype-autolink-headings'),
               {
                 behavior: 'wrap',
-                //content: h('span', '#'),
               },
             ],
           ],
