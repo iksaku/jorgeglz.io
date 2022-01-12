@@ -47,7 +47,7 @@ export default function BlogLayout({ children }) {
 
       <div className="w-full bg-gray-50 dark:bg-gray-800 border-t border-gray-500 dark:border-gray-600">
         <footer className="md:container flex items-center justify-between p-4 md:mx-auto">
-          <div className="font-bold">&copy; 2019 - 2021</div>
+          <div className="font-bold">&copy; 2019 - 2022</div>
 
           <ul className="flex items-center space-x-4 sm:space-x-8">
             <li>
