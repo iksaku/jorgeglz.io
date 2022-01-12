@@ -2,8 +2,13 @@ import 'dracula-prism/dist/css/dracula-prism.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import dayjs from 'dayjs'
+import dayjs_utc from 'dayjs/plugin/utc'
+import dayjs_timezone from 'dayjs/plugin/timezone'
 import { NextSeo } from 'next-seo'
 import { MDXProvider } from '@mdx-js/react'
+
+dayjs.extend(dayjs_utc)
+dayjs.extend(dayjs_timezone)
 
 export const mdxComponents = {
   img: ({ ...props }) => (
@@ -24,7 +29,7 @@ export default function Post({ link, meta, children, isPreview }) {
     )
   }
 
-  const date = dayjs(meta.date)
+  const date = dayjs(meta.date).tz('America/Monterrey')
   let formattedDate = date.toISOString()
 
   if (process.browser) {
