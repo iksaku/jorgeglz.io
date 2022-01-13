@@ -27,6 +27,7 @@
     "dayjs": "^1.10.7",
     "dracula-prism": "^2.1.1",
     "husky": "^5.1.3",
+    "inter-ui": "^3.19.3",
     "lint-staged": "^10.5.4",
     "next-seo": "^4.28.1",
     "postcss": "^8.4.5",
