@@ -78,7 +78,7 @@ necessary `UPDATE` queries to update our records in our database:
 
 ```php
 foreach ($request_data as $id => $data) {
-  DATABASE::from('customers')
+  DB::from('customers')
     ->where('id', '=', $id)
     ->update($data)
 }
