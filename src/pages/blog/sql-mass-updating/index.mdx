@@ -52,7 +52,7 @@ Where `:id` would be extracted from the endpoint route, and `:name` and
 
 With our imaginary project deployed, there comes a necessity to update the
 information of many customers in a single call, and while the _end
-implementation_ could just fire many API calls, it is not desirable due to the
+client_ could just fire many API calls, it is not desirable due to the
 unnecessary resource consumption of processing many API calls, and the latency
 between our servers and the client sending such API requests.
 
@@ -78,7 +78,7 @@ necessary `UPDATE` queries to update our records in our database:
 
 ```php
 foreach ($request_data as $id => $data) {
-  DB::from('customers')
+  DB::table('customers')
     ->where('id', '=', $id)
     ->update($data)
 }
@@ -113,7 +113,7 @@ with individual sets of data, and let's not talk about dynamically selecting
 columns to update... We can only:
 
 - `UPDATE` each record individually, with its own column-value bindings, or
-- `UPDATE` each all records, setting the same value for all the columns.
+- `UPDATE` all records, setting the same value for all the columns.
 
 In order to achieve this, we can make use of the `CASE` SQL statement, which
 combined with the `UPDATE` statement, can open the doors to:
