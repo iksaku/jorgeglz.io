@@ -33,7 +33,7 @@ export default function remarkExcerpt() {
       return
     }
 
-    file.data.fm['remarkExcerpt'] = tree.children
+    file.data.fm['excerpt'] = tree.children
       .slice(0, excerptIndex)
       .filter((node) => node.type === 'paragraph')
       .map(formatNode)

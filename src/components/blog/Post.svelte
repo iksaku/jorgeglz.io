@@ -1,6 +1,8 @@
-<script>
+<script context="module">
   import { format } from 'date-fns'
+</script>
 
+<script>
   export let title
   export let description
   export let url
