@@ -62,7 +62,7 @@ application list.
 <img
   src={WithoutGnome}
   alt="Searching Tinkerwell in GNOME and having no matching results"
-  class="aspect-[16/9]"
+  class="mx-auto aspect-[16/9]"
   placeholder="blur"
 />
 
@@ -126,8 +126,8 @@ entry:
 
 # Important: You must always reference absolute (full) paths when creating any type of links.
 
-ln -s \
-  /home/<your-user>/Applications/Tinkerwell/beyondcode-tinkerwell.desktop \
+ln -s \\
+  /home/<your-user>/Applications/Tinkerwell/beyondcode-tinkerwell.desktop \\
   /home/<your-user>/.local/share/applications/beyondcode-tinkerwell.desktop
 ```
 
@@ -149,7 +149,7 @@ application menu! 🎉
 <img
   src={WithGnome}
   alt="Searching Tinkerwell in GNOME and having a proper result"
-  class="aspect-[16/9]"
+  class="mx-auto aspect-[16/9]"
 />
 
 Now, besides having such a powerful tool at your disposition, you also have a

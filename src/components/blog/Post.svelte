@@ -16,8 +16,6 @@
 </script>
 
 <svelte:head>
-  <link rel="stylesheet" href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.min.css">
-
   <title>{title}</title>
   <meta name='og:title' content={title}>
   <meta name='description' content={description}>

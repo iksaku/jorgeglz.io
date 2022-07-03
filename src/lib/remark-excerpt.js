@@ -17,24 +17,26 @@ function formatNode(node) {
   })
 }
 
-export const excerpt = () => (tree, file) => {
-  let excerptIndex = null
+export default function remarkExcerpt() {
+  return (tree, file) => {
+    let excerptIndex = null
 
-  visit(tree, 'html', (node) => {
-    if (excerptIndex || !getComment.test(node.value)) {
+    visit(tree, 'html', (node) => {
+      if (excerptIndex || !getComment.test(node.value)) {
+        return
+      }
+
+      excerptIndex = tree.children.indexOf(node)
+    })
+
+    if (!excerptIndex) {
       return
     }
 
-    excerptIndex = tree.children.indexOf(node)
-  })
-
-  if (!excerptIndex) {
-    return
+    file.data.fm['remarkExcerpt'] = tree.children
+      .slice(0, excerptIndex)
+      .filter((node) => node.type === 'paragraph')
+      .map(formatNode)
+      .join(' ')
   }
-
-  file.data.fm['excerpt'] = tree.children
-    .slice(0, excerptIndex)
-    .filter((node) => node.type === 'paragraph')
-    .map(formatNode)
-    .join(' ')
 }

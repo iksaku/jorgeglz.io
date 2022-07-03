@@ -24,7 +24,7 @@ data:
 And our project as an API that allows us to perform basic CRUD operations over
 such data, but let's focus on an easy to consume `update` endpoint:
 
-```http request
+```
 POST /api/customers/{id}
 Content-Type: application/json
 
@@ -58,7 +58,7 @@ To solve this issue, we introduce an `batch` endpoint under our `update`
 endpoint, which will allow our API to resolve the data of many customers in a
 single API request:
 
-```http request
+```
 POST /api/update/batch
 Content-Type: application/json
 
@@ -170,8 +170,8 @@ If you're into Laravel, well, this package is pretty easy to set up, just:
 2. Import the trait into your model of choice:
 
 ```php
-use Illuminate\Database\Eloquent\Model;
-use Iksaku\Laravel\MassUpdate\MassUpdatable;
+use Illuminate\\Database\\Eloquent\\Model;
+use Iksaku\\Laravel\\MassUpdate\\MassUpdatable;
 
 class Customer extends Model
 {
