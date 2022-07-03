@@ -1,4 +1,4 @@
-import { getHighlighter } from 'shiki'
+import shikiHighlighter from './src/lib/shiki/highlighter.js'
 import remarkExcerpt from './src/lib/remark-excerpt.js'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -8,11 +8,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 const config = {
   layout: './src/components/blog/Post.svelte',
   highlight: {
-    highlighter: async (code, lang) => {
-      const html = (await getHighlighter({ theme: 'dracula' })).codeToHtml(code, { lang })
-
-      return `{@html \`${html}\`}`
-    }
+    highlighter: shikiHighlighter
   },
   remarkPlugins: [remarkExcerpt],
   rehypePlugins: [
