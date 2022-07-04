@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-cloudflare'
+import adapter from '@sveltejs/adapter-static'
 import preprocess from 'svelte-preprocess'
 import { mdsvex } from 'mdsvex'
 import mdsvexConfig from './mdsvex.config.js'
@@ -23,6 +23,10 @@ const config = {
     alias: {
       $assets: 'src/assets',
       $components: 'src/components'
+    },
+
+    prerender: {
+      default: true
     }
   }
 }
