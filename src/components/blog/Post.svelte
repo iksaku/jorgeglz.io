@@ -1,32 +1,31 @@
 <script context="module">
+  import { page } from '$app/stores'
+  import { metadata } from '$lib/metadata'
   import { format } from 'date-fns'
 </script>
 
 <script>
   export let title
   export let description
-  export let url
+  export let url = undefined
   export let date = undefined
   export let image = undefined
   export let excerpt = undefined
 
   export let preview = false
 
+  if (url) {
+    url = new URL(url, $page.url.origin).toString()
+  }
+
   if (date) {
     date = new Date(date.replace(/Z$/, '-06:00'))
   }
-</script>
 
-<svelte:head>
-  <title>{title}</title>
-  <meta name='og:title' content={title}>
-  <meta name='description' content={description}>
-  <meta name='og:description' content={description}>
-  <meta name='og:url' content={url}>
-  {#if image}
-    <meta name='og:image' content={image}>
-  {/if}
-</svelte:head>
+  if (!preview) {
+    $metadata = { ...$metadata, title, description, image }
+  }
+</script>
 
 <div
   class='w-full bg-gray-50 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg divide-y divide-gray-400 dark:divide-gray-600'
@@ -67,6 +66,10 @@
             {format(date, 'MMMM do, y')}
           </time>
         </div>
+      {:else}
+        <span class='font-bold uppercase text-red-500 italic'>
+          Draft
+        </span>
       {/if}
     </div>
   </div>

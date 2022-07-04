@@ -28,17 +28,19 @@ export const getPosts = (): PostCollection => {
       ...component.metadata,
       url: getRelativeUrl(file)
     }))
-    .filter((post) => !!post.date)
+    .filter((post) => import.meta.env.DEV || !!post.date)
     .sort((a, b) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      a = new Date(a.date)
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      b = new Date(b.date)
+      // Convert dates to timestamp representation. When undefined or null, convert to 0 (meaning it is a draft)
+      const timestamp = (date: string | null = null) => Number(date ? new Date(date) : null)
+      const dateA = timestamp(a.date)
+      const dateB = timestamp(b.date)
 
-      if (a < b) return 1
-      if (a > b) return -1
-      return 0
+      // Order Drafts first
+      if (!a.date || !b.date) {
+        return Math.sign(dateA - dateB)
+      }
+
+      // Non-drafts order in a descending order
+      return Math.sign(dateB - dateA)
     })
 }

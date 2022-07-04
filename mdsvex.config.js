@@ -6,7 +6,9 @@ import rehypeExternalLinks from 'rehype-external-links'
 
 /** @type {import('mdsvex').MdsvexOptions} */
 const config = {
-  layout: './src/components/blog/Post.svelte',
+  layout: {
+    blog: './src/components/blog/Post.svelte'
+  },
   highlight: {
     highlighter: shikiHighlighter
   },
