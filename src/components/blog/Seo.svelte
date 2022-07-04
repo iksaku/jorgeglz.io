@@ -5,15 +5,16 @@
 </script>
 
 <script>
-  export let title
+  export let title = undefined
   export let description = 'Hello! I have a blog! And here you can find... Well... Blog posts...'
   export let image = 'https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=512'
   export let twitter_card = 'summary'
+
+  title = title ? title + ' | JorgeGlz' : 'JorgeGlz'
 </script>
 
 <MetaTags
   {title}
-  titleTemplate='%s | JorgeGlz'
   {description}
   openGraph={{
     url: $page.url.toString(),
@@ -29,15 +30,3 @@
     cardType: twitter_card
   }}
 />
-
-<!--<svelte:head>
-  <title>{title}</title>
-  <meta name='og:title' content={title}>
-  <meta name='description' content={description}>
-  <meta name='og:description' content={description}>
-  <meta name='og:url' content={$page.url.toString()}>
-  <meta name='og:image' content={image}>
-  <meta name='twitter:card' content={twitter_card}>
-  <meta name='twitter:site' content='@iksaku2'>
-  <meta name='twitter:creator' content='@iksaku2'>
-</svelte:head>-->
