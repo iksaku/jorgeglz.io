@@ -1,6 +1,6 @@
 <script context="module">
+  import Seo from './Seo.svelte'
   import { page } from '$app/stores'
-  import { metadata } from '$lib/metadata'
   import { format } from 'date-fns'
 </script>
 
@@ -21,11 +21,11 @@
   if (date) {
     date = new Date(date.replace(/Z$/, '-06:00'))
   }
-
-  if (!preview) {
-    $metadata = { ...$metadata, title, description, image }
-  }
 </script>
+
+{#if !preview}
+  <Seo {title} {description} {image} twitter_card={image ? 'summary_large_image' : 'summary'} />
+{/if}
 
 <div
   class='w-full bg-gray-50 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg divide-y divide-gray-400 dark:divide-gray-600'

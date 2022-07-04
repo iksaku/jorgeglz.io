@@ -1,5 +1,6 @@
 <script context='module'>
   import BlogLayout from '../components/blog/Layout.svelte'
+  import Seo from '$components/blog/Seo.svelte'
 
   const phrases = [
     'Still don\'t know me?',
@@ -17,6 +18,8 @@
 <script>
   let phrase = phrases[0]
 </script>
+
+<Seo title='About Me' description='Wanna know a little more about me?' />
 
 <BlogLayout>
   <div class='w-full space-y-8'>
