@@ -23,10 +23,6 @@ const config = {
     alias: {
       $assets: 'src/assets',
       $components: 'src/components'
-    },
-
-    prerender: {
-      default: true
     }
   }
 }
