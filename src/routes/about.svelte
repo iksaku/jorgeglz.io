@@ -12,7 +12,9 @@
   ]
 
   const getRandomPhrase = () => phrases[Math.floor(Math.random() * phrases.length)]
+</script>
 
+<script>
   let phrase = phrases[0]
 </script>
 
@@ -38,7 +40,7 @@
         <h3>About Me, Myself, and I</h3>
 
         <p>
-          My name is Jorge González, also known in the online work as _iksaku_. I was born
+          My name is Jorge González, also known in the online work as <i>iksaku</i>. I was born
           in Mexico 🇲🇽 and I like tech-related stuff, food and also sports (not as a
           spectator but as a player, even if I'm not the most proficient one).
         </p>
@@ -50,7 +52,7 @@
         </p>
 
         <p>
-          I'm currently studying a _Software Engineering_ degree, which I hope to finish
+          I'm currently studying a <i>Software Engineering</i> degree, which I hope to finish
           around year 2022. To be honest, I don't feel like I'm learning new tech-related
           stuff at school, since I've been learning and studying on those lands for quite
           some time already, but I'm truly getting better for Math and Physics stuff.
@@ -82,7 +84,8 @@
           <li>💍 I'm married.</li>
           <li>🥋 In Karate, I have got up to Black Belt 1° Dan.</li>
           <li>📚 I started learning English by myself at the age of 6.</li>
-          <li>🎤 I get to learn the lyrics of many songs, but fail to remember the name of the songs, the bands or the
+          <li>
+            🎤 I get to learn the lyrics of many songs, but fail to remember the name of the songs, the bands or the
             artists.
           </li>
           <li>🤢 I don't like onion, garlic nor avocado.</li>
