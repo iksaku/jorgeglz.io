@@ -17,7 +17,11 @@
   {description}
   openGraph={{
     url: $page.url.toString(),
-    images: [image]
+    images: [
+      {
+        url: new URL(image, $page.url.origin).toString()
+      }
+    ]
   }}
   twitter={{
     site: '@iksaku2',
