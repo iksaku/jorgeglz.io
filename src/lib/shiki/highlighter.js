@@ -11,7 +11,7 @@ export default async function shikiHighlighter(code, lang) {
     await shiki.loadLanguage(lang)
   }
 
-  const html = shiki.codeToHtml(code, { lang })
+  const html = shiki.codeToHtml(code, { lang }).replace('class="shiki"', 'class="shiki not-prose"')
 
   return `{@html \`${html}\`}`
 }
