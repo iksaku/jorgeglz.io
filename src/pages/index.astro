@@ -1,0 +1,11 @@
+---
+import Master from "../layouts/Master.astro"
+---
+
+<Master>
+	<meta
+		http-equiv="refresh"
+		content={`0; url=${new URL('/blog', Astro.url).href}`}
+		slot="meta"
+	>
+</Master>

@@ -1,0 +1,35 @@
+---
+import type { PostMetadata } from '../../env'
+import Layout from '../../components/blog/Layout.astro'
+import Post from '../../components/blog/Post.astro';
+import Seo from '../../components/blog/Seo.astro';
+
+const posts: PostMetadata[] = (await Astro.glob('./**/*.mdx'))
+    .map((post) => ({
+        ...post.frontmatter,
+        url: new URL(post.url!, Astro.url).href
+    } as PostMetadata))
+    .filter((post) => import.meta.env.DEV || !!post.date)
+    .sort((a, b) => {
+        // Convert dates to timestamp representation. When undefined or null, convert to 0 (meaning it is a draft)
+        const timestamp = (date: string | null = null) => Number(date ? new Date(date) : null)
+        const dateA = timestamp(a.date)
+        const dateB = timestamp(b.date)
+
+        // Order Drafts first
+        if (!a.date || !b.date) {
+            return Math.sign(dateA - dateB)
+        }
+
+        // Non-drafts order in a descending order
+        return Math.sign(dateB - dateA)
+    })
+---
+
+<Layout>
+    <Seo slot="seo" />
+
+    {posts.map((metadata) => (
+        <Post preview={true} metadata={metadata} />
+    ))}
+</Layout>

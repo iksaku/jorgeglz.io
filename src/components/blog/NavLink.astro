@@ -1,0 +1,15 @@
+---
+const { href } = Astro.props
+
+let classes = ['border-b-2 focus:ring ring-blue-500 focus:outline-none']
+
+if (Astro.url.pathname === href) {
+    classes.push('border-blue-500')
+} else {
+    classes.push('border-transparent hover:border-blue-500')
+}
+---
+
+<a href={href} class={classes.join(' ')}>
+    <slot />
+</a>

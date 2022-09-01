@@ -1,0 +1,46 @@
+---
+export interface Props {
+    title?: string
+    description?: string
+    image?: string
+}
+
+const {
+    title = 'JorgeGlz',
+    description = 'Hello! I have a blog! And here you can find... Well... Blog posts...',
+    image = 'https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=512',
+} = Astro.props
+
+function tabTitle(): string {
+    if (title.endsWith('JorgeGlz')) {
+        return title
+    }
+
+    return `${title} | JorgeGlz`
+}
+
+function twitterCard(): string {
+    if (image.includes('gravatar')) {
+        return 'summary'
+    }
+
+    return 'summary_large_image'
+}
+---
+
+{/* https://twitter.com/jon_neal/status/1428721238071988237 */}
+<title>{tabTitle()}</title>
+<meta name="og:title" content={title}>
+
+<meta name="description" content={description}>
+<meta name="og:description" content={description}>
+
+<meta name="og:url" content={Astro.url}>
+<meta name="og:image" content={image}>
+
+<meta name="twitter:site" content="@iksaku2">
+<meta name="twitter:creator" content="@iksaku2">
+<meta name="twitter:card" content={twitterCard()}>
+
+<link rel="preconnect" href="https://secure.gravatar.com" />
+<link rel="dns-prefetch" href="https://secure.gravatar.com" />

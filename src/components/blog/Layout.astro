@@ -1,0 +1,76 @@
+---
+import MasterLayout from '../../layouts/Master.astro'
+import NavLink from './NavLink.astro'
+
+import GitHub from '../icons/GitHub.astro'
+import LinkedIn from '../icons/LinkedIn.astro'
+import Twitter from '../icons/Twitter.astro'
+---
+
+<MasterLayout class="w-full min-h-screen h-full flex flex-col bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <Fragment slot="meta">
+        <slot name="meta" />
+    </Fragment>
+
+    <header class='w-full bg-gray-50 dark:bg-gray-800 border-b border-gray-400 dark:border-gray-600'>
+        <nav class='md:container flex items-center justify-between px-4 py-2 md:mx-auto'>
+            <a
+                href='/blog'
+                class='block hocus:text-blue-700 dark:hocus:text-blue-500 text-2xl font-semibold focus:ring ring-blue-500 focus:outline-none'
+            >
+                JorgeGlz
+            </a>
+
+            <ul class='flex items-center space-x-4'>
+                <li>
+                    <NavLink href='/about'>About</NavLink>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class='flex-grow md:container md:px-4 py-4 md:mx-auto'>
+        <div class='max-w-6xl mx-auto space-y-4'>
+            <slot />
+        </div>
+    </div>
+
+    <div class='w-full bg-gray-50 dark:bg-gray-800 border-t border-gray-500 dark:border-gray-600'>
+        <footer class='md:container flex items-center justify-between px-4 md:mx-auto'>
+            <div class='font-bold my-4'>&copy; 2019 - 2022</div>
+
+            <ul class='flex items-center space-x-4 sm:space-x-8'>
+                <li>
+                    <a
+                        href='https://github.com/iksaku'
+                        target='_blank'
+                        rel='nofollow noopener noreferrer'
+                        title="Jorge's Github Profile"
+                    >
+                        <GitHub class='w-8 h-8' />
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href='https://www.linkedin.com/in/jorge-glz'
+                        target='_blank'
+                        rel='nofollow noopener noreferrer'
+                        title="Jorge's LinkedIn Profile"
+                    >
+                        <LinkedIn class='w-8 h-8' />
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href='https://twitter.com/iksaku2'
+                        target='_blank'
+                        rel='nofollow noopener noreferrer'
+                        title="Jorge's Twitter Profile"
+                    >
+                        <Twitter class='w-8 h-8' />
+                    </a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</MasterLayout>
