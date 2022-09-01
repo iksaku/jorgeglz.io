@@ -27,7 +27,7 @@ const posts: PostMetadata[] = (await Astro.glob('./**/*.mdx'))
 ---
 
 <Layout>
-    <Seo slot="seo" />
+    <Seo slot="meta" />
 
     {posts.map((metadata) => (
         <Post preview={true} metadata={metadata} />
