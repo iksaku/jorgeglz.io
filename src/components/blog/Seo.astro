@@ -36,7 +36,7 @@ function twitterCard(): string {
 <meta name="og:description" content={description}>
 
 <meta name="og:url" content={Astro.url}>
-<meta name="og:image" content={image}>
+<meta name="og:image" content={new URL(image, Astro.url).href}>
 
 <meta name="twitter:site" content="@iksaku2">
 <meta name="twitter:creator" content="@iksaku2">
