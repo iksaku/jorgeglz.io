@@ -13,6 +13,7 @@ import tailwind from "@astrojs/tailwind"
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://jorgeglz.io',
   markdown: {
     rehypePlugins: [
       rehypeSlug,
