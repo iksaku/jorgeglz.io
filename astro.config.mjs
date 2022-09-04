@@ -9,7 +9,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 import rehypeCodeNotProse from './src/lib/rehype/code-not-prose.mjs'
 import remarkExcerpt from './src/lib/remark/excerpt.mjs'
 
-import tailwind from "@astrojs/tailwind"
+import tailwind from '@astrojs/tailwind'
 
 // https://astro.build/config
 export default defineConfig({
@@ -31,6 +31,6 @@ export default defineConfig({
   },
   integrations: [
     mdx(),
-    tailwind()
-  ]
+    tailwind(),
+  ],
 })

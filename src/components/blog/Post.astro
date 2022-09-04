@@ -17,6 +17,7 @@ let date: Date|null = !!metadata.date
 ---
 
 <div
+  x-data
   class='w-full bg-gray-50 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg divide-y divide-gray-400 dark:divide-gray-600'
 >
     <!-- Metadata -->
@@ -24,7 +25,7 @@ let date: Date|null = !!metadata.date
         <!-- Title -->
         <h1 class='text-2xl font-semibold'>
             <Show if={preview}>
-                <a href={metadata.url} class="block hocus:text-blue-700 dark:hocus:text-blue-500 focus:ring ring-blue-500 focus:outline-none">
+                <a x-prefetch href={metadata.url} class="block hocus:text-blue-700 dark:hocus:text-blue-500 focus:ring ring-blue-500 focus:outline-none">
                     {metadata.title}
                 </a>
             </Show>
@@ -72,7 +73,7 @@ let date: Date|null = !!metadata.date
         </slot>
 
         <Show if={preview}>
-            <a href={metadata.url} class='focus:ring ring-blue-500 focus:outline-none'>
+            <a x-prefetchq href={metadata.url} class='focus:ring ring-blue-500 focus:outline-none'>
                 Continue Reading →
             </a>
         </Show>
