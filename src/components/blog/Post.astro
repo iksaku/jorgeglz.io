@@ -73,7 +73,7 @@ let date: Date|null = !!metadata.date
         </slot>
 
         <Show if={preview}>
-            <a x-prefetchq href={metadata.url} class='focus:ring ring-blue-500 focus:outline-none'>
+            <a x-prefetch href={metadata.url} class='focus:ring ring-blue-500 focus:outline-none'>
                 Continue Reading →
             </a>
         </Show>
