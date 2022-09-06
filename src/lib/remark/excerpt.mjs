@@ -3,7 +3,7 @@ import { toHast } from 'mdast-util-to-hast'
 import { sanitize } from 'hast-util-sanitize'
 import { toHtml } from 'hast-util-to-html'
 
-const getComment = /\/\*\s*(excerpt|more|preview)\s*\*\//
+const keywords = ['excerpt', 'more', 'preview'].join('|')
 
 function formatNode(node) {
     const hast = toHast(node, {
@@ -18,23 +18,28 @@ function formatNode(node) {
 }
 
 export default () => (tree, file) => {
-    let excerptIndex = null
+    const isMdx = file.history.pop().endsWith('mdx')
 
-    visit(tree, 'mdxFlowExpression', (node) => {
-        if (excerptIndex || !getComment.test(node.value)) {
-            return
-        }
+    const nodeType = isMdx ? 'mdxFlowExpression' : 'html'
 
-        excerptIndex = tree.children.indexOf(node)
-    })
+    const isComment = isMdx
+        ? new RegExp(`\\/\\*\\s*(${keywords})\\s*\\*\\/`) // Matches keywords in Mdx comment: /* */
+        : new RegExp(`<!--\\s*(${keywords})\\s*-->`) // Matches keywords in HTML comment: <!-- -->
 
-    if (!excerptIndex) {
-        return
+    try {
+        visit(tree, null, (node) => {
+            if (isComment.test(node.value)) {
+                // No way to "early return", so we force our way out
+                throw tree.children.indexOf(node)
+            }
+        })
+    } catch (excerptIndex) {
+        let excerpt = tree.children
+            .slice(0, excerptIndex)
+            .filter((node) => node.type === 'paragraph')
+            .map(formatNode)
+            .join(' ')
+
+        file.data.astro.frontmatter.excerpt = excerpt
     }
-
-    file.data.astro.frontmatter.excerpt = tree.children
-        .slice(0, excerptIndex)
-        .filter((node) => node.type === 'paragraph')
-        .map(formatNode)
-        .join(' ')
 }

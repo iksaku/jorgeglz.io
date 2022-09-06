@@ -9,7 +9,7 @@ Dark mode 🌑 has been a hot topic in the UX land for quite some time,
 and it recently blew up with its official implementation in major Operating
 Systems during the last few months.
 
-{/* more */}
+<!-- more -->
 
 With this trend, many websites started to generate a Dark mode version of
 themselves, which may enabled manually by the user, automatically based on your

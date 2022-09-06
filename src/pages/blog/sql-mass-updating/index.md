@@ -12,7 +12,7 @@ record, or update many records with the same data.
 
 But what if we want to update many records with independent data? 🤔
 
-{/* more */}
+<!-- more -->
 
 ## 1. The Project
 

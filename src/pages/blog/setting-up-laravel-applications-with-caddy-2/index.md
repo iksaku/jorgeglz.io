@@ -11,7 +11,7 @@ to feel like a burden 🥴.
 
 Maybe just my point of view, maybe not at all...
 
-{/* more */}
+<!-- more -->
 
 In the last few days, I started looking for a way to migrate from Nginx to a
 Caddy web server for all my Laravel applications, just because of two things:

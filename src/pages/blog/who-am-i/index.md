@@ -10,7 +10,7 @@ obligated post that every blog could have. I will try to introduce myself
 briefly and maybe say one or two things that you may not see in the
 [About](/about/) page.
 
-{/* more */}
+<!-- more -->
 
 I'm Jorge González, I'm (at the time of writing this) currently coursing a
 _Software Engineering_ degree in Mexico 🇲🇽. I love to code and play around

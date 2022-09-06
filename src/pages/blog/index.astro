@@ -4,7 +4,10 @@ import Layout from '../../components/blog/Layout.astro'
 import Post from '../../components/blog/Post.astro';
 import Seo from '../../components/blog/Seo.astro';
 
-const posts: PostMetadata[] = (await Astro.glob('./**/*.mdx'))
+const posts: PostMetadata[] = [
+    ...(await Astro.glob('./**/*.md')),
+    ...(await Astro.glob('./**/*.mdx')),
+]
     .map((post) => ({
         ...post.frontmatter,
         url: new URL(post.url!, Astro.url).href
