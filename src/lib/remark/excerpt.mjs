@@ -27,7 +27,7 @@ export default () => (tree, file) => {
         : new RegExp(`<!--\\s*(${keywords})\\s*-->`) // Matches keywords in HTML comment: <!-- -->
 
     try {
-        visit(tree, null, (node) => {
+        visit(tree, nodeType, (node) => {
             if (isComment.test(node.value)) {
                 // No way to "early return", so we force our way out
                 throw tree.children.indexOf(node)

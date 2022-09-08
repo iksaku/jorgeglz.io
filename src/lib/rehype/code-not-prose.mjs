@@ -1,6 +1,6 @@
 import { visit } from 'unist-util-visit'
 
-export default () => (tree, file) => {
+export default () => (tree) => {
     visit(tree, 'element', (node) => {
         if (! ('tagName' in node) || node.tagName !== 'pre') {
             return;
