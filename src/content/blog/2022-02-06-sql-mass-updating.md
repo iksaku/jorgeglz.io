@@ -1,8 +1,9 @@
 ---
-layout: '../_layout.astro'
-title: 'Updating multiple database records (with independent data) in a single query'
-description: 'Sounds crazy, right? Well, it is possible, and I can tell you how 😉'
-date: '2022-02-06'
+slug: sql-mass-updating
+title: Updating multiple database records (with independent data) in a single query
+description: |
+    Sounds crazy, right? Well, it is possible, and I can tell you how 😉
+date: 2022-02-06
 ---
 
 In the world of SQL Databases, it is pretty easy to update one or many records
@@ -11,8 +12,6 @@ bindings and some filters if needed, this will help you either update single
 record, or update many records with the same data.
 
 But what if we want to update many records with independent data? 🤔
-
-<!-- more -->
 
 ## 1. The Project
 
@@ -25,7 +24,7 @@ data:
 And our project as an API that allows us to perform basic CRUD operations over
 such data, but let's focus on an easy to consume `update` endpoint:
 
-```http request
+```http
 POST /api/customers/{id}
 Content-Type: application/json
 
@@ -59,7 +58,7 @@ To solve this issue, we introduce an `batch` endpoint under our `update`
 endpoint, which will allow our API to resolve the data of many customers in a
 single API request:
 
-```http request
+```http
 POST /api/update/batch
 Content-Type: application/json
 

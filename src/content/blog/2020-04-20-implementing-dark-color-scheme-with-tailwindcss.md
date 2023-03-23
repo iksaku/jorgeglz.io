@@ -1,15 +1,14 @@
 ---
-layout: '../_layout.astro'
-title: 'Implementing Dark color scheme with TailwindCSS'
-description: 'Dark mode has been a hot topic in the UX land for quite some time, and it recently blew up with its official implementation in major Operating Systems during the last few months...'
-date: '2020-04-20'
+slug: implementing-dark-color-scheme-with-tailwindcss
+title: Implementing Dark color scheme with TailwindCSS
+description: |
+    Dark mode has been a hot topic in the UX land for quite some time, and it recently blew up with its official implementation in major Operating Systems during the last few months...
+date: 2020-04-20
 ---
 
 Dark mode 🌑 has been a hot topic in the UX land for quite some time,
 and it recently blew up with its official implementation in major Operating
 Systems during the last few months.
-
-<!-- more -->
 
 With this trend, many websites started to generate a Dark mode version of
 themselves, which may enabled manually by the user, automatically based on your

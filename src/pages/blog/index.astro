@@ -1,38 +1,55 @@
 ---
-import type { PostMetadata } from '../../env'
 import Layout from '../../components/blog/Layout.astro'
-import Post from '../../components/blog/Post.astro';
 import Seo from '../../components/blog/Seo.astro';
 
-const posts: PostMetadata[] = [
-    ...(await Astro.glob('./**/*.md')),
-    ...(await Astro.glob('./**/*.mdx')),
-]
-    .map((post) => ({
-        ...post.frontmatter,
-        url: new URL(post.url!, Astro.url).href
-    } as PostMetadata))
-    .filter((post) => import.meta.env.DEV || !!post.date)
-    .sort((a, b) => {
-        // Convert dates to timestamp representation. When undefined or null, convert to 0 (meaning it is a draft)
-        const timestamp = (date: string | null = null) => Number(date ? new Date(date) : null)
-        const dateA = timestamp(a.date)
-        const dateB = timestamp(b.date)
+import { getCollection } from 'astro:content';
+import { sortPostsByDate, transformBlogPost } from '../../lib/utils';
 
-        // Order Drafts first
-        if (!a.date || !b.date) {
-            return Math.sign(dateA - dateB)
-        }
-
-        // Non-drafts order in a descending order
-        return Math.sign(dateB - dateA)
-    })
+const posts = (await getCollection('blog', (post) => import.meta.env.DEV || !!post.data.date))
+    .map((post) => transformBlogPost(post, Astro.url))
+    .sort(sortPostsByDate)
 ---
 
 <Layout>
     <Seo slot="meta" />
+    
+    <div class="max-w-4xl flex flex-col items-center gap-6 mx-auto">
+        {posts.map((post) => (
+            <a
+                href={new URL(`blog/${post.slug}`, Astro.url).href}
+                rel="prefetch"
+                class="bg-gray-50 dark:bg-gray-800 w-full h-full md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg transition transform hover:scale-105 contain-paint"
+            >
+                {!!post.data.image && <img
+                    src={post.data.image.src}
+                    class="w-full aspect-[4/1] object-top object-cover"
+                />}
 
-    {posts.map((metadata) => (
-        <Post preview={true} metadata={metadata} />
-    ))}
+                <div
+                    class="flex flex-col justify-between w-full h-full px-4 py-2 space-y-4"
+                >
+                    <div class="space-y-4">
+                        <h1 class='text-lg md:text-xl lg:text-2xl font-semibold'>
+                            {post.data.title}
+                        </h1>
+
+                        <p>
+                            {post.data.description}
+                        </p>
+                    </div>
+
+                    <div>
+                        {!post.data.date
+                            ? (<span class="text-red-500 font-semibold uppercase italic">
+                                    Draft
+                                </span>)
+                            : (<time class="text-gray-400" date-time={post.data.date!.toISO()}>
+                                    {post.data.date!.toFormat('MMMM dd, y')}
+                                </time>)
+                        }
+                    </div>
+                </div>
+            </a>
+        ))}
+    </div>
 </Layout>

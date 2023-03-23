@@ -1,8 +1,9 @@
 ---
-layout: '../_layout.astro'
-title: 'Setting up Laravel applications with Caddy 2'
-description: 'Managing web servers can be kind of tricky, and with an increasing number of applications in one server, managing all of their configuration files can start to feel like a burden...'
-date: '2020-10-08'
+slug: setting-up-laravel-applications-with-caddy-2
+title: Setting up Laravel applications with Caddy 2
+description: |
+    Managing web servers can be kind of tricky, and with an increasing number of applications in one server, managing all of their configuration files can start to feel like a burden...
+date: 2020-10-08
 ---
 
 Managing web servers can be kind of tricky, and with an increasing number of
@@ -10,8 +11,6 @@ applications in one server, managing all of their configuration files can start
 to feel like a burden 🥴.
 
 Maybe just my point of view, maybe not at all...
-
-<!-- more -->
 
 In the last few days, I started looking for a way to migrate from Nginx to a
 Caddy web server for all my Laravel applications, just because of two things:

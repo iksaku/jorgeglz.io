@@ -1,5 +1,9 @@
 ---
-const { if: condition } = Astro.props
+export type Props = {
+    when: boolean
+}
+
+const { when: condition } = Astro.props
 ---
 
-{condition && (<slot />)}
+{condition ? (<slot />) : (<slot name="fallback" />)}

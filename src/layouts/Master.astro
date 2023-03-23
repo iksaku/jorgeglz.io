@@ -1,4 +1,6 @@
 ---
+import '../assets/css/app.css'
+
 const { class: bodyClass = '' } = Astro.props
 ---
 
@@ -15,8 +17,4 @@ const { class: bodyClass = '' } = Astro.props
     <body class={bodyClass}>
         <slot />
     </body>
-
-    <script>
-        import '../assets/alpine'
-    </script>
 </html>

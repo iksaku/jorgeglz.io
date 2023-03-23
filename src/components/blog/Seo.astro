@@ -1,14 +1,24 @@
 ---
+import type { DateTime } from 'luxon'
+
 export interface Props {
     title?: string
     description?: string
     image?: string
+    article?: {
+        published_time: DateTime
+    }
+    twitter?: {
+        card?: 'summary'|'summary_large_image'
+    }
 }
 
 const {
     title = 'JorgeGlz',
     description = 'Hello! I have a blog! And here you can find... Well... Blog posts...',
     image = 'https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=512',
+    article,
+    twitter
 } = Astro.props
 
 function tabTitle(): string {
@@ -19,12 +29,10 @@ function tabTitle(): string {
     return `${title} | JorgeGlz`
 }
 
-function twitterCard(): string {
-    if (image.includes('gravatar')) {
-        return 'summary'
-    }
+function metaType(): string {
+    if (!!article) return 'article'
 
-    return 'summary_large_image'
+    return 'website'
 }
 ---
 
@@ -35,12 +43,24 @@ function twitterCard(): string {
 <meta name="description" content={description}>
 <meta name="og:description" content={description}>
 
+<meta name="og:type" content={metaType()}>
+
 <meta name="og:url" content={Astro.url}>
 <meta name="og:image" content={new URL(image, Astro.url).href}>
 
+{!!article && <Fragment>
+    <meta name="og:author" content="Jorge González">
+    <meta name="og:published_time" content={article!.published_time.toISO()}>
+</Fragment>}
+
 <meta name="twitter:site" content="@iksaku2">
 <meta name="twitter:creator" content="@iksaku2">
-<meta name="twitter:card" content={twitterCard()}>
+<meta name="twitter:card" content={
+    twitter?.card
+    ?? image.includes('gravatar')
+        ? 'summary'
+        : 'summary_large_image'
+}>
 
 <link rel="preconnect" href="https://secure.gravatar.com" />
 <link rel="dns-prefetch" href="https://secure.gravatar.com" />

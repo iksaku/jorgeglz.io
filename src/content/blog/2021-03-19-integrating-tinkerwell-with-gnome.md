@@ -1,13 +1,11 @@
 ---
-layout: '../_layout.astro'
-title: 'Integrating Tinkerwell with GNOME'
-description: 'Looking for a way to integrate Tinkerwell in your Application Menu? Well, let me teach you how to do it!'
-date: '2021-02-19'
-image: './header.png'
+slug: integrating-tinkerwell-with-gnome
+title: Integrating Tinkerwell with GNOME
+description: |
+    Looking for a way to integrate Tinkerwell in your Application Menu? Well, let me teach you how to do it!
+date: 2021-02-19
+image: 'blog/2021-03-19-integrating-tinkerwell-with-gnome/header.png'
 ---
-
-import WithoutGnome from './WithoutGnomeIntegration.png'
-import WithGnome from './WithGnomeIntegration.png'
 
 [Tinkerwell](https://tinkerwell.app/) is one in the growing list of apps created
 by [BeyondCode](https://beyondco.de/). This Desktop app allows you to execute
@@ -15,8 +13,6 @@ PHP code from a
 [REPL interface](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop),
 which can be connected to a local environment, the production one or even a
 Docker container! 👀
-
-{/* more */}
 
 ## Why Tinkerwell?
 
@@ -56,12 +52,7 @@ display your Desktop applications in their own application menu, however, since
 AppImages are not meant to be _installed_, they will not show in your
 application list.
 
-<img
-  src={WithoutGnome}
-  alt="Searching Tinkerwell in GNOME and having no matching results"
-  class="mx-auto aspect-[16/9]"
-  placeholder="blur"
-/>
+![Searching Tinkerwell in GNOME and having no matching results](../../assets/blog/2021-03-19-integrating-tinkerwell-with-gnome/WithoutGnomeIntegration.png)
 
 Today, I'm here to tell you there's a way to solve this and provide neat
 discoverability for your application when using the GNOME Desktop Environment
@@ -143,11 +134,7 @@ update-desktop-database
 If every piece is properly configured, we should now see tinkerwell in our
 application menu! 🎉
 
-<img
-  src={WithGnome}
-  alt="Searching Tinkerwell in GNOME and having a proper result"
-  class="mx-auto aspect-[16/9]"
-/>
+![Searching Tinkerwell in GNOME and having a proper result](../../assets/blog/2021-03-19-integrating-tinkerwell-with-gnome/WithGnomeIntegration.png)
 
 Now, besides having such a powerful tool at your disposition, you also have a
 quick access entry in your application menu 🏃‍♂️.
