@@ -16,7 +16,7 @@ const posts = (await getCollection('blog', (post) => import.meta.env.DEV || !!po
     <div class="max-w-4xl flex flex-col items-center gap-6 mx-auto">
         {posts.map((post) => (
             <a
-                href={new URL(`blog/${post.slug}`, Astro.url).href}
+                href={post.data.url}
                 rel="prefetch"
                 class="bg-gray-50 dark:bg-gray-800 w-full h-full md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg transition transform hover:scale-105 contain-paint"
             >

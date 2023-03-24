@@ -14,7 +14,7 @@ export function transformBlogPost(post: CollectionEntry<'blog'>, baseUrl: URL) {
         ...post,
         data: {
             ...post.data,
-            url: new URL(`blog/${post.slug}`, baseUrl).href,
+            url: new URL(`/blog/${post.slug}`, baseUrl.origin).href,
             date: !post.data.date ? undefined : toDateTime(post.data.date)
         }
     }
