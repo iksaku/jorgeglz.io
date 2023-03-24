@@ -4,7 +4,12 @@ import type { DateTime } from 'luxon'
 export interface Props {
     title?: string
     description?: string
-    image?: string
+    image?: {
+        src: string;
+        width: number;
+        height: number;
+        format: string;
+    },
     article?: {
         published_time: DateTime
     }
@@ -16,7 +21,7 @@ export interface Props {
 const {
     title = 'JorgeGlz',
     description = 'Hello! I have a blog! And here you can find... Well... Blog posts...',
-    image = 'https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=256',
+    image,
     article,
     twitter
 } = Astro.props
@@ -46,7 +51,13 @@ function metaType(): string {
 <meta name="og:type" content={metaType()}>
 
 <meta name="og:url" content={Astro.url}>
-<meta name="og:image" content={new URL(image, Astro.url).href}>
+
+{!image && <meta name="og:image" content="https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=256">}
+{!!image && <Fragment>
+    <meta name="og:image" content={new URL(image.src, Astro.url.origin)}>
+    <meta name="og:image:width" content={`${image.width}`}>
+    <meta name="og:image:height" content={`${image.height}`}>
+</Fragment>}
 
 {!!article && <Fragment>
     <meta name="og:author" content="Jorge González">
@@ -57,9 +68,7 @@ function metaType(): string {
 <meta name="twitter:creator" content="@iksaku2">
 <meta name="twitter:card" content={
     twitter?.card
-    ?? image.includes('gravatar')
-        ? 'summary'
-        : 'summary_large_image'
+    ?? !image ? 'summary' : 'summary_large_image'
 }>
 
 <link rel="preconnect" href="https://secure.gravatar.com" />

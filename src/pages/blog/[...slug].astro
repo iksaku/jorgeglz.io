@@ -29,7 +29,7 @@ const { Content } = await post.render()
         slot="meta"
         title={post.data.title}
         description={post.data.description}
-        image={post.data.image?.src}
+        image={post.data.image}
         article={{
             published_time: post.data.date ?? DateTime.now()
         }}
