@@ -2,7 +2,7 @@
 slug: implementing-dark-color-scheme-with-tailwindcss
 title: Implementing Dark color scheme with TailwindCSS
 description: |
-    Dark mode has been a hot topic in the UX land for quite some time, and it recently blew up with its official implementation in major Operating Systems during the last few months...
+  Dark mode has been a hot topic in the UX land for quite some time, and it recently blew up with its official implementation in major Operating Systems during the last few months...
 date: 2020-04-20
 ---
 
@@ -63,11 +63,11 @@ module.exports = {
     extend: {
       screens: {
         dark: {
-          raw: '(prefers-color-scheme: dark)'
-        }
-      }
-    }
-  }
+          raw: '(prefers-color-scheme: dark)',
+        },
+      },
+    },
+  },
 }
 ```
 
@@ -125,9 +125,7 @@ If we want to use a `white`-based colors for a button in our Light scheme, and
 something like:
 
 ```html
-<button
-  class="bg-white hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
->
+<button class="bg-white hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700">
   <!-- ... -->
 </button>
 ```

@@ -1,0 +1,9 @@
+!**/glob-import/dir/node_modules
+.astro
+.DS_Store
+.idea
+/.vscode/
+dist
+explorations
+node_modules
+pnpm-lock.yaml

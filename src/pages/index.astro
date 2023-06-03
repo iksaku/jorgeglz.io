@@ -1,11 +1,10 @@
----
-import Master from "../layouts/Master.astro"
----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content={Astro.generator}>
 
-<Master>
-	<meta
-		http-equiv="refresh"
-		content={`0; url=${new URL('/blog', Astro.url).href}`}
-		slot="meta"
-	>
-</Master>
+    <meta http-equiv="refresh" content={`0; url=${new URL("/blog", Astro.url).href}`}>
+  </head>
+</html>

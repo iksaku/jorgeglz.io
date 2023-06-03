@@ -2,7 +2,7 @@
 slug: sql-mass-updating
 title: Updating multiple database records (with independent data) in a single query
 description: |
-    Sounds crazy, right? Well, it is possible, and I can tell you how 😉
+  Sounds crazy, right? Well, it is possible, and I can tell you how 😉
 date: 2022-02-06
 ---
 
@@ -148,9 +148,9 @@ help you optimize your `batch` API endpoint, it could also help in situations
 where:
 
 - You need to update many items conditionally when deploying a new version of
-your project.
+  your project.
 - When you are working with an ORM and you need to "save" the changes of many
-models at once.
+  models at once.
 
 Hope you like this little, but spicy, SQL trick 🌶.
 

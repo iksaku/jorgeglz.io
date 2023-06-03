@@ -1,9 +1,7 @@
 {
   "name": "HTTP Spec",
   "scopeName": "source.httpspec",
-  "fileTypes": [
-    "httpspec"
-  ],
+  "fileTypes": ["httpspec"],
   "uuid": "7bb6ff35-8b8a-4480-91ec-20f2d3fcba9a",
   "patterns": [
     {

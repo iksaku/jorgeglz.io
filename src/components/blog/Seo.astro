@@ -1,43 +1,43 @@
 ---
-import type { DateTime } from 'luxon'
+import type { DateTime } from "luxon";
 
 export interface Props {
-    title?: string
-    description?: string
-    image?: {
-        src: string;
-        width: number;
-        height: number;
-        format: string;
-    },
-    article?: {
-        published_time: DateTime
-    }
-    twitter?: {
-        card?: 'summary'|'summary_large_image'
-    }
+  title?: string;
+  description?: string;
+  image?: {
+    src: string;
+    width: number;
+    height: number;
+    format: string;
+  };
+  article?: {
+    published_time: DateTime;
+  };
+  twitter?: {
+    card?: "summary" | "summary_large_image";
+  };
 }
 
 const {
-    title = 'JorgeGlz',
-    description = 'Hello! I have a blog! And here you can find... Well... Blog posts...',
-    image,
-    article,
-    twitter
-} = Astro.props
+  title = "JorgeGlz",
+  description = "Hello! I have a blog! And here you can find... Well... Blog posts...",
+  image,
+  article,
+  twitter,
+} = Astro.props;
 
 function tabTitle(): string {
-    if (title.endsWith('JorgeGlz')) {
-        return title
-    }
+  if (title.endsWith("JorgeGlz")) {
+    return title;
+  }
 
-    return `${title} | JorgeGlz`
+  return `${title} | JorgeGlz`;
 }
 
 function metaType(): string {
-    if (!!article) return 'article'
+  if (!!article) return "article";
 
-    return 'website'
+  return "website";
 }
 ---
 
@@ -54,22 +54,19 @@ function metaType(): string {
 
 {!image && <meta name="og:image" content="https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=256">}
 {!!image && <Fragment>
-    <meta name="og:image" content={new URL(image.src, Astro.url.origin)}>
-    <meta name="og:image:width" content={`${image.width}`}>
-    <meta name="og:image:height" content={`${image.height}`}>
+  <meta name="og:image" content={new URL(image.src, Astro.url.origin)}>
+  <meta name="og:image:width" content={`${image.width}`}>
+  <meta name="og:image:height" content={`${image.height}`}>
 </Fragment>}
 
-{!!article && <Fragment>
-    <meta name="og:author" content="Jorge González">
-    <meta name="og:published_time" content={article!.published_time.toISO()}>
-</Fragment>}
+{ !!article && <Fragment>
+  <meta name="og:author" content="Jorge González">
+  <meta name="og:published_time" content={article!.published_time.toISO()}>
+</Fragment> }
 
 <meta name="twitter:site" content="@iksaku2">
 <meta name="twitter:creator" content="@iksaku2">
-<meta name="twitter:card" content={
-    twitter?.card
-    ?? !image ? 'summary' : 'summary_large_image'
-}>
+<meta name="twitter:card" content={twitter?.card ?? (!image ? "summary" : "summary_large_image")}>
 
 <link rel="preconnect" href="https://secure.gravatar.com" />
 <link rel="dns-prefetch" href="https://secure.gravatar.com" />

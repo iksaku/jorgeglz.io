@@ -2,7 +2,7 @@
 slug: setting-up-laravel-applications-with-caddy-2
 title: Setting up Laravel applications with Caddy 2
 description: |
-    Managing web servers can be kind of tricky, and with an increasing number of applications in one server, managing all of their configuration files can start to feel like a burden...
+  Managing web servers can be kind of tricky, and with an increasing number of applications in one server, managing all of their configuration files can start to feel like a burden...
 date: 2020-10-08
 ---
 
@@ -16,12 +16,12 @@ In the last few days, I started looking for a way to migrate from Nginx to a
 Caddy web server for all my Laravel applications, just because of two things:
 
 1. Caddy is HTTPS-first, so I don’t need to worry about certbot trying to renew
-domains that are no longer available in my private server, nor failing to
-manage recently added domains that I forgot to tell certbot about. Caddy
-manages this for me automatically 💖.
+   domains that are no longer available in my private server, nor failing to
+   manage recently added domains that I forgot to tell certbot about. Caddy
+   manages this for me automatically 💖.
 2. Caddy’s configuration files are way easier to understand than Nginx’s, even
-without previous knowledge of the properties of a `Caddyfile`, you can easily
-grasp what a config file is doing just by reading it.
+   without previous knowledge of the properties of a `Caddyfile`, you can easily
+   grasp what a config file is doing just by reading it.
 
 Surprisingly to me, [Caddy just got its v2 upgrade](https://caddyserver.com/v2)
 a few months ago, which is full of new awesome features, and the cherry of the
@@ -55,7 +55,7 @@ application:
 1. It should use HTTPS.
 2. It should serve static files if possible.
 3. If no static files are found, then it should properly route incoming requests
-to PHP-FPM.
+   to PHP-FPM.
 
 Well, this seems like a good starting point. So, I present to you the Caddy 2
 template I use for Laravel:

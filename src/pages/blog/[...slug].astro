@@ -1,82 +1,92 @@
 ---
 import Layout from "../../components/blog/Layout.astro";
 import Seo from "../../components/blog/Seo.astro";
-
 import { CollectionEntry, getCollection } from "astro:content";
 import { transformBlogPost } from "../../lib/utils";
 import { DateTime } from "luxon";
 
 export async function getStaticPaths() {
-    const posts = await getCollection('blog')
+  const posts = await getCollection("blog");
 
-    return posts.map((post) => ({
-        params: { slug: post.slug },
-        props: { post }
-    }))
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
 export type Props = {
-    post: CollectionEntry<'blog'>
-}
+  post: CollectionEntry<"blog">;
+};
 
-const post = transformBlogPost(Astro.props.post, Astro.url)
+const post = transformBlogPost(Astro.props.post, Astro.url);
 
-const { Content } = await post.render()
+const { Content } = await post.render();
 ---
 
 <Layout>
-    <Seo
-        slot="meta"
-        title={post.data.title}
-        description={post.data.description}
-        image={post.data.image}
-        article={{
-            published_time: post.data.date ?? DateTime.now()
-        }}
-    />
+  <Seo
+    slot="meta"
+    title={post.data.title}
+    description={post.data.description}
+    image={post.data.image}
+    article={{
+      published_time: post.data.date ?? DateTime.now(),
+    }}
+  />
 
-    <div class='w-full bg-gray-50 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg contain-paint'>
-        {!!post.data.image && <img
-            src={post.data.image.src}
-            class="w-full aspect-[4/1] object-top object-cover"
-        />}
+  <div
+    class="w-full bg-gray-50 dark:bg-gray-800 md:border-x border-y border-gray-400 dark:border-gray-600 md:rounded-lg contain-paint"
+  >
+    {
+      !!post.data.image && (
+        <img
+          src={post.data.image.src}
+          class="w-full aspect-[4/1] object-top object-cover"
+        />
+      )
+    }
 
-        <div class="divide-y divide-gray-400 dark:divide-gray-600">
-            <div class='px-4 py-2 space-y-2'>
-                <h1 class='text-2xl font-semibold'>
-                    {post.data.title}
-                </h1>
+    <div class="divide-y divide-gray-400 dark:divide-gray-600">
+      <div class="px-4 py-2 space-y-2">
+        <h1 class="text-2xl font-semibold">
+          {post.data.title}
+        </h1>
 
-                <div class='flex items-center text-gray-700 dark:text-gray-300 text-sm md:text-base font-medium space-x-8'>
-                    <a
-                        href='/about'
-                        class='flex items-center hocus:text-blue-700 dark:hocus:text-blue-500 focus:ring ring-blue-500 focus:outline-none space-x-1'
-                    >
-                        <div class='relative w-8 h-8 rounded-full overflow-hidden'>
-                            <img
-                                src='https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=96'
-                                alt="Jorge González's Avatar"
-                            />
-                        </div>
-                        <span>Jorge González</span>
-                    </a>
-
-                    <div>
-                        {!post.data.date
-                            ? (<span class="text-red-500 font-semibold uppercase italic">
-                                    Draft
-                                </span>)
-                            : (<time class="text-gray-400" date-time={post.data.date!.toISO()}>
-                                    {post.data.date!.toFormat('MMMM dd, y')}
-                                </time>)
-                        }
-                    </div>
-                </div>
+        <div
+          class="flex items-center text-gray-700 dark:text-gray-300 text-sm md:text-base font-medium space-x-8"
+        >
+          <a
+            href="/about"
+            class="flex items-center hocus:text-blue-700 dark:hocus:text-blue-500 focus:ring ring-blue-500 focus:outline-none space-x-1"
+          >
+            <div class="relative w-8 h-8 rounded-full overflow-hidden">
+              <img
+                src="https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=96"
+                alt="Jorge González's Avatar"
+              />
             </div>
+            <span>Jorge González</span>
+          </a>
 
-            <article class="prose dark:prose-invert prose-lg max-w-none px-4 py-2">
-                <Content />
-            </article>
+          <div>
+            {
+              !post.data.date ? (
+                <span class="text-red-500 font-semibold uppercase italic">
+                  Draft
+                </span>
+              ) : (
+                <time class="text-gray-400" date-time={post.data.date!.toISO()}>
+                  {post.data.date!.toFormat("MMMM dd, y")}
+                </time>
+              )
+            }
+          </div>
         </div>
+      </div>
+
+      <article class="prose dark:prose-invert prose-lg max-w-none px-4 py-2">
+        <Content />
+      </article>
     </div>
+  </div>
 </Layout>
