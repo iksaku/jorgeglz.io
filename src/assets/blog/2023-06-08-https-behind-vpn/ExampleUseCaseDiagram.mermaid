@@ -1,0 +1,19 @@
+sequenceDiagram
+  autonumber
+  participant ca as 🔐 Certificate Authority
+  participant caddy as 🌐 Caddy
+  participant cf as ⛅ Cloudflare
+
+  caddy->>ca: Request DNS Challenge
+  ca->>caddy: Challenge Verification Code
+  activate ca
+  note right of ca: Wait for TXT Record
+
+  caddy->>cf: Store Verification Code in TXT Record
+
+  note right of ca: Verify TXT Record, generate SSL certificate
+  deactivate ca
+  ca->>caddy: Provide SSL Certificate
+  note left of caddy: Store SSL Certificate
+
+  caddy->>cf: Remove TXT Record

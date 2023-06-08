@@ -7,3 +7,4 @@ dist
 explorations
 node_modules
 pnpm-lock.yaml
+*.md

@@ -1,8 +1,7 @@
 ---
 slug: sql-mass-updating
 title: Updating multiple database records (with independent data) in a single query
-description: |
-  Sounds crazy, right? Well, it is possible, and I can tell you how 😉
+description: Sounds crazy, right? Well, it is possible, and I can tell you how 😉
 date: 2022-02-06
 ---
 

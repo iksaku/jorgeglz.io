@@ -34,12 +34,12 @@ export default defineConfig({
     },
   },
   integrations: [
+    prefetch(),
     tailwind({
       config: {
         applyBaseStyles: false,
       },
     }),
-    prefetch(),
   ],
   experimental: {
     assets: true,

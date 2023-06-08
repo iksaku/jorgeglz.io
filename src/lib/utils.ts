@@ -2,7 +2,7 @@ import type { CollectionEntry } from 'astro:content'
 import { DateTime } from 'luxon'
 
 export function toDateTime(date: Date, tz: string = 'America/Monterrey'): DateTime {
-  return DateTime.fromISO(date.toISOString()).setZone(tz)
+  return DateTime.fromSQL(date.toISOString().split('T')[0]).setZone(tz)
 }
 
 export type BlogPost = ReturnType<typeof transformBlogPost>

@@ -1,21 +1,15 @@
 import { resolve } from 'path'
 
-/**
- * Example:
-    {
-        id: 'httpspec',
-        scopeName: 'source.httpspec',
-        path: resolve('./src/lib/shiki/languages/httpspec.tmLanguage.json'),
-        aliases: ['http']
-    }
- */
+function reference(name) {
+  return resolve(`./src/lib/shiki/languages/${name}.tmLanguage.json`)
+}
 
 /** @type {import('shiki').ILanguageRegistration[]} */
 export default [
   {
-    id: 'httpspec',
-    scopeName: 'source.httpspec',
-    path: resolve('./src/lib/shiki/languages/httpspec.tmLanguage.json'),
-    aliases: ['http'],
+    id: 'caddyfile',
+    scopeName: 'source.Caddyfile',
+    path: reference('caddyfile'),
+    aliases: ['caddy'],
   },
 ]
