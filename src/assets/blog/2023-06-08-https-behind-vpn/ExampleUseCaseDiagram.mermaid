@@ -13,7 +13,7 @@ sequenceDiagram
 
   note right of ca: Verify TXT Record, generate SSL certificate
   deactivate ca
-  ca->>caddy: Provide SSL Certificate
-  note left of caddy: Store SSL Certificate
+  ca->>caddy: Provide TLS Certificate
+  note left of caddy: Store TLS Certificate
 
   caddy->>cf: Remove TXT Record

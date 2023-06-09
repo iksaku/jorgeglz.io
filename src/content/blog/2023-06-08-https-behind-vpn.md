@@ -2,17 +2,17 @@
 slug: https-behind-vpn
 title: Automatic HTTPS for private resources with Caddy
 description: |
-  Why self-sign when you can pull SSL Certs from a Certificate Authority? Let's see how Caddy can help you
+  Why self-sign when you can pull TLS Certs from a Certificate Authority? Let's see how Caddy can help you
   add Automatic HTTPS for your private resources.
 date: 2023-06-08
 ---
 
-Back in the day, managing SSL certificates for your websites was more like a chore than an _useful_ task; it
+Back in the day, managing TLS certificates for your websites was more like a chore than an _useful_ task; it
 involved time, tears and prays to the Sysadmin gods hoping that your websites will not break when updating
-its SSL certificates.
+its TLS certificates.
 
 Up to this point, I'm pretty sure many of you have heard about [Caddy](https://caddyserver.com/), the _Ultimate Server_.
-At least to me, Caddy has been a godsend because it has _Automatic SSL Renewal_ and I can just:
+At least to me, Caddy has been a godsend because it has _Automatic TLS Renewal_ and I can just:
 
 1. Spin up a Server
 2. Upload my application
@@ -31,10 +31,10 @@ tools to circumvent almost any issue we may think of in order to make Caddy the 
 use cases.
 
 There are a lot of [Caddy DNS Modules](https://github.com/caddy-dns) available that we can use to tell Caddy
-to pull SSL Certificates automatically and solve the CA challenges using DNS instead of trying to ping
+to pull TLS Certificates automatically and solve the CA challenges using DNS instead of trying to ping
 our server via IP address.
 
-These modules can help us deploy SSL certificates on our internal networks, even if the host is not reachable to the
+These modules can help us deploy TLS certificates on our internal networks, even if the host is not reachable to the
 public internet at all due to firewalls, NAT gateways, or because we're [running our apps in Docker](#beyond-private-networks) 🐋.
 
 ## Example use case
@@ -49,12 +49,12 @@ In this example use case, we will mix a _public domain_ with a _private sub-doma
 
 ## 1. Compiling Caddy
 
-Caddy needs to perform a _challenge_ in order to obtain the SSL certificate for our domain, but as our server is not
+Caddy needs to perform a _challenge_ in order to obtain the TLS certificate for our domain, but as our server is not
 reachable from the public internet, we will be installing the [Cloudflare module for Caddy](https://github.com/caddy-dns/cloudflare)
 that will allow Caddy to receive the challenge in form on a TXT Record challenge and automatically issue the
-value via the Cloudflare API, and remove it once the SSL certificate has been issued.
+value via the Cloudflare API, and remove it once the TLS certificate has been issued.
 
-![](https://mermaid.ink/svg/pako:eNptkrFOwzAQhl_l5Lm8QIZKKGUDhJoKGLIc9jmxSOxycSpFVUc2BgY2Bt6NJ-ARsJ1WLQ2bz_f9_v-zbiukUyQy0dFLT1bSwmDF2JYWAHvvbN8-EcdqjeyNNGu0HiQCdvDz9fEOOYVrbSR6gsve146NH6a8UsMoeQuSWE0QHfvfn6-QN65XukGm0kYqiS_mc4kZLGPKzsPitoC8xqYhW9EIJSKQ2bEB98RjNuMs5GHQNJb0ZhPjSoyldeHIpqo9OA3R5AGNB-0YVo-r4Cgdq7MkOoPCO_7HAIydyKYOSTacgDOoyBLHVEVxDfL4qfEBRWeZT6e9Y7cxatTlf3XJuCG99034mHsCn4-3pNZt6CShmImWuEWjwrJsI14KX1NLpcjCUSE_l6K0u8D1axXevFImWIlMY9PRTMRlKgYrRea5pwO037bDJSXNzbiRaTF3vwoK7RQ?bgColor=!white)
+![DNS Challenge Diagram](https://mermaid.ink/svg/pako:eNptkrFOwzAQhl_l5Lm8QIZKKGUrCDUVMGQ57HNikdjl4lSKqo5sDAxsDLwbT8AjYCeljZpuPvv7_f9n305Ip0gkoqHXlqykhcGCsc4tALbe2bZ-Jo7VBtkbaTZoPUgEbOD3-_MDUgrb2kj0BNetLx0b3015pbpB8h4ksZogOp7_fL1BWrlW6QqZchupXnw1n0tMYBVTNh4WdxmkJVYV2YIGqCcCmZwO4IF4yGachTQ02rclvdnGuBJjaV1YsilKD05DNHlE40E7hvXTOjhKx-osiU4g844vGICxE9nUoZd1I3AGBVnimCrLliBPjxovUHSWedztPbutCcbrZTb-jKNxRfrg2-ND7gl83t6KarelUUIxEzVxjUaFYdlFPBe-pJpykYSlQn7JRW73gWs3Ktx5o0ywEonGqqGZiMOUdVaKxHNL_9Bh2o4U9aLbYST7ydz_AfeE7WE?bgColor=!white)
 
 To compile Caddy with this module, we can use the [xcaddy](https://caddyserver.com/docs/build#xcaddy) command:
 
@@ -90,21 +90,19 @@ Or you can do CNAME by visiting `/admin/cname_records.php`:
 
 Finally, let's set up our Caddy file.
 
-We must first tell caddy to use the Clouflare Module for SSL, after that, we can add our application code.
+We must first tell caddy to use the Clouflare Module for TLS, after that, we can add our application code.
 
 ```caddy
-tls {
-  dns cloudflare {CLOUDFLARE_API_TOKEN}
-}
+acme_dns cloudflare {CLOUDFLARE_API_TOKEN}
 
 hello.internal.jglz.io {
-  respond "Hello SSL!"
+  respond "Hello TLS!"
 }
 ```
 
-Now, when we navigate to our application, we can see Caddy responding our requests with SSL!
+Now, when we navigate to our application, we can see Caddy responding our requests with TLS!
 
-![Hello SSL!](../../assets/blog/2023-06-08-https-behind-vpn/HelloSSL.png)
+![Hello TLS!](../../assets/blog/2023-06-08-https-behind-vpn/HelloTLS.png)
 
 ## Beyond private networks
 
@@ -143,7 +141,7 @@ COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 CMD ["caddy", "docker-proxy"]
 ```
 
-Now, we can fire Caddy via Docker Compose (or the traditional Docker CLI if you prefer) and have SSL work there as well!
+Now, we can fire Caddy via Docker Compose (or the traditional Docker CLI if you prefer) and have TLS work there as well!
 
 ```yaml
 version: '3.7'
@@ -165,7 +163,7 @@ services:
     labels:
       caddy.acme_dns: cloudflare ${CLOUDFLARE_API_TOKEN}
       caddy: hello.internal.example.com
-      caddy.respond: '"Hello SSL!"'
+      caddy.respond: '"Hello TLS!"'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
       # It is important to have these to conserve data after the container restarts
@@ -179,7 +177,7 @@ networks:
 ```
 
 If you are running Pi-hole as a container as well, then you may feel tempted to add
-SSL to it as well (It's free! 🤑), unfortunately, it is not possible to request SSL certificates
+TLS to it as well (It's free! 🤑), unfortunately, it is not possible to request TLS certificates
 for the default `pi.hole` domain.
 
 What we can do instead, is to tell Pi-hole to also work on another domain via the `VIRTUAL_HOST`
@@ -207,7 +205,7 @@ services:
       # understand which labels should be grouped together.
       caddy_0: pihole.internal.example.com
       caddy_0.reverse_proxy: "{{upstreams}}"
-      # Yes, only do redirect on port 80 as 443 will fail to resolve SSL.
+      # Yes, only do redirect on port 80 as 443 will fail to resolve TLS.
       caddy_1: pi.hole:80
       caddy_1.redir: https://pihole.internal.example.com{uri} permanent
     depends_on:
