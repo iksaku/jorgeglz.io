@@ -11,7 +11,7 @@ sequenceDiagram
 
   caddy->>cf: Store Verification Code in TXT Record
 
-  note right of ca: Verify TXT Record, generate SSL certificate
+  note right of ca: Verify TXT Record, generate TLS certificate
   deactivate ca
   ca->>caddy: Provide TLS Certificate
   note left of caddy: Store TLS Certificate
