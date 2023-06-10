@@ -1,27 +1,20 @@
 ---
+import { getImage } from 'astro:assets'
 import type { DateTime } from "luxon";
+import type { BlogPost } from "../../lib/utils";
 
-export interface Props {
-  title?: string;
-  description?: string;
-  image?: {
-    src: string;
-    width: number;
-    height: number;
-    format: string;
-  };
+export type Props = Partial<Pick<BlogPost['data'], 'title' | 'description' | 'image'>> & {
   article?: {
-    published_time: DateTime;
-  };
+    published_time?: DateTime
+  }
   twitter?: {
-    card?: "summary" | "summary_large_image";
-  };
+    card?: 'summary' | 'summary_large_image'
+  }
 }
 
 const {
   title = "JorgeGlz",
   description = "Hello! I have a blog! And here you can find... Well... Blog posts...",
-  image,
   article,
   twitter,
 } = Astro.props;
@@ -39,6 +32,8 @@ function metaType(): string {
 
   return "website";
 }
+
+const image = !Astro.props.image ? undefined : await getImage({ src: Astro.props.image, format: 'jpg' })
 ---
 
 {/* https://twitter.com/jon_neal/status/1428721238071988237 */}
@@ -54,14 +49,14 @@ function metaType(): string {
 
 {!image && <meta name="og:image" content="https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=256">}
 {!!image && <Fragment>
-  <meta name="og:image" content={new URL(image.src, Astro.url.origin)}>
-  <meta name="og:image:width" content={`${image.width}`}>
-  <meta name="og:image:height" content={`${image.height}`}>
+  <meta name="og:image" content={image.src}>
+  <meta name="og:image:width" content={`${image.options.width}`}>
+  <meta name="og:image:height" content={`${image.options.height}`}>
 </Fragment>}
 
 { !!article && <Fragment>
   <meta name="og:author" content="Jorge González">
-  <meta name="og:published_time" content={article!.published_time.toISO()}>
+  { !!article.published_time && <meta name="og:published_time" content={article.published_time.toISO()}> }
 </Fragment> }
 
 <meta name="twitter:site" content="@iksaku2">

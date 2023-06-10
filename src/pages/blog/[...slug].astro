@@ -3,7 +3,6 @@ import Layout from "../../components/blog/Layout.astro";
 import Seo from "../../components/blog/Seo.astro";
 import { CollectionEntry, getCollection } from "astro:content";
 import { transformBlogPost } from "../../lib/utils";
-import { DateTime } from "luxon";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -30,7 +29,7 @@ const { Content } = await post.render();
     description={post.data.description}
     image={post.data.image}
     article={{
-      published_time: post.data.date ?? DateTime.now(),
+      published_time: post.data.date,
     }}
   />
 
@@ -41,6 +40,7 @@ const { Content } = await post.render();
       !!post.data.image && (
         <img
           src={post.data.image.src}
+          alt={`${post.data.title} header image`}
           class="w-full aspect-[4/1] object-top object-cover"
         />
       )
