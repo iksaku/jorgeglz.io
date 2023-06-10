@@ -93,7 +93,9 @@ Finally, let's set up our Caddy file.
 We must first tell caddy to use the Clouflare Module for TLS, after that, we can add our application code.
 
 ```caddy
-acme_dns cloudflare {CLOUDFLARE_API_TOKEN}
+{
+  acme_dns cloudflare {CLOUDFLARE_API_TOKEN}
+}
 
 hello.internal.jglz.io {
   respond "Hello TLS!"
