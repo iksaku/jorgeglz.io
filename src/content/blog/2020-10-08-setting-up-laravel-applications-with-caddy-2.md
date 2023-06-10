@@ -60,7 +60,7 @@ application:
 Well, this seems like a good starting point. So, I present to you the Caddy 2
 template I use for Laravel:
 
-```
+```caddy
 my-website.com {
     # Resolve the root directory for the app
     root * /var/www/my-website/public
@@ -107,7 +107,7 @@ link above, if not, go check it out!
 Now, back to our snippet... In my setup, I have a `/etc/caddy/snippets/`
 directory where I place all my snippets, so I can easily import them beforehand:
 
-```
+```caddy
 # Caddyfile
 import snippets/*
 ```
@@ -115,7 +115,7 @@ import snippets/*
 And that's it, all available snippets in the directory will be available for us,
 now, we can create our `laravel-app` snippet:
 
-```
+```caddy
 # snippets/laravel-app
 # {args.0} represents the root url of the app. Example: "jorgeglz.io".
 # {args.1} represents the root path to the app. Example: "/var/www/my-site.com"
@@ -139,7 +139,7 @@ now, we can create our `laravel-app` snippet:
 
 Cool! Now we can start referencing this snippet for all our Laravel apps:
 
-```
+```caddy
 import snippets/*
 
 # Use the "laravel-app" snippet for our site:
