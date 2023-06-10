@@ -219,3 +219,7 @@ networks:
 ```
 
 Let me know what you think (or if you have a joke) [@iksaku2](https://twitter.com/iksaku2). Thank you for reading 🦑.
+
+### Acknowledgements
+Thank you so much [Francis Lavoie](https://twitter.com/_francislavoie) for reading the post and pointing out many
+errors related to the Caddyfile syntax. You're the best!
