@@ -9,7 +9,7 @@ import shikiLangs from './src/lib/shiki/languages.mjs'
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.APP_URL ?? process.env.CF_PAGES_URL ?? 'https://jorgeglz.io',
+  // site: process.env.APP_URL ?? process.env.CF_PAGES_URL ?? 'https://jorgeglz.io',
   markdown: {
     rehypePlugins: [
       rehypeSlug,
@@ -41,7 +41,4 @@ export default defineConfig({
       },
     }),
   ],
-  experimental: {
-    assets: true,
-  },
 })

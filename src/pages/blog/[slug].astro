@@ -1,8 +1,10 @@
 ---
 import Layout from "../../components/blog/Layout.astro";
 import Seo from "../../components/blog/Seo.astro";
+import { Image } from "astro:assets"
 import { CollectionEntry, getCollection } from "astro:content";
 import { transformBlogPost } from "../../lib/utils";
+import Avatar from '../../assets/avatar.jpeg'
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -38,8 +40,8 @@ const { Content } = await post.render();
   >
     {
       !!post.data.image && (
-        <img
-          src={post.data.image.src}
+        <Image
+          src={post.data.image}
           alt={`${post.data.title} header image`}
           class="w-full aspect-[4/1] object-top object-cover"
         />
@@ -53,15 +55,15 @@ const { Content } = await post.render();
         </h1>
 
         <div
-          class="flex items-center text-gray-700 dark:text-gray-300 text-sm md:text-base font-medium space-x-8"
+          class="flex items-center justify-between sm:justify-normal text-gray-700 dark:text-gray-300 text-sm md:text-base font-medium sm:space-x-8"
         >
           <a
             href="/about"
             class="flex items-center hocus:text-blue-700 dark:hocus:text-blue-500 focus:ring ring-blue-500 focus:outline-none space-x-1"
           >
-            <div class="relative w-8 h-8 rounded-full overflow-hidden">
-              <img
-                src="https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=96"
+            <div class="relative w-10 h-10 rounded-full overflow-hidden">
+              <Image
+                src={Avatar}
                 alt="Jorge González's Avatar"
               />
             </div>

@@ -1,6 +1,8 @@
 ---
 import Layout from "../components/blog/Layout.astro";
 import Seo from "../components/blog/Seo.astro";
+import { Image } from "astro:assets"
+import Avatar from "../assets/avatar.jpeg"
 ---
 
 <Layout>
@@ -14,10 +16,10 @@ import Seo from "../components/blog/Seo.astro";
     <div
       class="w-full flex flex-col-reverse md:flex-row items-center justify-center md:space-x-8 space-y-4 space-y-reverse md:space-y-0"
     >
-      <img
-        src="https://secure.gravatar.com/avatar/dfbbacbe4acbe45486084d472bf043fb?size=512"
-        alt="Jorge González's Avatar"
-        class="w-32 h-32 aspect-square rounded-full overflow-hidden"
+      <Image
+          src={Avatar}
+          alt="Jorge González's Avatar"
+          class="w-32 h-32 aspect-square rounded-full overflow-hidden"
       />
       <h1 class="text-3xl text-center font-bold">This is me... 🎶</h1>
     </div>
