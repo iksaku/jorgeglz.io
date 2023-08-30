@@ -1,5 +1,6 @@
 ---
 import "../assets/css/app.css";
+import { ViewTransitions } from 'astro:transitions'
 
 const { class: bodyClass = "" } = Astro.props;
 ---
@@ -11,6 +12,7 @@ const { class: bodyClass = "" } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
+    <ViewTransitions fallback="swap" />
     <slot name="meta" />
   </head>
 
