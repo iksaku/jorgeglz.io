@@ -71,7 +71,7 @@ To connect the Cloudflare Module to your Cloudflare account, head to your [Accou
 
 Here, we will need to give our token access to _Edit Zone DNS_, the template with the same name is really helpful.
 
-![Cloudflare API Token Creation Form](../../assets/blog/2023-06-08-https-behind-vpn/CreateCloudflareApiToken.png)
+![Cloudflare API Token Creation Form](./CreateCloudflareApiToken.png)
 
 Make sure to select the correct zone to give access to from this token, as well as to save the API Token as we will
 later on need to provide it in our Caddy configuration.
@@ -81,10 +81,10 @@ later on need to provide it in our Caddy configuration.
 Now, before continuing, we must make the `hello.internal.` subdomain available to our devices, so let's open Pi-hole.
 
 You can register the DNS record using IPv4/IPv6 by visiting `/admin/dns_records.php` in your Pi-hole dashboard:
-![Local DNS Records using IPv4/IPv6](../../assets/blog/2023-06-08-https-behind-vpn/DnsUsingIp.png)
+![Local DNS Records using IPv4/IPv6](./DnsUsingIp.png)
 
 Or you can do CNAME by visiting `/admin/cname_records.php`:
-![Local DNS Records using CNAME](../../assets/blog/2023-06-08-https-behind-vpn/DnsUsingCname.png)
+![Local DNS Records using CNAME](./DnsUsingCname.png)
 
 ## 4. Configure our Caddyfile
 
@@ -104,7 +104,7 @@ hello.internal.jglz.io {
 
 Now, when we navigate to our application, we can see Caddy responding our requests with TLS!
 
-![Hello TLS!](../../assets/blog/2023-06-08-https-behind-vpn/HelloTLS.png)
+![Hello TLS!](./HelloTLS.png)
 
 ## Beyond private networks
 

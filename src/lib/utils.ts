@@ -5,14 +5,18 @@ export function toDateTime(date: Date, tz: string = 'America/Monterrey'): DateTi
   return DateTime.fromSQL(date.toISOString().split('T')[0]).setZone(tz)
 }
 
-export type BlogPost = ReturnType<typeof transformBlogPost>
+type BlogEntry = CollectionEntry<'blog'>
+export type BlogPost = Omit<BlogEntry, 'data'> & {
+  data: Omit<BlogEntry['data'], 'date'> & {
+    date?: DateTime
+  }
+}
 
-export function transformBlogPost(post: CollectionEntry<'blog'>, baseUrl: URL) {
+export function transformBlogPost(post: CollectionEntry<'blog'>, baseUrl: URL): BlogPost {
   return {
     ...post,
     data: {
       ...post.data,
-      url: new URL(`/blog/${post.slug}`, baseUrl.origin).href,
       date: !post.data.date ? undefined : toDateTime(post.data.date),
     },
   }

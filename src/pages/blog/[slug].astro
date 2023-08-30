@@ -77,7 +77,7 @@ const { Content } = await post.render();
                   Draft
                 </span>
               ) : (
-                <time class="text-gray-400" date-time={post.data.date!.toISO()}>
+                <time class="text-gray-400" datetime={post.data.date!.toISO()}>
                   {post.data.date!.toFormat("MMMM dd, y")}
                 </time>
               )
