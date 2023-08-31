@@ -1,8 +1,8 @@
 ---
 import { getImage } from 'astro:assets'
 import type { DateTime } from "luxon";
-import type { BlogPost } from "../../lib/utils";
-import Avatar from '../../assets/avatar.jpeg'
+import type { BlogPost } from "~/lib/utils";
+import Avatar from '~/assets/avatar.jpeg'
 
 export type Props = Partial<Pick<BlogPost['data'], 'title' | 'description' | 'image'>> & {
   article?: {

@@ -1,7 +1,7 @@
 ---
-import "../assets/css/app.css";
+import "~/assets/css/app.css";
 
-const { class: bodyClass = "" } = Astro.props;
+const { class: bodyClass } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -14,7 +14,9 @@ const { class: bodyClass = "" } = Astro.props;
     <slot name="meta" />
   </head>
 
-  <body class={bodyClass}>
+  <body class:list={[
+      bodyClass,
+  ]}>
     <slot />
   </body>
 </html>

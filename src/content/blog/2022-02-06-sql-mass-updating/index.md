@@ -153,7 +153,7 @@ where:
 
 Hope you like this little, but spicy, SQL trick 🌶.
 
-## Bonus: Laravel Mass-Update Package
+## 🎁 Bonus: Laravel Mass-Update Package
 
 You may not be aware, but I'm actually a huge Laravel fan, and so, I couldn't
 miss the opportunity to build a package which wraps the implementation details

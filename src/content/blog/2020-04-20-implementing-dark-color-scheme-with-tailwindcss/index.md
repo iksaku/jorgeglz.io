@@ -6,16 +6,6 @@ description: |
 date: 2020-04-20
 ---
 
-Dark mode 🌑 has been a hot topic in the UX land for quite some time,
-and it recently blew up with its official implementation in major Operating
-Systems during the last few months.
-
-With this trend, many websites started to generate a Dark mode version of
-themselves, which may enabled manually by the user, automatically based on your
-device's preference, or both ways.
-
-> ## Important Update
->
 > As of [TailwindCSS v2.0](https://blog.tailwindcss.com/tailwindcss-v2), Dark
 > mode support is now provided out of the box!
 >
@@ -26,7 +16,13 @@ device's preference, or both ways.
 > To learn more about the new support, please head to the new
 > [Dark Mode Documentation](https://tailwindcss.com/docs/dark-mode).
 
-## Original Post
+Dark mode 🌑 has been a hot topic in the UX land for quite some time,
+and it recently blew up with its official implementation in major Operating
+Systems during the last few months.
+
+With this trend, many websites started to generate a Dark mode version of
+themselves, which may enabled manually by the user, automatically based on your
+device's preference, or both ways.
 
 Modern web browsers implemented this functionality recently with the
 introduction of the

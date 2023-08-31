@@ -1,9 +1,0 @@
----
-export type Props = {
-    when: boolean
-}
-
-const { when: condition } = Astro.props
----
-
-{condition ? (<slot />) : (<slot name="fallback" />)}

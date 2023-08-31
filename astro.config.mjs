@@ -36,9 +36,10 @@ export default defineConfig({
   integrations: [
     prefetch(),
     tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
+      applyBaseStyles: false,
     }),
   ],
+  redirects: {
+    '/': '/blog',
+  },
 })

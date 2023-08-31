@@ -12,6 +12,8 @@
   "devDependencies": {
     "@astrojs/prefetch": "^0.4.0",
     "@astrojs/tailwind": "^5.0.0",
+    "@fontsource-variable/inter": "^5.0.8",
+    "@fontsource-variable/jetbrains-mono": "^5.0.9",
     "@tailwindcss/typography": "^0.5.9",
     "@types/luxon": "^3.3.0",
     "astro": "^3.0.2",

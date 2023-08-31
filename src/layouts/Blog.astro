@@ -1,40 +1,49 @@
 ---
-import MasterLayout from '../../layouts/Master.astro'
-import NavLink from './NavLink.astro'
+import MasterLayout from './Main.astro'
 
-import GitHub from '../icons/GitHub.astro'
-import LinkedIn from '../icons/LinkedIn.astro'
-import Twitter from '../icons/Twitter.astro'
+import GitHub from '~/components/icons/GitHub.astro'
+import LinkedIn from '~/components/icons/LinkedIn.astro'
+import Twitter from '~/components/icons/Twitter.astro'
+
+const navLinks = Object.entries({
+    '/about': 'About'
+})
 ---
 
-<MasterLayout class="w-full min-h-screen h-full flex flex-col bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<MasterLayout class="w-full min-h-screen h-full flex flex-col bg-gray-900 text-white">
     <Fragment slot="meta">
         <slot name="meta" />
     </Fragment>
 
-    <header class='w-full bg-gray-50 dark:bg-gray-800 border-b border-gray-400 dark:border-gray-600'>
-        <nav class='md:container flex items-center justify-between px-4 py-2 md:mx-auto'>
-            <a
-                href='/blog'
-                class='block hocus:text-blue-700 dark:hocus:text-blue-500 text-2xl font-semibold focus:ring ring-blue-500 focus:outline-none'
-            >
+    <header class='w-full px-4'>
+        <nav class='max-w-3xl container flex items-center justify-between py-2 mx-auto'>
+            <a href='/blog' class='block hocus:text-orange-300 text-2xl font-semibold hocus:underline'>
                 JorgeGlz
             </a>
 
             <ul class='flex items-center space-x-4'>
-                <li>
-                    <NavLink href='/about'>About</NavLink>
-                </li>
+                {navLinks.map(([href, content]) => (
+                    <li>
+                        <a href={href} class:list={[
+                            {
+                                'text-orange-300': Astro.url.pathname === href,
+                                'hocus:text-orange-300 hocus:underline': Astro.url.pathname !== href,
+                            }
+                        ]}>
+                            {content}
+                        </a>
+                    </li>
+                ))}
             </ul>
         </nav>
     </header>
 
-    <div class='flex-grow md:container md:px-4 py-4 md:mx-auto'>
+    <div class='flex-grow px-4 py-4 md:mx-auto'>
         <slot />
     </div>
 
-    <div class='w-full bg-gray-50 dark:bg-gray-800 border-t border-gray-500 dark:border-gray-600'>
-        <footer class='md:container flex items-center justify-between px-4 md:mx-auto'>
+    <div class='w-full px-4'>
+        <footer class='max-w-3xl container flex items-center justify-between mx-auto'>
             <div class='font-bold my-4'>&copy; 2019 - 2023</div>
 
             <ul class='flex items-center space-x-4 sm:space-x-8'>
