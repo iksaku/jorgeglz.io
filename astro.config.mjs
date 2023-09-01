@@ -9,7 +9,7 @@ import shikiLangs from './src/lib/shiki/languages.mjs'
 
 import prefetch from '@astrojs/prefetch'
 import tailwind from '@astrojs/tailwind'
-import fontDisplayBlock from './src/lib/font-display-block'
+import fontPreload from './src/lib/font-preload'
 
 // https://astro.build/config
 export default defineConfig({
@@ -42,7 +42,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    fontDisplayBlock,
+    fontPreload,
   ],
   redirects: {
     '/': '/blog',

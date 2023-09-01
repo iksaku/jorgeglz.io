@@ -13,7 +13,6 @@ export default {
 
             const stylesheets = (await readdir(assets))
                 .filter((filename) => filename.endsWith('.css'))
-            console.log(stylesheets)
 
             const fonts = new Map()
             for (const stylesheet of stylesheets) {
@@ -35,13 +34,9 @@ export default {
                 })
             }
 
-            const pages = (await readdir(dir, { recursive: true }))
-                .filter((filename) => filename.endsWith('.html'))
-            console.log(pages)
+            for (const page of await readdir(dir, { recursive: true })) {
+                if (!page.endsWith('.html')) continue;
 
-            console.log(await readdir(dir, { recursive: true }))
-
-            for (const page of pages) {
                 const pageDir = join(dir, page)
                 const contents = await readFile(pageDir, { encoding: 'utf-8' })
 
@@ -58,8 +53,6 @@ export default {
                 const preloadTags = [...fontsToPreload]
                     .map((font) => `<link rel="preload" as="font" type="font/woff2" href="${font}">`)
                     .join('')
-
-                console.log(page, preloadTags)
 
                 head = preloadTags + head
 
