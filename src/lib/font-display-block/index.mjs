@@ -6,11 +6,14 @@ export default {
     name: 'font-preload-integration',
     hooks: {
         'astro:build:done': async ({ dir }) => {
+            console.log('Starting font scanning...')
+
             dir = fileURLToPath(dir)
             const assets = join(dir, '_astro')
 
             const stylesheets = (await readdir(assets))
                 .filter((filename) => filename.endsWith('.css'))
+            console.log(stylesheets)
 
             const fonts = new Map()
             for (const stylesheet of stylesheets) {
@@ -34,6 +37,7 @@ export default {
 
             const pages = (await readdir(dir, { recursive: true }))
                 .filter((filename) => filename.endsWith('.html'))
+            console.log(pages)
 
             for (const page of pages) {
                 const pageDir = join(dir, page)
