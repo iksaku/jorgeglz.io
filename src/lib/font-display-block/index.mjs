@@ -49,13 +49,9 @@ export default {
                         .flatMap((stylesheet) => [...fonts.get(stylesheet) ?? []])
                 )
 
-                // console.log(page, stylesInPage, fontsToPreload);
-
                 const preloadTags = [...fontsToPreload]
-                    .map((font) => `<link rel="preload" as="font" href="${font}">`)
+                    .map((font) => `<link rel="preload" as="font" type="font/woff2" href="${font}">`)
                     .join('')
-
-                // console.log(preloadTags + head)
 
                 head = preloadTags + head
 
