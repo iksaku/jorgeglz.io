@@ -42,7 +42,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    fontPreload,
+    // fontPreload,
   ],
   redirects: {
     '/': '/blog',
