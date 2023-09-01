@@ -53,6 +53,8 @@ export default {
                     .map((font) => `<link rel="preload" as="font" type="font/woff2" href="${font}">`)
                     .join('')
 
+                console.log(page, preloadTags)
+
                 head = preloadTags + head
 
                 await writeFile(
