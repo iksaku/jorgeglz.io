@@ -12,58 +12,64 @@ export default {
             const stylesheets = (await readdir(assets))
                 .filter((filename) => filename.endsWith('.css'))
 
-            const fonts = new Map()
+            // const fonts = new Map()
             for (const stylesheet of stylesheets) {
-                const contents = await readFile(join(assets, stylesheet), { encoding: 'utf-8' })
-
-                const fontFiles = contents.match(/\/\S*\.woff2/g)
-
-                if (fontFiles.length < 1) {
-                    continue
-                }
-
-                if (! fonts.has(stylesheet)) {
-                    fonts.set(stylesheet, new Set())
-                }
-
-                const store = fonts.get(stylesheet)
-                fontFiles.forEach((font) => {
-                    store.add(font)
-                })
-            }
-
-            const pages = (await readdir(dir, { recursive: true }))
-                .filter((filename) => filename.endsWith('.html'))
-
-            for (const page of pages) {
-                const pageDir = join(dir, page)
-                const contents = await readFile(pageDir, { encoding: 'utf-8' })
-
-                let head = contents.match(/<head>(.*)<\/head>/s)?.[1]
-
-                if (!head) continue
-
-                const stylesInPage = stylesheets.filter((filename) => head.includes(filename))
-                const fontsToPreload = new Set(
-                    stylesInPage
-                        .flatMap((stylesheet) => [...fonts.get(stylesheet) ?? []])
-                )
-
-                // console.log(page, stylesInPage, fontsToPreload);
-
-                const preloadTags = [...fontsToPreload]
-                    .map((font) => `<link rel="preload" as="font" href="${font}">`)
-                    .join('')
-
-                // console.log(preloadTags + head)
-
-                head = preloadTags + head
+                const stylesheetDir = join(assets, stylesheet)
+                const contents = await readFile(stylesheetDir, { encoding: 'utf-8' })
 
                 await writeFile(
-                    pageDir,
-                    contents.replace(/<head>.*<\/head>/s, `<head>${head}</head>`)
+                    stylesheetDir,
+                    contents.replaceAll(/font-display:\s*swap/g, 'font-display:block')
                 )
+
+                // const fontFiles = contents.match(/\/\S*\.woff2/g)
+                //
+                // if (fontFiles.length < 1) {
+                //     continue
+                // }
+                //
+                // if (! fonts.has(stylesheet)) {
+                //     fonts.set(stylesheet, new Set())
+                // }
+                //
+                // const store = fonts.get(stylesheet)
+                // fontFiles.forEach((font) => {
+                //     store.add(font)
+                // })
             }
+
+            // const pages = (await readdir(dir, { recursive: true }))
+            //     .filter((filename) => filename.endsWith('.html'))
+            //
+            // for (const page of pages) {
+            //     const pageDir = join(dir, page)
+            //     const contents = await readFile(pageDir, { encoding: 'utf-8' })
+            //
+            //     let head = contents.match(/<head>(.*)<\/head>/s)?.[1]
+            //
+            //     if (!head) continue
+            //
+            //     const stylesInPage = stylesheets.filter((filename) => head.includes(filename))
+            //     const fontsToPreload = new Set(
+            //         stylesInPage
+            //             .flatMap((stylesheet) => [...fonts.get(stylesheet) ?? []])
+            //     )
+            //
+            //     // console.log(page, stylesInPage, fontsToPreload);
+            //
+            //     const preloadTags = [...fontsToPreload]
+            //         .map((font) => `<link rel="preload" as="font" href="${font}">`)
+            //         .join('')
+            //
+            //     // console.log(preloadTags + head)
+            //
+            //     head = preloadTags + head
+            //
+            //     await writeFile(
+            //         pageDir,
+            //         contents.replace(/<head>.*<\/head>/s, `<head>${head}</head>`)
+            //     )
+            // }
         }
     },
 }
