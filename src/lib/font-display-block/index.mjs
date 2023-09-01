@@ -39,6 +39,8 @@ export default {
                 .filter((filename) => filename.endsWith('.html'))
             console.log(pages)
 
+            console.log(await readdir(dir, { recursive: true }))
+
             for (const page of pages) {
                 const pageDir = join(dir, page)
                 const contents = await readFile(pageDir, { encoding: 'utf-8' })
