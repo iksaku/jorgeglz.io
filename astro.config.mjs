@@ -7,7 +7,6 @@ import rehypeCodeNotProse from './src/lib/rehype/code-not-prose.mjs'
 
 import shikiLangs from './src/lib/shiki/languages.mjs'
 
-import prefetch from '@astrojs/prefetch'
 import tailwind from '@astrojs/tailwind'
 import fontPreload from './src/lib/font-preload'
 
@@ -38,12 +37,14 @@ export default defineConfig({
     },
   },
   integrations: [
-    prefetch(),
     tailwind({
       applyBaseStyles: false,
     }),
     fontPreload,
   ],
+  prefetch: {
+    prefetchAll: true,
+  },
   redirects: {
     '/': '/blog',
   },

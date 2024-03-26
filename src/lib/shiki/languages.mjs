@@ -1,15 +1,14 @@
-import { resolve } from 'path'
+import { bundledLanguages } from 'shiki'
 
-function reference(name) {
-  return resolve(`./src/lib/shiki/languages/${name}.tmLanguage.json`)
-}
+import caddyLang from './languages/caddyfile.tmLanguage.json' assert { type: 'json' }
 
 /** @type {import('shiki').ILanguageRegistration[]} */
 export default [
+  ...Object.keys(bundledLanguages),
   {
     id: 'caddyfile',
     scopeName: 'source.Caddyfile',
-    path: reference('caddyfile'),
     aliases: ['caddy'],
+    ...caddyLang,
   },
 ]
