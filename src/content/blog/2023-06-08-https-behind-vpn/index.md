@@ -54,7 +54,7 @@ reachable from the public internet, we will be installing the [Cloudflare module
 that will allow Caddy to receive the challenge in form on a TXT Record challenge and automatically issue the
 value via the Cloudflare API, and remove it once the TLS certificate has been issued.
 
-![DNS Challenge Diagram](https://mermaid.ink/svg/pako:eNptkrFOwzAQhl_l5Lm8QIZKKGUDhJoKGLIc9jmxSOxycSpFVUc2BgY2Bt6NJ-ARsJ1CS8Pmi7_f_3_RvxXSKRKZ6OipJytpYbBibEsLgL13tm8fiOO0RvZGmjVaDxIBO_j6eHuFnMJnbSR6gvPe146NH6a8UsMoeQmSOE0QHe8_358hb1yvdINMpY1UEp_N5xIzWMaUnYfFdQF5jU1DtqIRSkQgs8MF3BKP2YyzkIdF01rSm02MKzGO1oUjm6r24DREkzs0HrRjWN2vgqN0rE6S6AwK7_gfAzB2Ips6JNlwBM6gIkscU60uC5CHnxofUHSS-XjbG3Ybo0Zd_leXjBvSe9-Ej7kn8Ol6S2rdho4SiploiVs0KpRlG_FS-JpaKkUWjgr5sRSl3QWuX6vw5oUywUpkGpuOZiKWqRisFJnnnn6gfdt-KUqiq7GSqZm7b_iN7WI?bgColor=!white)
+![DNS Challenge Diagram](DnsChallengeDiagram.svg)
 
 To compile Caddy with this module, we can use the [xcaddy](https://caddyserver.com/docs/build#xcaddy) command:
 
