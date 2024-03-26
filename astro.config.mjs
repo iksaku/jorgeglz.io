@@ -3,7 +3,6 @@ import { defineConfig } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
-import rehypeCodeNotProse from './src/lib/rehype/code-not-prose.mjs'
 
 import shikiLangs from './src/lib/shiki/languages.mjs'
 
@@ -19,7 +18,7 @@ export default defineConfig({
       [
         rehypeAutolinkHeadings,
         {
-          behaviour: 'wrap',
+          behavior: 'wrap',
         },
       ],
       [
@@ -29,7 +28,6 @@ export default defineConfig({
           rel: ['noopener', 'noreferrer'],
         },
       ],
-      rehypeCodeNotProse,
     ],
     shikiConfig: {
       theme: 'dracula',
