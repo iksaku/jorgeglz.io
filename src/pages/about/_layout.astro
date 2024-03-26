@@ -1,31 +1,28 @@
 ---
-import Layout from "~/layouts/Blog.astro";
-import Seo from "~/components/Seo.astro";
-import { Image } from "astro:assets"
-import Avatar from "~/assets/avatar.jpeg"
+import Layout from '~/layouts/Blog.astro'
+import Seo from '~/components/Seo.astro'
+import { Image } from 'astro:assets'
+import Avatar from '~/assets/avatar.jpeg'
 ---
 
 <Layout>
-    <Seo
-        slot="meta"
-        title="About Me"
-        description="Wanna know a little more about me?"
-    />
+  <Seo slot="meta" title="About Me" description="Wanna know a little more about me?" />
 
-    <div class="max-w-3xl space-y-8">
-        <div
-            class="w-full flex flex-col-reverse md:flex-row items-center justify-center md:space-x-8 space-y-4 space-y-reverse md:space-y-0"
-        >
-            <Image
-                src={Avatar}
-                alt="Jorge González's Avatar"
-                class="w-32 h-32 aspect-square rounded-full overflow-hidden"
-            />
-            <h1 class="text-3xl font-bold">This is me... 🎶</h1>
-        </div>
-
-        <article class="prose max-w-none">
-            <slot />
-        </article>
+  <div class="max-w-3xl space-y-8">
+    <div
+      class="w-full flex flex-col-reverse md:flex-row items-center justify-center md:space-x-8 space-y-4 space-y-reverse md:space-y-0"
+    >
+      <Image
+        src={Avatar}
+        alt="Jorge González's Avatar"
+        class="w-32 h-32 aspect-square rounded-full overflow-hidden"
+        loading="eager"
+      />
+      <h1 class="text-3xl font-bold">This is me... 🎶</h1>
     </div>
+
+    <article class="prose max-w-none">
+      <slot />
+    </article>
+  </div>
 </Layout>
