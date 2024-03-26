@@ -51,7 +51,7 @@ display your Desktop applications in their own application menu, however, since
 AppImages are not meant to be _installed_, they will not show in your
 application list.
 
-![Searching Tinkerwell in GNOME and having no matching results](./WithoutGnomeIntegration.png)
+![Searching Tinkerwell in GNOME and having no matching results](WithoutGnomeIntegration.png)
 
 Today, I'm here to tell you there's a way to solve this and provide neat
 discoverability for your application when using the GNOME Desktop Environment
@@ -133,7 +133,7 @@ update-desktop-database
 If every piece is properly configured, we should now see tinkerwell in our
 application menu! 🎉
 
-![Searching Tinkerwell in GNOME and having a proper result](./WithGnomeIntegration.png)
+![Searching Tinkerwell in GNOME and having a proper result](WithGnomeIntegration.png)
 
 Now, besides having such a powerful tool at your disposition, you also have a
 quick access entry in your application menu 🏃‍♂️.
