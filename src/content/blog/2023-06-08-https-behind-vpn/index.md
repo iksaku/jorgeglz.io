@@ -5,6 +5,7 @@ description: |
   Why self-sign when you can pull TLS Certs from a Certificate Authority? Let's see how Caddy can help you
   add Automatic HTTPS for your private resources.
 date: 2023-06-08
+image: ./HelloTLS.png
 ---
 
 Back in the day, managing TLS certificates for your websites was more like a chore than an _useful_ task; it
