@@ -170,11 +170,11 @@ If you're into Laravel, well, this package is pretty easy to set up, just:
 
 ```php
 use Illuminate\Database\Eloquent\Model;
-use Iksaku\Laravel\MassUpdate\MassUpdatable;
+use Iksaku\Laravel\MassUpdate\MassUpdatable; // [!code ++]
 
 class Customer extends Model
 {
-    use MassUpdatable;
+    use MassUpdatable; // [!code ++]
 
     // ...
 }

@@ -59,7 +59,7 @@ module.exports = {
     extend: {
       screens: {
         dark: {
-          raw: '(prefers-color-scheme: dark)',
+          raw: '(prefers-color-scheme: dark)', // [!code ++]
         },
       },
     },

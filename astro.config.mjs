@@ -4,6 +4,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
 
+import { transformerNotationDiff, transformerNotationHighlight } from '@shikijs/transformers'
 import shikiLangs from './src/lib/shiki/languages.mjs'
 
 import tailwind from '@astrojs/tailwind'
@@ -32,6 +33,7 @@ export default defineConfig({
     shikiConfig: {
       theme: 'dracula',
       langs: shikiLangs,
+      transformers: [transformerNotationDiff(), transformerNotationHighlight()],
     },
   },
   integrations: [

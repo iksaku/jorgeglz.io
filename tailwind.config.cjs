@@ -35,6 +35,50 @@ module.exports = {
               fontWeight: theme('fontWeight.normal'),
             },
 
+            pre: {
+              paddingInlineStart: '0',
+              paddingInlineEnd: '0',
+
+              code: {
+                display: 'inline-block',
+                width: '100%',
+
+                '.line:not(:empty,:has(*:empty))': {
+                  paddingInlineStart: '1.1428571em',
+                  paddingInlineEnd: '1.1428571em',
+                  display: 'inline-block',
+                  width: 'calc(100%)',
+
+                  '&.highlighted': {
+                    backgroundColor: '#44475A75',
+                  },
+                  '&.diff': {
+                    position: 'relative',
+
+                    '&::before': {
+                      position: 'absolute',
+                      left: '0.125rem', // 0.5
+                    },
+
+                    '&.add': {
+                      backgroundColor: '#50FA7B40',
+                      '&::before': {
+                        content: '"+"',
+                        color: '#50FA7B',
+                      }
+                    },
+                    '&.remove': {
+                      backgroundColor: '#FF555540',
+                      '&::before': {
+                        content: '"-"',
+                        color: '#FF5555',
+                      }
+                    }
+                  },
+                },
+              },
+            },
+
             code: {
               backgroundColor: theme('colors.zinc[700]'),
               borderRadius: theme('borderRadius.DEFAULT'),
