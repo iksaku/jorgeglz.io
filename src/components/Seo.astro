@@ -1,10 +1,13 @@
 ---
 import { getImage } from 'astro:assets'
-import type { DateTime } from "luxon";
-import type { BlogPost } from "~/lib/utils";
+import type { DateTime } from 'luxon'
+import type { BlogPost } from '~/lib/utils'
 import Avatar from '~/assets/avatar.jpeg'
 
-export type Props = Partial<Pick<BlogPost['data'], 'title' | 'description' | 'image'>> & {
+interface Props {
+  title?: BlogPost['data']['title']
+  description?: BlogPost['data']['description']
+  image?: BlogPost['data']['image']
   article?: {
     published_time?: DateTime
   }
@@ -14,24 +17,24 @@ export type Props = Partial<Pick<BlogPost['data'], 'title' | 'description' | 'im
 }
 
 const {
-  title = "JorgeGlz",
-  description = "Hello! I have a blog! And here you can find... Well... Blog posts...",
+  title = 'JorgeGlz',
+  description = 'Hello! I have a blog! And here you can find... Well... Blog posts...',
   article,
   twitter,
-} = Astro.props;
+} = Astro.props
 
 function tabTitle(): string {
-  if (title.endsWith("JorgeGlz")) {
-    return title;
+  if (title.endsWith('JorgeGlz')) {
+    return title
   }
 
-  return `${title} | JorgeGlz`;
+  return `${title} | JorgeGlz`
 }
 
 function metaType(): string {
-  if (!!article) return "article";
+  if (!!article) return 'article'
 
-  return "website";
+  return 'website'
 }
 
 const image = await getImage({ src: Astro.props.image ?? Avatar, format: 'jpg' })
@@ -39,24 +42,28 @@ const image = await getImage({ src: Astro.props.image ?? Avatar, format: 'jpg' }
 
 {/* https://twitter.com/jon_neal/status/1428721238071988237 */}
 <title>{tabTitle()}</title>
-<meta name="og:title" content={title}>
+<meta name="og:title" content={title} />
 
-<meta name="description" content={description}>
-<meta name="og:description" content={description}>
+<meta name="description" content={description} />
+<meta name="og:description" content={description} />
 
-<meta name="og:type" content={metaType()}>
+<meta name="og:type" content={metaType()} />
 
-<meta name="og:url" content={Astro.url}>
+<meta name="og:url" content={Astro.url} />
 
-<meta name="og:image" content={image.src}>
-<meta name="og:image:width" content={`${image.attributes.width}`}>
-<meta name="og:image:height" content={`${image.attributes.height}`}>
+<meta name="og:image" content={image.src} />
+<meta name="og:image:width" content={`${image.attributes.width}`} />
+<meta name="og:image:height" content={`${image.attributes.height}`} />
 
-{ !!article && <Fragment>
-  <meta name="og:author" content="Jorge González">
-  { !!article.published_time && <meta name="og:published_time" content={article.published_time.toISO()}> }
-</Fragment> }
+{
+  !!article && (
+    <Fragment>
+      <meta name="og:author" content="Jorge González" />
+      {!!article.published_time && <meta name="og:published_time" content={article.published_time.toISO()} />}
+    </Fragment>
+  )
+}
 
-<meta name="twitter:site" content="@iksaku2">
-<meta name="twitter:creator" content="@iksaku2">
-<meta name="twitter:card" content={twitter?.card ?? (!Astro.props.image ? "summary" : "summary_large_image")}>
+<meta name="twitter:site" content="@iksaku2" />
+<meta name="twitter:creator" content="@iksaku2" />
+<meta name="twitter:card" content={twitter?.card ?? (!Astro.props.image ? 'summary' : 'summary_large_image')} />

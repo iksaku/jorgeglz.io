@@ -1,15 +1,10 @@
 ---
-import Layout from "~/layouts/Blog.astro";
-import Seo from "~/components/Seo.astro";
-import { Image } from "astro:assets"
-import { getCollection } from "astro:content";
-import {BlogPost, sortPostsByDate, toDateTime, transformBlogPost} from "~/lib/utils";
+import Layout from '~/layouts/Blog.astro'
+import Seo from '~/components/Seo.astro'
+import { Image } from 'astro:assets'
+import { type BlogPost, getBlogPosts } from '~/lib/utils'
 
-const posts: BlogPost[] = (
-  await getCollection("blog", (post) => import.meta.env.DEV || !!post.data.date)
-)
-  .map((post) => transformBlogPost(post, Astro.url))
-  .sort(sortPostsByDate);
+const posts: BlogPost[] = await getBlogPosts((post) => import.meta.env.DEV || !!post.data.date)
 ---
 
 <Layout>
@@ -18,31 +13,21 @@ const posts: BlogPost[] = (
   <div class="max-w-3xl flex flex-col gap-12 mx-auto">
     {
       posts.map((post) => (
-          <a
-              href={`/blog/${post.slug}`}
-              rel="prefetch"
-              class="w-full h-full contain-paint group"
-          >
-            <div class="flex flex-col justify-between w-full space-y-1">
-              <h1 class="text-lg text-orange-300 md:text-xl font-semibold group-hover:underline">
-                {post.data.title}
-              </h1>
+        <a href={`/blog/${post.slug}`} rel="prefetch" class="w-full h-full contain-paint group">
+          <div class="flex flex-col justify-between w-full space-y-1">
+            <h1 class="text-lg text-orange-300 md:text-xl font-semibold group-hover:underline">{post.data.title}</h1>
 
-              {!post.data.date ? (
-                  <span class="text-sm md:text-lg text-red-500 font-semibold uppercase italic">
-                    Draft
-                  </span>
-              ) : (
-                  <time class="text-sm md:text-lg text-gray-400" datetime={post.data.date!.toISO()}>
-                    {post.data.date!.toFormat("MMMM dd, y")}
-                  </time>
-              )}
+            {!post.data.date ? (
+              <span class="text-sm md:text-lg text-red-500 font-semibold uppercase italic">Draft</span>
+            ) : (
+              <time class="text-sm md:text-lg text-gray-400" datetime={post.data.date!.toISO()}>
+                {post.data.date!.toFormat('MMMM dd, y')}
+              </time>
+            )}
 
-              <p>
-                {post.data.description}
-              </p>
-            </div>
-          </a>
+            <p>{post.data.description}</p>
+          </div>
+        </a>
       ))
     }
   </div>
