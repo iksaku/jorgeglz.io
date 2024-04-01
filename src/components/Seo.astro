@@ -51,7 +51,7 @@ const image = await getImage({ src: Astro.props.image ?? Avatar, format: 'jpg' }
 
 <meta name="og:url" content={Astro.url} />
 
-<meta name="og:image" content={image.src} />
+<meta name="og:image" content={new URL(image.src, Astro.url).toString()} />
 <meta name="og:image:width" content={`${image.attributes.width}`} />
 <meta name="og:image:height" content={`${image.attributes.height}`} />
 
