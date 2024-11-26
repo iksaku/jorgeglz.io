@@ -1,6 +1,7 @@
 ---
 import MasterLayout from './Main.astro'
 
+import Bluesky from '~/components/icons/Bluesky.astro'
 import GitHub from '~/components/icons/GitHub.astro'
 import LinkedIn from '~/components/icons/LinkedIn.astro'
 import Twitter from '~/components/icons/Twitter.astro'
@@ -78,6 +79,16 @@ const navLinks = Object.entries({
             aria-label="Jorge's Twitter Profile"
           >
             <Twitter class="w-8 h-8" />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://bsky.app/profile/jorgeglz.io"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            aria-label="Jorge's Bluesky Profile"
+          >
+            <Bluesky class="w-8 h-8" />
           </a>
         </li>
       </ul>
