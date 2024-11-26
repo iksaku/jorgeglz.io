@@ -152,7 +152,7 @@ version: '3.7'
 services:
   caddy:
     container_name: caddy
-    build: /path/to/Dockerfile
+    build: ./path-containing-Dockerfile/
     ports:
       - '80:80' # Remember that Caddy does HTTP to HTTPS redirections automatically.
       - '443:443'
