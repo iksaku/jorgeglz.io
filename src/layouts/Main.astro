@@ -1,4 +1,6 @@
 ---
+import { Font } from 'astro:assets'
+
 import '~/assets/css/app.css'
 
 const { class: bodyClass } = Astro.props
@@ -10,6 +12,9 @@ const { class: bodyClass } = Astro.props
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+
+    <Font cssVariable="--font-inter" preload />
+    <Font cssVariable="--font-jetbrains-mono" />
 
     <slot name="meta" />
   </head>

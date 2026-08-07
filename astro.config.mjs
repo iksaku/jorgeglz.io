@@ -1,42 +1,93 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig, fontProviders } from 'astro/config'
 
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeExternalLinks from 'rehype-external-links'
-import rehypeSlug from 'rehype-slug'
-
+import { satteri, satteriHeadingIdsPlugin } from '@astrojs/markdown-satteri'
 import { transformerNotationDiff, transformerNotationHighlight } from '@shikijs/transformers'
+import { satteriAutolinkHeadings } from './src/lib/satteri/autolink-headings.mjs'
+import { satteriExternalLinks } from './src/lib/satteri/external-links.mjs'
 import shikiLangs from './src/lib/shiki/languages.mjs'
 
 import tailwindcss from '@tailwindcss/vite'
-import fontPreload from './src/lib/font-preload'
 
 // https://astro.build/config
 export default defineConfig({
   site: process.env.APP_URL ?? process.env.CF_PAGES_URL ?? 'https://jorgeglz.io',
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: 'Inter Variable',
+      cssVariable: '--font-inter',
+      fallbacks: [
+        'ui-sans-serif',
+        'system-ui',
+        'sans-serif',
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol',
+        'Noto Color Emoji',
+      ],
+      options: {
+        variants: [
+          {
+            weight: '100 900',
+            style: 'normal',
+            src: ['./node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2'],
+          },
+          {
+            weight: '100 900',
+            style: 'normal',
+            src: ['./node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2'],
+          },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.local(),
+      name: 'JetBrains Mono Variable',
+      cssVariable: '--font-jetbrains-mono',
+      fallbacks: [
+        'ui-monospace',
+        'SFMono-Regular',
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        'Liberation Mono',
+        'Courier New',
+        'monospace',
+      ],
+      options: {
+        variants: [
+          {
+            weight: '100 900',
+            style: 'normal',
+            src: ['./node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2'],
+          },
+          {
+            weight: '100 900',
+            style: 'normal',
+            src: [
+              './node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-normal.woff2',
+            ],
+          },
+        ],
+      },
+    },
+  ],
   markdown: {
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: 'wrap',
-        },
+    processor: satteri({
+      hastPlugins: [
+        // Factory so ids exist before our autolink plugin runs — Astro's
+        // built-in id pass executes after user hastPlugins.
+        () => satteriHeadingIdsPlugin(),
+        satteriAutolinkHeadings,
+        satteriExternalLinks,
       ],
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: ['noopener', 'noreferrer'],
-        },
-      ],
-    ],
+    }),
     shikiConfig: {
       theme: 'dracula',
       langs: shikiLangs,
       transformers: [transformerNotationDiff(), transformerNotationHighlight()],
     },
   },
-  integrations: [fontPreload],
   vite: {
     plugins: [tailwindcss()],
   },
