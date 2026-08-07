@@ -1,6 +1,6 @@
 import { bundledLanguages } from 'shiki'
 
-import caddyLang from './languages/caddyfile.tmLanguage.json' assert { type: 'json' }
+import caddyLang from './languages/caddyfile.tmLanguage.json' with { type: 'json' }
 
 /** @type {import('shiki').LanguageRegistration[]} */
 export default [
