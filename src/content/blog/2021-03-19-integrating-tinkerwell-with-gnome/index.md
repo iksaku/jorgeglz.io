@@ -1,5 +1,4 @@
 ---
-slug: integrating-tinkerwell-with-gnome
 title: Integrating Tinkerwell with GNOME
 description: Looking for a way to integrate Tinkerwell in your Application Menu? Well, let me teach you how to do it!
 date: 2021-02-19

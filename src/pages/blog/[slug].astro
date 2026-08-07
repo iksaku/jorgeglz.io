@@ -1,14 +1,15 @@
 ---
 import { Image } from 'astro:assets'
+import { render } from 'astro:content'
 import Layout from '~/layouts/Blog.astro'
 import Seo from '~/components/Seo.astro'
-import { type BlogPost, getBlogPosts } from '~/lib/utils'
+import { type BlogEntry, type BlogPost, getBlogPosts } from '~/lib/utils'
 
 export async function getStaticPaths() {
   const posts = await getBlogPosts()
 
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }))
 }
@@ -19,7 +20,9 @@ interface Props {
 
 const post = Astro.props.post
 
-const { Content } = await post.render()
+// BlogPost widens data.date to a luxon DateTime for templating; render() only
+// reads id/collection/rendered at runtime, so narrow it back to the entry type.
+const { Content } = await render(post as unknown as BlogEntry)
 ---
 
 <Layout>

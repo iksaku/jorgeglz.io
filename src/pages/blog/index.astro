@@ -1,7 +1,6 @@
 ---
 import Layout from '~/layouts/Blog.astro'
 import Seo from '~/components/Seo.astro'
-import { Image } from 'astro:assets'
 import { type BlogPost, getBlogPosts } from '~/lib/utils'
 
 const posts: BlogPost[] = await getBlogPosts((post) => import.meta.env.DEV || !!post.data.date)
@@ -13,7 +12,7 @@ const posts: BlogPost[] = await getBlogPosts((post) => import.meta.env.DEV || !!
   <div class="max-w-3xl flex flex-col gap-12 mx-auto">
     {
       posts.map((post) => (
-        <a href={`/blog/${post.slug}`} rel="prefetch" class="w-full h-full contain-paint group">
+        <a href={`/blog/${post.id}`} rel="prefetch" class="w-full h-full contain-paint group">
           <div class="flex flex-col justify-between w-full space-y-1">
             <h1 class="text-lg text-orange-300 md:text-xl font-semibold group-hover:underline">{post.data.title}</h1>
 

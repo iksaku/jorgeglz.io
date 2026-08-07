@@ -1,5 +1,4 @@
 ---
-slug: who-am-i
 title: Who am I?
 description: Hello World! This will be, in my opinion, the very first obligated post that every blog could have...
 date: 2019-05-23
