@@ -7,7 +7,7 @@ import rehypeSlug from 'rehype-slug'
 import { transformerNotationDiff, transformerNotationHighlight } from '@shikijs/transformers'
 import shikiLangs from './src/lib/shiki/languages.mjs'
 
-import tailwind from '@astrojs/tailwind'
+import tailwindcss from '@tailwindcss/vite'
 import fontPreload from './src/lib/font-preload'
 
 // https://astro.build/config
@@ -36,12 +36,10 @@ export default defineConfig({
       transformers: [transformerNotationDiff(), transformerNotationHighlight()],
     },
   },
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    fontPreload,
-  ],
+  integrations: [fontPreload],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   prefetch: {
     prefetchAll: true,
   },
