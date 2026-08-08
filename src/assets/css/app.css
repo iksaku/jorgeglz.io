@@ -1,19 +1,12 @@
-@import '@fontsource-variable/inter' layer(base);
-@import '@fontsource-variable/jetbrains-mono' layer(base);
-
 @import 'tailwindcss';
 
 @plugin '@tailwindcss/typography';
 
 @custom-variant hocus (&:hover, &:focus);
 
-@theme {
-  --font-sans:
-    'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
-  --font-mono:
-    'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 @utility contain-paint {
