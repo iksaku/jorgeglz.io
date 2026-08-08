@@ -42,7 +42,7 @@ const { Content } = await render(post as unknown as BlogEntry)
         <Image
           src={post.data.image}
           alt={`${post.data.title} header image`}
-          class="w-full aspect-[4/1] object-top object-cover"
+          class="w-full aspect-4/1 object-top object-cover"
           loading="eager"
         />
       )
