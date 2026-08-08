@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
-        mono: ['JetBrains Mono Variable', ...defaultTheme.fontFamily.mono]
+        mono: ['JetBrains Mono Variable', ...defaultTheme.fontFamily.mono],
       },
 
       typography: ({ theme }) => ({
@@ -65,15 +65,15 @@ module.exports = {
                       '&::before': {
                         content: '"+"',
                         color: '#50FA7B',
-                      }
+                      },
                     },
                     '&.remove': {
                       backgroundColor: '#FF555540',
                       '&::before': {
                         content: '"-"',
                         color: '#FF5555',
-                      }
-                    }
+                      },
+                    },
                   },
                 },
               },
@@ -85,8 +85,8 @@ module.exports = {
               fontWeight: theme('fontWeight.semibold'),
               padding: theme('padding[1]'),
             },
-            "code::before": false,
-            "code::after": false,
+            'code::before': false,
+            'code::after': false,
 
             img: {
               marginLeft: 'auto',
@@ -104,7 +104,7 @@ module.exports = {
               textDecorationLine: 'none',
               '&:hover': {
                 textDecorationLine: 'underline',
-              }
+              },
             },
           },
         },

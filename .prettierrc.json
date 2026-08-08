@@ -5,6 +5,5 @@
   "tabWidth": 2,
   "trailingComma": "all",
   "astroAllowShorthand": true,
-  "pluginSearchDirs": [],
   "plugins": ["prettier-plugin-organize-imports", "prettier-plugin-astro"]
 }

@@ -9,6 +9,9 @@ node_modules
 # Astro
 .astro
 
+# Upgrade verification baseline (throwaway)
+.upgrade-baseline/
+
 ### VisualStudioCode template
 .vscode/*
 !.vscode/settings.json
