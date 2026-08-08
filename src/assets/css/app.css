@@ -27,6 +27,11 @@
   font-weight: 400;
 }
 
+/* Keep anchor-linked headings clear of the sticky header when scrolled to. */
+.prose :is(h1, h2, h3, h4, h5, h6)[id] {
+  scroll-margin-top: 5rem;
+}
+
 .prose pre {
   padding-inline-start: 0;
   padding-inline-end: 0;
