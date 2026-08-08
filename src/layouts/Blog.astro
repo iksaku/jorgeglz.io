@@ -1,6 +1,7 @@
 ---
 import MasterLayout from './Main.astro'
 
+import CodeCopy from '~/components/CodeCopy.astro'
 import Bluesky from '~/components/icons/Bluesky.astro'
 import GitHub from '~/components/icons/GitHub.astro'
 import LinkedIn from '~/components/icons/LinkedIn.astro'
@@ -76,4 +77,6 @@ const socials = [
       <div class="text-xs text-zinc-600">&copy; 2019 - 2026</div>
     </div>
   </footer>
+
+  <CodeCopy />
 </MasterLayout>
