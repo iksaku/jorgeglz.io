@@ -6,34 +6,42 @@ import GitHub from '~/components/icons/GitHub.astro'
 import LinkedIn from '~/components/icons/LinkedIn.astro'
 import Twitter from '~/components/icons/Twitter.astro'
 
-const navLinks = Object.entries({
-  '/about': 'About',
-})
+const navLinks = [{ href: '/about', label: 'About' }]
+
+const socials = [
+  { href: 'https://github.com/iksaku', label: "Jorge's Github Profile", Icon: GitHub },
+  { href: 'https://www.linkedin.com/in/jorge-glz', label: "Jorge's LinkedIn Profile", Icon: LinkedIn },
+  { href: 'https://twitter.com/iksaku2', label: "Jorge's Twitter Profile", Icon: Twitter },
+  { href: 'https://bsky.app/profile/jorgeglz.io', label: "Jorge's Bluesky Profile", Icon: Bluesky },
+]
 ---
 
-<MasterLayout class="w-full min-h-screen h-full flex flex-col bg-gray-900 text-white">
+<MasterLayout class="w-full min-h-screen h-full flex flex-col bg-zinc-950 text-zinc-300 antialiased">
   <Fragment slot="meta">
     <slot name="meta" />
   </Fragment>
 
-  <header class="w-full px-4">
-    <nav class="max-w-3xl container flex items-center justify-between py-2 mx-auto">
-      <a href="/blog" class="block hocus:text-orange-300 text-2xl font-semibold hocus:underline"> JorgeGlz </a>
+  <header class="sticky top-0 z-40 w-full border-b border-white/5 bg-zinc-950/80 px-6 backdrop-blur-md">
+    <nav class="mx-auto flex max-w-5xl items-center justify-between py-3">
+      <a href="/blog" class="flex items-center gap-2 text-base font-semibold tracking-tight text-zinc-50">
+        <span class="size-2 rounded-full bg-orange-400"></span>
+        JorgeGlz
+      </a>
 
-      <ul class="flex items-center space-x-4">
+      <ul class="flex items-center gap-1">
         {
-          navLinks.map(([href, content]) => (
+          navLinks.map(({ href, label }) => (
             <li>
               <a
                 href={href}
                 class:list={[
-                  {
-                    'text-orange-300': Astro.url.pathname === href,
-                    'hocus:text-orange-300 hocus:underline': Astro.url.pathname !== href,
-                  },
+                  'rounded-full px-3 py-1 text-sm transition-colors',
+                  Astro.url.pathname === href
+                    ? 'bg-white/10 text-zinc-50'
+                    : 'text-zinc-400 hover:bg-white/5 hover:text-zinc-100',
                 ]}
               >
-                {content}
+                {label}
               </a>
             </li>
           ))
@@ -42,56 +50,30 @@ const navLinks = Object.entries({
     </nav>
   </header>
 
-  <div class="grow px-4 py-4 md:mx-auto">
+  <div class="grow px-6 py-12">
     <slot />
   </div>
 
-  <div class="w-full px-4">
-    <footer class="max-w-3xl container flex items-center justify-between mx-auto">
-      <div class="font-bold my-4">&copy; 2019 - 2026</div>
-
-      <ul class="flex items-center space-x-4 sm:space-x-8">
-        <li>
-          <a
-            href="https://github.com/iksaku"
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            aria-label="Jorge's Github Profile"
-          >
-            <GitHub class="w-8 h-8" />
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.linkedin.com/in/jorge-glz"
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            aria-label="Jorge's LinkedIn Profile"
-          >
-            <LinkedIn class="w-8 h-8" />
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/iksaku2"
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            aria-label="Jorge's Twitter Profile"
-          >
-            <Twitter class="w-8 h-8" />
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://bsky.app/profile/jorgeglz.io"
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            aria-label="Jorge's Bluesky Profile"
-          >
-            <Bluesky class="w-8 h-8" />
-          </a>
-        </li>
+  <footer class="w-full border-t border-white/5 px-6">
+    <div class="mx-auto flex max-w-5xl flex-col items-center gap-4 py-8">
+      <ul class="flex items-center gap-2">
+        {
+          socials.map(({ href, label, Icon }) => (
+            <li>
+              <a
+                href={href}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                aria-label={label}
+                class="flex size-9 items-center justify-center rounded-full text-zinc-500 ring-1 ring-white/10 transition-colors hover:bg-white/5 hover:text-zinc-200"
+              >
+                <Icon class="size-4" />
+              </a>
+            </li>
+          ))
+        }
       </ul>
-    </footer>
-  </div>
+      <div class="text-xs text-zinc-600">&copy; 2019 - 2026</div>
+    </div>
+  </footer>
 </MasterLayout>

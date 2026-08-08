@@ -8,17 +8,15 @@ import Avatar from '~/assets/avatar.jpeg'
 <Layout>
   <Seo slot="meta" title="About Me" description="Wanna know a little more about me?" />
 
-  <div class="max-w-3xl space-y-8">
-    <div
-      class="w-full flex flex-col-reverse md:flex-row items-center justify-center md:space-x-8 space-y-4 space-y-reverse md:space-y-0"
-    >
+  <div class="mx-auto max-w-2xl space-y-10">
+    <div class="flex w-full flex-col-reverse items-center justify-center gap-6 md:flex-row md:justify-start">
       <Image
         src={Avatar}
         alt="Jorge González's Avatar"
-        class="w-32 h-32 aspect-square rounded-full overflow-hidden"
+        class="aspect-square size-32 overflow-hidden rounded-full ring-1 ring-white/10"
         loading="eager"
       />
-      <h1 class="text-3xl font-bold">This is me... 🎶</h1>
+      <h1 class="text-4xl font-semibold tracking-tight text-zinc-50">This is me... 🎶</h1>
     </div>
 
     <article class="prose max-w-none">
