@@ -1,5 +1,4 @@
 ---
-slug: implementing-dark-color-scheme-with-tailwindcss
 title: Implementing Dark color scheme with TailwindCSS
 description: |
   Dark mode has been a hot topic in the UX land for quite some time, and it recently blew up with its official implementation in major Operating Systems during the last few months...

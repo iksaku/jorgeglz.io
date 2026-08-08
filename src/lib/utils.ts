@@ -1,7 +1,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 import { DateTime } from 'luxon'
 
-type BlogEntry = CollectionEntry<'blog'>
+export type BlogEntry = CollectionEntry<'blog'>
 export type BlogPost = Omit<BlogEntry, 'data'> & {
   data: Omit<BlogEntry['data'], 'date'> & {
     date?: DateTime

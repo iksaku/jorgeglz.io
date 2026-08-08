@@ -1,5 +1,4 @@
 ---
-slug: https-behind-vpn
 title: Automatic HTTPS for private resources with Caddy
 description: |
   Why self-sign when you can pull TLS Certs from a Certificate Authority? Let's see how Caddy can help you

@@ -1,6 +1,5 @@
 ---
 title: Extend Astro Syntax Highlighting
-slug: extend-astro-syntax-highlighting
 description: |
   Astro + Shiki is a heavenly combo. The out-of-the-box integration saves us a ton of time setting up the highlighter
   and it is pretty easy to override the list of languages to highlight, but what if we want to extend this list instead?
