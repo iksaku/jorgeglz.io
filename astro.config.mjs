@@ -8,6 +8,7 @@ import { satteriExternalLinks } from './src/lib/satteri/external-links.mjs'
 import shikiLangs from './src/lib/shiki/languages.mjs'
 
 import tailwindcss from '@tailwindcss/vite'
+import { satteriDetectMermaidGraphs } from '~/lib/satteri/mermaid/index.mjs'
 
 // https://astro.build/config
 export default defineConfig({
@@ -54,7 +55,7 @@ export default defineConfig({
   ],
   markdown: {
     processor: satteri({
-      mdastPlugins: [satteriDetectCodeBlocks],
+      mdastPlugins: [satteriDetectMermaidGraphs, satteriDetectCodeBlocks],
       hastPlugins: [
         // Factory so ids exist before our autolink plugin runs — Astro's
         // built-in id pass executes after user hastPlugins.
