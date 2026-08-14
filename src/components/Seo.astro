@@ -10,6 +10,7 @@ interface Props {
   image?: BlogPost['data']['image']
   article?: {
     published_time?: DateTime
+    modified_time?: DateTime
   }
   twitter?: {
     card?: 'summary' | 'summary_large_image'
@@ -60,6 +61,7 @@ const image = await getImage({ src: Astro.props.image ?? Avatar, format: 'jpg' }
     <Fragment>
       <meta name="og:author" content="Jorge González" />
       {!!article.published_time && <meta name="og:published_time" content={article.published_time.toISO()} />}
+      {!!article.modified_time && <meta name="og:modified_time" content={article.modified_time.toISO()} />}
     </Fragment>
   )
 }

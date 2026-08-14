@@ -1,6 +1,6 @@
 import { glob } from 'astro/loaders'
-import { defineCollection } from 'astro:content'
 import { z } from 'astro/zod'
+import { defineCollection } from 'astro:content'
 
 const blog = defineCollection({
   loader: glob({
@@ -15,6 +15,7 @@ const blog = defineCollection({
       title: z.string().min(1),
       description: z.string().min(1),
       date: z.date().optional(),
+      update: z.date().optional(),
       image: image().optional(),
     }),
 })

@@ -5,6 +5,7 @@ export type BlogEntry = CollectionEntry<'blog'>
 export type BlogPost = Omit<BlogEntry, 'data'> & {
   data: Omit<BlogEntry['data'], 'date'> & {
     date?: DateTime
+    update?: DateTime
   }
 }
 
@@ -19,6 +20,8 @@ export async function getBlogPosts(filter?: (entry: CollectionEntry<'blog'>) => 
         data: {
           ...post.data,
           date: toDateTime(post.data.date),
+          // @ts-ignore
+          update: post.data.update ? toDateTime(post.data.update) : undefined,
         },
       }
     })
