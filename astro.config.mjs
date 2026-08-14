@@ -14,37 +14,32 @@ export default defineConfig({
   site: process.env.APP_URL ?? process.env.CF_PAGES_URL ?? 'https://jorgeglz.io',
   fonts: [
     {
-      provider: fontProviders.local(),
-      name: 'Inter Variable',
+      provider: fontProviders.fontsource(),
+      name: 'Inter',
       cssVariable: '--font-inter',
+      styles: ['normal', 'italic'],
+      weights: ['100, 900'],
       fallbacks: [
-        'ui-sans-serif',
-        'system-ui',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        'Segoe UI',
+        'Roboto',
+        'Helvetica Neue',
+        'Noto Sans',
+        'Arial',
         'sans-serif',
         'Apple Color Emoji',
         'Segoe UI Emoji',
         'Segoe UI Symbol',
         'Noto Color Emoji',
       ],
-      options: {
-        variants: [
-          {
-            weight: '100 900',
-            style: 'normal',
-            src: ['./node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2'],
-          },
-          {
-            weight: '100 900',
-            style: 'normal',
-            src: ['./node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2'],
-          },
-        ],
-      },
     },
     {
-      provider: fontProviders.local(),
-      name: 'JetBrains Mono Variable',
+      provider: fontProviders.fontsource(),
+      name: 'JetBrains Mono',
       cssVariable: '--font-jetbrains-mono',
+      styles: ['normal'],
+      weights: ['100, 900'],
       fallbacks: [
         'ui-monospace',
         'SFMono-Regular',
@@ -55,22 +50,6 @@ export default defineConfig({
         'Courier New',
         'monospace',
       ],
-      options: {
-        variants: [
-          {
-            weight: '100 900',
-            style: 'normal',
-            src: ['./node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2'],
-          },
-          {
-            weight: '100 900',
-            style: 'normal',
-            src: [
-              './node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-normal.woff2',
-            ],
-          },
-        ],
-      },
     },
   ],
   markdown: {
