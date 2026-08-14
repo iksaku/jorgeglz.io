@@ -38,6 +38,7 @@ const {
       published_time: post.data.date,
       modified_time: post.data.update,
     }}
+    robots={post.data.date ? undefined : 'noindex'}
   />
 
   <div class="mx-auto max-w-2xl @container">
