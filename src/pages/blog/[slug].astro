@@ -22,7 +22,10 @@ const post = Astro.props.post
 
 // BlogPost widens data.date to a luxon DateTime for templating; render() only
 // reads id/collection/rendered at runtime, so narrow it back to the entry type.
-const { Content } = await render(post as unknown as BlogEntry)
+const {
+  Content,
+  remarkPluginFrontmatter: { _codeBlockDetected = false },
+} = await render(post as unknown as BlogEntry)
 ---
 
 <Layout>
@@ -67,4 +70,6 @@ const { Content } = await render(post as unknown as BlogEntry)
       <Content />
     </article>
   </div>
+
+  {_codeBlockDetected && <script src="~/lib/satteri/code-copy/client.js" />}
 </Layout>

@@ -3,7 +3,7 @@ import { defineConfig, fontProviders } from 'astro/config'
 import { satteri, satteriHeadingIdsPlugin } from '@astrojs/markdown-satteri'
 import { transformerNotationDiff, transformerNotationHighlight } from '@shikijs/transformers'
 import { satteriAutolinkHeadings } from './src/lib/satteri/autolink-headings.mjs'
-import { satteriCodeCopy } from './src/lib/satteri/code-copy'
+import { satteriCodeBlockCopyButton, satteriDetectCodeBlocks } from './src/lib/satteri/code-copy'
 import { satteriExternalLinks } from './src/lib/satteri/external-links.mjs'
 import shikiLangs from './src/lib/shiki/languages.mjs'
 
@@ -75,13 +75,14 @@ export default defineConfig({
   ],
   markdown: {
     processor: satteri({
+      mdastPlugins: [satteriDetectCodeBlocks],
       hastPlugins: [
         // Factory so ids exist before our autolink plugin runs — Astro's
         // built-in id pass executes after user hastPlugins.
         () => satteriHeadingIdsPlugin(),
         satteriAutolinkHeadings,
         satteriExternalLinks,
-        satteriCodeCopy,
+        satteriCodeBlockCopyButton,
       ],
     }),
     shikiConfig: {
