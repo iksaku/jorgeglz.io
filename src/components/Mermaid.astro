@@ -1,9 +1,6 @@
 ---
-// Renders fenced ```mermaid code blocks (shiki keeps them as
-// `pre.astro-code[data-language="mermaid"]`) into SVG diagrams in the browser.
-// The mermaid package is dynamically imported, so its chunk is only fetched
-// on pages that actually contain a diagram. Blocks that fail to parse are
-// left as code so the source stays visible.
+// Renders ```mermaid fenced blocks client-side; the mermaid chunk is only
+// fetched on pages that contain one. Unparseable blocks stay as code.
 ---
 
 <script>

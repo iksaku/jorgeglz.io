@@ -39,8 +39,8 @@
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
 }
 
-/* CodeCopy.astro wraps fenced blocks in .code-frame: the frame takes over the
-   block's margin, rounding and ring so the chrome bar sits flush on top. */
+/* satteriCodeCopy's .code-frame takes over the block's margin, rounding and
+   ring so the chrome bar sits flush on top. */
 .code-frame {
   position: relative;
   margin-block: 1.7142857em;
