@@ -54,7 +54,27 @@ reachable from the public internet, we will be installing the [Cloudflare module
 that will allow Caddy to receive the challenge in form on a TXT Record challenge and automatically issue the
 value via the Cloudflare API, and remove it once the TLS certificate has been issued.
 
-![DNS Challenge Diagram](DnsChallengeDiagram.svg)
+```mermaid
+sequenceDiagram
+  autonumber
+  participant ca as 🔐 Certificate Authority
+  participant caddy as 🌐 Caddy
+  participant cf as ⛅ Cloudflare
+
+  caddy->>ca: Request DNS Challenge
+  ca->>caddy: Challenge Verification Code
+  activate ca
+  note right of ca: Wait for TXT Record
+
+  caddy->>cf: Store Verification Code in TXT Record
+
+  note right of ca: Verify TXT Record, generate TLS certificate
+  ca->>caddy: Provide TLS Certificate
+  deactivate ca
+  note left of caddy: Store TLS Certificate
+
+  caddy->>cf: Remove TXT Record
+```
 
 To compile Caddy with this module, we can use the [xcaddy](https://caddyserver.com/docs/build#xcaddy) command:
 

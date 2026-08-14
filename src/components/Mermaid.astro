@@ -1,0 +1,57 @@
+---
+// Renders fenced ```mermaid code blocks (shiki keeps them as
+// `pre.astro-code[data-language="mermaid"]`) into SVG diagrams in the browser.
+// The mermaid package is dynamically imported, so its chunk is only fetched
+// on pages that actually contain a diagram. Blocks that fail to parse are
+// left as code so the source stays visible.
+---
+
+<script>
+  const blocks = document.querySelectorAll<HTMLElement>('.prose pre.astro-code[data-language="mermaid"]')
+
+  if (blocks.length > 0) {
+    const mermaid = (await import('mermaid')).default
+
+    mermaid.initialize({
+      startOnLoad: false,
+      // Dracula-flavored base theme to match the site's code blocks.
+      theme: 'base',
+      themeVariables: {
+        background: 'transparent',
+        fontFamily: 'var(--font-sans)',
+        primaryColor: '#282a36',
+        primaryTextColor: '#f8f8f2',
+        primaryBorderColor: '#6272a4',
+        secondaryColor: '#44475a',
+        secondaryTextColor: '#f8f8f2',
+        tertiaryColor: '#21222c',
+        lineColor: '#f8f8f2',
+        textColor: '#f8f8f2',
+        actorBkg: '#282a36',
+        actorBorder: '#6272a4',
+        actorTextColor: '#f8f8f2',
+        signalColor: '#f8f8f2',
+        signalTextColor: '#f8f8f2',
+        sequenceNumberColor: '#282a36',
+        activationBkgColor: '#44475a',
+        noteBkgColor: '#44475a',
+        noteTextColor: '#f8f8f2',
+        noteBorderColor: '#6272a4',
+      },
+    })
+
+    let i = 0
+    for (const pre of blocks) {
+      const source = pre.querySelector('code')?.textContent ?? ''
+      try {
+        const { svg } = await mermaid.render(`mermaid-diagram-${i++}`, source)
+        const diagram = document.createElement('div')
+        diagram.className = 'mermaid-diagram'
+        diagram.innerHTML = svg
+        pre.replaceWith(diagram)
+      } catch (error) {
+        console.error('[mermaid] Failed to render diagram:', error)
+      }
+    }
+  }
+</script>

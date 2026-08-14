@@ -169,6 +169,18 @@
   margin-right: auto;
 }
 
+/* Mermaid.astro swaps ```mermaid code blocks for rendered SVGs. */
+.prose .mermaid-diagram {
+  display: flex;
+  justify-content: center;
+  margin-block: 1.7142857em;
+}
+
+.prose .mermaid-diagram > svg {
+  max-width: 100%;
+  height: auto;
+}
+
 .prose strong {
   font-weight: 700;
   letter-spacing: 0.025em;

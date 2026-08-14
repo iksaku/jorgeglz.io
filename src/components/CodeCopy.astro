@@ -74,5 +74,8 @@
     frame.prepend(bar)
   }
 
-  document.querySelectorAll<HTMLElement>('.prose pre.astro-code').forEach(enhance)
+  // Mermaid blocks are rendered into diagrams by Mermaid.astro — no copy chrome.
+  document
+    .querySelectorAll<HTMLElement>('.prose pre.astro-code:not([data-language="mermaid"])')
+    .forEach(enhance)
 </script>
