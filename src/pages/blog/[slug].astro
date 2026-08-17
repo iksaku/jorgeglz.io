@@ -6,7 +6,7 @@ import Seo from '~/components/Seo.astro'
 import { type BlogEntry, type BlogPost, getBlogPosts } from '~/lib/utils'
 
 export async function getStaticPaths() {
-  const posts = await getBlogPosts()
+  const posts = await getBlogPosts((post) => import.meta.env.DEV || !!post.data.date)
 
   return posts.map((post) => ({
     params: { slug: post.id },

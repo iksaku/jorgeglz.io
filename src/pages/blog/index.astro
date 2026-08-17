@@ -32,7 +32,7 @@ const websiteStructuredData = {
                 Draft
               </span>
             ) : (
-              <time class="shrink-0 font-mono text-xs text-zinc-500" datetime={post.data.date!.toISO()}>
+              <time class="shrink-0 font-mono text-sm text-zinc-500" datetime={post.data.date!.toISO()}>
                 {post.data.date!.toFormat('yyyy-LL-dd')}
               </time>
             )}
