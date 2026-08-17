@@ -54,13 +54,13 @@ const {
     }
 
     <header class="mt-8 mb-10">
-      <h1 class="text-4xl font-semibold tracking-tight text-zinc-50">{post.data.title}</h1>
+      <h1 class="text-4xl font-semibold tracking-tight text-zinc-50" transition:name={`post-title-${post.id}`}>{post.data.title}</h1>
       <div class="mt-3">
         {
           !post.data.date ? (
             <span class="rounded-full bg-red-500/10 px-2 py-0.5 text-xs font-medium text-red-400">Draft</span>
           ) : (
-            <time class="font-mono text-sm text-zinc-500" datetime={post.data.date!.toISO()}>
+            <time class="font-mono text-sm text-zinc-500" datetime={post.data.date!.toISO()} transition:name={`post-date-${post.id}`}>
               {post.data.date!.toFormat('yyyy-LL-dd')}
             </time>
           )

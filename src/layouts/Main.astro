@@ -1,5 +1,6 @@
 ---
 import { Font } from 'astro:assets'
+import { ClientRouter } from 'astro:transitions'
 
 import '~/assets/css/app.css'
 
@@ -7,7 +8,7 @@ const { class: bodyClass } = Astro.props
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:name="root" transition:animate="none">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,6 +18,8 @@ const { class: bodyClass } = Astro.props
 
     <Font cssVariable="--font-inter" preload />
     <Font cssVariable="--font-jetbrains-mono" preload />
+
+    <ClientRouter />
 
     <slot name="meta" />
   </head>
