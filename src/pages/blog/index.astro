@@ -26,13 +26,13 @@ const websiteStructuredData = {
           class="group block rounded-2xl bg-white/[0.03] p-6 ring-1 ring-white/10 transition-colors hover:bg-white/[0.06] hover:ring-white/20"
         >
           <div class="flex items-baseline justify-between gap-4">
-            <h2 class="text-base font-medium text-zinc-50">{post.data.title}</h2>
+            <h2 class="text-base font-medium text-zinc-50" transition:name={`post-title-${post.id}`}>{post.data.title}</h2>
             {!post.data.date ? (
               <span class="shrink-0 rounded-full bg-red-500/10 px-2 py-0.5 text-xs font-medium text-red-400">
                 Draft
               </span>
             ) : (
-              <time class="shrink-0 font-mono text-sm text-zinc-500" datetime={post.data.date!.toISO()}>
+              <time class="shrink-0 font-mono text-sm text-zinc-500" datetime={post.data.date!.toISO()} transition:name={`post-date-${post.id}`}>
                 {post.data.date!.toFormat('yyyy-LL-dd')}
               </time>
             )}
