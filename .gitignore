@@ -9,6 +9,9 @@ node_modules
 # Astro
 .astro
 
+# Amp runtime portal metadata
+.amp/portals/*
+
 # Upgrade verification baseline (throwaway)
 .upgrade-baseline/
 

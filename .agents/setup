@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+cd -- "$repo_root"
+
+node_version="$(tr -d 'v[:space:]' < .nvmrc)"
+install_root="$HOME/.local/share/jorgeglz-orb"
+toolchain="$install_root/node-v$node_version"
+bin_dir="$install_root/bin"
+
+printf '\n==> Node.js %s\n' "$node_version"
+if [[ ! -x "$toolchain/bin/node" ]]; then
+  case "$(uname -m)" in
+    x86_64) arch=x64 ;;
+    aarch64) arch=arm64 ;;
+    *) echo 'Unsupported Node.js architecture' >&2; exit 1 ;;
+  esac
+  archive="node-v$node_version-linux-$arch.tar.xz"
+  download_dir="$(mktemp -d)"
+  trap 'rm -rf -- "$download_dir"' EXIT
+  time (
+    cd -- "$download_dir"
+    curl --fail --silent --show-error --location --remote-name "https://nodejs.org/dist/v$node_version/$archive"
+    curl --fail --silent --show-error --location --remote-name "https://nodejs.org/dist/v$node_version/SHASUMS256.txt"
+    grep " $archive$" SHASUMS256.txt | sha256sum --check -
+    mkdir -p -- "$install_root"
+    tar -xJf "$archive" -C "$install_root"
+    mv -- "$install_root/node-v$node_version-linux-$arch" "$toolchain"
+  )
+fi
+ln -sfn -- "$toolchain/bin" "$bin_dir"
+export PATH="$bin_dir:$PATH"
+node --version
+
+# Amp and supervised services start in separate non-interactive login shells.
+profile_marker='# jorgeglz.io orb toolchain'
+if ! grep -Fqx "$profile_marker" "$HOME/.bash_profile" 2>/dev/null; then
+  cat >> "$HOME/.bash_profile" <<EOF
+
+$profile_marker
+if [[ "\$PWD/" == "$repo_root/"* && ":\$PATH:" != *":$bin_dir:"* ]]; then
+  export PATH="$bin_dir:\$PATH"
+fi
+EOF
+fi
+
+# The project has no pnpm pin; retain the orb's known-working version.
+pnpm_version=12.0.0
+printf '\n==> pnpm %s\n' "$pnpm_version"
+if [[ ! -x "$bin_dir/pnpm" ]] || [[ "$("$bin_dir/pnpm" --version)" != "$pnpm_version" ]]; then
+  time npm install --global --prefix "$toolchain" "pnpm@$pnpm_version" --no-audit --no-fund
+fi
+pnpm --version
+
+printf '\n==> Installing locked dependencies\n'
+time pnpm install --frozen-lockfile
+
+printf '\n==> Preparing Astro types\n'
+time pnpm exec astro sync
